@@ -1,0 +1,5 @@
+/home/user/compiladores/pc/build/CMakeFiles/rebuild_cache.dir
+/home/user/compiladores/pc/build/CMakeFiles/main.dir
+/home/user/compiladores/pc/build/CMakeFiles/edit_cache.dir
+/home/user/compiladores/pc/build/CMakeFiles/cc_dict_main_example.dir
+/home/user/compiladores/pc/build/CMakeFiles/test.dir
