@@ -2,13 +2,15 @@
 
 int comp_get_line_number (void)
 {
+  extern int yylineno;
   //implemente esta função
-  return -1;
+  return yylineno;
 }
 
 void yyerror (char const *mensagem)
 {
-  fprintf (stderr, "%s\n", mensagem); //altere para que apareça a linha
+  extern int yylineno;
+  fprintf (stderr, "%s\n Erro na linha %d", mensagem,yylineno); //altere para que apareça a linha
 }
 
 void main_init (int argc, char **argv)

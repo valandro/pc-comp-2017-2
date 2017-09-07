@@ -3,6 +3,7 @@
 */
 %{
 #include "main.h"
+extern int yylineno;
 %}
 
 /* Declaração dos tokens da linguagem */
