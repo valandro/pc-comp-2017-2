@@ -65,8 +65,9 @@
 #line 4 "parser.y" /* yacc.c:339  */
 
 #include "main.h"
+extern int yylineno;
 
-#line 70 "/home/user/compiladores/pc/build/parser.c" /* yacc.c:339  */
+#line 71 "/home/user/compiladores/pc/build/parser.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -161,7 +162,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 165 "/home/user/compiladores/pc/build/parser.c" /* yacc.c:358  */
+#line 166 "/home/user/compiladores/pc/build/parser.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -462,7 +463,7 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    54,    54
+       0,    55,    55
 };
 #endif
 
@@ -1240,7 +1241,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1244 "/home/user/compiladores/pc/build/parser.c" /* yacc.c:1646  */
+#line 1245 "/home/user/compiladores/pc/build/parser.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1468,5 +1469,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 56 "parser.y" /* yacc.c:1906  */
+#line 57 "parser.y" /* yacc.c:1906  */
 
