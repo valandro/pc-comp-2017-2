@@ -6,6 +6,9 @@
 %}
 %option yylineno
 DIGIT [0-9]
+SPACE [\ \t\r]
+LETTER [a-z A-Z]
+UNDERSCORE [_]
 %%
 int return TK_PR_INT;
 float return TK_PR_FLOAT;
@@ -33,7 +36,8 @@ private return TK_PR_PRIVATE;
 public return TK_PR_PUBLIC;
 protected return TK_PR_PROTECTED;
 \n
-{DIGIT}* return TK_LIT_INT;
+{SPACE}+
+{DIGIT}+ return TK_LIT_INT;
 {DIGIT}+"."{DIGIT}* return TK_LIT_FLOAT;
-
+({LETTER}+({LETTER}|{DIGIT}|{UNDERSCORE})*) return TK_IDENTIFICADOR;
 %%
