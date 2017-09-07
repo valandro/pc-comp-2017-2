@@ -7,8 +7,9 @@
 %option yylineno
 DIGIT [0-9]
 SPACE [\ \t\r]
-LETTER [a-z A-Z]
+LETTER [a-zA-Z]
 UNDERSCORE [_]
+
 %%
 int return TK_PR_INT;
 float return TK_PR_FLOAT;
@@ -35,6 +36,14 @@ class return TK_PR_CLASS;
 private return TK_PR_PRIVATE;
 public return TK_PR_PUBLIC;
 protected return TK_PR_PROTECTED;
+"<=" return TK_OC_LE;
+">=" return TK_OC_GE;
+"==" return TK_OC_EQ;
+"!=" return TK_OC_NE;
+"&&" return TK_OC_AND;
+"||" return TK_OC_OR;
+"<<" return TK_OC_SL;
+">>" return TK_OC_SR;
 \n
 {SPACE}+
 {DIGIT}+ return TK_LIT_INT;
