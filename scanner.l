@@ -58,5 +58,5 @@ true return TK_LIT_TRUE;
 {QUOSIM}{CHARACTERS}?{QUOSIM} return TK_LIT_CHAR;
 {QUODOB}{CHARACTERS}*{QUODOB} return TK_LIT_STRING;
 {LETTER}+(({LETTER}|{DIGIT}|{UNDERSCORE})*) return TK_IDENTIFICADOR;
-{PUNCTUATION} return TOKEN_ERRO;
+{PUNCTUATION} { char curent = (int)*yytext; printf("caracter %s ASCII %d \n",yytext,(int)curent);}
 %%

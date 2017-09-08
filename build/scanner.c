@@ -1157,7 +1157,7 @@ return TK_IDENTIFICADOR;
 case 45:
 YY_RULE_SETUP
 #line 61 "scanner.l"
-return TOKEN_ERRO;
+{ char curent = (int)*yytext; printf("caracter %s ASCII %d \n",yytext,(int)curent);}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
