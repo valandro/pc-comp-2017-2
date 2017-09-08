@@ -11,7 +11,7 @@ LETTER [a-zA-Z]
 UNDERSCORE [_]
 QUODOB ["]
 QUOSIM [']
-CHARACTERS [^ ]
+CHARACTERS [^ \n]
 PUNCTUATION [!"#$%&'()*+,./:;<=>?@\^_`{|}~-]
 %%
 int return TK_PR_INT;
