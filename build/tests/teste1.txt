@@ -4,7 +4,8 @@ if then {
 }
 else
 101020
-0.0
++0.0
+-1.1
 a123
 AZZzad
 ,
@@ -17,3 +18,4 @@ TESTE_1
 mais de uma
 linha
 */
+'aaa'

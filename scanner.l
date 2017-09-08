@@ -9,10 +9,11 @@ DIGIT [0-9]
 SPACE [\ \t\r]
 LETTER [a-zA-Z]
 UNDERSCORE [_]
+OP [+-]
 QUODOB ["]
 QUOSIM [']
 CHARACTERS [^ \n]
-PUNCTUATION [!"#$%&'()*+,./:;<=>?@\^_`{|}~-]
+PUNCTUATION [!"#$%&()*+,./:;<=>?@\^_`{|}~-]
 %%
 int return TK_PR_INT;
 float return TK_PR_FLOAT;
@@ -51,12 +52,13 @@ protected return TK_PR_PROTECTED;
 {SPACE}+
 "//"({CHARACTERS}|{SPACE})*"\n"
 "/*"({CHARACTERS}|{SPACE}|"\n")*"*/"
-{DIGIT}+ return TK_LIT_INT;
-{DIGIT}+"."{DIGIT}* return TK_LIT_FLOAT;
+{OP}?{DIGIT}+ return TK_LIT_INT;
+{OP}?{DIGIT}+"."{DIGIT}* return TK_LIT_FLOAT;
 false return TK_LIT_FALSE;
 true return TK_LIT_TRUE;
 {QUOSIM}{CHARACTERS}?{QUOSIM} return TK_LIT_CHAR;
 {QUODOB}{CHARACTERS}*{QUODOB} return TK_LIT_STRING;
 {LETTER}+(({LETTER}|{DIGIT}|{UNDERSCORE})*) return TK_IDENTIFICADOR;
 {PUNCTUATION} { char curent = (int)*yytext; printf("caracter %s ASCII %d \n",yytext,(int)curent);}
+. return TOKEN_ERRO;
 %%

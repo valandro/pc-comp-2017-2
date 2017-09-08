@@ -1,10 +1,10 @@
-Start testing: Sep 08 13:45 EDT
+Start testing: Sep 08 13:59 EDT
 ----------------------------------------------------------
 1/407 Testing: e1_avaliacao_00
 1/407 Test: e1_avaliacao_00
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_00.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_00" start time: Sep 08 13:45 EDT
+"e1_avaliacao_00" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -33,13 +33,14 @@ Output of <avaliacao_00.tesh:5> mismatch:
 - 36 TK_ESPECIAL [!]
 - 37 TK_ESPECIAL [&]
 - 38 TK_ESPECIAL [$]
-- 39 TK_LIT_INT [-2]
 + caracter , ASCII 44 
 + caracter ; ASCII 59 
 + caracter : ASCII 58 
 + caracter ( ASCII 40 
 + caracter ) ASCII 41 
-+ []caracter { ASCII 123 
++ 25 TOKEN_ERRO [[]
++ 26 TOKEN_ERRO []]
++ caracter { ASCII 123 
 + caracter } ASCII 125 
 + caracter + ASCII 43 
 + caracter - ASCII 45 
@@ -51,18 +52,14 @@ Output of <avaliacao_00.tesh:5> mismatch:
 + caracter ! ASCII 33 
 + caracter & ASCII 38 
 + caracter $ ASCII 36 
-+ caracter - ASCII 45 
-+ 39 TK_LIT_INT [2]
+  39 TK_LIT_INT [-2]
   40 TK_LIT_FLOAT [31794.45]
-  41 TK_LIT_CHAR ['&']
+...
   40 TK_LIT_FLOAT [31794.45]
   41 TK_LIT_CHAR ['&']
 - 42 TK_LIT_STRING ["oZ bool S9"]
 - 43 TK_IDENTIFICADOR [___bqmu7ftc1ICihA1pnIoWlvDHnaUnbS9LqgUPtmYLNKQ6O9fzKFyRj50N]
 - 51 TK_ESPECIAL [[]
-- 51 TK_IDENTIFICADOR [brasil]
-- 51 TK_IDENTIFICADOR [_int]
-- 51 TK_ESPECIAL []]
 + caracter " ASCII 34 
 + 42 TK_IDENTIFICADOR [oZ]
 + 42 TK_PR_BOOL [bool]
@@ -72,16 +69,20 @@ Output of <avaliacao_00.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 43 TK_IDENTIFICADOR [bqmu7ftc1ICihA1pnIoWlvDHnaUnbS9LqgUPtmYLNKQ6O9fzKFyRj50N]
-+ [51 TK_IDENTIFICADOR [brasil]
++ 51 TOKEN_ERRO [[]
+  51 TK_IDENTIFICADOR [brasil]
+  51 TK_IDENTIFICADOR [brasil]
+- 51 TK_IDENTIFICADOR [_int]
+- 51 TK_ESPECIAL []]
 + caracter _ ASCII 95 
 + 51 TK_PR_INT [int]
-+ ]
++ 51 TOKEN_ERRO []]
 Test suite `avaliacao_00.tesh': NOK (<avaliacao_00.tesh:5> output mismatch)
 <end of output>
-Test time =   0.22 sec
+Test time =   0.19 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_00" end time: Sep 08 13:45 EDT
+"e1_avaliacao_00" end time: Sep 08 13:59 EDT
 "e1_avaliacao_00" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -89,7 +90,7 @@ Test Failed.
 2/407 Test: e1_avaliacao_01
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_01.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_01" start time: Sep 08 13:45 EDT
+"e1_avaliacao_01" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -120,7 +121,12 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 2 TK_ESPECIAL [{]
 - 2 TK_ESPECIAL [;]
 - 2 TK_ESPECIAL []]
-- 2 TK_PR_DO [do]
++ caracter { ASCII 123 
++ caracter { ASCII 123 
++ caracter ; ASCII 59 
++ 2 TOKEN_ERRO []]
+  2 TK_PR_DO [do]
+  2 TK_PR_DO [do]
 - 2 TK_ESPECIAL [[]
 - 2 TK_ESPECIAL [>]
 - 2 TK_ESPECIAL [)]
@@ -129,14 +135,12 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 2 TK_ESPECIAL [-]
 - 2 TK_ESPECIAL [/]
 - 2 TK_ESPECIAL [!]
-+ caracter { ASCII 123 
-+ caracter { ASCII 123 
-+ caracter ; ASCII 59 
-+ ]2 TK_PR_DO [do]
-+ [caracter > ASCII 62 
++ 2 TOKEN_ERRO [[]
++ caracter > ASCII 62 
 + caracter ) ASCII 41 
 + caracter < ASCII 60 
-+ ]caracter - ASCII 45 
++ 2 TOKEN_ERRO []]
++ caracter - ASCII 45 
 + caracter / ASCII 47 
 + caracter ! ASCII 33 
   2 TK_PR_STRING [string]
@@ -212,7 +216,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 4 TK_ESPECIAL [<]
 + caracter : ASCII 58 
 + caracter ! ASCII 33 
-+ ]caracter < ASCII 60 
++ 4 TOKEN_ERRO []]
++ caracter < ASCII 60 
   4 TK_PR_INPUT [input]
   4 TK_PR_ELSE [else]
   4 TK_PR_INPUT [input]
@@ -225,7 +230,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
   4 TK_PR_RETURN [return]
 - 4 TK_ESPECIAL [[]
 - 4 TK_ESPECIAL [/]
-+ [caracter / ASCII 47 
++ 4 TOKEN_ERRO [[]
++ caracter / ASCII 47 
   4 TK_PR_RETURN [return]
   4 TK_PR_RETURN [return]
 ...
@@ -233,18 +239,21 @@ Output of <avaliacao_01.tesh:5> mismatch:
   5 TK_PR_CHAR [char]
 - 5 TK_ESPECIAL [$]
 - 5 TK_ESPECIAL [[]
-- 5 TK_PR_CHAR [char]
++ caracter $ ASCII 36 
++ 5 TOKEN_ERRO [[]
+  5 TK_PR_CHAR [char]
+  5 TK_PR_CHAR [char]
 - 5 TK_ESPECIAL [;]
 - 5 TK_ESPECIAL [[]
-- 5 TK_PR_IF [if]
-- 5 TK_ESPECIAL []]
-- 5 TK_PR_STRING [string]
-+ caracter $ ASCII 36 
-+ [5 TK_PR_CHAR [char]
 + caracter ; ASCII 59 
-+ [5 TK_PR_IF [if]
-+ ]5 TK_PR_STRING [string]
++ 5 TOKEN_ERRO [[]
+  5 TK_PR_IF [if]
+  5 TK_PR_IF [if]
+- 5 TK_ESPECIAL []]
++ 5 TOKEN_ERRO []]
+  5 TK_PR_STRING [string]
   5 TK_PR_BOOL [bool]
+  5 TK_PR_STRING [string]
   5 TK_PR_BOOL [bool]
 - 5 TK_ESPECIAL [,]
 - 5 TK_ESPECIAL [:]
@@ -257,13 +266,14 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 5 TK_ESPECIAL [*]
 - 5 TK_ESPECIAL [-]
 - 5 TK_ESPECIAL [[]
-- 6 TK_PR_FLOAT [float]
-- 6 TK_ESPECIAL [}]
 + caracter > ASCII 62 
 + caracter : ASCII 58 
 + caracter * ASCII 42 
 + caracter - ASCII 45 
-+ [6 TK_PR_FLOAT [float]
++ 5 TOKEN_ERRO [[]
+  6 TK_PR_FLOAT [float]
+  6 TK_PR_FLOAT [float]
+- 6 TK_ESPECIAL [}]
 + caracter } ASCII 125 
   6 TK_PR_BOOL [bool]
   6 TK_PR_BOOL [bool]
@@ -285,7 +295,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 6 TK_ESPECIAL [&]
 - 6 TK_ESPECIAL [}]
 + caracter ! ASCII 33 
-+ [caracter = ASCII 61 
++ 6 TOKEN_ERRO [[]
++ caracter = ASCII 61 
 + caracter ( ASCII 40 
 + caracter + ASCII 43 
 + caracter & ASCII 38 
@@ -301,24 +312,26 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 6 TK_ESPECIAL [(]
 - 6 TK_ESPECIAL [,]
 - 6 TK_ESPECIAL [[]
-- 7 TK_PR_RETURN [return]
-- 7 TK_ESPECIAL [/]
-- 7 TK_ESPECIAL [{]
-- 7 TK_ESPECIAL [<]
-- 7 TK_ESPECIAL []]
-- 7 TK_PR_INT [int]
 + caracter ( ASCII 40 
 + caracter { ASCII 123 
 + caracter * ASCII 42 
 + caracter ! ASCII 33 
 + caracter ( ASCII 40 
 + caracter , ASCII 44 
-+ [7 TK_PR_RETURN [return]
++ 6 TOKEN_ERRO [[]
+  7 TK_PR_RETURN [return]
+  7 TK_PR_RETURN [return]
+- 7 TK_ESPECIAL [/]
+- 7 TK_ESPECIAL [{]
+- 7 TK_ESPECIAL [<]
+- 7 TK_ESPECIAL []]
 + caracter / ASCII 47 
 + caracter { ASCII 123 
 + caracter < ASCII 60 
-+ ]7 TK_PR_INT [int]
++ 7 TOKEN_ERRO []]
+  7 TK_PR_INT [int]
   7 TK_PR_DO [do]
+  7 TK_PR_INT [int]
   7 TK_PR_DO [do]
 - 7 TK_ESPECIAL [&]
 - 7 TK_ESPECIAL [:]
@@ -387,17 +400,19 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 9 TK_ESPECIAL [:]
 - 9 TK_ESPECIAL [)]
 - 9 TK_ESPECIAL [[]
-- 9 TK_PR_BOOL [bool]
-- 9 TK_ESPECIAL [!]
-- 9 TK_ESPECIAL [{]
 + caracter : ASCII 58 
 + caracter ) ASCII 41 
 + caracter / ASCII 47 
 + caracter * ASCII 42 
-+ ]caracter * ASCII 42 
++ 9 TOKEN_ERRO []]
++ caracter * ASCII 42 
 + caracter : ASCII 58 
 + caracter ) ASCII 41 
-+ [9 TK_PR_BOOL [bool]
++ 9 TOKEN_ERRO [[]
+  9 TK_PR_BOOL [bool]
+  9 TK_PR_BOOL [bool]
+- 9 TK_ESPECIAL [!]
+- 9 TK_ESPECIAL [{]
 + caracter ! ASCII 33 
 + caracter { ASCII 123 
   9 TK_PR_STRING [string]
@@ -438,13 +453,15 @@ Output of <avaliacao_01.tesh:5> mismatch:
 + caracter ) ASCII 41 
 + caracter * ASCII 42 
 + caracter < ASCII 60 
-+ [caracter ; ASCII 59 
++ 10 TOKEN_ERRO [[]
++ caracter ; ASCII 59 
   10 TK_PR_THEN [then]
   10 TK_PR_THEN [then]
 - 10 TK_ESPECIAL [[]
-- 10 TK_PR_OUTPUT [output]
-+ [10 TK_PR_OUTPUT [output]
++ 10 TOKEN_ERRO [[]
+  10 TK_PR_OUTPUT [output]
   10 TK_PR_ELSE [else]
+  10 TK_PR_OUTPUT [output]
   10 TK_PR_ELSE [else]
 - 10 TK_ESPECIAL [:]
 - 10 TK_ESPECIAL [;]
@@ -474,7 +491,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 11 TK_ESPECIAL [/]
 - 11 TK_ESPECIAL [=]
 - 11 TK_ESPECIAL [/]
-+ [caracter > ASCII 62 
++ 11 TOKEN_ERRO [[]
++ caracter > ASCII 62 
 + caracter ! ASCII 33 
 + caracter + ASCII 43 
 + caracter { ASCII 123 
@@ -493,7 +511,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 11 TK_ESPECIAL []]
 - 11 TK_ESPECIAL [}]
 - 12 TK_ESPECIAL [>]
-+ ]caracter } ASCII 125 
++ 11 TOKEN_ERRO []]
++ caracter } ASCII 125 
 + caracter > ASCII 62 
   12 TK_PR_CHAR [char]
   12 TK_PR_CHAR [char]
@@ -504,7 +523,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 12 TK_ESPECIAL [=]
 + caracter } ASCII 125 
 + caracter * ASCII 42 
-+ [caracter , ASCII 44 
++ 12 TOKEN_ERRO [[]
++ caracter , ASCII 44 
 + caracter = ASCII 61 
   12 TK_PR_BOOL [bool]
   12 TK_PR_BOOL [bool]
@@ -529,7 +549,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 + caracter ! ASCII 33 
 + caracter ) ASCII 41 
 + caracter { ASCII 123 
-+ [caracter ( ASCII 40 
++ 12 TOKEN_ERRO [[]
++ caracter ( ASCII 40 
 + caracter : ASCII 58 
   12 TK_PR_THEN [then]
   12 TK_PR_THEN [then]
@@ -559,7 +580,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 13 TK_ESPECIAL []]
 - 13 TK_ESPECIAL [{]
 + caracter ! ASCII 33 
-+ ]caracter { ASCII 123 
++ 13 TOKEN_ERRO []]
++ caracter { ASCII 123 
   13 TK_PR_STRING [string]
   13 TK_PR_STRING [string]
 - 13 TK_ESPECIAL [>]
@@ -615,7 +637,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 + caracter ; ASCII 59 
 + caracter & ASCII 38 
 + caracter / ASCII 47 
-+ ]caracter - ASCII 45 
++ 14 TOKEN_ERRO []]
++ caracter - ASCII 45 
 + caracter $ ASCII 36 
 + caracter ) ASCII 41 
   15 TK_PR_FLOAT [float]
@@ -648,7 +671,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 15 TK_ESPECIAL [!]
 - 15 TK_ESPECIAL [(]
 - 15 TK_ESPECIAL [}]
-+ ]caracter ! ASCII 33 
++ 15 TOKEN_ERRO []]
++ caracter ! ASCII 33 
 + caracter ( ASCII 40 
 + caracter } ASCII 125 
   15 TK_PR_BOOL [bool]
@@ -699,7 +723,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 + caracter : ASCII 58 
 + caracter & ASCII 38 
 + caracter ! ASCII 33 
-+ [caracter * ASCII 42 
++ 47 TOKEN_ERRO [[]
++ caracter * ASCII 42 
 + caracter } ASCII 125 
 + caracter } ASCII 125 
 + caracter - ASCII 45 
@@ -715,7 +740,9 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 47 TK_ESPECIAL [;]
 - 47 TK_ESPECIAL [:]
 - 47 TK_ESPECIAL [-]
-+ [[caracter ; ASCII 59 
++ 47 TOKEN_ERRO [[]
++ 47 TOKEN_ERRO [[]
++ caracter ; ASCII 59 
 + caracter : ASCII 58 
 + caracter - ASCII 45 
   47 TK_PR_INT [int]
@@ -735,7 +762,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 47 TK_ESPECIAL [!]
 - 47 TK_ESPECIAL [{]
 - 47 TK_ESPECIAL [>]
-+ [caracter = ASCII 61 
++ 47 TOKEN_ERRO [[]
++ caracter = ASCII 61 
 + caracter ! ASCII 33 
 + caracter { ASCII 123 
 + caracter > ASCII 62 
@@ -783,24 +811,29 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 49 TK_ESPECIAL []]
 - 49 TK_ESPECIAL [*]
 - 49 TK_ESPECIAL []]
-- 49 TK_PR_IF [if]
 + caracter } ASCII 125 
 + caracter $ ASCII 36 
-+ ]caracter * ASCII 42 
-+ ]49 TK_PR_IF [if]
++ 49 TOKEN_ERRO []]
++ caracter * ASCII 42 
++ 49 TOKEN_ERRO []]
+  49 TK_PR_IF [if]
   49 TK_PR_INPUT [input]
+  49 TK_PR_IF [if]
   49 TK_PR_INPUT [input]
 - 49 TK_ESPECIAL [$]
 - 49 TK_ESPECIAL []]
 - 49 TK_ESPECIAL [[]
-- 49 TK_PR_STRING [string]
++ caracter $ ASCII 36 
++ 49 TOKEN_ERRO []]
++ 49 TOKEN_ERRO [[]
+  49 TK_PR_STRING [string]
+  49 TK_PR_STRING [string]
 - 49 TK_ESPECIAL []]
 - 49 TK_ESPECIAL [;]
 - 49 TK_ESPECIAL [,]
 - 49 TK_ESPECIAL [-]
-+ caracter $ ASCII 36 
-+ ][49 TK_PR_STRING [string]
-+ ]caracter ; ASCII 59 
++ 49 TOKEN_ERRO []]
++ caracter ; ASCII 59 
 + caracter , ASCII 44 
 + caracter - ASCII 45 
   49 TK_PR_RETURN [return]
@@ -823,12 +856,14 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 50 TK_ESPECIAL [/]
 - 50 TK_ESPECIAL [[]
 - 50 TK_ESPECIAL [[]
-- 50 TK_PR_RETURN [return]
-- 50 TK_ESPECIAL [*]
 + caracter < ASCII 60 
 + caracter ( ASCII 40 
 + caracter / ASCII 47 
-+ [[50 TK_PR_RETURN [return]
++ 50 TOKEN_ERRO [[]
++ 50 TOKEN_ERRO [[]
+  50 TK_PR_RETURN [return]
+  50 TK_PR_RETURN [return]
+- 50 TK_ESPECIAL [*]
 + caracter * ASCII 42 
   50 TK_PR_DO [do]
   50 TK_PR_DO [do]
@@ -858,13 +893,15 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 51 TK_ESPECIAL []]
 - 51 TK_ESPECIAL [}]
 - 51 TK_ESPECIAL [[]
-- 51 TK_PR_INT [int]
 + caracter ! ASCII 33 
 + caracter > ASCII 62 
 + caracter ( ASCII 40 
-+ ]caracter } ASCII 125 
-+ [51 TK_PR_INT [int]
++ 51 TOKEN_ERRO []]
++ caracter } ASCII 125 
++ 51 TOKEN_ERRO [[]
+  51 TK_PR_INT [int]
   51 TK_PR_ELSE [else]
+  51 TK_PR_INT [int]
   51 TK_PR_ELSE [else]
 - 51 TK_ESPECIAL [{]
 - 51 TK_ESPECIAL [/]
@@ -892,7 +929,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
   52 TK_PR_INT [int]
 - 52 TK_ESPECIAL []]
 - 52 TK_ESPECIAL [-]
-+ ]caracter - ASCII 45 
++ 52 TOKEN_ERRO []]
++ caracter - ASCII 45 
   52 TK_OC_AND [&&]
   52 TK_OC_AND [&&]
 - 52 TK_ESPECIAL [(]
@@ -902,7 +940,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 52 TK_ESPECIAL [+]
 + caracter ( ASCII 40 
 + caracter > ASCII 62 
-+ ]caracter > ASCII 62 
++ 52 TOKEN_ERRO []]
++ caracter > ASCII 62 
 + caracter + ASCII 43 
   52 TK_PR_CHAR [char]
   52 TK_PR_CHAR [char]
@@ -921,7 +960,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 + caracter ) ASCII 41 
 + caracter / ASCII 47 
 + caracter : ASCII 58 
-+ [caracter { ASCII 123 
++ 52 TOKEN_ERRO [[]
++ caracter { ASCII 123 
 + caracter $ ASCII 36 
   52 TK_PR_OUTPUT [output]
   52 TK_PR_OUTPUT [output]
@@ -991,7 +1031,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 + caracter ; ASCII 59 
 + caracter ; ASCII 59 
 + caracter } ASCII 125 
-+ [caracter , ASCII 44 
++ 54 TOKEN_ERRO [[]
++ caracter , ASCII 44 
 + caracter + ASCII 43 
 + caracter , ASCII 44 
   54 TK_PR_DO [do]
@@ -1051,7 +1092,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 55 TK_ESPECIAL [,]
 - 55 TK_ESPECIAL [/]
 + caracter $ ASCII 36 
-+ [caracter < ASCII 60 
++ 55 TOKEN_ERRO [[]
++ caracter < ASCII 60 
 + caracter > ASCII 62 
 + caracter , ASCII 44 
 + caracter / ASCII 47 
@@ -1101,7 +1143,9 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 57 TK_ESPECIAL [)]
 - 57 TK_ESPECIAL [}]
 - 57 TK_ESPECIAL [>]
-+ ][caracter ) ASCII 41 
++ 57 TOKEN_ERRO []]
++ 57 TOKEN_ERRO [[]
++ caracter ) ASCII 41 
 + caracter } ASCII 125 
 + caracter > ASCII 62 
   57 TK_PR_THEN [then]
@@ -1145,7 +1189,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 58 TK_ESPECIAL []]
 - 58 TK_ESPECIAL [(]
 + caracter : ASCII 58 
-+ ]caracter ( ASCII 40 
++ 58 TOKEN_ERRO []]
++ caracter ( ASCII 40 
   58 TK_PR_STRING [string]
   58 TK_PR_STRING [string]
 - 58 TK_ESPECIAL [+]
@@ -1156,7 +1201,8 @@ Output of <avaliacao_01.tesh:5> mismatch:
 - 58 TK_ESPECIAL [/]
 - 58 TK_ESPECIAL [)]
 - 58 TK_ESPECIAL [+]
-+ ]caracter / ASCII 47 
++ 58 TOKEN_ERRO []]
++ caracter / ASCII 47 
 + caracter ) ASCII 41 
 + caracter + ASCII 43 
   59 TK_PR_STRING [string]
@@ -1188,10 +1234,10 @@ Output of <avaliacao_01.tesh:5> mismatch:
 + caracter * ASCII 42 
 Test suite `avaliacao_01.tesh': NOK (<avaliacao_01.tesh:5> output mismatch)
 <end of output>
-Test time =   0.22 sec
+Test time =   0.23 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_01" end time: Sep 08 13:45 EDT
+"e1_avaliacao_01" end time: Sep 08 13:59 EDT
 "e1_avaliacao_01" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1199,7 +1245,7 @@ Test Failed.
 3/407 Test: e1_avaliacao_02
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_02.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_02" start time: Sep 08 13:45 EDT
+"e1_avaliacao_02" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -1226,17 +1272,15 @@ Output of <avaliacao_02.tesh:5> mismatch:
   1 TK_LIT_CHAR ['d']
   1 TK_LIT_CHAR ['d']
 - 2 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  2 TK_LIT_FLOAT [96.6994641]
+- 2 TK_LIT_FLOAT [96.6994641]
++ 2 TK_LIT_FLOAT [-96.6994641]
   2 TK_LIT_CHAR ['*']
-  2 TK_LIT_FLOAT [96.6994641]
   2 TK_LIT_CHAR ['*']
 - 2 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  2 TK_LIT_INT [8336]
-  2 TK_LIT_INT [8336]
+- 2 TK_LIT_INT [8336]
 - 3 TK_LIT_STRING ["h int gZ:N<=ki860v+ _5sN&& if Rc<:{2>=R[f4]A9 output A6Y then Vcbk"]
 - 3 TK_ESPECIAL [/]
++ 2 TK_LIT_INT [-8336]
 + caracter " ASCII 34 
 + 3 TK_IDENTIFICADOR [h]
 + 3 TK_PR_INT [int]
@@ -1258,8 +1302,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 3 TK_LIT_INT [2]
 + 3 TK_OC_GE [>=]
 + 3 TK_IDENTIFICADOR [R]
-+ [3 TK_IDENTIFICADOR [f4]
-+ ]3 TK_IDENTIFICADOR [A9]
++ 3 TOKEN_ERRO [[]
++ 3 TK_IDENTIFICADOR [f4]
++ 3 TOKEN_ERRO []]
++ 3 TK_IDENTIFICADOR [A9]
 + 3 TK_PR_OUTPUT [output]
 + 3 TK_IDENTIFICADOR [A6Y]
 + 3 TK_PR_THEN [then]
@@ -1306,7 +1352,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 4 TK_IDENTIFICADOR [Cm]
 + 4 TK_PR_BOOL [bool]
 + 4 TK_IDENTIFICADOR [YlH]
-+ [caracter " ASCII 34 
++ 4 TOKEN_ERRO [[]
++ caracter " ASCII 34 
 + caracter , ASCII 44 
 + caracter " ASCII 34 
 + 4 TK_PR_INT [int]
@@ -1332,11 +1379,13 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter < ASCII 60 
 + 5 TK_IDENTIFICADOR [RR5q]
 + caracter + ASCII 43 
-+ ]5 TK_PR_DO [do]
++ 5 TOKEN_ERRO []]
++ 5 TK_PR_DO [do]
 + 5 TK_IDENTIFICADOR [U]
 + caracter + ASCII 43 
 + caracter = ASCII 61 
-+ [5 TK_IDENTIFICADOR [p]
++ 5 TOKEN_ERRO [[]
++ 5 TK_IDENTIFICADOR [p]
   5 TK_PR_THEN [then]
   5 TK_PR_THEN [then]
 - 5 TK_ESPECIAL [*]
@@ -1359,7 +1408,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 6 TK_LIT_STRING ["E4ftmT] output  / W while z then AvbQIlTh>=<=&"]
 + caracter " ASCII 34 
 + 6 TK_IDENTIFICADOR [E4ftmT]
-+ ]6 TK_PR_OUTPUT [output]
++ 6 TOKEN_ERRO []]
++ 6 TK_PR_OUTPUT [output]
 + caracter / ASCII 47 
 + 6 TK_IDENTIFICADOR [W]
 + 6 TK_PR_WHILE [while]
@@ -1380,8 +1430,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter - ASCII 45 
 + 7 TK_IDENTIFICADOR [v]
 + caracter , ASCII 44 
-+ [7 TK_IDENTIFICADOR [ND]
-+ [caracter / ASCII 47 
++ 7 TOKEN_ERRO [[]
++ 7 TK_IDENTIFICADOR [ND]
++ 7 TOKEN_ERRO [[]
++ caracter / ASCII 47 
 + 7 TK_IDENTIFICADOR [sW]
 + 7 TK_PR_CHAR [char]
 + 7 TK_IDENTIFICADOR [sAN]
@@ -1401,14 +1453,13 @@ Output of <avaliacao_02.tesh:5> mismatch:
   7 TK_LIT_FLOAT [0105632.17140]
   7 TK_LIT_INT [941831591]
 - 7 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  7 TK_LIT_INT [97]
-  7 TK_LIT_INT [97]
+- 7 TK_LIT_INT [97]
 - 7 TK_ESPECIAL [:]
 - 8 TK_LIT_STRING ["D bool XvJ8 while  else [ else  * "]
 - 9 TK_IDENTIFICADOR [____bJgnmGs2HN5kcuuQvZPZKIynKji9N25yvTTLV4Ib2u09XS0oo47uicxlI4CRXQMm7F22NHaxb5o]
 - 9 TK_ESPECIAL [[]
 - 9 TK_ESPECIAL [>]
++ 7 TK_LIT_INT [-97]
 + caracter : ASCII 58 
 + caracter " ASCII 34 
 + 8 TK_IDENTIFICADOR [D]
@@ -1416,7 +1467,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 8 TK_IDENTIFICADOR [XvJ8]
 + 8 TK_PR_WHILE [while]
 + 8 TK_PR_ELSE [else]
-+ [8 TK_PR_ELSE [else]
++ 8 TOKEN_ERRO [[]
++ 8 TK_PR_ELSE [else]
 + caracter * ASCII 42 
 + caracter " ASCII 34 
 + caracter _ ASCII 95 
@@ -1424,22 +1476,21 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 9 TK_IDENTIFICADOR [bJgnmGs2HN5kcuuQvZPZKIynKji9N25yvTTLV4Ib2u09XS0oo47uicxlI4CRXQMm7F22NHaxb5o]
-+ [caracter > ASCII 62 
++ 9 TOKEN_ERRO [[]
++ caracter > ASCII 62 
   9 TK_LIT_CHAR [':']
   9 TK_LIT_CHAR [':']
 - 9 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  9 TK_LIT_INT [74499494]
+- 9 TK_LIT_INT [74499494]
++ 9 TK_LIT_INT [-74499494]
   9 TK_LIT_CHAR ['[']
-  9 TK_LIT_INT [74499494]
   9 TK_LIT_CHAR ['[']
 - 9 TK_ESPECIAL [-]
 - 9 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-+ caracter - ASCII 45 
-  9 TK_LIT_FLOAT [16891823.88671]
-  9 TK_LIT_FLOAT [16891823.88671]
+- 9 TK_LIT_FLOAT [16891823.88671]
 - 9 TK_ESPECIAL [{]
++ caracter - ASCII 45 
++ 9 TK_LIT_FLOAT [-16891823.88671]
 + caracter { ASCII 123 
   9 TK_PR_RETURN [return]
   9 TK_PR_RETURN [return]
@@ -1454,32 +1505,28 @@ Output of <avaliacao_02.tesh:5> mismatch:
   10 TK_PR_CHAR [char]
 - 10 TK_ESPECIAL [;]
 - 10 TK_ESPECIAL [-]
+- 10 TK_LIT_FLOAT [81029.696169700]
 + caracter ; ASCII 59 
-+ caracter - ASCII 45 
-  10 TK_LIT_FLOAT [81029.696169700]
++ 10 TK_LIT_FLOAT [-81029.696169700]
   10 TK_LIT_CHAR [']']
-  10 TK_LIT_FLOAT [81029.696169700]
   10 TK_LIT_CHAR [']']
 - 10 TK_ESPECIAL [>]
 - 11 TK_IDENTIFICADOR [_YKOIOeIBGHC6uUPcgTNuja6tidVQ6nun3bR7bYwUEoNMEiBxPoFO_yGK5zA1EvTvXw4KLYjtpQBvhuXAx_IzU]
 - 11 TK_ESPECIAL [}]
 - 11 TK_ESPECIAL [-]
+- 11 TK_LIT_FLOAT [090.0666721798]
+- 11 TK_ESPECIAL [-]
+- 11 TK_LIT_FLOAT [6607.93589]
+- 11 TK_ESPECIAL [-]
+- 11 TK_LIT_FLOAT [94083.18]
 + caracter > ASCII 62 
 + caracter _ ASCII 95 
 + 11 TK_IDENTIFICADOR [YKOIOeIBGHC6uUPcgTNuja6tidVQ6nun3bR7bYwUEoNMEiBxPoFO_yGK5zA1EvTvXw4KLYjtpQBvhuXAx_IzU]
 + caracter } ASCII 125 
-+ caracter - ASCII 45 
-  11 TK_LIT_FLOAT [090.0666721798]
-  11 TK_LIT_FLOAT [090.0666721798]
-- 11 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  11 TK_LIT_FLOAT [6607.93589]
-  11 TK_LIT_FLOAT [6607.93589]
-- 11 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  11 TK_LIT_FLOAT [94083.18]
++ 11 TK_LIT_FLOAT [-090.0666721798]
++ 11 TK_LIT_FLOAT [-6607.93589]
++ 11 TK_LIT_FLOAT [-94083.18]
   11 TK_PR_OUTPUT [output]
-  11 TK_LIT_FLOAT [94083.18]
   11 TK_PR_OUTPUT [output]
 - 11 TK_ESPECIAL [>]
 + caracter > ASCII 62 
@@ -1495,7 +1542,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 12 TK_ESPECIAL []]
 - 13 TK_LIT_STRING ["|| * XzZ&&Mi&&mvMis do w&&iS>={QtCl input FfY"]
 - 13 TK_LIT_STRING ["&& output 6]Hygt -  return l6>"]
-+ ]caracter " ASCII 34 
++ 12 TOKEN_ERRO []]
++ caracter " ASCII 34 
 + 13 TK_OC_OR [||]
 + caracter * ASCII 42 
 + 13 TK_IDENTIFICADOR [XzZ]
@@ -1517,7 +1565,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 13 TK_OC_AND [&&]
 + 13 TK_PR_OUTPUT [output]
 + 13 TK_LIT_INT [6]
-+ ]13 TK_IDENTIFICADOR [Hygt]
++ 13 TOKEN_ERRO []]
++ 13 TK_IDENTIFICADOR [Hygt]
 + caracter - ASCII 45 
 + 13 TK_PR_RETURN [return]
 + 13 TK_IDENTIFICADOR [l6]
@@ -1529,15 +1578,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 14 TK_IDENTIFICADOR [__yXlEre77T6LOLns5hqJJyAWceh5Seq6CcJ53inrjOxCnfZsF3hWrzzSeHTOVKoPFrp3vpLnDTfrM8WTQCWhY]
 - 14 TK_ESPECIAL [-]
 - 14 TK_ESPECIAL [-]
+- 14 TK_LIT_INT [1]
+- 15 TK_IDENTIFICADOR [____RDyuGVvQgCQ9HFfcyLLdubOPHtKb45c0NHyGlXmR6KZYhOEuWXm2g5fkz1XSrMiGIM1]
 + caracter $ ASCII 36 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 14 TK_IDENTIFICADOR [yXlEre77T6LOLns5hqJJyAWceh5Seq6CcJ53inrjOxCnfZsF3hWrzzSeHTOVKoPFrp3vpLnDTfrM8WTQCWhY]
 + caracter - ASCII 45 
-+ caracter - ASCII 45 
-  14 TK_LIT_INT [1]
-  14 TK_LIT_INT [1]
-- 15 TK_IDENTIFICADOR [____RDyuGVvQgCQ9HFfcyLLdubOPHtKb45c0NHyGlXmR6KZYhOEuWXm2g5fkz1XSrMiGIM1]
++ 14 TK_LIT_INT [-1]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -1546,17 +1594,17 @@ Output of <avaliacao_02.tesh:5> mismatch:
   15 TK_PR_INPUT [input]
   15 TK_PR_INPUT [input]
 - 15 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  15 TK_LIT_FLOAT [59763791.36227575]
-  15 TK_LIT_FLOAT [59763791.36227575]
+- 15 TK_LIT_FLOAT [59763791.36227575]
 - 15 TK_ESPECIAL [=]
++ 15 TK_LIT_FLOAT [-59763791.36227575]
 + caracter = ASCII 61 
   15 TK_LIT_INT [64]
   15 TK_LIT_INT [64]
 - 15 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  15 TK_LIT_FLOAT [7435873.076]
+- 15 TK_LIT_FLOAT [7435873.076]
++ 15 TK_LIT_FLOAT [-7435873.076]
   15 TK_PR_BOOL [bool]
+  16 TK_PR_STRING [string]
 ...
   16 TK_PR_STRING [string]
   16 TK_LIT_CHAR ['Z']
@@ -1565,6 +1613,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 17 TK_LIT_STRING ["B - M5"]
 - 17 TK_ESPECIAL [)]
 - 17 TK_ESPECIAL [-]
+- 17 TK_LIT_INT [293193100]
+- 17 TK_LIT_STRING ["8 - zZP: if  char <2+ AH * &8Dzk then + wFV"]
+- 17 TK_ESPECIAL [)]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -1578,11 +1629,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 17 TK_IDENTIFICADOR [M5]
 + caracter " ASCII 34 
 + caracter ) ASCII 41 
-+ caracter - ASCII 45 
-  17 TK_LIT_INT [293193100]
-  17 TK_LIT_INT [293193100]
-- 17 TK_LIT_STRING ["8 - zZP: if  char <2+ AH * &8Dzk then + wFV"]
-- 17 TK_ESPECIAL [)]
++ 17 TK_LIT_INT [-293193100]
 + caracter " ASCII 34 
 + 17 TK_LIT_INT [8]
 + caracter - ASCII 45 
@@ -1630,18 +1677,16 @@ Output of <avaliacao_02.tesh:5> mismatch:
   19 TK_LIT_CHAR ['>']
   19 TK_PR_ELSE [else]
 - 19 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  19 TK_LIT_INT [278]
-  19 TK_LIT_INT [278]
+- 19 TK_LIT_INT [278]
 - 19 TK_IDENTIFICADOR [__input]
 - 19 TK_ESPECIAL [-]
+- 19 TK_LIT_FLOAT [42729.37024056]
++ 19 TK_LIT_INT [-278]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 19 TK_PR_INPUT [input]
-+ caracter - ASCII 45 
-  19 TK_LIT_FLOAT [42729.37024056]
++ 19 TK_LIT_FLOAT [-42729.37024056]
   20 TK_PR_FLOAT [float]
-  19 TK_LIT_FLOAT [42729.37024056]
   20 TK_PR_FLOAT [float]
 - 20 TK_LIT_STRING ["As2E float X$_jb input ==Z if  then Udr = ,Xv0M&&"]
 - 20 TK_ESPECIAL [/]
@@ -1703,7 +1748,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter & ASCII 38 
 + caracter _ ASCII 95 
 + 23 TK_IDENTIFICADOR [dFyhtIKOtFwEpnT5kgHtqQnWumPHlJSCHeN_ZQempY5RnFAEDoB7ASmw0jGFqoMQHf6fMVdsI_EvAZdxNEgFkaHWUhAt]
-+ ]caracter " ASCII 34 
++ 23 TOKEN_ERRO []]
++ caracter " ASCII 34 
 + 24 TK_IDENTIFICADOR [MZ]
 + 24 TK_PR_RETURN [return]
 + 24 TK_OC_LE [<=]
@@ -1753,40 +1799,43 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 26 TK_ESPECIAL [*]
 - 26 TK_IDENTIFICADOR [_____eWrzV2N0QtY]
 - 26 TK_ESPECIAL [[]
-- 26 TK_LIT_CHAR ['[']
-- 26 TK_ESPECIAL [-]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 26 TK_IDENTIFICADOR [NDkG6RIVx5UbTfYfC6uzl3FvY6dlu86tjsJcKMUan3TfUCImGeZXx0Bslsf4f_s4DVWIiGtJvqLoRiD8JI4Dt]
-+ [caracter * ASCII 42 
++ 26 TOKEN_ERRO [[]
++ caracter * ASCII 42 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 26 TK_IDENTIFICADOR [eWrzV2N0QtY]
-+ [26 TK_LIT_CHAR ['[']
-+ caracter - ASCII 45 
-  26 TK_LIT_FLOAT [9207608783.5897040]
++ 26 TOKEN_ERRO [[]
+  26 TK_LIT_CHAR ['[']
+  26 TK_LIT_CHAR ['[']
+- 26 TK_ESPECIAL [-]
+- 26 TK_LIT_FLOAT [9207608783.5897040]
++ 26 TK_LIT_FLOAT [-9207608783.5897040]
   26 TK_LIT_INT [0684413022]
-...
+  27 TK_LIT_STRING ["NcE7Ck"]
   26 TK_LIT_INT [0684413022]
   27 TK_LIT_STRING ["NcE7Ck"]
 - 27 TK_ESPECIAL []]
 - 27 TK_ESPECIAL [}]
 - 27 TK_ESPECIAL [-]
 - 27 TK_ESPECIAL [-]
-+ ]caracter } ASCII 125 
-+ caracter - ASCII 45 
-+ caracter - ASCII 45 
-  27 TK_LIT_FLOAT [4048.6580826]
-  27 TK_LIT_FLOAT [4048.6580826]
+- 27 TK_LIT_FLOAT [4048.6580826]
 - 28 TK_LIT_STRING ["e[ - IS return  output )w(695}fm>=tM[ char t) bool o$ while X - iw"]
++ 27 TOKEN_ERRO []]
++ caracter } ASCII 125 
++ caracter - ASCII 45 
++ 27 TK_LIT_FLOAT [-4048.6580826]
 + caracter " ASCII 34 
 + 28 TK_IDENTIFICADOR [e]
-+ [caracter - ASCII 45 
++ 28 TOKEN_ERRO [[]
++ caracter - ASCII 45 
 + 28 TK_IDENTIFICADOR [IS]
 + 28 TK_PR_RETURN [return]
 + 28 TK_PR_OUTPUT [output]
@@ -1798,7 +1847,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 28 TK_IDENTIFICADOR [fm]
 + 28 TK_OC_GE [>=]
 + 28 TK_IDENTIFICADOR [tM]
-+ [28 TK_PR_CHAR [char]
++ 28 TOKEN_ERRO [[]
++ 28 TK_PR_CHAR [char]
 + 28 TK_IDENTIFICADOR [t]
 + caracter ) ASCII 41 
 + 28 TK_PR_BOOL [bool]
@@ -1815,11 +1865,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
   28 TK_LIT_INT [7409399840]
   28 TK_LIT_FLOAT [4.15]
 - 28 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  28 TK_LIT_INT [4]
-  28 TK_LIT_INT [4]
+- 28 TK_LIT_INT [4]
 - 28 TK_ESPECIAL [>]
 - 28 TK_LIT_STRING ["<=DWU!=Z return m$"]
++ 28 TK_LIT_INT [-4]
 + caracter > ASCII 62 
 + caracter " ASCII 34 
 + 28 TK_OC_LE [<=]
@@ -1836,10 +1885,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
   29 TK_PR_BOOL [bool]
   29 TK_PR_WHILE [while]
 - 29 TK_ESPECIAL [[]
-- 29 TK_LIT_CHAR [']']
-+ [29 TK_LIT_CHAR [']']
++ 29 TOKEN_ERRO [[]
+  29 TK_LIT_CHAR [']']
   29 TK_LIT_INT [34152254]
-  29 TK_PR_CHAR [char]
+...
   29 TK_LIT_INT [34152254]
   29 TK_PR_CHAR [char]
 - 30 TK_LIT_STRING ["{7L0 output _kb * F"]
@@ -1863,7 +1912,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 31 TK_ESPECIAL []]
 - 32 TK_LIT_STRING ["ogK5l>=n> output + ) return ]4mGp,!= * 0O[suo float ]H!=kW"]
 - 32 TK_IDENTIFICADOR [____]
-+ ]caracter " ASCII 34 
++ 31 TOKEN_ERRO []]
++ caracter " ASCII 34 
 + 32 TK_IDENTIFICADOR [ogK5l]
 + 32 TK_OC_GE [>=]
 + 32 TK_IDENTIFICADOR [n]
@@ -1872,16 +1922,19 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter + ASCII 43 
 + caracter ) ASCII 41 
 + 32 TK_PR_RETURN [return]
-+ ]32 TK_LIT_INT [4]
++ 32 TOKEN_ERRO []]
++ 32 TK_LIT_INT [4]
 + 32 TK_IDENTIFICADOR [mGp]
 + caracter , ASCII 44 
 + 32 TK_OC_NE [!=]
 + caracter * ASCII 42 
 + 32 TK_LIT_INT [0]
 + 32 TK_IDENTIFICADOR [O]
-+ [32 TK_IDENTIFICADOR [suo]
++ 32 TOKEN_ERRO [[]
++ 32 TK_IDENTIFICADOR [suo]
 + 32 TK_PR_FLOAT [float]
-+ ]32 TK_IDENTIFICADOR [H]
++ 32 TOKEN_ERRO []]
++ 32 TK_IDENTIFICADOR [H]
 + 32 TK_OC_NE [!=]
 + 32 TK_IDENTIFICADOR [kW]
 + caracter " ASCII 34 
@@ -1898,6 +1951,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 34 TK_LIT_STRING ["Wi>XH - >=p&f9 then &$s string QJt<=;Jr]Wa]p while 2r5aKh}Fks / r9k float VS2 output "]
 - 34 TK_LIT_STRING ["m) float pXoQ{(pu * ;t]ri return Sg>"]
 - 34 TK_ESPECIAL [-]
+- 34 TK_LIT_INT [60919706]
+- 34 TK_IDENTIFICADOR [__int]
+- 35 TK_IDENTIFICADOR [_8lqBJoNc0sRou6eK4oylMcScG6N1Koxa57WUm8l3vJtRZV2oYsHrfU9Z3GtCv]
 + caracter _ ASCII 95 
 + 32 TK_PR_CHAR [char]
 + caracter " ASCII 34 
@@ -1963,8 +2019,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 34 TK_OC_LE [<=]
 + caracter ; ASCII 59 
 + 34 TK_IDENTIFICADOR [Jr]
-+ ]34 TK_IDENTIFICADOR [Wa]
-+ ]34 TK_IDENTIFICADOR [p]
++ 34 TOKEN_ERRO []]
++ 34 TK_IDENTIFICADOR [Wa]
++ 34 TOKEN_ERRO []]
++ 34 TK_IDENTIFICADOR [p]
 + 34 TK_PR_WHILE [while]
 + 34 TK_LIT_INT [2]
 + 34 TK_IDENTIFICADOR [r5aKh]
@@ -1987,16 +2045,13 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter * ASCII 42 
 + caracter ; ASCII 59 
 + 34 TK_IDENTIFICADOR [t]
-+ ]34 TK_IDENTIFICADOR [ri]
++ 34 TOKEN_ERRO []]
++ 34 TK_IDENTIFICADOR [ri]
 + 34 TK_PR_RETURN [return]
 + 34 TK_IDENTIFICADOR [Sg]
 + caracter > ASCII 62 
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  34 TK_LIT_INT [60919706]
-  34 TK_LIT_INT [60919706]
-- 34 TK_IDENTIFICADOR [__int]
-- 35 TK_IDENTIFICADOR [_8lqBJoNc0sRou6eK4oylMcScG6N1Koxa57WUm8l3vJtRZV2oYsHrfU9Z3GtCv]
++ 34 TK_LIT_INT [-60919706]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 34 TK_PR_INT [int]
@@ -2087,12 +2142,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 40 TK_IDENTIFICADOR [p]
 + caracter } ASCII 125 
 + caracter _ ASCII 95 
-+ [40 TK_PR_FLOAT [float]
++ 40 TOKEN_ERRO [[]
++ 40 TK_PR_FLOAT [float]
 + 40 TK_IDENTIFICADOR [C]
 + caracter ( ASCII 40 
 + 40 TK_IDENTIFICADOR [I]
 + caracter ( ASCII 40 
-+ ]caracter ) ASCII 41 
++ 40 TOKEN_ERRO []]
++ caracter ) ASCII 41 
 + caracter ) ASCII 41 
 + 40 TK_LIT_INT [8]
 + 40 TK_PR_FLOAT [float]
@@ -2134,21 +2191,23 @@ Output of <avaliacao_02.tesh:5> mismatch:
   41 TK_LIT_CHAR ['$']
 - 42 TK_IDENTIFICADOR [_wyXBWiOGzd]
 - 42 TK_ESPECIAL [-]
-+ caracter _ ASCII 95 
-+ 42 TK_IDENTIFICADOR [wyXBWiOGzd]
-+ caracter - ASCII 45 
-  42 TK_LIT_INT [86916159]
-  42 TK_LIT_INT [86916159]
+- 42 TK_LIT_INT [86916159]
 - 42 TK_ESPECIAL [:]
 - 42 TK_ESPECIAL [-]
-+ caracter : ASCII 58 
-+ caracter - ASCII 45 
-  42 TK_LIT_INT [904015]
-  42 TK_LIT_INT [904015]
+- 42 TK_LIT_INT [904015]
 - 43 TK_IDENTIFICADOR [__A9y4d_DLCx3cTgtT0ycwt50CfSwJ7RLSOVf87E6k9cEz2Mtxw6iwVk_S]
 - 43 TK_ESPECIAL [+]
 - 44 TK_IDENTIFICADOR [___3AOOLbFL4CrZOnuq4GMOL7jh15WGfOzbynQFH_TWeTQX8qUP0h6WSgWsIgATtMQ0KU6eln9hz1qG2lE]
 - 44 TK_ESPECIAL [-]
+- 44 TK_LIT_INT [63044851]
+- 44 TK_ESPECIAL [-]
+- 44 TK_LIT_FLOAT [01.533004278]
+- 44 TK_ESPECIAL [}]
++ caracter _ ASCII 95 
++ 42 TK_IDENTIFICADOR [wyXBWiOGzd]
++ 42 TK_LIT_INT [-86916159]
++ caracter : ASCII 58 
++ 42 TK_LIT_INT [-904015]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 43 TK_IDENTIFICADOR [A9y4d_DLCx3cTgtT0ycwt50CfSwJ7RLSOVf87E6k9cEz2Mtxw6iwVk_S]
@@ -2158,14 +2217,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + 44 TK_LIT_INT [3]
 + 44 TK_IDENTIFICADOR [AOOLbFL4CrZOnuq4GMOL7jh15WGfOzbynQFH_TWeTQX8qUP0h6WSgWsIgATtMQ0KU6eln9hz1qG2lE]
-+ caracter - ASCII 45 
-  44 TK_LIT_INT [63044851]
-  44 TK_LIT_INT [63044851]
-- 44 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  44 TK_LIT_FLOAT [01.533004278]
-  44 TK_LIT_FLOAT [01.533004278]
-- 44 TK_ESPECIAL [}]
++ 44 TK_LIT_INT [-63044851]
++ 44 TK_LIT_FLOAT [-01.533004278]
 + caracter } ASCII 125 
   44 TK_LIT_INT [71705351]
   44 TK_LIT_STRING ["&5Q&"]
@@ -2184,22 +2237,23 @@ Output of <avaliacao_02.tesh:5> mismatch:
   45 TK_PR_BOOL [bool]
   45 TK_LIT_FLOAT [195.3]
 - 45 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  45 TK_LIT_INT [39]
-  45 TK_LIT_INT [39]
+- 45 TK_LIT_INT [39]
 - 46 TK_LIT_STRING ["r>=&&t input [fLLt2H return UJy8];W{kDJW while  input WuQirja8gz"]
 - 46 TK_ESPECIAL [{]
 - 46 TK_ESPECIAL [!]
++ 45 TK_LIT_INT [-39]
 + caracter " ASCII 34 
 + 46 TK_IDENTIFICADOR [r]
 + 46 TK_OC_GE [>=]
 + 46 TK_OC_AND [&&]
 + 46 TK_IDENTIFICADOR [t]
 + 46 TK_PR_INPUT [input]
-+ [46 TK_IDENTIFICADOR [fLLt2H]
++ 46 TOKEN_ERRO [[]
++ 46 TK_IDENTIFICADOR [fLLt2H]
 + 46 TK_PR_RETURN [return]
 + 46 TK_IDENTIFICADOR [UJy8]
-+ ]caracter ; ASCII 59 
++ 46 TOKEN_ERRO []]
++ caracter ; ASCII 59 
 + 46 TK_IDENTIFICADOR [W]
 + caracter { ASCII 123 
 + 46 TK_IDENTIFICADOR [kDJW]
@@ -2214,17 +2268,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
   46 TK_LIT_FLOAT [65500453.849416]
   46 TK_LIT_INT [1233854651]
 - 46 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  46 TK_LIT_INT [02030321]
-  46 TK_LIT_INT [02030321]
+- 46 TK_LIT_INT [02030321]
 - 46 TK_ESPECIAL [$]
 - 46 TK_ESPECIAL [{]
 - 47 TK_LIT_STRING [">=vMa else M]Js2CFufaXXjZfz7}1n / !_ = SWC86"]
 - 47 TK_ESPECIAL [,]
 - 47 TK_ESPECIAL [<]
 - 47 TK_ESPECIAL []]
-- 47 TK_PR_FLOAT [float]
-- 47 TK_IDENTIFICADOR [_Vbw_L_a4MH6DF8jbCXuS607BnG2n0DGOOt3Odyf]
++ 46 TK_LIT_INT [-02030321]
 + caracter $ ASCII 36 
 + caracter { ASCII 123 
 + caracter " ASCII 34 
@@ -2232,7 +2283,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 47 TK_IDENTIFICADOR [vMa]
 + 47 TK_PR_ELSE [else]
 + 47 TK_IDENTIFICADOR [M]
-+ ]47 TK_IDENTIFICADOR [Js2CFufaXXjZfz7]
++ 47 TOKEN_ERRO []]
++ 47 TK_IDENTIFICADOR [Js2CFufaXXjZfz7]
 + caracter } ASCII 125 
 + 47 TK_LIT_INT [1]
 + 47 TK_IDENTIFICADOR [n]
@@ -2244,7 +2296,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter " ASCII 34 
 + caracter , ASCII 44 
 + caracter < ASCII 60 
-+ ]47 TK_PR_FLOAT [float]
++ 47 TOKEN_ERRO []]
+  47 TK_PR_FLOAT [float]
+  47 TK_PR_FLOAT [float]
+- 47 TK_IDENTIFICADOR [_Vbw_L_a4MH6DF8jbCXuS607BnG2n0DGOOt3Odyf]
 + caracter _ ASCII 95 
 + 47 TK_IDENTIFICADOR [Vbw_L_a4MH6DF8jbCXuS607BnG2n0DGOOt3Odyf]
   48 TK_PR_STRING [string]
@@ -2259,7 +2314,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 48 TK_PR_ELSE [else]
 + 48 TK_IDENTIFICADOR [E]
 + caracter : ASCII 58 
-+ ]48 TK_IDENTIFICADOR [Nc]
++ 48 TOKEN_ERRO []]
++ 48 TK_IDENTIFICADOR [Nc]
 + caracter " ASCII 34 
 + caracter , ASCII 44 
   48 TK_LIT_CHAR ['+']
@@ -2278,10 +2334,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
   48 TK_LIT_CHAR ['O']
   48 TK_LIT_CHAR ['O']
 - 49 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  49 TK_LIT_FLOAT [851332.0157472]
+- 49 TK_LIT_FLOAT [851332.0157472]
++ 49 TK_LIT_FLOAT [-851332.0157472]
   49 TK_LIT_INT [1301992]
-  49 TK_LIT_FLOAT [851332.0157472]
   49 TK_LIT_INT [1301992]
 - 49 TK_LIT_STRING ["v5 - }T;)(ujVo7m2hU1==9 / zhPQ35"]
 + caracter " ASCII 34 
@@ -2349,14 +2404,15 @@ Output of <avaliacao_02.tesh:5> mismatch:
   51 TK_LIT_CHAR ['S']
 - 51 TK_ESPECIAL [}]
 - 51 TK_ESPECIAL [-]
+- 51 TK_LIT_FLOAT [0160024.502173742]
 + caracter } ASCII 125 
-+ caracter - ASCII 45 
-  51 TK_LIT_FLOAT [0160024.502173742]
++ 51 TK_LIT_FLOAT [-0160024.502173742]
   51 TK_PR_IF [if]
-  51 TK_LIT_FLOAT [0160024.502173742]
   51 TK_PR_IF [if]
 - 52 TK_LIT_STRING ["xyAI output $J output  do &Cb return  - c9!=1W8$Y int L"]
 - 52 TK_ESPECIAL [-]
+- 52 TK_LIT_FLOAT [6835868684.98119]
+- 52 TK_ESPECIAL [+]
 + caracter " ASCII 34 
 + 52 TK_IDENTIFICADOR [xyAI]
 + 52 TK_PR_OUTPUT [output]
@@ -2377,25 +2433,30 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 52 TK_PR_INT [int]
 + 52 TK_IDENTIFICADOR [L]
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  52 TK_LIT_FLOAT [6835868684.98119]
-  52 TK_LIT_FLOAT [6835868684.98119]
-- 52 TK_ESPECIAL [+]
++ 52 TK_LIT_FLOAT [-6835868684.98119]
 + caracter + ASCII 43 
   52 TK_PR_THEN [then]
   52 TK_PR_THEN [then]
 - 52 TK_ESPECIAL [[]
-- 52 TK_LIT_INT [13]
++ 52 TOKEN_ERRO [[]
+  52 TK_LIT_INT [13]
+  52 TK_LIT_INT [13]
 - 53 TK_IDENTIFICADOR [__CrqRsr0ubxyeQzhqFfj_5R3yY0OBh8hUAJWT]
 - 53 TK_ESPECIAL [[]
-- 53 TK_LIT_STRING [""]
-- 53 TK_LIT_STRING ["Eim7Xwc, if N> output 3s&&vTFb else "]
-- 53 TK_ESPECIAL [-]
-+ [52 TK_LIT_INT [13]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 53 TK_IDENTIFICADOR [CrqRsr0ubxyeQzhqFfj_5R3yY0OBh8hUAJWT]
-+ [53 TK_LIT_STRING [""]
++ 53 TOKEN_ERRO [[]
+  53 TK_LIT_STRING [""]
+  53 TK_LIT_STRING [""]
+- 53 TK_LIT_STRING ["Eim7Xwc, if N> output 3s&&vTFb else "]
+- 53 TK_ESPECIAL [-]
+- 53 TK_LIT_FLOAT [1023931997.60]
+- 53 TK_ESPECIAL [=]
+- 54 TK_ESPECIAL [*]
+- 54 TK_ESPECIAL [{]
+- 55 TK_IDENTIFICADOR [_6iqhFzu1_x_nngPiJig2ZrvajXtfoNjYO54PWn1yrEwsHLsVlnFDFtsan8RNHK8GMva_P9Z2JB4EQ9w5lku2eRAL9cUFeue]
+- 55 TK_ESPECIAL [=]
 + caracter " ASCII 34 
 + 53 TK_IDENTIFICADOR [Eim7Xwc]
 + caracter , ASCII 44 
@@ -2409,14 +2470,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 53 TK_IDENTIFICADOR [vTFb]
 + 53 TK_PR_ELSE [else]
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  53 TK_LIT_FLOAT [1023931997.60]
-  53 TK_LIT_FLOAT [1023931997.60]
-- 53 TK_ESPECIAL [=]
-- 54 TK_ESPECIAL [*]
-- 54 TK_ESPECIAL [{]
-- 55 TK_IDENTIFICADOR [_6iqhFzu1_x_nngPiJig2ZrvajXtfoNjYO54PWn1yrEwsHLsVlnFDFtsan8RNHK8GMva_P9Z2JB4EQ9w5lku2eRAL9cUFeue]
-- 55 TK_ESPECIAL [=]
++ 53 TK_LIT_FLOAT [-1023931997.60]
 + caracter = ASCII 61 
 + caracter * ASCII 42 
 + caracter { ASCII 123 
@@ -2446,10 +2500,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
   56 TK_LIT_CHAR ['i']
   56 TK_LIT_FLOAT [2409.93986]
 - 56 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  56 TK_LIT_FLOAT [0.2103]
-  56 TK_LIT_FLOAT [0.2103]
+- 56 TK_LIT_FLOAT [0.2103]
 - 56 TK_ESPECIAL [/]
++ 56 TK_LIT_FLOAT [-0.2103]
 + caracter / ASCII 47 
   56 TK_LIT_CHAR ['L']
   56 TK_LIT_CHAR ['L']
@@ -2465,16 +2518,17 @@ Output of <avaliacao_02.tesh:5> mismatch:
   57 TK_PR_WHILE [while]
 - 57 TK_IDENTIFICADOR [_____L28YxIOXAg5oKjATc]
 - 57 TK_ESPECIAL []]
-- 57 TK_PR_CHAR [char]
-- 58 TK_IDENTIFICADOR [_k0xaL5LJHbjaoKtdCy7V7xQ2KQFGwm2uAZAqSREgDDfPbZgSBJcLSyvJ1VkCaP1iJqc0yT2aEgANMfCOPEg9XtHb3r]
-- 58 TK_ESPECIAL [:]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 57 TK_IDENTIFICADOR [L28YxIOXAg5oKjATc]
-+ ]57 TK_PR_CHAR [char]
++ 57 TOKEN_ERRO []]
+  57 TK_PR_CHAR [char]
+  57 TK_PR_CHAR [char]
+- 58 TK_IDENTIFICADOR [_k0xaL5LJHbjaoKtdCy7V7xQ2KQFGwm2uAZAqSREgDDfPbZgSBJcLSyvJ1VkCaP1iJqc0yT2aEgANMfCOPEg9XtHb3r]
+- 58 TK_ESPECIAL [:]
 + caracter _ ASCII 95 
 + 58 TK_IDENTIFICADOR [k0xaL5LJHbjaoKtdCy7V7xQ2KQFGwm2uAZAqSREgDDfPbZgSBJcLSyvJ1VkCaP1iJqc0yT2aEgANMfCOPEg9XtHb3r]
 + caracter : ASCII 58 
@@ -2537,14 +2591,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
   61 TK_PR_INPUT [input]
   61 TK_PR_INPUT [input]
 - 61 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  61 TK_LIT_INT [007]
+- 61 TK_LIT_INT [007]
++ 61 TK_LIT_INT [-007]
   61 TK_PR_OUTPUT [output]
-  61 TK_LIT_INT [007]
   61 TK_PR_OUTPUT [output]
 - 61 TK_ESPECIAL [[]
 - 61 TK_ESPECIAL [<]
-+ [caracter < ASCII 60 
++ 61 TOKEN_ERRO [[]
++ caracter < ASCII 60 
   61 TK_LIT_INT [9978519]
   61 TK_LIT_INT [9978519]
 - 62 TK_LIT_STRING ["j int 02AeI!>ag while !V==w do ==>|| if E if 5iD char  string c&l /  input 0geoiM$:]0G"]
@@ -2584,7 +2638,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 62 TK_IDENTIFICADOR [geoiM]
 + caracter $ ASCII 36 
 + caracter : ASCII 58 
-+ ]62 TK_LIT_INT [0]
++ 62 TOKEN_ERRO []]
++ 62 TK_LIT_INT [0]
 + 62 TK_IDENTIFICADOR [G]
 + caracter " ASCII 34 
 + caracter " ASCII 34 
@@ -2605,7 +2660,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 63 TK_OC_EQ [==]
 + caracter > ASCII 62 
 + caracter + ASCII 43 
-+ ]caracter { ASCII 123 
++ 63 TOKEN_ERRO []]
++ caracter { ASCII 123 
 + 63 TK_IDENTIFICADOR [Pg]
 + caracter : ASCII 58 
 + 63 TK_IDENTIFICADOR [n5v]
@@ -2639,15 +2695,16 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 65 TK_IDENTIFICADOR [__8xA5AgexkesAicr8cyNnYiIhBf0bKMLMUirJL1VmeymHvsnMCX3HpvwnVVSWwZLSV88DJlgJJ_YGatw]
 - 65 TK_ESPECIAL []]
 - 65 TK_ESPECIAL [-]
+- 65 TK_LIT_INT [900583831]
 + caracter , ASCII 44 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 65 TK_LIT_INT [8]
 + 65 TK_IDENTIFICADOR [xA5AgexkesAicr8cyNnYiIhBf0bKMLMUirJL1VmeymHvsnMCX3HpvwnVVSWwZLSV88DJlgJJ_YGatw]
-+ ]caracter - ASCII 45 
-  65 TK_LIT_INT [900583831]
++ 65 TOKEN_ERRO []]
++ 65 TK_LIT_INT [-900583831]
   65 TK_LIT_INT [9340]
-...
+  65 TK_LIT_FLOAT [17805567.9664]
   65 TK_LIT_INT [9340]
   65 TK_LIT_FLOAT [17805567.9664]
 - 66 TK_IDENTIFICADOR [_____UTI6SpbILHKM0mNKKBpaFiehE4MfnWHexIC_8o9gwTNyCaDKI]
@@ -2776,19 +2833,18 @@ Output of <avaliacao_02.tesh:5> mismatch:
   71 TK_LIT_FLOAT [470.5547]
   71 TK_LIT_FLOAT [470.5547]
 - 71 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  71 TK_LIT_INT [6212694]
+- 71 TK_LIT_INT [6212694]
++ 71 TK_LIT_INT [-6212694]
   71 TK_LIT_CHAR ['(']
-...
+  71 TK_LIT_FLOAT [0448.6537990]
   71 TK_LIT_CHAR ['(']
   71 TK_LIT_FLOAT [0448.6537990]
 - 71 TK_ESPECIAL [$]
 - 71 TK_ESPECIAL [-]
+- 71 TK_LIT_FLOAT [9786038.00036]
 + caracter $ ASCII 36 
-+ caracter - ASCII 45 
-  71 TK_LIT_FLOAT [9786038.00036]
++ 71 TK_LIT_FLOAT [-9786038.00036]
   71 TK_LIT_CHAR [';']
-  71 TK_LIT_FLOAT [9786038.00036]
   71 TK_LIT_CHAR [';']
 - 72 TK_LIT_STRING ["&& do &z||F} while "]
 - 72 TK_LIT_STRING ["KT if Z do 0< - N; float Ga{w& while M"]
@@ -2867,25 +2923,25 @@ Output of <avaliacao_02.tesh:5> mismatch:
   73 TK_LIT_INT [05214601]
   74 TK_LIT_FLOAT [45184.0255627584]
 - 74 TK_ESPECIAL [[]
-- 74 TK_LIT_STRING ["7SD"]
-+ [74 TK_LIT_STRING ["7SD"]
++ 74 TOKEN_ERRO [[]
+  74 TK_LIT_STRING ["7SD"]
   74 TK_LIT_FLOAT [3196.491237980]
+  74 TK_LIT_STRING ["7SD"]
   74 TK_LIT_FLOAT [3196.491237980]
 - 74 TK_ESPECIAL [[]
 - 74 TK_ESPECIAL [-]
-+ [caracter - ASCII 45 
-  74 TK_LIT_FLOAT [5241496145.0]
-  74 TK_LIT_FLOAT [5241496145.0]
+- 74 TK_LIT_FLOAT [5241496145.0]
 - 74 TK_ESPECIAL [{]
++ 74 TOKEN_ERRO [[]
++ 74 TK_LIT_FLOAT [-5241496145.0]
 + caracter { ASCII 123 
   74 TK_PR_RETURN [return]
   74 TK_PR_RETURN [return]
 - 75 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  75 TK_LIT_FLOAT [33065642.302386233]
-  75 TK_LIT_FLOAT [33065642.302386233]
+- 75 TK_LIT_FLOAT [33065642.302386233]
 - 75 TK_LIT_STRING ["U - eK char f1XKpk>xE if cDGms{w_Wat / jgi{8,g)v else  char "]
 - 75 TK_ESPECIAL [:]
++ 75 TK_LIT_FLOAT [-33065642.302386233]
 + caracter " ASCII 34 
 + 75 TK_IDENTIFICADOR [U]
 + caracter - ASCII 45 
@@ -2926,10 +2982,11 @@ Output of <avaliacao_02.tesh:5> mismatch:
   76 TK_LIT_CHAR [',']
 - 76 TK_ESPECIAL []]
 - 77 TK_ESPECIAL [-]
-+ ]caracter - ASCII 45 
-  77 TK_LIT_INT [962401695]
+- 77 TK_LIT_INT [962401695]
++ 76 TOKEN_ERRO []]
++ 77 TK_LIT_INT [-962401695]
   77 TK_LIT_FLOAT [08.4198786256]
-...
+  77 TK_LIT_CHAR ['<']
   77 TK_LIT_FLOAT [08.4198786256]
   77 TK_LIT_CHAR ['<']
 - 77 TK_ESPECIAL [,]
@@ -2953,7 +3010,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 79 TK_LIT_INT [4]
 + 79 TK_PR_DO [do]
 + 79 TK_IDENTIFICADOR [kRR]
-+ [79 TK_IDENTIFICADOR [F]
++ 79 TOKEN_ERRO [[]
++ 79 TK_IDENTIFICADOR [F]
 + 79 TK_PR_OUTPUT [output]
 + 79 TK_IDENTIFICADOR [O]
 + 79 TK_PR_IF [if]
@@ -2971,21 +3029,23 @@ Output of <avaliacao_02.tesh:5> mismatch:
   79 TK_LIT_INT [595939]
   79 TK_LIT_INT [595939]
 - 79 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  79 TK_LIT_INT [8809004]
-  79 TK_LIT_INT [8809004]
+- 79 TK_LIT_INT [8809004]
 - 79 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  79 TK_LIT_INT [970]
-  79 TK_LIT_INT [970]
+- 79 TK_LIT_INT [970]
 - 79 TK_ESPECIAL [[]
 - 79 TK_ESPECIAL [[]
-- 79 TK_LIT_FLOAT [839043596.833]
-+ [[79 TK_LIT_FLOAT [839043596.833]
++ 79 TK_LIT_INT [-8809004]
++ 79 TK_LIT_INT [-970]
++ 79 TOKEN_ERRO [[]
++ 79 TOKEN_ERRO [[]
+  79 TK_LIT_FLOAT [839043596.833]
   79 TK_LIT_FLOAT [339.95214]
+  79 TK_LIT_FLOAT [839043596.833]
   79 TK_LIT_FLOAT [339.95214]
 - 81 TK_LIT_STRING ["$;MKc)Sney8c;X+ 5 then  output  *  string ==! float }Igegs1 = 2P;9jwH char J7;;"]
 - 81 TK_ESPECIAL [-]
+- 81 TK_LIT_INT [7]
+- 81 TK_ESPECIAL [}]
 + caracter " ASCII 34 
 + caracter $ ASCII 36 
 + caracter ; ASCII 59 
@@ -3016,27 +3076,21 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter ; ASCII 59 
 + caracter ; ASCII 59 
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  81 TK_LIT_INT [7]
-  81 TK_LIT_INT [7]
-- 81 TK_ESPECIAL [}]
++ 81 TK_LIT_INT [-7]
 + caracter } ASCII 125 
   81 TK_PR_DO [do]
   81 TK_PR_DO [do]
 - 81 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  81 TK_LIT_INT [64830532]
-  81 TK_LIT_INT [64830532]
+- 81 TK_LIT_INT [64830532]
 - 81 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  81 TK_LIT_INT [29969096]
-  81 TK_LIT_INT [29969096]
+- 81 TK_LIT_INT [29969096]
 - 81 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  81 TK_LIT_FLOAT [9868693181.233018]
-  81 TK_LIT_FLOAT [9868693181.233018]
+- 81 TK_LIT_FLOAT [9868693181.233018]
 - 81 TK_ESPECIAL [(]
 - 82 TK_LIT_STRING [" while f"]
++ 81 TK_LIT_INT [-64830532]
++ 81 TK_LIT_INT [-29969096]
++ 81 TK_LIT_FLOAT [-9868693181.233018]
 + caracter ( ASCII 40 
 + caracter " ASCII 34 
 + 82 TK_PR_WHILE [while]
@@ -3054,22 +3108,19 @@ Output of <avaliacao_02.tesh:5> mismatch:
   82 TK_LIT_INT [32300]
   82 TK_LIT_INT [32300]
 - 82 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  82 TK_LIT_FLOAT [0100520915.00942]
-  82 TK_LIT_FLOAT [0100520915.00942]
+- 82 TK_LIT_FLOAT [0100520915.00942]
 - 82 TK_ESPECIAL [<]
 - 82 TK_ESPECIAL [-]
-+ caracter < ASCII 60 
-+ caracter - ASCII 45 
-  82 TK_LIT_FLOAT [660.737]
-  82 TK_LIT_FLOAT [660.737]
+- 82 TK_LIT_FLOAT [660.737]
 - 82 TK_ESPECIAL [)]
 - 83 TK_ESPECIAL [-]
+- 83 TK_LIT_INT [0802367690]
++ 82 TK_LIT_FLOAT [-0100520915.00942]
++ caracter < ASCII 60 
++ 82 TK_LIT_FLOAT [-660.737]
 + caracter ) ASCII 41 
-+ caracter - ASCII 45 
-  83 TK_LIT_INT [0802367690]
++ 83 TK_LIT_INT [-0802367690]
   83 TK_LIT_CHAR ['}']
-  83 TK_LIT_INT [0802367690]
   83 TK_LIT_CHAR ['}']
 - 83 TK_ESPECIAL [(]
 + caracter ( ASCII 40 
@@ -3078,11 +3129,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
   83 TK_PR_INT [int]
   83 TK_PR_THEN [then]
 - 83 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  83 TK_LIT_INT [562556]
-  83 TK_LIT_INT [562556]
+- 83 TK_LIT_INT [562556]
 - 83 TK_ESPECIAL [}]
 - 83 TK_ESPECIAL [=]
++ 83 TK_LIT_INT [-562556]
 + caracter } ASCII 125 
 + caracter = ASCII 61 
   83 TK_LIT_FLOAT [3080729364.0138893572]
@@ -3110,14 +3160,12 @@ Output of <avaliacao_02.tesh:5> mismatch:
   85 TK_LIT_FLOAT [163846.63]
   85 TK_LIT_FLOAT [163846.63]
 - 85 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  85 TK_LIT_INT [676]
-  85 TK_LIT_INT [676]
+- 85 TK_LIT_INT [676]
 - 85 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  85 TK_LIT_FLOAT [4280253.335]
+- 85 TK_LIT_FLOAT [4280253.335]
++ 85 TK_LIT_INT [-676]
++ 85 TK_LIT_FLOAT [-4280253.335]
   85 TK_PR_FLOAT [float]
-  85 TK_LIT_FLOAT [4280253.335]
   85 TK_PR_FLOAT [float]
 - 86 TK_IDENTIFICADOR [____LikZrNCpE_ZQRI3gam0GfGs2YQcBNRfwLZFUHn_q3TpJo47yRHvULDqYYW_gUxxmjCQXLELWTqnI5fGOlC_nUpdf8Zye]
 + caracter _ ASCII 95 
@@ -3128,21 +3176,20 @@ Output of <avaliacao_02.tesh:5> mismatch:
   86 TK_LIT_FLOAT [72669450.996216000]
   86 TK_LIT_FLOAT [72669450.996216000]
 - 86 TK_ESPECIAL []]
-- 86 TK_LIT_INT [65173]
-+ ]86 TK_LIT_INT [65173]
++ 86 TOKEN_ERRO []]
+  86 TK_LIT_INT [65173]
   86 TK_PR_OUTPUT [output]
-  86 TK_PR_THEN [then]
 ...
   86 TK_LIT_INT [02]
   86 TK_LIT_FLOAT [61.4608]
 - 86 TK_ESPECIAL [[]
-- 87 TK_LIT_FLOAT [29535.5815958013]
++ 86 TOKEN_ERRO [[]
+  87 TK_LIT_FLOAT [29535.5815958013]
+  87 TK_LIT_FLOAT [29535.5815958013]
 - 87 TK_ESPECIAL [-]
-+ [87 TK_LIT_FLOAT [29535.5815958013]
-+ caracter - ASCII 45 
-  87 TK_LIT_INT [9349895]
+- 87 TK_LIT_INT [9349895]
++ 87 TK_LIT_INT [-9349895]
   87 TK_LIT_INT [16943983]
-  87 TK_LIT_INT [9349895]
   87 TK_LIT_INT [16943983]
 - 87 TK_ESPECIAL [{]
 - 87 TK_ESPECIAL [{]
@@ -3176,10 +3223,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
   89 TK_LIT_CHAR ['i']
   89 TK_LIT_CHAR ['i']
 - 89 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  89 TK_LIT_INT [3792060249]
+- 89 TK_LIT_INT [3792060249]
++ 89 TK_LIT_INT [-3792060249]
   89 TK_LIT_CHAR ['e']
-  89 TK_LIT_INT [3792060249]
   89 TK_LIT_CHAR ['e']
 - 89 TK_ESPECIAL [}]
 - 90 TK_LIT_STRING ["0oI6DA0YN *  input  float N$qAB9x string j}"]
@@ -3302,21 +3348,18 @@ Output of <avaliacao_02.tesh:5> mismatch:
   95 TK_LIT_CHAR ['J']
 - 95 TK_ESPECIAL [>]
 - 95 TK_ESPECIAL [-]
+- 95 TK_LIT_INT [27]
 + caracter > ASCII 62 
-+ caracter - ASCII 45 
-  95 TK_LIT_INT [27]
++ 95 TK_LIT_INT [-27]
   95 TK_LIT_CHAR ['6']
-  95 TK_LIT_INT [27]
   95 TK_LIT_CHAR ['6']
 - 95 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  95 TK_LIT_FLOAT [546688791.5931]
-  95 TK_LIT_FLOAT [546688791.5931]
+- 95 TK_LIT_FLOAT [546688791.5931]
 - 95 TK_ESPECIAL []]
-- 95 TK_PR_CHAR [char]
-+ ]95 TK_PR_CHAR [char]
++ 95 TK_LIT_FLOAT [-546688791.5931]
++ 95 TOKEN_ERRO []]
+  95 TK_PR_CHAR [char]
   96 TK_PR_BOOL [bool]
-  96 TK_PR_WHILE [while]
 ...
   96 TK_PR_WHILE [while]
   96 TK_LIT_CHAR ['}']
@@ -3356,13 +3399,13 @@ Output of <avaliacao_02.tesh:5> mismatch:
   97 TK_LIT_INT [460399]
   97 TK_PR_CHAR [char]
 - 97 TK_ESPECIAL []]
-- 97 TK_LIT_INT [4973213490]
++ 97 TOKEN_ERRO []]
+  97 TK_LIT_INT [4973213490]
+  97 TK_LIT_INT [4973213490]
 - 97 TK_ESPECIAL [-]
-+ ]97 TK_LIT_INT [4973213490]
-+ caracter - ASCII 45 
-  97 TK_LIT_FLOAT [21399609.10]
+- 97 TK_LIT_FLOAT [21399609.10]
++ 97 TK_LIT_FLOAT [-21399609.10]
   97 TK_LIT_INT [19544]
-  97 TK_LIT_FLOAT [21399609.10]
   97 TK_LIT_INT [19544]
 - 98 TK_ESPECIAL [;]
 + caracter ; ASCII 59 
@@ -3371,16 +3414,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
   98 TK_PR_RETURN [return]
   98 TK_PR_INT [int]
 - 98 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  98 TK_LIT_INT [04]
+- 98 TK_LIT_INT [04]
++ 98 TK_LIT_INT [-04]
   98 TK_LIT_CHAR ['V']
-  98 TK_LIT_INT [04]
   98 TK_LIT_CHAR ['V']
 - 98 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  98 TK_LIT_INT [64]
+- 98 TK_LIT_INT [64]
++ 98 TK_LIT_INT [-64]
   98 TK_PR_OUTPUT [output]
-  98 TK_LIT_INT [64]
   98 TK_PR_OUTPUT [output]
 - 98 TK_ESPECIAL [(]
 - 99 TK_IDENTIFICADOR [___1QG24XKHxwnMZ3qfTkn5rp]
@@ -3397,11 +3438,11 @@ Output of <avaliacao_02.tesh:5> mismatch:
   99 TK_LIT_CHAR ['E']
 - 99 TK_ESPECIAL [/]
 - 99 TK_ESPECIAL [-]
+- 99 TK_LIT_FLOAT [42599.12063925]
 + caracter / ASCII 47 
-+ caracter - ASCII 45 
-  99 TK_LIT_FLOAT [42599.12063925]
++ 99 TK_LIT_FLOAT [-42599.12063925]
   99 TK_LIT_INT [753]
-...
+  99 TK_LIT_CHAR [')']
   99 TK_LIT_INT [753]
   99 TK_LIT_CHAR [')']
 - 100 TK_LIT_STRING ["Scp+ gF||p& do C>k -  float ==2I_4||Si!=3 else f char b__&R"]
@@ -3409,6 +3450,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 101 TK_IDENTIFICADOR [___Jv2tI3M47_PseLHsB5L6OMHxH90XphxPouvEwvey9d2OIN1SQ6AVGsRynr7UrOUcoZc28WNo]
 - 101 TK_ESPECIAL [+]
 - 101 TK_ESPECIAL [-]
+- 101 TK_LIT_FLOAT [750217.3]
 + caracter " ASCII 34 
 + 100 TK_IDENTIFICADOR [Scp]
 + caracter + ASCII 43 
@@ -3442,18 +3484,16 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + 101 TK_IDENTIFICADOR [Jv2tI3M47_PseLHsB5L6OMHxH90XphxPouvEwvey9d2OIN1SQ6AVGsRynr7UrOUcoZc28WNo]
 + caracter + ASCII 43 
-+ caracter - ASCII 45 
-  101 TK_LIT_FLOAT [750217.3]
++ 101 TK_LIT_FLOAT [-750217.3]
   101 TK_LIT_INT [4695535553]
-...
+  101 TK_PR_FLOAT [float]
   101 TK_LIT_INT [4695535553]
   101 TK_PR_FLOAT [float]
 - 101 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  101 TK_LIT_FLOAT [1.696]
-  101 TK_LIT_FLOAT [1.696]
+- 101 TK_LIT_FLOAT [1.696]
 - 101 TK_ESPECIAL [}]
 - 101 TK_ESPECIAL [/]
++ 101 TK_LIT_FLOAT [-1.696]
 + caracter } ASCII 125 
 + caracter / ASCII 47 
   101 TK_PR_STRING [string]
@@ -3466,10 +3506,11 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 104 TK_LIT_STRING [" while B39[ - aciC if Mg"]
 - 104 TK_ESPECIAL []]
 - 104 TK_ESPECIAL [[]
-- 104 TK_LIT_STRING [">=VJ<AnIUV||99c"]
-+ [caracter " ASCII 34 
++ 102 TOKEN_ERRO [[]
++ caracter " ASCII 34 
 + 103 TK_LIT_INT [80]
-+ [103 TK_IDENTIFICADOR [v]
++ 103 TOKEN_ERRO [[]
++ 103 TK_IDENTIFICADOR [v]
 + 103 TK_PR_FLOAT [float]
 + 103 TK_IDENTIFICADOR [Zn32]
 + caracter ; ASCII 59 
@@ -3494,7 +3535,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter : ASCII 58 
 + 103 TK_LIT_INT [3]
 + caracter { ASCII 123 
-+ [103 TK_IDENTIFICADOR [XcQj]
++ 103 TOKEN_ERRO [[]
++ 103 TK_IDENTIFICADOR [XcQj]
 + caracter " ASCII 34 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -3505,27 +3547,29 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter " ASCII 34 
 + 104 TK_PR_WHILE [while]
 + 104 TK_IDENTIFICADOR [B39]
-+ [caracter - ASCII 45 
++ 104 TOKEN_ERRO [[]
++ caracter - ASCII 45 
 + 104 TK_IDENTIFICADOR [aciC]
 + 104 TK_PR_IF [if]
 + 104 TK_IDENTIFICADOR [Mg]
 + caracter " ASCII 34 
-+ ][104 TK_LIT_STRING [">=VJ<AnIUV||99c"]
++ 104 TOKEN_ERRO []]
++ 104 TOKEN_ERRO [[]
+  104 TK_LIT_STRING [">=VJ<AnIUV||99c"]
   105 TK_PR_RETURN [return]
+  104 TK_LIT_STRING [">=VJ<AnIUV||99c"]
   105 TK_PR_RETURN [return]
 - 105 TK_ESPECIAL [/]
 - 105 TK_ESPECIAL [(]
 - 105 TK_ESPECIAL [-]
+- 105 TK_LIT_INT [81026]
+- 105 TK_ESPECIAL [-]
+- 105 TK_LIT_INT [6]
 + caracter / ASCII 47 
 + caracter ( ASCII 40 
-+ caracter - ASCII 45 
-  105 TK_LIT_INT [81026]
-  105 TK_LIT_INT [81026]
-- 105 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  105 TK_LIT_INT [6]
++ 105 TK_LIT_INT [-81026]
++ 105 TK_LIT_INT [-6]
   105 TK_LIT_INT [6312]
-  105 TK_LIT_INT [6]
   105 TK_LIT_INT [6312]
 - 106 TK_IDENTIFICADOR [_1iCSREiCIVOHwhz32aYJlwzlUlvKuaNDG9qNJ1_iCucleT4xt9JJSUcerGPPoX0vcQd9iaAM32dTF_gwVrQVSLL23D_6u8w]
 - 106 TK_IDENTIFICADOR [_do]
@@ -3586,6 +3630,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 108 TK_ESPECIAL [,]
 - 109 TK_IDENTIFICADOR [___scuz9eXbZaOiNc4tEKVaErOA1dbF1kNftSJjS3253d8cRsY5PriKCTgNtM1JTW4sW3UmJGQQ7ERML4xj]
 - 109 TK_ESPECIAL [-]
+- 109 TK_LIT_INT [1946953521]
+- 109 TK_ESPECIAL [}]
 + caracter " ASCII 34 
 + 108 TK_IDENTIFICADOR [lS]
 + 108 TK_OC_LE [<=]
@@ -3627,10 +3673,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 109 TK_IDENTIFICADOR [scuz9eXbZaOiNc4tEKVaErOA1dbF1kNftSJjS3253d8cRsY5PriKCTgNtM1JTW4sW3UmJGQQ7ERML4xj]
-+ caracter - ASCII 45 
-  109 TK_LIT_INT [1946953521]
-  109 TK_LIT_INT [1946953521]
-- 109 TK_ESPECIAL [}]
++ 109 TK_LIT_INT [-1946953521]
 + caracter } ASCII 125 
   109 TK_PR_CHAR [char]
   109 TK_PR_CHAR [char]
@@ -3679,7 +3722,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 112 TK_LIT_INT [8]
 + 112 TK_PR_ELSE [else]
 + 112 TK_IDENTIFICADOR [Y]
-+ [caracter + ASCII 43 
++ 112 TOKEN_ERRO [[]
++ caracter + ASCII 43 
 + 112 TK_IDENTIFICADOR [Xm]
 + caracter $ ASCII 36 
 + 112 TK_IDENTIFICADOR [Cu2]
@@ -3704,6 +3748,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 113 TK_IDENTIFICADOR [_____Sl2GbryhsakjK1tQHhIgZspVpen5OnMihIjVlducS3mWPIpNxU9dNpbGt9jIOpYyBcsrlK8dWeH_MH6t9VcYa6iSTF]
 - 113 TK_IDENTIFICADOR [___5xlBw1UikBJRUL8fX6LTb97IDebpGgQ5TZEl8bVZr0Sw17IhsaXJJDhLbx]
 - 114 TK_ESPECIAL [-]
+- 114 TK_LIT_FLOAT [91113719.24115928]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -3715,10 +3760,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + 113 TK_LIT_INT [5]
 + 113 TK_IDENTIFICADOR [xlBw1UikBJRUL8fX6LTb97IDebpGgQ5TZEl8bVZr0Sw17IhsaXJJDhLbx]
-+ caracter - ASCII 45 
-  114 TK_LIT_FLOAT [91113719.24115928]
++ 114 TK_LIT_FLOAT [-91113719.24115928]
   114 TK_LIT_CHAR ['o']
-  114 TK_LIT_FLOAT [91113719.24115928]
   114 TK_LIT_CHAR ['o']
 - 114 TK_ESPECIAL [-]
 - 114 TK_IDENTIFICADOR [_____float]
@@ -3732,10 +3775,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
   114 TK_LIT_INT [1714]
   114 TK_LIT_INT [1714]
 - 114 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  114 TK_LIT_INT [64894]
-  114 TK_LIT_INT [64894]
+- 114 TK_LIT_INT [64894]
 - 114 TK_ESPECIAL [>]
++ 114 TK_LIT_INT [-64894]
 + caracter > ASCII 62 
   114 TK_LIT_STRING ["<"]
   114 TK_LIT_STRING ["<"]
@@ -3744,6 +3786,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 114 TK_ESPECIAL [>]
 - 115 TK_IDENTIFICADOR [____t9KaiFkzovoDsQQ4ouOU1FGAqXUyZX9M2w8zfI6GI7SBK]
 - 115 TK_ESPECIAL [-]
+- 115 TK_LIT_FLOAT [7710198996.246420]
 + caracter ; ASCII 59 
 + caracter & ASCII 38 
 + caracter > ASCII 62 
@@ -3752,28 +3795,33 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 115 TK_IDENTIFICADOR [t9KaiFkzovoDsQQ4ouOU1FGAqXUyZX9M2w8zfI6GI7SBK]
-+ caracter - ASCII 45 
-  115 TK_LIT_FLOAT [7710198996.246420]
++ 115 TK_LIT_FLOAT [-7710198996.246420]
   115 TK_LIT_INT [7]
-  115 TK_LIT_FLOAT [7710198996.246420]
   115 TK_LIT_INT [7]
 - 116 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  116 TK_LIT_INT [703]
+- 116 TK_LIT_INT [703]
++ 116 TK_LIT_INT [-703]
   116 TK_LIT_FLOAT [242581.4]
+  116 TK_LIT_CHAR ['*']
 ...
   116 TK_LIT_CHAR ['*']
   116 TK_PR_INT [int]
 - 116 TK_LIT_STRING ["kC;+ 1lFG] int H_p<brhZ"]
 - 117 TK_LIT_STRING ["E<>=G string  -  while oR do  do ga>}R bool LCjuk_yPN"]
 - 117 TK_ESPECIAL [-]
+- 117 TK_LIT_INT [80]
+- 117 TK_ESPECIAL [-]
+- 117 TK_LIT_FLOAT [47951.2842840792]
+- 117 TK_ESPECIAL [-]
+- 117 TK_LIT_INT [036982679]
 + caracter " ASCII 34 
 + 116 TK_IDENTIFICADOR [kC]
 + caracter ; ASCII 59 
 + caracter + ASCII 43 
 + 116 TK_LIT_INT [1]
 + 116 TK_IDENTIFICADOR [lFG]
-+ ]116 TK_PR_INT [int]
++ 116 TOKEN_ERRO []]
++ 116 TK_PR_INT [int]
 + 116 TK_IDENTIFICADOR [H_p]
 + caracter < ASCII 60 
 + 116 TK_IDENTIFICADOR [brhZ]
@@ -3796,18 +3844,11 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 117 TK_PR_BOOL [bool]
 + 117 TK_IDENTIFICADOR [LCjuk_yPN]
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  117 TK_LIT_INT [80]
-  117 TK_LIT_INT [80]
-- 117 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  117 TK_LIT_FLOAT [47951.2842840792]
-  117 TK_LIT_FLOAT [47951.2842840792]
-- 117 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  117 TK_LIT_INT [036982679]
++ 117 TK_LIT_INT [-80]
++ 117 TK_LIT_FLOAT [-47951.2842840792]
++ 117 TK_LIT_INT [-036982679]
   117 TK_LIT_STRING ["j4"]
-...
+  117 TK_PR_INPUT [input]
   117 TK_LIT_STRING ["j4"]
   117 TK_PR_INPUT [input]
 - 118 TK_LIT_STRING ["W}5zD>= /  if j|| int zCr7_J input C_>h+ !=fvoN"]
@@ -3846,15 +3887,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
   119 TK_LIT_INT [5158892]
 - 119 TK_ESPECIAL [,]
 - 119 TK_ESPECIAL [-]
-+ caracter , ASCII 44 
-+ caracter - ASCII 45 
-  119 TK_LIT_INT [12764693]
-  119 TK_LIT_INT [12764693]
+- 119 TK_LIT_INT [12764693]
 - 119 TK_ESPECIAL [-]
 - 119 TK_ESPECIAL [=]
 - 119 TK_ESPECIAL [,]
 - 120 TK_LIT_STRING ["YV>(y int GB>GJ||:lY||A>mO =  * {r"]
 - 120 TK_ESPECIAL [;]
++ caracter , ASCII 44 
++ 119 TK_LIT_INT [-12764693]
 + caracter - ASCII 45 
 + caracter = ASCII 61 
 + caracter , ASCII 44 
@@ -3890,33 +3930,32 @@ Output of <avaliacao_02.tesh:5> mismatch:
   120 TK_LIT_CHAR ['/']
 - 121 TK_IDENTIFICADOR [____HTOO00thh32DH2abW5BYlJwdrNl1dYQnZEW3kZZOqPHra6hAYlen2M7tXBIm]
 - 121 TK_ESPECIAL [-]
+- 121 TK_LIT_FLOAT [75603.9]
+- 122 TK_IDENTIFICADOR [___kDagXC6Js3DrErPV7UOobjZDGSji1Vvdc1RRS0UM66kPLYO1VEN4mg8i37EntvSyTIvuf3AJjXefujApVpue]
+- 122 TK_ESPECIAL [-]
+- 122 TK_ESPECIAL [&]
+- 122 TK_ESPECIAL [-]
+- 122 TK_LIT_FLOAT [4.5722095]
+- 123 TK_LIT_STRING ["KtTP+ $[&naa float !=4u&&fpI;,fzVBf! string n< * 1E&&w&&{pbM>=El[FHT"]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 121 TK_IDENTIFICADOR [HTOO00thh32DH2abW5BYlJwdrNl1dYQnZEW3kZZOqPHra6hAYlen2M7tXBIm]
-+ caracter - ASCII 45 
-  121 TK_LIT_FLOAT [75603.9]
-  121 TK_LIT_FLOAT [75603.9]
-- 122 TK_IDENTIFICADOR [___kDagXC6Js3DrErPV7UOobjZDGSji1Vvdc1RRS0UM66kPLYO1VEN4mg8i37EntvSyTIvuf3AJjXefujApVpue]
-- 122 TK_ESPECIAL [-]
-- 122 TK_ESPECIAL [&]
-- 122 TK_ESPECIAL [-]
++ 121 TK_LIT_FLOAT [-75603.9]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 122 TK_IDENTIFICADOR [kDagXC6Js3DrErPV7UOobjZDGSji1Vvdc1RRS0UM66kPLYO1VEN4mg8i37EntvSyTIvuf3AJjXefujApVpue]
 + caracter - ASCII 45 
 + caracter & ASCII 38 
-+ caracter - ASCII 45 
-  122 TK_LIT_FLOAT [4.5722095]
-  122 TK_LIT_FLOAT [4.5722095]
-- 123 TK_LIT_STRING ["KtTP+ $[&naa float !=4u&&fpI;,fzVBf! string n< * 1E&&w&&{pbM>=El[FHT"]
++ 122 TK_LIT_FLOAT [-4.5722095]
 + caracter " ASCII 34 
 + 123 TK_IDENTIFICADOR [KtTP]
 + caracter + ASCII 43 
 + caracter $ ASCII 36 
-+ [caracter & ASCII 38 
++ 123 TOKEN_ERRO [[]
++ caracter & ASCII 38 
 + 123 TK_IDENTIFICADOR [naa]
 + 123 TK_PR_FLOAT [float]
 + 123 TK_OC_NE [!=]
@@ -3941,24 +3980,25 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 123 TK_IDENTIFICADOR [pbM]
 + 123 TK_OC_GE [>=]
 + 123 TK_IDENTIFICADOR [El]
-+ [123 TK_IDENTIFICADOR [FHT]
++ 123 TOKEN_ERRO [[]
++ 123 TK_IDENTIFICADOR [FHT]
 + caracter " ASCII 34 
   123 TK_PR_THEN [then]
   123 TK_PR_THEN [then]
 - 123 TK_IDENTIFICADOR [_0bKL9ZNqwSnbAOiCw3eUn7YuPGsJSHLy16LD8FRlwpiZIWgOs]
 - 123 TK_ESPECIAL [(]
 - 124 TK_ESPECIAL [-]
+- 124 TK_LIT_INT [9702026179]
+- 124 TK_ESPECIAL [-]
+- 124 TK_LIT_FLOAT [4.446802]
 + caracter _ ASCII 95 
 + 123 TK_LIT_INT [0]
 + 123 TK_IDENTIFICADOR [bKL9ZNqwSnbAOiCw3eUn7YuPGsJSHLy16LD8FRlwpiZIWgOs]
 + caracter ( ASCII 40 
-+ caracter - ASCII 45 
-  124 TK_LIT_INT [9702026179]
-  124 TK_LIT_INT [9702026179]
-- 124 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  124 TK_LIT_FLOAT [4.446802]
++ 124 TK_LIT_INT [-9702026179]
++ 124 TK_LIT_FLOAT [-4.446802]
   124 TK_LIT_CHAR ['a']
+  124 TK_LIT_INT [6951529574]
 ...
   124 TK_LIT_INT [6951529574]
   124 TK_LIT_CHAR ['&']
@@ -3977,6 +4017,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
   125 TK_PR_IF [if]
 - 125 TK_IDENTIFICADOR [_____9PacVxXF_kpXDh3Ngqp7OdLcRTUA0QQSRkcVyY4kWBx3nsSG]
 - 126 TK_ESPECIAL [-]
+- 126 TK_LIT_INT [8129]
+- 126 TK_ESPECIAL [$]
+- 126 TK_ESPECIAL [-]
+- 126 TK_LIT_FLOAT [4872072.15352764]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -3984,16 +4028,11 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + 125 TK_LIT_INT [9]
 + 125 TK_IDENTIFICADOR [PacVxXF_kpXDh3Ngqp7OdLcRTUA0QQSRkcVyY4kWBx3nsSG]
-+ caracter - ASCII 45 
-  126 TK_LIT_INT [8129]
-  126 TK_LIT_INT [8129]
-- 126 TK_ESPECIAL [$]
-- 126 TK_ESPECIAL [-]
++ 126 TK_LIT_INT [-8129]
 + caracter $ ASCII 36 
-+ caracter - ASCII 45 
-  126 TK_LIT_FLOAT [4872072.15352764]
++ 126 TK_LIT_FLOAT [-4872072.15352764]
   126 TK_LIT_CHAR ['}']
-...
+  126 TK_PR_WHILE [while]
   126 TK_LIT_CHAR ['}']
   126 TK_PR_WHILE [while]
 - 126 TK_ESPECIAL [>]
@@ -4046,10 +4085,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
   128 TK_LIT_CHAR ['a']
   128 TK_LIT_CHAR ['a']
 - 129 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  129 TK_LIT_INT [044060250]
-  129 TK_LIT_INT [044060250]
+- 129 TK_LIT_INT [044060250]
 - 129 TK_IDENTIFICADOR [_____ptSgt0bGwD2BRo9tnGuKmMn5FO]
++ 129 TK_LIT_INT [-044060250]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -4059,14 +4097,12 @@ Output of <avaliacao_02.tesh:5> mismatch:
   129 TK_LIT_INT [60688]
   129 TK_LIT_INT [60688]
 - 129 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  129 TK_LIT_FLOAT [3.4]
-  129 TK_LIT_FLOAT [3.4]
+- 129 TK_LIT_FLOAT [3.4]
 - 129 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  129 TK_LIT_INT [36906]
-  129 TK_LIT_INT [36906]
+- 129 TK_LIT_INT [36906]
 - 130 TK_IDENTIFICADOR [_dTNo6M059i0RO9JEk1b1ETOqLF3CZfPRxp_F5ohzcDwzj1VtmN2vGEZMZ3S8]
++ 129 TK_LIT_FLOAT [-3.4]
++ 129 TK_LIT_INT [-36906]
 + caracter _ ASCII 95 
 + 130 TK_IDENTIFICADOR [dTNo6M059i0RO9JEk1b1ETOqLF3CZfPRxp_F5ohzcDwzj1VtmN2vGEZMZ3S8]
   130 TK_LIT_CHAR ['Q']
@@ -4090,15 +4126,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
   131 TK_PR_DO [do]
   131 TK_PR_DO [do]
 - 131 TK_ESPECIAL [-]
+- 131 TK_LIT_FLOAT [1213360833.3]
 + 131 TK_LIT_INT [2]
 + caracter ; ASCII 59 
 + 131 TK_PR_INPUT [input]
 + caracter " ASCII 34 
 + 131 TK_PR_DO [do]
-+ caracter - ASCII 45 
-  131 TK_LIT_FLOAT [1213360833.3]
++ 131 TK_LIT_FLOAT [-1213360833.3]
   131 TK_LIT_FLOAT [8.72]
-  131 TK_LIT_FLOAT [1213360833.3]
   131 TK_LIT_FLOAT [8.72]
 - 132 TK_LIT_STRING ["XNdF0Wp;$i_F[S;!=eWZ&&r =  char "]
 + caracter " ASCII 34 
@@ -4106,7 +4141,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter ; ASCII 59 
 + caracter $ ASCII 36 
 + 132 TK_IDENTIFICADOR [i_F]
-+ [132 TK_IDENTIFICADOR [S]
++ 132 TOKEN_ERRO [[]
++ 132 TK_IDENTIFICADOR [S]
 + caracter ; ASCII 59 
 + 132 TK_OC_NE [!=]
 + 132 TK_IDENTIFICADOR [eWZ]
@@ -4128,6 +4164,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 133 TK_LIT_STRING ["wwQA if ;(x0Dh"]
 - 134 TK_IDENTIFICADOR [___QpYpIQ8ElqC1d0xqMKlNrnZEuZyKz4rfqUyEASGPpFCmOyuhF6KTH9uYs_MV83FhrqyB_Kylk4U]
 - 134 TK_ESPECIAL [-]
+- 134 TK_LIT_FLOAT [7110689920.28548]
 + caracter ! ASCII 33 
 + caracter " ASCII 34 
 + 133 TK_LIT_INT [0]
@@ -4164,9 +4201,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 134 TK_IDENTIFICADOR [QpYpIQ8ElqC1d0xqMKlNrnZEuZyKz4rfqUyEASGPpFCmOyuhF6KTH9uYs_MV83FhrqyB_Kylk4U]
-+ caracter - ASCII 45 
-  134 TK_LIT_FLOAT [7110689920.28548]
++ 134 TK_LIT_FLOAT [-7110689920.28548]
   134 TK_LIT_INT [607]
+  134 TK_PR_OUTPUT [output]
 ...
   134 TK_PR_OUTPUT [output]
   134 TK_PR_CHAR [char]
@@ -4188,7 +4225,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 135 TK_IDENTIFICADOR [MoiG4avV]
 + caracter / ASCII 47 
 + 135 TK_IDENTIFICADOR [Lma7]
-+ [caracter - ASCII 45 
++ 135 TOKEN_ERRO [[]
++ caracter - ASCII 45 
 + 135 TK_PR_DO [do]
 + 135 TK_IDENTIFICADOR [Lut0]
 + caracter { ASCII 123 
@@ -4217,10 +4255,11 @@ Output of <avaliacao_02.tesh:5> mismatch:
   135 TK_PR_INPUT [input]
 - 135 TK_ESPECIAL [{]
 - 135 TK_ESPECIAL [[]
-- 135 TK_LIT_CHAR ['S']
-- 135 TK_IDENTIFICADOR [____then]
 + caracter { ASCII 123 
-+ [135 TK_LIT_CHAR ['S']
++ 135 TOKEN_ERRO [[]
+  135 TK_LIT_CHAR ['S']
+  135 TK_LIT_CHAR ['S']
+- 135 TK_IDENTIFICADOR [____then]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -4257,10 +4296,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
   137 TK_LIT_CHAR ['}']
   137 TK_LIT_CHAR ['}']
 - 137 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  137 TK_LIT_INT [80]
-  137 TK_LIT_INT [80]
+- 137 TK_LIT_INT [80]
 - 137 TK_ESPECIAL [<]
++ 137 TK_LIT_INT [-80]
 + caracter < ASCII 60 
   137 TK_LIT_FLOAT [435.2866018551]
   137 TK_LIT_FLOAT [435.2866018551]
@@ -4293,21 +4331,18 @@ Output of <avaliacao_02.tesh:5> mismatch:
   139 TK_PR_INT [int]
   139 TK_PR_INT [int]
 - 139 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  139 TK_LIT_FLOAT [201333.06]
-  139 TK_LIT_FLOAT [201333.06]
+- 139 TK_LIT_FLOAT [201333.06]
 - 140 TK_IDENTIFICADOR [_oz1hmLozqlaszpCZdEGpp0XgR24hAxdtwV8j6fcu]
 - 140 TK_ESPECIAL [-]
+- 140 TK_LIT_FLOAT [550.935]
+- 140 TK_ESPECIAL [-]
+- 140 TK_LIT_FLOAT [556000385.961]
+- 141 TK_IDENTIFICADOR [_____xuOmp2_vhmPyjSx8T58wb3AqGzBU8UPDyxHPPymfHREGv3khrgjmUh7Wg8gdbXt2rd73mHOUdW_HSF]
++ 139 TK_LIT_FLOAT [-201333.06]
 + caracter _ ASCII 95 
 + 140 TK_IDENTIFICADOR [oz1hmLozqlaszpCZdEGpp0XgR24hAxdtwV8j6fcu]
-+ caracter - ASCII 45 
-  140 TK_LIT_FLOAT [550.935]
-  140 TK_LIT_FLOAT [550.935]
-- 140 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  140 TK_LIT_FLOAT [556000385.961]
-  140 TK_LIT_FLOAT [556000385.961]
-- 141 TK_IDENTIFICADOR [_____xuOmp2_vhmPyjSx8T58wb3AqGzBU8UPDyxHPPymfHREGv3khrgjmUh7Wg8gdbXt2rd73mHOUdW_HSF]
++ 140 TK_LIT_FLOAT [-550.935]
++ 140 TK_LIT_FLOAT [-556000385.961]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -4320,17 +4355,17 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 141 TK_ESPECIAL [-]
 - 141 TK_ESPECIAL [;]
 - 141 TK_ESPECIAL [-]
+- 141 TK_LIT_INT [798429]
 + caracter { ASCII 123 
 + caracter - ASCII 45 
 + caracter ; ASCII 59 
-+ caracter - ASCII 45 
-  141 TK_LIT_INT [798429]
++ 141 TK_LIT_INT [-798429]
   141 TK_LIT_CHAR ['e']
-  141 TK_LIT_INT [798429]
   141 TK_LIT_CHAR ['e']
 - 141 TK_ESPECIAL []]
 - 142 TK_LIT_STRING ["4( input 1L==H43 while PbS5x4 else 1$ULr int p return K = &<73TF4c float  /  = XYd string d"]
-+ ]caracter " ASCII 34 
++ 141 TOKEN_ERRO []]
++ caracter " ASCII 34 
 + 142 TK_LIT_INT [4]
 + caracter ( ASCII 40 
 + 142 TK_PR_INPUT [input]
@@ -4370,7 +4405,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 142 TK_IDENTIFICADOR [DO]
 + caracter = ASCII 61 
 + caracter } ASCII 125 
-+ ]142 TK_OC_EQ [==]
++ 142 TOKEN_ERRO []]
++ 142 TK_OC_EQ [==]
 + caracter , ASCII 44 
 + caracter * ASCII 42 
 + 142 TK_IDENTIFICADOR [M]
@@ -4394,11 +4430,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
   143 TK_PR_BOOL [bool]
   143 TK_PR_BOOL [bool]
 - 143 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  143 TK_LIT_FLOAT [3916977.345704524]
-  143 TK_LIT_FLOAT [3916977.345704524]
+- 143 TK_LIT_FLOAT [3916977.345704524]
 - 143 TK_ESPECIAL [-]
 - 144 TK_LIT_STRING ["> - aqMra||wQf then  char x char q) - VE = >=p6 else &&"]
++ 143 TK_LIT_FLOAT [-3916977.345704524]
 + caracter - ASCII 45 
 + caracter " ASCII 34 
 + caracter > ASCII 62 
@@ -4423,13 +4458,13 @@ Output of <avaliacao_02.tesh:5> mismatch:
   144 TK_LIT_STRING ["dy[7"]
   144 TK_LIT_STRING ["dy[7"]
 - 144 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  144 TK_LIT_FLOAT [89587340.429231]
-  144 TK_LIT_FLOAT [89587340.429231]
+- 144 TK_LIT_FLOAT [89587340.429231]
 - 145 TK_IDENTIFICADOR [__ZPWdpgfHgXEBA9zG3uJYspxhzVq3_oX3r4KyzzpKHs5vWsmhuaT3D3mGRhdQ9hNAg5mlOw8JAKSwng]
 - 145 TK_ESPECIAL [/]
 - 145 TK_LIT_STRING [" return Y output zp)DX / b"]
 - 145 TK_ESPECIAL [-]
+- 145 TK_LIT_INT [7321920343]
++ 144 TK_LIT_FLOAT [-89587340.429231]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 145 TK_IDENTIFICADOR [ZPWdpgfHgXEBA9zG3uJYspxhzVq3_oX3r4KyzzpKHs5vWsmhuaT3D3mGRhdQ9hNAg5mlOw8JAKSwng]
@@ -4444,10 +4479,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter / ASCII 47 
 + 145 TK_IDENTIFICADOR [b]
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  145 TK_LIT_INT [7321920343]
++ 145 TK_LIT_INT [-7321920343]
   145 TK_PR_FLOAT [float]
-  145 TK_LIT_INT [7321920343]
   145 TK_PR_FLOAT [float]
 - 146 TK_IDENTIFICADOR [_____gHwhTKDqnAQRciW1KYUxXwdjZxnBMSb6tKozk7TYHCUlOxpxtRwRl1qpfB2TE_6T0]
 - 146 TK_IDENTIFICADOR [__do]
@@ -4485,13 +4518,15 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 148 TK_IDENTIFICADOR [j]
 + 148 TK_OC_LE [<=]
 + 148 TK_IDENTIFICADOR [t]
-+ [148 TK_PR_OUTPUT [output]
++ 148 TOKEN_ERRO [[]
++ 148 TK_PR_OUTPUT [output]
 + caracter } ASCII 125 
 + 148 TK_IDENTIFICADOR [I]
 + caracter < ASCII 60 
 + 148 TK_IDENTIFICADOR [e]
 + caracter $ ASCII 36 
-+ [148 TK_IDENTIFICADOR [xMf]
++ 148 TOKEN_ERRO [[]
++ 148 TK_IDENTIFICADOR [xMf]
 + 148 TK_PR_IF [if]
 + 148 TK_IDENTIFICADOR [LS]
 + 148 TK_OC_NE [!=]
@@ -4500,21 +4535,19 @@ Output of <avaliacao_02.tesh:5> mismatch:
   148 TK_LIT_CHAR ['{']
   148 TK_LIT_CHAR ['{']
 - 148 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  148 TK_LIT_INT [8]
+- 148 TK_LIT_INT [8]
++ 148 TK_LIT_INT [-8]
   148 TK_PR_THEN [then]
-  148 TK_LIT_INT [8]
   148 TK_PR_THEN [then]
 - 148 TK_ESPECIAL [&]
 + caracter & ASCII 38 
   148 TK_LIT_CHAR ['n']
   148 TK_LIT_CHAR ['n']
 - 148 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  148 TK_LIT_INT [84074]
-  148 TK_LIT_INT [84074]
+- 148 TK_LIT_INT [84074]
 - 148 TK_IDENTIFICADOR [_se]
 - 148 TK_IDENTIFICADOR [_bool]
++ 148 TK_LIT_INT [-84074]
 + caracter _ ASCII 95 
 + 148 TK_IDENTIFICADOR [se]
 + caracter _ ASCII 95 
@@ -4621,6 +4654,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
   306 TK_LIT_CHAR ['i']
 - 307 TK_LIT_STRING [" - F int cx_ / 4F = P< then A{UMl then iO! string  int _>"]
 - 307 TK_ESPECIAL [-]
+- 307 TK_LIT_FLOAT [0160024.502173742]
 + caracter " ASCII 34 
 + caracter - ASCII 45 
 + 307 TK_IDENTIFICADOR [F]
@@ -4644,9 +4678,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + caracter > ASCII 62 
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  307 TK_LIT_FLOAT [0160024.502173742]
++ 307 TK_LIT_FLOAT [-0160024.502173742]
   307 TK_LIT_CHAR ['g']
+  307 TK_LIT_INT [7165306]
 ...
   307 TK_LIT_INT [7165306]
   307 TK_PR_DO [do]
@@ -4706,20 +4740,18 @@ Output of <avaliacao_02.tesh:5> mismatch:
   310 TK_PR_OUTPUT [output]
   310 TK_LIT_CHAR ['Q']
 - 310 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  310 TK_LIT_FLOAT [21399609.10]
+- 310 TK_LIT_FLOAT [21399609.10]
++ 310 TK_LIT_FLOAT [-21399609.10]
   310 TK_LIT_FLOAT [869827620.433806]
-  310 TK_LIT_FLOAT [21399609.10]
   310 TK_LIT_FLOAT [869827620.433806]
 - 310 TK_ESPECIAL [-]
 - 310 TK_ESPECIAL [=]
 - 311 TK_ESPECIAL [-]
+- 311 TK_LIT_INT [293193100]
+- 311 TK_IDENTIFICADOR [_0bKL9ZNqwSnbAOiCw3eUn7YuPGsJSHLy16LD8FRlwpiZIWgOs]
 + caracter - ASCII 45 
 + caracter = ASCII 61 
-+ caracter - ASCII 45 
-  311 TK_LIT_INT [293193100]
-  311 TK_LIT_INT [293193100]
-- 311 TK_IDENTIFICADOR [_0bKL9ZNqwSnbAOiCw3eUn7YuPGsJSHLy16LD8FRlwpiZIWgOs]
++ 311 TK_LIT_INT [-293193100]
 + caracter _ ASCII 95 
 + 311 TK_LIT_INT [0]
 + 311 TK_IDENTIFICADOR [bKL9ZNqwSnbAOiCw3eUn7YuPGsJSHLy16LD8FRlwpiZIWgOs]
@@ -4733,15 +4765,13 @@ Output of <avaliacao_02.tesh:5> mismatch:
   312 TK_LIT_INT [736889543]
 - 312 TK_ESPECIAL [(]
 - 312 TK_ESPECIAL [-]
-+ caracter ( ASCII 40 
-+ caracter - ASCII 45 
-  312 TK_LIT_INT [7]
-  312 TK_LIT_INT [7]
+- 312 TK_LIT_INT [7]
 - 312 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  312 TK_LIT_FLOAT [4280253.335]
-  312 TK_LIT_FLOAT [4280253.335]
+- 312 TK_LIT_FLOAT [4280253.335]
 - 312 TK_ESPECIAL [<]
++ caracter ( ASCII 40 
++ 312 TK_LIT_INT [-7]
++ 312 TK_LIT_FLOAT [-4280253.335]
 + caracter < ASCII 60 
   312 TK_LIT_INT [01749462]
   312 TK_LIT_INT [01749462]
@@ -4767,8 +4797,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 313 TK_LIT_INT [2]
 + 313 TK_OC_GE [>=]
 + 313 TK_IDENTIFICADOR [R]
-+ [313 TK_IDENTIFICADOR [f4]
-+ ]313 TK_IDENTIFICADOR [A9]
++ 313 TOKEN_ERRO [[]
++ 313 TK_IDENTIFICADOR [f4]
++ 313 TOKEN_ERRO []]
++ 313 TK_IDENTIFICADOR [A9]
 + 313 TK_PR_OUTPUT [output]
 + 313 TK_IDENTIFICADOR [A6Y]
 + 313 TK_PR_THEN [then]
@@ -4821,7 +4853,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 314 TK_IDENTIFICADOR [geoiM]
 + caracter $ ASCII 36 
 + caracter : ASCII 58 
-+ ]314 TK_LIT_INT [0]
++ 314 TOKEN_ERRO []]
++ 314 TK_LIT_INT [0]
 + 314 TK_IDENTIFICADOR [G]
 + caracter " ASCII 34 
 + caracter " ASCII 34 
@@ -4847,27 +4880,26 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 315 TK_IDENTIFICADOR [Cm]
 + 315 TK_PR_BOOL [bool]
 + 315 TK_IDENTIFICADOR [YlH]
-+ [caracter " ASCII 34 
++ 315 TOKEN_ERRO [[]
++ caracter " ASCII 34 
   315 TK_LIT_CHAR ['g']
   315 TK_LIT_CHAR ['g']
 - 315 TK_IDENTIFICADOR [__ritdy2vCQ7wuMmF5PfJ4szGsOfNcuo]
 - 315 TK_ESPECIAL [[]
-- 315 TK_LIT_CHAR ['m']
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 315 TK_IDENTIFICADOR [ritdy2vCQ7wuMmF5PfJ4szGsOfNcuo]
-+ [315 TK_LIT_CHAR ['m']
++ 315 TOKEN_ERRO [[]
+  315 TK_LIT_CHAR ['m']
   315 TK_PR_OUTPUT [output]
-  315 TK_LIT_CHAR ['n']
 ...
   316 TK_LIT_FLOAT [673602349.708132]
   316 TK_PR_DO [do]
 - 316 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  316 TK_LIT_INT [3792060249]
-  316 TK_LIT_INT [3792060249]
+- 316 TK_LIT_INT [3792060249]
 - 316 TK_ESPECIAL [$]
 - 316 TK_LIT_STRING [" return Y output zp)DX / b"]
++ 316 TK_LIT_INT [-3792060249]
 + caracter $ ASCII 36 
 + caracter " ASCII 34 
 + 316 TK_PR_RETURN [return]
@@ -4934,11 +4966,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
   318 TK_LIT_FLOAT [943253.08]
 - 318 TK_ESPECIAL [+]
 - 318 TK_ESPECIAL [-]
+- 318 TK_LIT_FLOAT [660.737]
 + caracter + ASCII 43 
-+ caracter - ASCII 45 
-  318 TK_LIT_FLOAT [660.737]
++ 318 TK_LIT_FLOAT [-660.737]
   318 TK_PR_THEN [then]
-  318 TK_LIT_FLOAT [660.737]
   318 TK_PR_THEN [then]
 - 319 TK_LIT_STRING ["G<=DO = }]==, * M+  -  int (Hg$7 char t<a||"]
 + caracter " ASCII 34 
@@ -4947,7 +4978,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 319 TK_IDENTIFICADOR [DO]
 + caracter = ASCII 61 
 + caracter } ASCII 125 
-+ ]319 TK_OC_EQ [==]
++ 319 TOKEN_ERRO []]
++ 319 TK_OC_EQ [==]
 + caracter , ASCII 44 
 + caracter * ASCII 42 
 + 319 TK_IDENTIFICADOR [M]
@@ -4974,7 +5006,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 320 TK_IDENTIFICADOR [kDagXC6Js3DrErPV7UOobjZDGSji1Vvdc1RRS0UM66kPLYO1VEN4mg8i37EntvSyTIvuf3AJjXefujApVpue]
 + caracter " ASCII 34 
 + 321 TK_LIT_INT [80]
-+ [321 TK_IDENTIFICADOR [v]
++ 321 TOKEN_ERRO [[]
++ 321 TK_IDENTIFICADOR [v]
 + 321 TK_PR_FLOAT [float]
 + 321 TK_IDENTIFICADOR [Zn32]
 + caracter ; ASCII 59 
@@ -4999,7 +5032,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter : ASCII 58 
 + 321 TK_LIT_INT [3]
 + caracter { ASCII 123 
-+ [321 TK_IDENTIFICADOR [XcQj]
++ 321 TOKEN_ERRO [[]
++ 321 TK_IDENTIFICADOR [XcQj]
 + caracter " ASCII 34 
   321 TK_LIT_INT [13]
   321 TK_LIT_INT [13]
@@ -5011,7 +5045,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 321 TK_IDENTIFICADOR [XvJ8]
 + 321 TK_PR_WHILE [while]
 + 321 TK_PR_ELSE [else]
-+ [321 TK_PR_ELSE [else]
++ 321 TOKEN_ERRO [[]
++ 321 TK_PR_ELSE [else]
 + caracter * ASCII 42 
 + caracter " ASCII 34 
 + caracter _ ASCII 95 
@@ -5064,32 +5099,27 @@ Output of <avaliacao_02.tesh:5> mismatch:
   324 TK_LIT_INT [7261433]
   324 TK_LIT_CHAR ['d']
 - 324 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  324 TK_LIT_FLOAT [01.533004278]
-  324 TK_LIT_FLOAT [01.533004278]
+- 324 TK_LIT_FLOAT [01.533004278]
 - 325 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  325 TK_LIT_INT [36906]
-  325 TK_LIT_INT [36906]
+- 325 TK_LIT_INT [36906]
 - 325 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  325 TK_LIT_FLOAT [59763791.36227575]
-  325 TK_LIT_FLOAT [59763791.36227575]
+- 325 TK_LIT_FLOAT [59763791.36227575]
 - 325 TK_ESPECIAL [+]
 - 325 TK_ESPECIAL [[]
-- 325 TK_PR_FLOAT [float]
++ 324 TK_LIT_FLOAT [-01.533004278]
++ 325 TK_LIT_INT [-36906]
++ 325 TK_LIT_FLOAT [-59763791.36227575]
 + caracter + ASCII 43 
-+ [325 TK_PR_FLOAT [float]
++ 325 TOKEN_ERRO [[]
+  325 TK_PR_FLOAT [float]
   325 TK_LIT_INT [648376]
-  325 TK_PR_ELSE [else]
 ...
   326 TK_LIT_FLOAT [242581.4]
   326 TK_LIT_CHAR ['6']
 - 326 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  326 TK_LIT_INT [6]
+- 326 TK_LIT_INT [6]
++ 326 TK_LIT_INT [-6]
   326 TK_LIT_CHAR ['J']
-  326 TK_LIT_INT [6]
   326 TK_LIT_CHAR ['J']
 - 326 TK_IDENTIFICADOR [_____rTfCyl0EEJ9fMxJvnnq0m2dssWN]
 + caracter _ ASCII 95 
@@ -5116,31 +5146,28 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 327 TK_LIT_STRING ["B - M5"]
 - 327 TK_ESPECIAL [=]
 - 327 TK_ESPECIAL [-]
+- 327 TK_LIT_FLOAT [3.4]
+- 327 TK_ESPECIAL [{]
 + caracter " ASCII 34 
 + 327 TK_IDENTIFICADOR [B]
 + caracter - ASCII 45 
 + 327 TK_IDENTIFICADOR [M5]
 + caracter " ASCII 34 
 + caracter = ASCII 61 
-+ caracter - ASCII 45 
-  327 TK_LIT_FLOAT [3.4]
-  327 TK_LIT_FLOAT [3.4]
-- 327 TK_ESPECIAL [{]
++ 327 TK_LIT_FLOAT [-3.4]
 + caracter { ASCII 123 
   328 TK_LIT_CHAR ['S']
   328 TK_LIT_CHAR ['S']
 - 328 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  328 TK_LIT_INT [63044851]
+- 328 TK_LIT_INT [63044851]
++ 328 TK_LIT_INT [-63044851]
   328 TK_LIT_CHAR ['&']
-  328 TK_LIT_INT [63044851]
   328 TK_LIT_CHAR ['&']
 - 328 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  328 TK_LIT_FLOAT [0.2103]
-  328 TK_LIT_FLOAT [0.2103]
+- 328 TK_LIT_FLOAT [0.2103]
 - 328 TK_ESPECIAL [(]
 - 329 TK_LIT_STRING [") bool Tzz$xbY}9!=Pv do ||yr float  bool w3,"]
++ 328 TK_LIT_FLOAT [-0.2103]
 + caracter ( ASCII 40 
 + caracter " ASCII 34 
 + caracter ) ASCII 41 
@@ -5166,6 +5193,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
   329 TK_PR_STRING [string]
 - 330 TK_LIT_STRING ["4( input 1L==H43 while PbS5x4 else 1$ULr int p return K = &<73TF4c float  /  = XYd string d"]
 - 330 TK_ESPECIAL [-]
+- 330 TK_LIT_INT [278]
 + caracter " ASCII 34 
 + 330 TK_LIT_INT [4]
 + caracter ( ASCII 40 
@@ -5196,21 +5224,20 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 330 TK_PR_STRING [string]
 + 330 TK_IDENTIFICADOR [d]
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  330 TK_LIT_INT [278]
++ 330 TK_LIT_INT [-278]
   330 TK_LIT_CHAR ['O']
-  330 TK_LIT_INT [278]
   330 TK_LIT_CHAR ['O']
 - 330 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  330 TK_LIT_INT [80]
+- 330 TK_LIT_INT [80]
++ 330 TK_LIT_INT [-80]
   330 TK_LIT_FLOAT [724.9639098496]
-  330 TK_LIT_INT [80]
   330 TK_LIT_FLOAT [724.9639098496]
 - 331 TK_LIT_STRING ["xyAI output $J output  do &Cb return  - c9!=1W8$Y int L"]
 - 331 TK_ESPECIAL [>]
 - 331 TK_IDENTIFICADOR [_KCjhA3oMGtNZkXM56BhMoeCjwCk0i44F_4_vVoQwlL_xUoW_wC9tl6316h170JVL4Qa8dL]
 - 332 TK_ESPECIAL [-]
+- 332 TK_LIT_FLOAT [9786038.00036]
+- 332 TK_IDENTIFICADOR [_____do]
 + caracter " ASCII 34 
 + 331 TK_IDENTIFICADOR [xyAI]
 + 331 TK_PR_OUTPUT [output]
@@ -5234,10 +5261,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter > ASCII 62 
 + caracter _ ASCII 95 
 + 331 TK_IDENTIFICADOR [KCjhA3oMGtNZkXM56BhMoeCjwCk0i44F_4_vVoQwlL_xUoW_wC9tl6316h170JVL4Qa8dL]
-+ caracter - ASCII 45 
-  332 TK_LIT_FLOAT [9786038.00036]
-  332 TK_LIT_FLOAT [9786038.00036]
-- 332 TK_IDENTIFICADOR [_____do]
++ 332 TK_LIT_FLOAT [-9786038.00036]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -5247,11 +5271,13 @@ Output of <avaliacao_02.tesh:5> mismatch:
   332 TK_PR_INT [int]
   332 TK_PR_INT [int]
 - 332 TK_ESPECIAL [[]
-- 332 TK_LIT_INT [9340]
++ 332 TOKEN_ERRO [[]
+  332 TK_LIT_INT [9340]
+  332 TK_LIT_INT [9340]
 - 332 TK_ESPECIAL []]
 - 332 TK_ESPECIAL [-]
-+ [332 TK_LIT_INT [9340]
-+ ]caracter - ASCII 45 
++ 332 TOKEN_ERRO []]
++ caracter - ASCII 45 
   332 TK_LIT_CHAR ['+']
   332 TK_LIT_CHAR ['+']
 - 332 TK_ESPECIAL [*]
@@ -5261,10 +5287,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
   332 TK_PR_STRING [string]
   333 TK_LIT_CHAR ['L']
 - 333 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  333 TK_LIT_INT [9349895]
-  333 TK_LIT_INT [9349895]
+- 333 TK_LIT_INT [9349895]
 - 333 TK_LIT_STRING [" while f"]
++ 333 TK_LIT_INT [-9349895]
 + caracter " ASCII 34 
 + 333 TK_PR_WHILE [while]
 + 333 TK_IDENTIFICADOR [f]
@@ -5273,18 +5298,17 @@ Output of <avaliacao_02.tesh:5> mismatch:
   333 TK_PR_ELSE [else]
 - 334 TK_IDENTIFICADOR [_____Sl2GbryhsakjK1tQHhIgZspVpen5OnMihIjVlducS3mWPIpNxU9dNpbGt9jIOpYyBcsrlK8dWeH_MH6t9VcYa6iSTF]
 - 334 TK_ESPECIAL [-]
+- 334 TK_LIT_FLOAT [75603.9]
+- 334 TK_LIT_STRING ["m) float pXoQ{(pu * ;t]ri return Sg>"]
+- 334 TK_ESPECIAL [$]
+- 334 TK_ESPECIAL [{]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 334 TK_IDENTIFICADOR [Sl2GbryhsakjK1tQHhIgZspVpen5OnMihIjVlducS3mWPIpNxU9dNpbGt9jIOpYyBcsrlK8dWeH_MH6t9VcYa6iSTF]
-+ caracter - ASCII 45 
-  334 TK_LIT_FLOAT [75603.9]
-  334 TK_LIT_FLOAT [75603.9]
-- 334 TK_LIT_STRING ["m) float pXoQ{(pu * ;t]ri return Sg>"]
-- 334 TK_ESPECIAL [$]
-- 334 TK_ESPECIAL [{]
++ 334 TK_LIT_FLOAT [-75603.9]
 + caracter " ASCII 34 
 + 334 TK_IDENTIFICADOR [m]
 + caracter ) ASCII 41 
@@ -5296,7 +5320,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter * ASCII 42 
 + caracter ; ASCII 59 
 + 334 TK_IDENTIFICADOR [t]
-+ ]334 TK_IDENTIFICADOR [ri]
++ 334 TOKEN_ERRO []]
++ 334 TK_IDENTIFICADOR [ri]
 + 334 TK_PR_RETURN [return]
 + 334 TK_IDENTIFICADOR [Sg]
 + caracter > ASCII 62 
@@ -5310,15 +5335,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 335 TK_ESPECIAL [(]
 - 335 TK_IDENTIFICADOR [_YaQPdKIxBKUZsH3pNA975]
 - 335 TK_ESPECIAL [-]
+- 335 TK_LIT_FLOAT [4.5722095]
+- 335 TK_LIT_STRING ["0MCpZ:v output Y"]
 + caracter , ASCII 44 
 + caracter : ASCII 58 
 + caracter ( ASCII 40 
 + caracter _ ASCII 95 
 + 335 TK_IDENTIFICADOR [YaQPdKIxBKUZsH3pNA975]
-+ caracter - ASCII 45 
-  335 TK_LIT_FLOAT [4.5722095]
-  335 TK_LIT_FLOAT [4.5722095]
-- 335 TK_LIT_STRING ["0MCpZ:v output Y"]
++ 335 TK_LIT_FLOAT [-4.5722095]
 + caracter " ASCII 34 
 + 335 TK_LIT_INT [0]
 + 335 TK_IDENTIFICADOR [MCpZ]
@@ -5344,7 +5368,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 337 TK_LIT_INT [8]
 + 337 TK_PR_ELSE [else]
 + 337 TK_IDENTIFICADOR [Y]
-+ [caracter + ASCII 43 
++ 337 TOKEN_ERRO [[]
++ caracter + ASCII 43 
 + 337 TK_IDENTIFICADOR [Xm]
 + caracter $ ASCII 36 
 + 337 TK_IDENTIFICADOR [Cu2]
@@ -5392,15 +5417,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
   340 TK_LIT_CHAR ['(']
   340 TK_LIT_CHAR ['(']
 - 340 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  340 TK_LIT_FLOAT [090.0666721798]
-  340 TK_LIT_FLOAT [090.0666721798]
+- 340 TK_LIT_FLOAT [090.0666721798]
 - 340 TK_ESPECIAL [[]
 - 340 TK_ESPECIAL [-]
-+ [caracter - ASCII 45 
-  340 TK_LIT_INT [97]
+- 340 TK_LIT_INT [97]
++ 340 TK_LIT_FLOAT [-090.0666721798]
++ 340 TOKEN_ERRO [[]
++ 340 TK_LIT_INT [-97]
   340 TK_LIT_FLOAT [7190636063.992103]
-  340 TK_LIT_INT [97]
   340 TK_LIT_FLOAT [7190636063.992103]
 - 341 TK_LIT_STRING [" while J> - v,[ND[ / sW char sAN&b - bf7A input OFsn( while f)"]
 + caracter " ASCII 34 
@@ -5410,8 +5434,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter - ASCII 45 
 + 341 TK_IDENTIFICADOR [v]
 + caracter , ASCII 44 
-+ [341 TK_IDENTIFICADOR [ND]
-+ [caracter / ASCII 47 
++ 341 TOKEN_ERRO [[]
++ 341 TK_IDENTIFICADOR [ND]
++ 341 TOKEN_ERRO [[]
++ caracter / ASCII 47 
 + 341 TK_IDENTIFICADOR [sW]
 + 341 TK_PR_CHAR [char]
 + 341 TK_IDENTIFICADOR [sAN]
@@ -5429,10 +5455,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
   341 TK_LIT_CHAR ['/']
   341 TK_LIT_CHAR ['/']
 - 341 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  341 TK_LIT_FLOAT [201333.06]
+- 341 TK_LIT_FLOAT [201333.06]
++ 341 TK_LIT_FLOAT [-201333.06]
   341 TK_LIT_INT [5158892]
-  341 TK_LIT_FLOAT [201333.06]
   341 TK_LIT_INT [5158892]
 - 341 TK_LIT_STRING ["Eim7Xwc, if N> output 3s&&vTFb else "]
 - 342 TK_IDENTIFICADOR [____ExrbwUNbzOsh]
@@ -5508,13 +5533,12 @@ Output of <avaliacao_02.tesh:5> mismatch:
   343 TK_LIT_CHAR [']']
 - 343 TK_ESPECIAL [/]
 - 344 TK_ESPECIAL [-]
-+ caracter / ASCII 47 
-+ caracter - ASCII 45 
-  344 TK_LIT_FLOAT [6835868684.98119]
-  344 TK_LIT_FLOAT [6835868684.98119]
+- 344 TK_LIT_FLOAT [6835868684.98119]
 - 345 TK_IDENTIFICADOR [___3AOOLbFL4CrZOnuq4GMOL7jh15WGfOzbynQFH_TWeTQX8qUP0h6WSgWsIgATtMQ0KU6eln9hz1qG2lE]
 - 345 TK_ESPECIAL [<]
 - 345 TK_IDENTIFICADOR [___float]
++ caracter / ASCII 47 
++ 344 TK_LIT_FLOAT [-6835868684.98119]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -5581,15 +5605,15 @@ Output of <avaliacao_02.tesh:5> mismatch:
   347 TK_LIT_FLOAT [50813580.1]
 - 347 TK_ESPECIAL [,]
 - 347 TK_ESPECIAL [-]
+- 347 TK_LIT_INT [676]
 + caracter , ASCII 44 
-+ caracter - ASCII 45 
-  347 TK_LIT_INT [676]
++ 347 TK_LIT_INT [-676]
   347 TK_LIT_CHAR [',']
-  347 TK_LIT_INT [676]
   347 TK_LIT_CHAR [',']
 - 347 TK_ESPECIAL [[]
 - 347 TK_IDENTIFICADOR [_se]
-+ [caracter _ ASCII 95 
++ 347 TOKEN_ERRO [[]
++ caracter _ ASCII 95 
 + 347 TK_IDENTIFICADOR [se]
   347 TK_LIT_INT [71705351]
   347 TK_LIT_INT [939755]
@@ -5604,12 +5628,11 @@ Output of <avaliacao_02.tesh:5> mismatch:
   348 TK_LIT_FLOAT [435.2866018551]
 - 349 TK_IDENTIFICADOR [_Z40kcaNosyMt6_6e00x7WCPB2Vp8PahMsiw]
 - 349 TK_ESPECIAL [-]
+- 349 TK_LIT_FLOAT [7435873.076]
+- 350 TK_LIT_STRING ["&&WhM5!& output a!,{TcIQ}&56Cn float FSA8 float ,;OvGwCS;h<=+ PVq&&"]
 + caracter _ ASCII 95 
 + 349 TK_IDENTIFICADOR [Z40kcaNosyMt6_6e00x7WCPB2Vp8PahMsiw]
-+ caracter - ASCII 45 
-  349 TK_LIT_FLOAT [7435873.076]
-  349 TK_LIT_FLOAT [7435873.076]
-- 350 TK_LIT_STRING ["&&WhM5!& output a!,{TcIQ}&56Cn float FSA8 float ,;OvGwCS;h<=+ PVq&&"]
++ 349 TK_LIT_FLOAT [-7435873.076]
 + caracter " ASCII 34 
 + 350 TK_OC_AND [&&]
 + 350 TK_IDENTIFICADOR [WhM5]
@@ -5642,14 +5665,13 @@ Output of <avaliacao_02.tesh:5> mismatch:
   350 TK_PR_BOOL [bool]
 - 351 TK_IDENTIFICADOR [__2QK4RNBz3etXPDZpXBqPGF1x5MX9WkhollHE14ZcKs7LelgXSmXtdqwd_TN42L290fX1We3mJEdmYwnZRjoOt3B]
 - 351 TK_ESPECIAL [-]
+- 351 TK_LIT_INT [8809004]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 351 TK_LIT_INT [2]
 + 351 TK_IDENTIFICADOR [QK4RNBz3etXPDZpXBqPGF1x5MX9WkhollHE14ZcKs7LelgXSmXtdqwd_TN42L290fX1We3mJEdmYwnZRjoOt3B]
-+ caracter - ASCII 45 
-  351 TK_LIT_INT [8809004]
++ 351 TK_LIT_INT [-8809004]
   351 TK_LIT_INT [6951529574]
-  351 TK_LIT_INT [8809004]
   351 TK_LIT_INT [6951529574]
 - 351 TK_ESPECIAL [>]
 - 352 TK_IDENTIFICADOR [__yMJ1V5CFHWosyRmkbW8z_Pk3xJOGWQryUJxZTUXeSOhmN8Iso7noaDZzMFhOztz2ISN2AH5nsAO]
@@ -5697,6 +5719,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 354 TK_IDENTIFICADOR [_____FuSp90tyUg57K0oA5AI_UVbIeIDg5ahPHnJ4PNXcn1rxNkcsLnvDmvaHF5Z5]
 - 354 TK_IDENTIFICADOR [_____float]
 - 354 TK_ESPECIAL [-]
+- 354 TK_LIT_FLOAT [16891823.88671]
+- 354 TK_IDENTIFICADOR [___float]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -5709,10 +5733,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 354 TK_PR_FLOAT [float]
-+ caracter - ASCII 45 
-  354 TK_LIT_FLOAT [16891823.88671]
-  354 TK_LIT_FLOAT [16891823.88671]
-- 354 TK_IDENTIFICADOR [___float]
++ 354 TK_LIT_FLOAT [-16891823.88671]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -5725,11 +5746,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
   355 TK_LIT_INT [460399]
   355 TK_LIT_INT [460399]
 - 355 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  355 TK_LIT_FLOAT [4.446802]
-  355 TK_LIT_FLOAT [4.446802]
+- 355 TK_LIT_FLOAT [4.446802]
 - 355 TK_ESPECIAL [!]
 - 355 TK_LIT_STRING ["8 - zZP: if  char <2+ AH * &8Dzk then + wFV"]
++ 355 TK_LIT_FLOAT [-4.446802]
 + caracter ! ASCII 33 
 + caracter " ASCII 34 
 + 355 TK_LIT_INT [8]
@@ -5755,33 +5775,32 @@ Output of <avaliacao_02.tesh:5> mismatch:
   356 TK_PR_DO [do]
   356 TK_PR_CHAR [char]
 - 356 TK_ESPECIAL []]
-- 356 TK_LIT_FLOAT [9425.49]
++ 356 TOKEN_ERRO []]
+  356 TK_LIT_FLOAT [9425.49]
+  356 TK_LIT_FLOAT [9425.49]
 - 356 TK_ESPECIAL [-]
-+ ]356 TK_LIT_FLOAT [9425.49]
-+ caracter - ASCII 45 
-  356 TK_LIT_INT [64830532]
-  356 TK_LIT_INT [64830532]
+- 356 TK_LIT_INT [64830532]
 - 356 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  356 TK_LIT_INT [962401695]
-  356 TK_LIT_INT [962401695]
+- 356 TK_LIT_INT [962401695]
 - 356 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  356 TK_LIT_INT [27]
+- 356 TK_LIT_INT [27]
++ 356 TK_LIT_INT [-64830532]
++ 356 TK_LIT_INT [-962401695]
++ 356 TK_LIT_INT [-27]
   357 TK_LIT_INT [1233854651]
+  357 TK_LIT_CHAR ['$']
 ...
   357 TK_LIT_CHAR ['$']
   357 TK_LIT_FLOAT [0105632.17140]
 - 357 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  357 TK_LIT_FLOAT [33065642.302386233]
-  357 TK_LIT_FLOAT [33065642.302386233]
+- 357 TK_LIT_FLOAT [33065642.302386233]
 - 357 TK_ESPECIAL [)]
 - 358 TK_IDENTIFICADOR [_dTNo6M059i0RO9JEk1b1ETOqLF3CZfPRxp_F5ohzcDwzj1VtmN2vGEZMZ3S8]
 - 358 TK_IDENTIFICADOR [___Iwe4nwefp4FNkJnCsXqudwX50iGEHcKxI]
 - 358 TK_LIT_STRING ["g string ifsk;v<Cwl!=UddJ_+ CjI"]
 - 358 TK_ESPECIAL [/]
 - 358 TK_ESPECIAL [}]
++ 357 TK_LIT_FLOAT [-33065642.302386233]
 + caracter ) ASCII 41 
 + caracter _ ASCII 95 
 + 358 TK_IDENTIFICADOR [dTNo6M059i0RO9JEk1b1ETOqLF3CZfPRxp_F5ohzcDwzj1VtmN2vGEZMZ3S8]
@@ -5813,9 +5832,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
   359 TK_LIT_INT [7]
   359 TK_LIT_INT [7]
 - 359 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  359 TK_LIT_FLOAT [550.935]
+- 359 TK_LIT_FLOAT [550.935]
++ 359 TK_LIT_FLOAT [-550.935]
   359 TK_LIT_INT [62778654]
+  359 TK_LIT_CHAR ['e']
 ...
   359 TK_LIT_CHAR ['e']
   359 TK_PR_THEN [then]
@@ -5843,27 +5863,25 @@ Output of <avaliacao_02.tesh:5> mismatch:
   360 TK_LIT_CHAR ['>']
 - 360 TK_ESPECIAL [:]
 - 360 TK_ESPECIAL [-]
-+ caracter : ASCII 58 
-+ caracter - ASCII 45 
-  360 TK_LIT_FLOAT [7110689920.28548]
-  360 TK_LIT_FLOAT [7110689920.28548]
+- 360 TK_LIT_FLOAT [7110689920.28548]
 - 360 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  360 TK_LIT_FLOAT [91113719.24115928]
+- 360 TK_LIT_FLOAT [91113719.24115928]
++ caracter : ASCII 58 
++ 360 TK_LIT_FLOAT [-7110689920.28548]
++ 360 TK_LIT_FLOAT [-91113719.24115928]
   360 TK_PR_INPUT [input]
-...
+  361 TK_PR_WHILE [while]
   360 TK_PR_INPUT [input]
   361 TK_PR_WHILE [while]
 - 361 TK_IDENTIFICADOR [_Vbw_L_a4MH6DF8jbCXuS607BnG2n0DGOOt3Odyf]
 - 361 TK_ESPECIAL [>]
 - 361 TK_ESPECIAL [-]
+- 361 TK_LIT_INT [74499494]
+- 362 TK_LIT_STRING ["MZ return <=M9||||0Q&e!=wGBeJm8 float 7 bool {b+ ||MD} char  if T}N&v"]
 + caracter _ ASCII 95 
 + 361 TK_IDENTIFICADOR [Vbw_L_a4MH6DF8jbCXuS607BnG2n0DGOOt3Odyf]
 + caracter > ASCII 62 
-+ caracter - ASCII 45 
-  361 TK_LIT_INT [74499494]
-  361 TK_LIT_INT [74499494]
-- 362 TK_LIT_STRING ["MZ return <=M9||||0Q&e!=wGBeJm8 float 7 bool {b+ ||MD} char  if T}N&v"]
++ 361 TK_LIT_INT [-74499494]
 + caracter " ASCII 34 
 + 362 TK_IDENTIFICADOR [MZ]
 + 362 TK_PR_RETURN [return]
@@ -5898,11 +5916,16 @@ Output of <avaliacao_02.tesh:5> mismatch:
   362 TK_LIT_FLOAT [163846.63]
 - 363 TK_LIT_STRING ["KtTP+ $[&naa float !=4u&&fpI;,fzVBf! string n< * 1E&&w&&{pbM>=El[FHT"]
 - 363 TK_ESPECIAL [-]
+- 363 TK_LIT_FLOAT [851332.0157472]
+- 363 TK_ESPECIAL [)]
+- 363 TK_ESPECIAL [[]
+- 363 TK_ESPECIAL [!]
 + caracter " ASCII 34 
 + 363 TK_IDENTIFICADOR [KtTP]
 + caracter + ASCII 43 
 + caracter $ ASCII 36 
-+ [caracter & ASCII 38 
++ 363 TOKEN_ERRO [[]
++ caracter & ASCII 38 
 + 363 TK_IDENTIFICADOR [naa]
 + 363 TK_PR_FLOAT [float]
 + 363 TK_OC_NE [!=]
@@ -5927,16 +5950,13 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 363 TK_IDENTIFICADOR [pbM]
 + 363 TK_OC_GE [>=]
 + 363 TK_IDENTIFICADOR [El]
-+ [363 TK_IDENTIFICADOR [FHT]
++ 363 TOKEN_ERRO [[]
++ 363 TK_IDENTIFICADOR [FHT]
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  363 TK_LIT_FLOAT [851332.0157472]
-  363 TK_LIT_FLOAT [851332.0157472]
-- 363 TK_ESPECIAL [)]
-- 363 TK_ESPECIAL [[]
-- 363 TK_ESPECIAL [!]
++ 363 TK_LIT_FLOAT [-851332.0157472]
 + caracter ) ASCII 41 
-+ [caracter ! ASCII 33 
++ 363 TOKEN_ERRO [[]
++ caracter ! ASCII 33 
   363 TK_LIT_INT [303583]
   363 TK_LIT_INT [3]
   363 TK_LIT_INT [303583]
@@ -5949,10 +5969,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
   364 TK_LIT_STRING ["j4"]
   364 TK_LIT_STRING ["j4"]
 - 364 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  364 TK_LIT_INT [64]
+- 364 TK_LIT_INT [64]
++ 364 TK_LIT_INT [-64]
   364 TK_LIT_CHAR ['Z']
-  364 TK_LIT_INT [64]
   364 TK_LIT_CHAR ['Z']
 - 364 TK_IDENTIFICADOR [__w]
 + caracter _ ASCII 95 
@@ -5961,14 +5980,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
   364 TK_PR_INPUT [input]
   364 TK_PR_INPUT [input]
 - 364 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  364 TK_LIT_INT [81026]
+- 364 TK_LIT_INT [81026]
++ 364 TK_LIT_INT [-81026]
   364 TK_LIT_CHAR ['}']
-  364 TK_LIT_INT [81026]
   364 TK_LIT_CHAR ['}']
 - 364 TK_LIT_STRING ["wwQA if ;(x0Dh"]
 - 365 TK_ESPECIAL [>]
 - 365 TK_ESPECIAL [-]
+- 365 TK_LIT_INT [29969096]
 + caracter " ASCII 34 
 + 364 TK_IDENTIFICADOR [wwQA]
 + 364 TK_PR_IF [if]
@@ -5977,38 +5996,35 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 364 TK_IDENTIFICADOR [x0Dh]
 + caracter " ASCII 34 
 + caracter > ASCII 62 
-+ caracter - ASCII 45 
-  365 TK_LIT_INT [29969096]
++ 365 TK_LIT_INT [-29969096]
   365 TK_PR_DO [do]
+  365 TK_PR_STRING [string]
 ...
   365 TK_PR_STRING [string]
   365 TK_LIT_INT [6312]
 - 365 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  365 TK_LIT_INT [1946953521]
-  365 TK_LIT_INT [1946953521]
+- 365 TK_LIT_INT [1946953521]
 - 366 TK_IDENTIFICADOR [_____KbaKOf6PrLGDKgabfMkqUGgxgDszHtppwHu8iVRDvWtLCEfiHpuE0eq7n_zpxGwQJgTbgZl]
 - 366 TK_ESPECIAL [-]
+- 366 TK_LIT_FLOAT [1213360833.3]
+- 366 TK_ESPECIAL [{]
+- 366 TK_ESPECIAL [-]
+- 366 TK_LIT_FLOAT [89587340.429231]
+- 367 TK_IDENTIFICADOR [_____UTI6SpbILHKM0mNKKBpaFiehE4MfnWHexIC_8o9gwTNyCaDKI]
+- 367 TK_LIT_STRING ["5 if 9 while ) then MD>="]
+- 367 TK_IDENTIFICADOR [____input]
+- 368 TK_LIT_STRING [">=vMa else M]Js2CFufaXXjZfz7}1n / !_ = SWC86"]
+- 368 TK_ESPECIAL [!]
++ 365 TK_LIT_INT [-1946953521]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 366 TK_IDENTIFICADOR [KbaKOf6PrLGDKgabfMkqUGgxgDszHtppwHu8iVRDvWtLCEfiHpuE0eq7n_zpxGwQJgTbgZl]
-+ caracter - ASCII 45 
-  366 TK_LIT_FLOAT [1213360833.3]
-  366 TK_LIT_FLOAT [1213360833.3]
-- 366 TK_ESPECIAL [{]
-- 366 TK_ESPECIAL [-]
++ 366 TK_LIT_FLOAT [-1213360833.3]
 + caracter { ASCII 123 
-+ caracter - ASCII 45 
-  366 TK_LIT_FLOAT [89587340.429231]
-  366 TK_LIT_FLOAT [89587340.429231]
-- 367 TK_IDENTIFICADOR [_____UTI6SpbILHKM0mNKKBpaFiehE4MfnWHexIC_8o9gwTNyCaDKI]
-- 367 TK_LIT_STRING ["5 if 9 while ) then MD>="]
-- 367 TK_IDENTIFICADOR [____input]
-- 368 TK_LIT_STRING [">=vMa else M]Js2CFufaXXjZfz7}1n / !_ = SWC86"]
-- 368 TK_ESPECIAL [!]
++ 366 TK_LIT_FLOAT [-89587340.429231]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -6035,7 +6051,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 368 TK_IDENTIFICADOR [vMa]
 + 368 TK_PR_ELSE [else]
 + 368 TK_IDENTIFICADOR [M]
-+ ]368 TK_IDENTIFICADOR [Js2CFufaXXjZfz7]
++ 368 TOKEN_ERRO []]
++ 368 TK_IDENTIFICADOR [Js2CFufaXXjZfz7]
 + caracter } ASCII 125 
 + 368 TK_LIT_INT [1]
 + 368 TK_IDENTIFICADOR [n]
@@ -6056,7 +6073,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
   368 TK_LIT_STRING ["7SD"]
 - 368 TK_ESPECIAL [[]
 - 368 TK_LIT_STRING ["v5 - }T;)(ujVo7m2hU1==9 / zhPQ35"]
-+ [caracter " ASCII 34 
++ 368 TOKEN_ERRO [[]
++ caracter " ASCII 34 
 + 368 TK_IDENTIFICADOR [v5]
 + caracter - ASCII 45 
 + caracter } ASCII 125 
@@ -6082,7 +6100,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 371 TK_IDENTIFICADOR [__input]
 - 371 TK_ESPECIAL [;]
 - 371 TK_ESPECIAL [:]
-+ ]caracter _ ASCII 95 
++ 369 TOKEN_ERRO []]
++ caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -6097,16 +6116,19 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter + ASCII 43 
 + caracter ) ASCII 41 
 + 370 TK_PR_RETURN [return]
-+ ]370 TK_LIT_INT [4]
++ 370 TOKEN_ERRO []]
++ 370 TK_LIT_INT [4]
 + 370 TK_IDENTIFICADOR [mGp]
 + caracter , ASCII 44 
 + 370 TK_OC_NE [!=]
 + caracter * ASCII 42 
 + 370 TK_LIT_INT [0]
 + 370 TK_IDENTIFICADOR [O]
-+ [370 TK_IDENTIFICADOR [suo]
++ 370 TOKEN_ERRO [[]
++ 370 TK_IDENTIFICADOR [suo]
 + 370 TK_PR_FLOAT [float]
-+ ]370 TK_IDENTIFICADOR [H]
++ 370 TOKEN_ERRO []]
++ 370 TK_IDENTIFICADOR [H]
 + 370 TK_OC_NE [!=]
 + 370 TK_IDENTIFICADOR [kW]
 + caracter " ASCII 34 
@@ -6115,20 +6137,18 @@ Output of <avaliacao_02.tesh:5> mismatch:
   371 TK_PR_DO [do]
   371 TK_PR_DO [do]
 - 371 TK_ESPECIAL [-]
+- 371 TK_LIT_FLOAT [7710198996.246420]
+- 371 TK_ESPECIAL [-]
+- 371 TK_LIT_INT [86916159]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 371 TK_PR_INPUT [input]
 + caracter ; ASCII 59 
 + caracter : ASCII 58 
 + 371 TK_PR_DO [do]
-+ caracter - ASCII 45 
-  371 TK_LIT_FLOAT [7710198996.246420]
-  371 TK_LIT_FLOAT [7710198996.246420]
-- 371 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  371 TK_LIT_INT [86916159]
++ 371 TK_LIT_FLOAT [-7710198996.246420]
++ 371 TK_LIT_INT [-86916159]
   371 TK_LIT_CHAR ['$']
-  371 TK_LIT_INT [86916159]
   371 TK_LIT_CHAR ['$']
 - 372 TK_LIT_STRING [" return zU *  then "]
 + caracter " ASCII 34 
@@ -6152,7 +6172,12 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 373 TK_LIT_STRING ["0 input K$aL{Up if <=8{bx float A)<= then he==KXRZ else J"]
 - 373 TK_LIT_STRING ["23Mt input ;, then d4v"]
 - 373 TK_ESPECIAL [-]
-+ [caracter ; ASCII 59 
+- 373 TK_LIT_INT [007]
+- 373 TK_ESPECIAL [/]
+- 373 TK_ESPECIAL [{]
+- 373 TK_ESPECIAL [-]
++ 372 TOKEN_ERRO [[]
++ caracter ; ASCII 59 
 + caracter " ASCII 34 
 + 373 TK_LIT_INT [0]
 + 373 TK_PR_INPUT [input]
@@ -6161,7 +6186,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 373 TK_IDENTIFICADOR [aL]
 + caracter { ASCII 123 
 + 373 TK_IDENTIFICADOR [Up]
-+ 373 TK_PR_IF [if]
+  373 TK_PR_IF [if]
+  373 TK_PR_IF [if]
+- 373 TK_IDENTIFICADOR [___bool]
 + 373 TK_OC_LE [<=]
 + 373 TK_LIT_INT [8]
 + caracter { ASCII 123 
@@ -6186,18 +6213,11 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 373 TK_PR_THEN [then]
 + 373 TK_IDENTIFICADOR [d4v]
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  373 TK_LIT_INT [007]
-  373 TK_LIT_INT [007]
-- 373 TK_ESPECIAL [/]
-- 373 TK_ESPECIAL [{]
-- 373 TK_ESPECIAL [-]
++ 373 TK_LIT_INT [-007]
 + caracter / ASCII 47 
 + caracter { ASCII 123 
 + caracter - ASCII 45 
-  373 TK_PR_IF [if]
-  373 TK_PR_IF [if]
-- 373 TK_IDENTIFICADOR [___bool]
++ 373 TK_PR_IF [if]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -6206,17 +6226,15 @@ Output of <avaliacao_02.tesh:5> mismatch:
   374 TK_LIT_FLOAT [1501.71772]
 - 375 TK_IDENTIFICADOR [__YRbEkOqUczvciWwHGptHQABLmvlBHfhW8SBkX81Cg5ajEQXb90V1mmKX_fjo2H2CdkWiCua4hoBMzAfIRdXWOv5gcI]
 - 375 TK_ESPECIAL [-]
+- 375 TK_LIT_FLOAT [3916977.345704524]
+- 375 TK_ESPECIAL [-]
+- 375 TK_LIT_FLOAT [4048.6580826]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 375 TK_IDENTIFICADOR [YRbEkOqUczvciWwHGptHQABLmvlBHfhW8SBkX81Cg5ajEQXb90V1mmKX_fjo2H2CdkWiCua4hoBMzAfIRdXWOv5gcI]
-+ caracter - ASCII 45 
-  375 TK_LIT_FLOAT [3916977.345704524]
-  375 TK_LIT_FLOAT [3916977.345704524]
-- 375 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  375 TK_LIT_FLOAT [4048.6580826]
++ 375 TK_LIT_FLOAT [-3916977.345704524]
++ 375 TK_LIT_FLOAT [-4048.6580826]
   375 TK_LIT_CHAR [':']
-  375 TK_LIT_FLOAT [4048.6580826]
   375 TK_LIT_CHAR [':']
 - 376 TK_IDENTIFICADOR [____bJgnmGs2HN5kcuuQvZPZKIynKji9N25yvTTLV4Ib2u09XS0oo47uicxlI4CRXQMm7F22NHaxb5o]
 - 376 TK_ESPECIAL [)]
@@ -6240,20 +6258,18 @@ Output of <avaliacao_02.tesh:5> mismatch:
   377 TK_PR_WHILE [while]
   377 TK_LIT_CHAR [';']
 - 377 TK_ESPECIAL [[]
-- 377 TK_PR_FLOAT [float]
-+ [377 TK_PR_FLOAT [float]
++ 377 TOKEN_ERRO [[]
+  377 TK_PR_FLOAT [float]
   377 TK_LIT_CHAR ['o']
-  377 TK_PR_BOOL [bool]
 ...
   377 TK_PR_BOOL [bool]
   377 TK_LIT_CHAR ['-']
 - 378 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  378 TK_LIT_FLOAT [81029.696169700]
-  378 TK_LIT_FLOAT [81029.696169700]
+- 378 TK_LIT_FLOAT [81029.696169700]
 - 378 TK_ESPECIAL [:]
 - 379 TK_LIT_STRING ["59FlGA if :vASH8 input h do fuOh return nBnG$ char &PZ string <=YJ1JUjCZ float e while 7SM:"]
 - 379 TK_ESPECIAL [<]
++ 378 TK_LIT_FLOAT [-81029.696169700]
 + caracter : ASCII 58 
 + caracter " ASCII 34 
 + 379 TK_LIT_INT [59]
@@ -6291,7 +6307,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 379 TK_OC_AND [&&]
 + 379 TK_PR_OUTPUT [output]
 + 379 TK_LIT_INT [6]
-+ ]379 TK_IDENTIFICADOR [Hygt]
++ 379 TOKEN_ERRO []]
++ 379 TK_IDENTIFICADOR [Hygt]
 + caracter - ASCII 45 
 + 379 TK_PR_RETURN [return]
 + 379 TK_IDENTIFICADOR [l6]
@@ -6310,10 +6327,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
   380 TK_LIT_STRING [""]
   380 TK_LIT_FLOAT [2409.93986]
 - 380 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  380 TK_LIT_FLOAT [556000385.961]
+- 380 TK_LIT_FLOAT [556000385.961]
++ 380 TK_LIT_FLOAT [-556000385.961]
   380 TK_LIT_FLOAT [8590.164]
-  380 TK_LIT_FLOAT [556000385.961]
   380 TK_LIT_FLOAT [8590.164]
 - 380 TK_ESPECIAL [*]
 + caracter * ASCII 42 
@@ -6343,7 +6359,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 382 TK_IDENTIFICADOR [MoiG4avV]
 + caracter / ASCII 47 
 + 382 TK_IDENTIFICADOR [Lma7]
-+ [caracter - ASCII 45 
++ 382 TOKEN_ERRO [[]
++ caracter - ASCII 45 
 + 382 TK_PR_DO [do]
 + 382 TK_IDENTIFICADOR [Lut0]
 + caracter { ASCII 123 
@@ -6373,9 +6390,11 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 383 TK_IDENTIFICADOR [____string]
 - 383 TK_ESPECIAL [*]
 - 383 TK_ESPECIAL [-]
+- 383 TK_LIT_INT [970]
 + caracter " ASCII 34 
 + 383 TK_IDENTIFICADOR [E4ftmT]
-+ ]383 TK_PR_OUTPUT [output]
++ 383 TOKEN_ERRO []]
++ 383 TK_PR_OUTPUT [output]
 + caracter / ASCII 47 
 + 383 TK_IDENTIFICADOR [W]
 + 383 TK_PR_WHILE [while]
@@ -6392,10 +6411,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + 383 TK_PR_STRING [string]
 + caracter * ASCII 42 
-+ caracter - ASCII 45 
-  383 TK_LIT_INT [970]
++ 383 TK_LIT_INT [-970]
   383 TK_LIT_FLOAT [341.83943809]
-...
+  383 TK_LIT_INT [64]
   383 TK_LIT_FLOAT [341.83943809]
   383 TK_LIT_INT [64]
 - 384 TK_LIT_STRING ["As2E float X$_jb input ==Z if  then Udr = ,Xv0M&&"]
@@ -6444,17 +6462,17 @@ Output of <avaliacao_02.tesh:5> mismatch:
   386 TK_LIT_CHAR ['-']
   386 TK_LIT_CHAR ['-']
 - 386 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  386 TK_LIT_INT [703]
+- 386 TK_LIT_INT [703]
++ 386 TK_LIT_INT [-703]
   386 TK_LIT_INT [4695535553]
-...
+  386 TK_LIT_CHAR ['$']
   386 TK_LIT_INT [4695535553]
   386 TK_LIT_CHAR ['$']
 - 386 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  386 TK_LIT_INT [8336]
+- 386 TK_LIT_INT [8336]
++ 386 TK_LIT_INT [-8336]
   386 TK_PR_CHAR [char]
-...
+  386 TK_LIT_CHAR ['S']
   386 TK_PR_CHAR [char]
   386 TK_LIT_CHAR ['S']
 - 387 TK_IDENTIFICADOR [__B0CSDvlFtDDwpyy6zE0f83JOqzMQvwvNI2JDPU23MRC660RpN6Rc5HksQ3t]
@@ -6471,7 +6489,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 388 TK_IDENTIFICADOR [xA5AgexkesAicr8cyNnYiIhBf0bKMLMUirJL1VmeymHvsnMCX3HpvwnVVSWwZLSV88DJlgJJ_YGatw]
 + caracter " ASCII 34 
 + 389 TK_IDENTIFICADOR [e]
-+ [caracter - ASCII 45 
++ 389 TOKEN_ERRO [[]
++ caracter - ASCII 45 
 + 389 TK_IDENTIFICADOR [IS]
 + 389 TK_PR_RETURN [return]
 + 389 TK_PR_OUTPUT [output]
@@ -6483,7 +6502,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 389 TK_IDENTIFICADOR [fm]
 + 389 TK_OC_GE [>=]
 + 389 TK_IDENTIFICADOR [tM]
-+ [389 TK_PR_CHAR [char]
++ 389 TOKEN_ERRO [[]
++ 389 TK_PR_CHAR [char]
 + 389 TK_IDENTIFICADOR [t]
 + caracter ) ASCII 41 
 + 389 TK_PR_BOOL [bool]
@@ -6532,13 +6552,18 @@ Output of <avaliacao_02.tesh:5> mismatch:
   390 TK_PR_STRING [string]
   390 TK_PR_STRING [string]
 - 390 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  390 TK_LIT_INT [8]
-  390 TK_LIT_INT [8]
+- 390 TK_LIT_INT [8]
 - 390 TK_ESPECIAL [$]
 - 391 TK_LIT_STRING ["mqGmht&&V>=c1XnB4 / vwN / :X char : if 2 * lsTJee||==koHz = V<"]
 - 391 TK_ESPECIAL [=]
 - 391 TK_ESPECIAL [-]
+- 391 TK_LIT_INT [036982679]
+- 391 TK_ESPECIAL [+]
+- 392 TK_LIT_STRING ["l_ char  do dj int t while {==, char  /  while  do ||,Fq,"]
+- 392 TK_IDENTIFICADOR [____while]
+- 392 TK_ESPECIAL [-]
+- 392 TK_LIT_INT [84074]
++ 390 TK_LIT_INT [-8]
 + caracter $ ASCII 36 
 + caracter " ASCII 34 
 + 391 TK_IDENTIFICADOR [mqGmht]
@@ -6565,13 +6590,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter < ASCII 60 
 + caracter " ASCII 34 
 + caracter = ASCII 61 
-+ caracter - ASCII 45 
-  391 TK_LIT_INT [036982679]
-  391 TK_LIT_INT [036982679]
-- 391 TK_ESPECIAL [+]
-- 392 TK_LIT_STRING ["l_ char  do dj int t while {==, char  /  while  do ||,Fq,"]
-- 392 TK_IDENTIFICADOR [____while]
-- 392 TK_ESPECIAL [-]
++ 391 TK_LIT_INT [-036982679]
 + caracter + ASCII 43 
 + caracter " ASCII 34 
 + 392 TK_IDENTIFICADOR [l_]
@@ -6598,9 +6617,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 392 TK_PR_WHILE [while]
-+ caracter - ASCII 45 
-  392 TK_LIT_INT [84074]
++ 392 TK_LIT_INT [-84074]
   392 TK_LIT_CHAR ['}']
+  392 TK_LIT_INT [1]
 ...
   392 TK_LIT_INT [1]
   392 TK_LIT_INT [6463130]
@@ -6639,14 +6658,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
   394 TK_LIT_CHAR ['/']
   394 TK_LIT_CHAR ['/']
 - 394 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  394 TK_LIT_FLOAT [96.6994641]
-  394 TK_LIT_FLOAT [96.6994641]
+- 394 TK_LIT_FLOAT [96.6994641]
 - 395 TK_LIT_STRING [" string 8 * hG output nOL$ =  int DlDYbHK if Vb while  char ==>+ ]{Pg:n5v bool v return >=:+  = p1 return 9"]
 - 395 TK_ESPECIAL []]
-- 395 TK_LIT_CHAR ['a']
-- 396 TK_LIT_STRING ["r>=&&t input [fLLt2H return UJy8];W{kDJW while  input WuQirja8gz"]
-- 396 TK_IDENTIFICADOR [__QcD0EmsekXi825FzvMNgeK2AeYpfN8C6K8LRRvPrus0D]
++ 394 TK_LIT_FLOAT [-96.6994641]
 + caracter " ASCII 34 
 + 395 TK_PR_STRING [string]
 + 395 TK_LIT_INT [8]
@@ -6665,7 +6680,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 395 TK_OC_EQ [==]
 + caracter > ASCII 62 
 + caracter + ASCII 43 
-+ ]caracter { ASCII 123 
++ 395 TOKEN_ERRO []]
++ caracter { ASCII 123 
 + 395 TK_IDENTIFICADOR [Pg]
 + caracter : ASCII 58 
 + 395 TK_IDENTIFICADOR [n5v]
@@ -6680,17 +6696,23 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 395 TK_PR_RETURN [return]
 + 395 TK_LIT_INT [9]
 + caracter " ASCII 34 
-+ ]395 TK_LIT_CHAR ['a']
++ 395 TOKEN_ERRO []]
+  395 TK_LIT_CHAR ['a']
+  395 TK_LIT_CHAR ['a']
+- 396 TK_LIT_STRING ["r>=&&t input [fLLt2H return UJy8];W{kDJW while  input WuQirja8gz"]
+- 396 TK_IDENTIFICADOR [__QcD0EmsekXi825FzvMNgeK2AeYpfN8C6K8LRRvPrus0D]
 + caracter " ASCII 34 
 + 396 TK_IDENTIFICADOR [r]
 + 396 TK_OC_GE [>=]
 + 396 TK_OC_AND [&&]
 + 396 TK_IDENTIFICADOR [t]
 + 396 TK_PR_INPUT [input]
-+ [396 TK_IDENTIFICADOR [fLLt2H]
++ 396 TOKEN_ERRO [[]
++ 396 TK_IDENTIFICADOR [fLLt2H]
 + 396 TK_PR_RETURN [return]
 + 396 TK_IDENTIFICADOR [UJy8]
-+ ]caracter ; ASCII 59 
++ 396 TOKEN_ERRO []]
++ caracter ; ASCII 59 
 + 396 TK_IDENTIFICADOR [W]
 + caracter { ASCII 123 
 + 396 TK_IDENTIFICADOR [kDJW]
@@ -6753,10 +6775,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
   399 TK_LIT_FLOAT [4.15]
   399 TK_LIT_FLOAT [4.15]
 - 399 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  399 TK_LIT_FLOAT [9868693181.233018]
-  399 TK_LIT_FLOAT [9868693181.233018]
+- 399 TK_LIT_FLOAT [9868693181.233018]
 - 400 TK_LIT_STRING [" * m if  then y} * Db9m+ V while i!X_)! bool "]
++ 399 TK_LIT_FLOAT [-9868693181.233018]
 + caracter " ASCII 34 
 + caracter * ASCII 42 
 + 400 TK_IDENTIFICADOR [m]
@@ -6786,15 +6807,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
   400 TK_LIT_CHAR ['}']
 - 400 TK_IDENTIFICADOR [___W6DxbzVnTv7efRaZQz4WE7LWt]
 - 401 TK_ESPECIAL [-]
+- 401 TK_LIT_FLOAT [1023931997.60]
+- 401 TK_LIT_STRING ["gtI)Hk bool p1NZ - 5b2hoH> input m!=(l0r output uV5Io,hs<=EPo"]
+- 401 TK_ESPECIAL [=]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 400 TK_IDENTIFICADOR [W6DxbzVnTv7efRaZQz4WE7LWt]
-+ caracter - ASCII 45 
-  401 TK_LIT_FLOAT [1023931997.60]
-  401 TK_LIT_FLOAT [1023931997.60]
-- 401 TK_LIT_STRING ["gtI)Hk bool p1NZ - 5b2hoH> input m!=(l0r output uV5Io,hs<=EPo"]
-- 401 TK_ESPECIAL [=]
++ 401 TK_LIT_FLOAT [-1023931997.60]
 + caracter " ASCII 34 
 + 401 TK_IDENTIFICADOR [gtI]
 + caracter ) ASCII 41 
@@ -6892,15 +6912,22 @@ Output of <avaliacao_02.tesh:5> mismatch:
   405 TK_PR_BOOL [bool]
 - 405 TK_ESPECIAL [<]
 - 405 TK_ESPECIAL [-]
+- 405 TK_LIT_FLOAT [42729.37024056]
 + caracter < ASCII 60 
-+ caracter - ASCII 45 
-  405 TK_LIT_FLOAT [42729.37024056]
++ 405 TK_LIT_FLOAT [-42729.37024056]
   405 TK_LIT_FLOAT [8.72]
-  405 TK_LIT_FLOAT [42729.37024056]
   405 TK_LIT_FLOAT [8.72]
 - 406 TK_IDENTIFICADOR [_____VfmCtXUN4RP8pxvgSdDCM57Lq14jFQVpJIbBD1pr1LjmRox8vqFYk5Z1Oo5EG9sL]
 - 406 TK_IDENTIFICADOR [___1QG24XKHxwnMZ3qfTkn5rp]
 - 406 TK_ESPECIAL [-]
+- 406 TK_LIT_INT [04]
+- 406 TK_ESPECIAL [;]
+- 406 TK_ESPECIAL [[]
+- 407 TK_LIT_STRING ["S do d3O if 79B7Hlny||caW input _"]
+- 407 TK_ESPECIAL [-]
+- 407 TK_LIT_INT [8129]
+- 407 TK_LIT_STRING ["O> string w1z else E:]Nc"]
+- 407 TK_ESPECIAL [}]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -6912,15 +6939,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + 406 TK_LIT_INT [1]
 + 406 TK_IDENTIFICADOR [QG24XKHxwnMZ3qfTkn5rp]
-+ caracter - ASCII 45 
-  406 TK_LIT_INT [04]
-  406 TK_LIT_INT [04]
-- 406 TK_ESPECIAL [;]
-- 406 TK_ESPECIAL [[]
-- 407 TK_LIT_STRING ["S do d3O if 79B7Hlny||caW input _"]
-- 407 TK_ESPECIAL [-]
++ 406 TK_LIT_INT [-04]
 + caracter ; ASCII 59 
-+ [caracter " ASCII 34 
++ 406 TOKEN_ERRO [[]
++ caracter " ASCII 34 
 + 407 TK_IDENTIFICADOR [S]
 + 407 TK_PR_DO [do]
 + 407 TK_IDENTIFICADOR [d3O]
@@ -6932,11 +6954,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 407 TK_PR_INPUT [input]
 + caracter _ ASCII 95 
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  407 TK_LIT_INT [8129]
-  407 TK_LIT_INT [8129]
-- 407 TK_LIT_STRING ["O> string w1z else E:]Nc"]
-- 407 TK_ESPECIAL [}]
++ 407 TK_LIT_INT [-8129]
 + caracter " ASCII 34 
 + 407 TK_IDENTIFICADOR [O]
 + caracter > ASCII 62 
@@ -6945,7 +6963,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 407 TK_PR_ELSE [else]
 + 407 TK_IDENTIFICADOR [E]
 + caracter : ASCII 58 
-+ ]407 TK_IDENTIFICADOR [Nc]
++ 407 TOKEN_ERRO []]
++ 407 TK_IDENTIFICADOR [Nc]
 + caracter " ASCII 34 
 + caracter } ASCII 125 
   407 TK_LIT_INT [607]
@@ -6957,16 +6976,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
   408 TK_LIT_FLOAT [4.87572111]
   408 TK_LIT_FLOAT [4.87572111]
 - 408 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  408 TK_LIT_FLOAT [5241496145.0]
+- 408 TK_LIT_FLOAT [5241496145.0]
++ 408 TK_LIT_FLOAT [-5241496145.0]
   408 TK_PR_OUTPUT [output]
-  408 TK_LIT_FLOAT [5241496145.0]
   408 TK_PR_OUTPUT [output]
 - 408 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  408 TK_LIT_INT [1]
-  408 TK_LIT_INT [1]
+- 408 TK_LIT_INT [1]
 - 408 TK_ESPECIAL [(]
++ 408 TK_LIT_INT [-1]
 + caracter ( ASCII 40 
   408 TK_PR_INT [int]
   408 TK_PR_INT [int]
@@ -6994,7 +7011,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 410 TK_IDENTIFICADOR [RDyuGVvQgCQ9HFfcyLLdubOPHtKb45c0NHyGlXmR6KZYhOEuWXm2g5fkz1XSrMiGIM1]
-+ ]caracter ) ASCII 41 
++ 410 TOKEN_ERRO []]
++ caracter ) ASCII 41 
 + caracter + ASCII 43 
   411 TK_PR_OUTPUT [output]
   411 TK_PR_OUTPUT [output]
@@ -7004,25 +7022,22 @@ Output of <avaliacao_02.tesh:5> mismatch:
   411 TK_LIT_CHAR [',']
 - 411 TK_ESPECIAL [&]
 - 411 TK_ESPECIAL [-]
+- 411 TK_LIT_INT [39]
 + caracter & ASCII 38 
-+ caracter - ASCII 45 
-  411 TK_LIT_INT [39]
++ 411 TK_LIT_INT [-39]
   411 TK_LIT_CHAR ['=']
-  411 TK_LIT_INT [39]
   411 TK_LIT_CHAR ['=']
 - 411 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  411 TK_LIT_INT [60919706]
-  411 TK_LIT_INT [60919706]
+- 411 TK_LIT_INT [60919706]
 - 412 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  412 TK_LIT_FLOAT [750217.3]
-  412 TK_LIT_FLOAT [750217.3]
+- 412 TK_LIT_FLOAT [750217.3]
 - 412 TK_ESPECIAL []]
-- 412 TK_LIT_CHAR ['7']
-+ ]412 TK_LIT_CHAR ['7']
++ 411 TK_LIT_INT [-60919706]
++ 412 TK_LIT_FLOAT [-750217.3]
++ 412 TOKEN_ERRO []]
+  412 TK_LIT_CHAR ['7']
   412 TK_LIT_CHAR ['V']
-  412 TK_LIT_CHAR ['n']
+...
   412 TK_LIT_CHAR ['V']
   412 TK_LIT_CHAR ['n']
 - 413 TK_LIT_STRING ["H8q * >=aBuDu7Xim4S+ MaKc char j<=t[ output }I<e$[xMf if LS!= then "]
@@ -7037,13 +7052,15 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 413 TK_IDENTIFICADOR [j]
 + 413 TK_OC_LE [<=]
 + 413 TK_IDENTIFICADOR [t]
-+ [413 TK_PR_OUTPUT [output]
++ 413 TOKEN_ERRO [[]
++ 413 TK_PR_OUTPUT [output]
 + caracter } ASCII 125 
 + 413 TK_IDENTIFICADOR [I]
 + caracter < ASCII 60 
 + 413 TK_IDENTIFICADOR [e]
 + caracter $ ASCII 36 
-+ [413 TK_IDENTIFICADOR [xMf]
++ 413 TOKEN_ERRO [[]
++ 413 TK_IDENTIFICADOR [xMf]
 + 413 TK_PR_IF [if]
 + 413 TK_IDENTIFICADOR [LS]
 + 413 TK_OC_NE [!=]
@@ -7068,7 +7085,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 413 TK_PR_THEN [then]
-+ ]caracter _ ASCII 95 
++ 413 TOKEN_ERRO []]
++ caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 414 TK_IDENTIFICADOR [KUabHehhUf8YT1AjWqQafDBo0eGABbLVKdARq7jIH7TFXHxSvA78Rjy1wGscRbUuuu0PiQ6UFC2Xp8QhDJVjv5ZJ3f7]
@@ -7080,6 +7098,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
   414 TK_PR_IF [if]
 - 414 TK_LIT_STRING ["<=DWU!=Z return m$"]
 - 414 TK_ESPECIAL [-]
+- 414 TK_LIT_INT [7321920343]
+- 414 TK_ESPECIAL [/]
 + caracter " ASCII 34 
 + 414 TK_OC_LE [<=]
 + 414 TK_IDENTIFICADOR [DWU]
@@ -7089,10 +7109,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 414 TK_IDENTIFICADOR [m]
 + caracter $ ASCII 36 
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  414 TK_LIT_INT [7321920343]
-  414 TK_LIT_INT [7321920343]
-- 414 TK_ESPECIAL [/]
++ 414 TK_LIT_INT [-7321920343]
 + caracter / ASCII 47 
   415 TK_PR_WHILE [while]
   415 TK_PR_WHILE [while]
@@ -7102,15 +7119,21 @@ Output of <avaliacao_02.tesh:5> mismatch:
   415 TK_LIT_CHAR [',']
 - 415 TK_ESPECIAL [$]
 - 415 TK_ESPECIAL [-]
+- 415 TK_LIT_INT [4]
 + caracter $ ASCII 36 
-+ caracter - ASCII 45 
-  415 TK_LIT_INT [4]
++ 415 TK_LIT_INT [-4]
   415 TK_LIT_FLOAT [0970094.52845]
-  415 TK_LIT_INT [4]
   415 TK_LIT_FLOAT [0970094.52845]
 - 415 TK_ESPECIAL [&]
 - 415 TK_LIT_STRING ["PCf string 8<=KG1i"]
 - 416 TK_ESPECIAL [-]
+- 416 TK_LIT_INT [904015]
+- 416 TK_ESPECIAL [-]
+- 416 TK_LIT_INT [798429]
+- 417 TK_LIT_STRING ["&p}_[ float C(I(]))8 float o2L while  input At input ojTnu"]
+- 417 TK_ESPECIAL [{]
+- 417 TK_ESPECIAL [;]
+- 417 TK_IDENTIFICADOR [_bool]
 + caracter & ASCII 38 
 + caracter " ASCII 34 
 + 415 TK_IDENTIFICADOR [PCf]
@@ -7119,28 +7142,21 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 415 TK_OC_LE [<=]
 + 415 TK_IDENTIFICADOR [KG1i]
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  416 TK_LIT_INT [904015]
-  416 TK_LIT_INT [904015]
-- 416 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  416 TK_LIT_INT [798429]
-  416 TK_LIT_INT [798429]
-- 417 TK_LIT_STRING ["&p}_[ float C(I(]))8 float o2L while  input At input ojTnu"]
-- 417 TK_ESPECIAL [{]
-- 417 TK_ESPECIAL [;]
-- 417 TK_IDENTIFICADOR [_bool]
++ 416 TK_LIT_INT [-904015]
++ 416 TK_LIT_INT [-798429]
 + caracter " ASCII 34 
 + caracter & ASCII 38 
 + 417 TK_IDENTIFICADOR [p]
 + caracter } ASCII 125 
 + caracter _ ASCII 95 
-+ [417 TK_PR_FLOAT [float]
++ 417 TOKEN_ERRO [[]
++ 417 TK_PR_FLOAT [float]
 + 417 TK_IDENTIFICADOR [C]
 + caracter ( ASCII 40 
 + 417 TK_IDENTIFICADOR [I]
 + caracter ( ASCII 40 
-+ ]caracter ) ASCII 41 
++ 417 TOKEN_ERRO []]
++ caracter ) ASCII 41 
 + caracter ) ASCII 41 
 + 417 TK_LIT_INT [8]
 + 417 TK_PR_FLOAT [float]
@@ -7196,6 +7212,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 419 TK_ESPECIAL [/]
 - 419 TK_IDENTIFICADOR [_____4j3f9pXIeaTXul2I5AkYIArBhFcy6csQsPApgVpWD9O80J]
 - 420 TK_ESPECIAL [-]
+- 420 TK_LIT_FLOAT [1.696]
 + caracter / ASCII 47 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -7204,10 +7221,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + 419 TK_LIT_INT [4]
 + 419 TK_IDENTIFICADOR [j3f9pXIeaTXul2I5AkYIArBhFcy6csQsPApgVpWD9O80J]
-+ caracter - ASCII 45 
-  420 TK_LIT_FLOAT [1.696]
++ 420 TK_LIT_FLOAT [-1.696]
   420 TK_LIT_CHAR ['a']
-  420 TK_LIT_FLOAT [1.696]
   420 TK_LIT_CHAR ['a']
 - 420 TK_ESPECIAL [(]
 + caracter ( ASCII 40 
@@ -7240,10 +7255,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
   421 TK_LIT_STRING ["dy[7"]
   421 TK_LIT_INT [04902797]
 - 421 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  421 TK_LIT_INT [9702026179]
+- 421 TK_LIT_INT [9702026179]
++ 421 TK_LIT_INT [-9702026179]
   421 TK_LIT_CHAR ['+']
-  421 TK_LIT_INT [9702026179]
   421 TK_LIT_CHAR ['+']
 - 421 TK_IDENTIFICADOR [__bool]
 + caracter _ ASCII 95 
@@ -7254,12 +7268,15 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 422 TK_ESPECIAL [[]
 - 422 TK_ESPECIAL []]
 - 422 TK_ESPECIAL [[]
-- 422 TK_LIT_CHAR [',']
++ 422 TOKEN_ERRO [[]
++ 422 TOKEN_ERRO []]
++ 422 TOKEN_ERRO [[]
+  422 TK_LIT_CHAR [',']
+  422 TK_LIT_CHAR [',']
 - 422 TK_ESPECIAL [+]
 - 422 TK_IDENTIFICADOR [_____ptSgt0bGwD2BRo9tnGuKmMn5FO]
 - 422 TK_ESPECIAL []]
 - 422 TK_ESPECIAL [}]
-+ [][422 TK_LIT_CHAR [',']
 + caracter + ASCII 43 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -7267,7 +7284,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 422 TK_IDENTIFICADOR [ptSgt0bGwD2BRo9tnGuKmMn5FO]
-+ ]caracter } ASCII 125 
++ 422 TOKEN_ERRO []]
++ caracter } ASCII 125 
   423 TK_LIT_FLOAT [3080729364.0138893572]
   423 TK_LIT_FLOAT [61.4608]
 ...
@@ -7287,19 +7305,18 @@ Output of <avaliacao_02.tesh:5> mismatch:
   424 TK_LIT_CHAR ['c']
   424 TK_LIT_CHAR ['c']
 - 424 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  424 TK_LIT_INT [6212694]
+- 424 TK_LIT_INT [6212694]
++ 424 TK_LIT_INT [-6212694]
   424 TK_PR_STRING [string]
-...
+  424 TK_LIT_INT [753]
   424 TK_PR_STRING [string]
   424 TK_LIT_INT [753]
 - 424 TK_ESPECIAL [,]
 - 424 TK_ESPECIAL [-]
-+ caracter , ASCII 44 
-+ caracter - ASCII 45 
-  424 TK_LIT_INT [0802367690]
-  424 TK_LIT_INT [0802367690]
+- 424 TK_LIT_INT [0802367690]
 - 424 TK_ESPECIAL [,]
++ caracter , ASCII 44 
++ 424 TK_LIT_INT [-0802367690]
 + caracter , ASCII 44 
   425 TK_LIT_FLOAT [339.95214]
   425 TK_PR_CHAR [char]
@@ -7307,9 +7324,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
   425 TK_PR_CHAR [char]
   425 TK_PR_INPUT [input]
 - 425 TK_ESPECIAL [[]
-- 425 TK_LIT_CHAR [')']
++ 425 TOKEN_ERRO [[]
+  425 TK_LIT_CHAR [')']
+  425 TK_LIT_CHAR [')']
 - 426 TK_LIT_STRING ["|| * XzZ&&Mi&&mvMis do w&&iS>={QtCl input FfY"]
-+ [425 TK_LIT_CHAR [')']
 + caracter " ASCII 34 
 + 426 TK_OC_OR [||]
 + caracter * ASCII 42 
@@ -7344,6 +7362,9 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 428 TK_LIT_STRING [" int >,fZ}zjSuCl bool U<={LYKOInVAM0AE}Kjy if baX int 6M"]
 - 428 TK_ESPECIAL [[]
 - 428 TK_ESPECIAL [-]
+- 428 TK_LIT_INT [044060250]
+- 428 TK_ESPECIAL [-]
+- 428 TK_LIT_INT [12764693]
 + caracter " ASCII 34 
 + 428 TK_PR_INT [int]
 + caracter > ASCII 62 
@@ -7364,13 +7385,11 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 428 TK_LIT_INT [6]
 + 428 TK_IDENTIFICADOR [M]
 + caracter " ASCII 34 
-+ [caracter - ASCII 45 
-  428 TK_LIT_INT [044060250]
-  428 TK_LIT_INT [044060250]
-- 428 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  428 TK_LIT_INT [12764693]
++ 428 TOKEN_ERRO [[]
++ 428 TK_LIT_INT [-044060250]
++ 428 TK_LIT_INT [-12764693]
   428 TK_LIT_CHAR ['/']
+  428 TK_PR_THEN [then]
 ...
   428 TK_PR_THEN [then]
   429 TK_LIT_CHAR ['Q']
@@ -7389,6 +7408,14 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 430 TK_ESPECIAL [;]
 - 430 TK_LIT_STRING ["7uc if  then uHpf8 float iRCk"]
 - 430 TK_ESPECIAL [-]
+- 430 TK_LIT_FLOAT [94083.18]
+- 431 TK_LIT_STRING ["Scp+ gF||p& do C>k -  float ==2I_4||Si!=3 else f char b__&R"]
+- 431 TK_LIT_STRING ["XNdF0Wp;$i_F[S;!=eWZ&&r =  char "]
+- 431 TK_LIT_STRING [", = h - "]
+- 431 TK_ESPECIAL [=]
+- 431 TK_IDENTIFICADOR [_wyXBWiOGzd]
+- 432 TK_ESPECIAL [-]
+- 432 TK_LIT_STRING ["YV>(y int GB>GJ||:lY||A>mO =  * {r"]
 + caracter , ASCII 44 
 + caracter + ASCII 43 
 + caracter = ASCII 61 
@@ -7407,16 +7434,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 430 TK_PR_FLOAT [float]
 + 430 TK_IDENTIFICADOR [iRCk]
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  430 TK_LIT_FLOAT [94083.18]
-  430 TK_LIT_FLOAT [94083.18]
-- 431 TK_LIT_STRING ["Scp+ gF||p& do C>k -  float ==2I_4||Si!=3 else f char b__&R"]
-- 431 TK_LIT_STRING ["XNdF0Wp;$i_F[S;!=eWZ&&r =  char "]
-- 431 TK_LIT_STRING [", = h - "]
-- 431 TK_ESPECIAL [=]
-- 431 TK_IDENTIFICADOR [_wyXBWiOGzd]
-- 432 TK_ESPECIAL [-]
-- 432 TK_LIT_STRING ["YV>(y int GB>GJ||:lY||A>mO =  * {r"]
++ 430 TK_LIT_FLOAT [-94083.18]
 + caracter " ASCII 34 
 + 431 TK_IDENTIFICADOR [Scp]
 + caracter + ASCII 43 
@@ -7449,7 +7467,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter ; ASCII 59 
 + caracter $ ASCII 36 
 + 431 TK_IDENTIFICADOR [i_F]
-+ [431 TK_IDENTIFICADOR [S]
++ 431 TOKEN_ERRO [[]
++ 431 TK_IDENTIFICADOR [S]
 + caracter ; ASCII 59 
 + 431 TK_OC_NE [!=]
 + 431 TK_IDENTIFICADOR [eWZ]
@@ -7546,11 +7565,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
   435 TK_PR_CHAR [char]
   435 TK_LIT_FLOAT [470.5547]
 - 435 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  435 TK_LIT_FLOAT [47951.2842840792]
-  435 TK_LIT_FLOAT [47951.2842840792]
+- 435 TK_LIT_FLOAT [47951.2842840792]
 - 437 TK_IDENTIFICADOR [_k0xaL5LJHbjaoKtdCy7V7xQ2KQFGwm2uAZAqSREgDDfPbZgSBJcLSyvJ1VkCaP1iJqc0yT2aEgANMfCOPEg9XtHb3r]
 - 437 TK_IDENTIFICADOR [_oz1hmLozqlaszpCZdEGpp0XgR24hAxdtwV8j6fcu]
++ 435 TK_LIT_FLOAT [-47951.2842840792]
 + caracter _ ASCII 95 
 + 437 TK_IDENTIFICADOR [k0xaL5LJHbjaoKtdCy7V7xQ2KQFGwm2uAZAqSREgDDfPbZgSBJcLSyvJ1VkCaP1iJqc0yT2aEgANMfCOPEg9XtHb3r]
 + caracter _ ASCII 95 
@@ -7559,20 +7577,22 @@ Output of <avaliacao_02.tesh:5> mismatch:
   437 TK_LIT_INT [0684413022]
 - 437 TK_ESPECIAL [}]
 - 437 TK_ESPECIAL [-]
+- 437 TK_LIT_INT [900583831]
 + caracter } ASCII 125 
-+ caracter - ASCII 45 
-  437 TK_LIT_INT [900583831]
++ 437 TK_LIT_INT [-900583831]
   438 TK_LIT_STRING ["e:==I4}G<=Pd3<[&HW"]
-...
+  438 TK_LIT_CHAR ['y']
   438 TK_LIT_STRING ["e:==I4}G<=Pd3<[&HW"]
   438 TK_LIT_CHAR ['y']
 - 438 TK_ESPECIAL []]
 - 438 TK_LIT_STRING [" while B39[ - aciC if Mg"]
 - 438 TK_ESPECIAL [&]
-+ ]caracter " ASCII 34 
++ 438 TOKEN_ERRO []]
++ caracter " ASCII 34 
 + 438 TK_PR_WHILE [while]
 + 438 TK_IDENTIFICADOR [B39]
-+ [caracter - ASCII 45 
++ 438 TOKEN_ERRO [[]
++ caracter - ASCII 45 
 + 438 TK_IDENTIFICADOR [aciC]
 + 438 TK_PR_IF [if]
 + 438 TK_IDENTIFICADOR [Mg]
@@ -7599,30 +7619,29 @@ Output of <avaliacao_02.tesh:5> mismatch:
   439 TK_LIT_STRING ["&5Q&"]
   439 TK_LIT_INT [05214601]
 - 439 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  439 TK_LIT_FLOAT [0100520915.00942]
-  439 TK_LIT_FLOAT [0100520915.00942]
+- 439 TK_LIT_FLOAT [0100520915.00942]
 - 439 TK_ESPECIAL [(]
 - 439 TK_ESPECIAL [-]
-+ caracter ( ASCII 40 
-+ caracter - ASCII 45 
-  439 TK_LIT_INT [80]
-  439 TK_LIT_INT [80]
+- 439 TK_LIT_INT [80]
 - 440 TK_IDENTIFICADOR [_8lqBJoNc0sRou6eK4oylMcScG6N1Koxa57WUm8l3vJtRZV2oYsHrfU9Z3GtCv]
 - 440 TK_ESPECIAL [-]
-+ caracter _ ASCII 95 
-+ 440 TK_LIT_INT [8]
-+ 440 TK_IDENTIFICADOR [lqBJoNc0sRou6eK4oylMcScG6N1Koxa57WUm8l3vJtRZV2oYsHrfU9Z3GtCv]
-+ caracter - ASCII 45 
-  440 TK_LIT_FLOAT [6607.93589]
-  440 TK_LIT_FLOAT [6607.93589]
+- 440 TK_LIT_FLOAT [6607.93589]
 - 440 TK_ESPECIAL []]
 - 441 TK_ESPECIAL [+]
 - 441 TK_ESPECIAL [-]
-+ ]caracter + ASCII 43 
-+ caracter - ASCII 45 
-  441 TK_LIT_INT [64894]
+- 441 TK_LIT_INT [64894]
++ 439 TK_LIT_FLOAT [-0100520915.00942]
++ caracter ( ASCII 40 
++ 439 TK_LIT_INT [-80]
++ caracter _ ASCII 95 
++ 440 TK_LIT_INT [8]
++ 440 TK_IDENTIFICADOR [lqBJoNc0sRou6eK4oylMcScG6N1Koxa57WUm8l3vJtRZV2oYsHrfU9Z3GtCv]
++ 440 TK_LIT_FLOAT [-6607.93589]
++ 440 TOKEN_ERRO []]
++ caracter + ASCII 43 
++ 441 TK_LIT_INT [-64894]
   441 TK_LIT_CHAR ['[']
+  441 TK_PR_FLOAT [float]
 ...
   441 TK_PR_FLOAT [float]
   441 TK_PR_THEN [then]
@@ -7663,14 +7682,15 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 443 TK_ESPECIAL [,]
 - 443 TK_ESPECIAL [*]
 - 443 TK_ESPECIAL [[]
-- 443 TK_LIT_CHAR ['V']
-- 443 TK_IDENTIFICADOR [_____hP3ng2AGOz_0QnpiEtZ_gETcj_4slqFkp]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + 443 TK_IDENTIFICADOR [uzdFZXwV7hlENrIGqjrOkyovZSliiAa5bXpXyhiw8acrdoDf9KCSGHAhXqzKyu0j1o6FFouU8dyQlOm0OC7Uiqj05rwApZqp]
 + caracter , ASCII 44 
 + caracter * ASCII 42 
-+ [443 TK_LIT_CHAR ['V']
++ 443 TOKEN_ERRO [[]
+  443 TK_LIT_CHAR ['V']
+  443 TK_LIT_CHAR ['V']
+- 443 TK_IDENTIFICADOR [_____hP3ng2AGOz_0QnpiEtZ_gETcj_4slqFkp]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -7686,12 +7706,11 @@ Output of <avaliacao_02.tesh:5> mismatch:
   444 TK_LIT_INT [1301992]
   444 TK_LIT_INT [1301992]
 - 444 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  444 TK_LIT_FLOAT [546688791.5931]
-  444 TK_LIT_FLOAT [546688791.5931]
+- 444 TK_LIT_FLOAT [546688791.5931]
 - 445 TK_LIT_STRING ["k<=>>s * HZU = LHeD)q&&Y9Y input  input ,c if HeYgFA<t>=uWc8V input q"]
 - 445 TK_LIT_STRING ["0oI6DA0YN *  input  float N$qAB9x string j}"]
 - 446 TK_IDENTIFICADOR [___Jv2tI3M47_PseLHsB5L6OMHxH90XphxPouvEwvey9d2OIN1SQ6AVGsRynr7UrOUcoZc28WNo]
++ 444 TK_LIT_FLOAT [-546688791.5931]
 + caracter " ASCII 34 
 + 445 TK_IDENTIFICADOR [k]
 + 445 TK_OC_LE [<=]
@@ -7761,8 +7780,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 447 TK_OC_LE [<=]
 + caracter ; ASCII 59 
 + 447 TK_IDENTIFICADOR [Jr]
-+ ]447 TK_IDENTIFICADOR [Wa]
-+ ]447 TK_IDENTIFICADOR [p]
++ 447 TOKEN_ERRO []]
++ 447 TK_IDENTIFICADOR [Wa]
++ 447 TOKEN_ERRO []]
++ 447 TK_IDENTIFICADOR [p]
 + 447 TK_PR_WHILE [while]
 + 447 TK_LIT_INT [2]
 + 447 TK_IDENTIFICADOR [r5aKh]
@@ -7785,11 +7806,13 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter < ASCII 60 
 + 448 TK_IDENTIFICADOR [RR5q]
 + caracter + ASCII 43 
-+ ]448 TK_PR_DO [do]
++ 448 TOKEN_ERRO []]
++ 448 TK_PR_DO [do]
 + 448 TK_IDENTIFICADOR [U]
 + caracter + ASCII 43 
 + caracter = ASCII 61 
-+ [448 TK_IDENTIFICADOR [p]
++ 448 TOKEN_ERRO [[]
++ 448 TK_IDENTIFICADOR [p]
 + 448 TK_PR_THEN [then]
 + 448 TK_IDENTIFICADOR [NG]
 + 448 TK_PR_BOOL [bool]
@@ -7828,26 +7851,29 @@ Output of <avaliacao_02.tesh:5> mismatch:
   449 TK_PR_OUTPUT [output]
   450 TK_LIT_CHAR ['s']
 - 450 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  450 TK_LIT_FLOAT [42599.12063925]
+- 450 TK_LIT_FLOAT [42599.12063925]
++ 450 TK_LIT_FLOAT [-42599.12063925]
   450 TK_LIT_CHAR ['!']
-...
+  450 TK_PR_INPUT [input]
   450 TK_LIT_CHAR ['!']
   450 TK_PR_INPUT [input]
 - 450 TK_ESPECIAL []]
-- 450 TK_LIT_FLOAT [17805567.9664]
++ 450 TOKEN_ERRO []]
+  450 TK_LIT_FLOAT [17805567.9664]
+  450 TK_LIT_FLOAT [17805567.9664]
 - 451 TK_ESPECIAL [-]
-+ ]450 TK_LIT_FLOAT [17805567.9664]
-+ caracter - ASCII 45 
-  451 TK_LIT_FLOAT [4872072.15352764]
+- 451 TK_LIT_FLOAT [4872072.15352764]
++ 451 TK_LIT_FLOAT [-4872072.15352764]
   451 TK_PR_RETURN [return]
-...
+  451 TK_LIT_FLOAT [3196.491237980]
   451 TK_PR_RETURN [return]
   451 TK_LIT_FLOAT [3196.491237980]
 - 451 TK_ESPECIAL [(]
 - 452 TK_IDENTIFICADOR [___scuz9eXbZaOiNc4tEKVaErOA1dbF1kNftSJjS3253d8cRsY5PriKCTgNtM1JTW4sW3UmJGQQ7ERML4xj]
 - 452 TK_LIT_STRING ["t(&Q$y8R float ME>= string 1)!6efkN char jV)kez$1Vc"]
 - 453 TK_ESPECIAL [-]
+- 453 TK_LIT_FLOAT [9207608783.5897040]
+- 453 TK_ESPECIAL [>]
 + caracter ( ASCII 40 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -7877,10 +7903,7 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 452 TK_LIT_INT [1]
 + 452 TK_IDENTIFICADOR [Vc]
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  453 TK_LIT_FLOAT [9207608783.5897040]
-  453 TK_LIT_FLOAT [9207608783.5897040]
-- 453 TK_ESPECIAL [>]
++ 453 TK_LIT_FLOAT [-9207608783.5897040]
 + caracter > ASCII 62 
   453 TK_LIT_CHAR ['=']
   453 TK_LIT_CHAR ['=']
@@ -7892,22 +7915,24 @@ Output of <avaliacao_02.tesh:5> mismatch:
 - 453 TK_ESPECIAL [:]
 - 453 TK_LIT_STRING ["kC;+ 1lFG] int H_p<brhZ"]
 - 453 TK_ESPECIAL [-]
-+ ]caracter : ASCII 58 
+- 453 TK_LIT_INT [562556]
++ 453 TOKEN_ERRO []]
++ caracter : ASCII 58 
 + caracter " ASCII 34 
 + 453 TK_IDENTIFICADOR [kC]
 + caracter ; ASCII 59 
 + caracter + ASCII 43 
 + 453 TK_LIT_INT [1]
 + 453 TK_IDENTIFICADOR [lFG]
-+ ]453 TK_PR_INT [int]
++ 453 TOKEN_ERRO []]
++ 453 TK_PR_INT [int]
 + 453 TK_IDENTIFICADOR [H_p]
 + caracter < ASCII 60 
 + 453 TK_IDENTIFICADOR [brhZ]
 + caracter " ASCII 34 
-+ caracter - ASCII 45 
-  453 TK_LIT_INT [562556]
++ 453 TK_LIT_INT [-562556]
   453 TK_PR_WHILE [while]
-...
+  454 TK_LIT_CHAR ['/']
   453 TK_PR_WHILE [while]
   454 TK_LIT_CHAR ['/']
 - 455 TK_LIT_STRING [" do  / 4 do kRR[F output O if  output >=3A2 do  else &slMUG0m+ Fv"]
@@ -7919,7 +7944,8 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + 455 TK_LIT_INT [4]
 + 455 TK_PR_DO [do]
 + 455 TK_IDENTIFICADOR [kRR]
-+ [455 TK_IDENTIFICADOR [F]
++ 455 TOKEN_ERRO [[]
++ 455 TK_IDENTIFICADOR [F]
 + 455 TK_PR_OUTPUT [output]
 + 455 TK_IDENTIFICADOR [O]
 + 455 TK_PR_IF [if]
@@ -7978,12 +8004,11 @@ Output of <avaliacao_02.tesh:5> mismatch:
   458 TK_LIT_FLOAT [508384.927944990]
 - 458 TK_ESPECIAL [=]
 - 458 TK_ESPECIAL [-]
-+ caracter = ASCII 61 
-+ caracter - ASCII 45 
-  458 TK_LIT_INT [02030321]
-  458 TK_LIT_INT [02030321]
+- 458 TK_LIT_INT [02030321]
 - 459 TK_IDENTIFICADOR [____HTOO00thh32DH2abW5BYlJwdrNl1dYQnZEW3kZZOqPHra6hAYlen2M7tXBIm]
 - 459 TK_LIT_STRING ["R>R4Y:oev(KL6$INh!U string }{yc"]
++ caracter = ASCII 61 
++ 458 TK_LIT_INT [-02030321]
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
 + caracter _ ASCII 95 
@@ -8008,10 +8033,10 @@ Output of <avaliacao_02.tesh:5> mismatch:
 + caracter " ASCII 34 
 Test suite `avaliacao_02.tesh': NOK (<avaliacao_02.tesh:5> output mismatch)
 <end of output>
-Test time =   0.25 sec
+Test time =   0.26 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_02" end time: Sep 08 13:45 EDT
+"e1_avaliacao_02" end time: Sep 08 13:59 EDT
 "e1_avaliacao_02" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8019,7 +8044,7 @@ Test Failed.
 4/407 Test: e1_avaliacao_03
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_03.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_03" start time: Sep 08 13:45 EDT
+"e1_avaliacao_03" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8030,7 +8055,7 @@ Test suite `avaliacao_03.tesh' OK
 Test time =   0.21 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_03" end time: Sep 08 13:45 EDT
+"e1_avaliacao_03" end time: Sep 08 13:59 EDT
 "e1_avaliacao_03" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8038,7 +8063,7 @@ Test Passed.
 5/407 Test: e1_avaliacao_05
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_05.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_05" start time: Sep 08 13:45 EDT
+"e1_avaliacao_05" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8139,10 +8164,10 @@ Output of <avaliacao_05.tesh:5> mismatch:
   5 TK_LIT_CHAR [':']
 Test suite `avaliacao_05.tesh': NOK (<avaliacao_05.tesh:5> output mismatch)
 <end of output>
-Test time =   0.20 sec
+Test time =   0.21 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_05" end time: Sep 08 13:45 EDT
+"e1_avaliacao_05" end time: Sep 08 13:59 EDT
 "e1_avaliacao_05" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8150,7 +8175,7 @@ Test Failed.
 6/407 Test: e1_avaliacao_06
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_06.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_06" start time: Sep 08 13:45 EDT
+"e1_avaliacao_06" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8181,7 +8206,9 @@ Output of <avaliacao_06.tesh:5> mismatch:
 + caracter : ASCII 58 
 + caracter ( ASCII 40 
 + caracter ) ASCII 41 
-+ []caracter { ASCII 123 
++ 1 TOKEN_ERRO [[]
++ 1 TOKEN_ERRO []]
++ caracter { ASCII 123 
 + caracter } ASCII 125 
 + caracter + ASCII 43 
 + caracter - ASCII 45 
@@ -8195,10 +8222,10 @@ Output of <avaliacao_06.tesh:5> mismatch:
 + caracter $ ASCII 36 
 Test suite `avaliacao_06.tesh': NOK (<avaliacao_06.tesh:5> output mismatch)
 <end of output>
-Test time =   0.18 sec
+Test time =   0.21 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_06" end time: Sep 08 13:45 EDT
+"e1_avaliacao_06" end time: Sep 08 13:59 EDT
 "e1_avaliacao_06" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8206,7 +8233,7 @@ Test Failed.
 7/407 Test: e1_avaliacao_07
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_07.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_07" start time: Sep 08 13:45 EDT
+"e1_avaliacao_07" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8214,10 +8241,10 @@ Test suite `/home/user/compiladores/pc/tests/e1/avaliacao_07.tesh'
 [avaliacao_07.tesh:5] ./main ./tests/e1/input/nivel7.tokens
 Test suite `avaliacao_07.tesh' OK
 <end of output>
-Test time =   0.23 sec
+Test time =   0.21 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_07" end time: Sep 08 13:45 EDT
+"e1_avaliacao_07" end time: Sep 08 13:59 EDT
 "e1_avaliacao_07" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8225,7 +8252,7 @@ Test Passed.
 8/407 Test: e1_avaliacao_08
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_08.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_08" start time: Sep 08 13:45 EDT
+"e1_avaliacao_08" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8234,26 +8261,23 @@ Test suite `/home/user/compiladores/pc/tests/e1/avaliacao_08.tesh'
 Output of <avaliacao_08.tesh:5> mismatch:
   1 TK_LIT_INT [0]
 - 2 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  2 TK_LIT_INT [1]
-  2 TK_LIT_INT [1]
+- 2 TK_LIT_INT [1]
 - 3 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  3 TK_LIT_INT [2]
-  3 TK_LIT_INT [2]
+- 3 TK_LIT_INT [2]
 - 4 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  4 TK_LIT_FLOAT [1.1]
-  4 TK_LIT_FLOAT [1.1]
+- 4 TK_LIT_FLOAT [1.1]
 - 5 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  5 TK_LIT_FLOAT [2.3]
+- 5 TK_LIT_FLOAT [2.3]
++ 2 TK_LIT_INT [-1]
++ 3 TK_LIT_INT [-2]
++ 4 TK_LIT_FLOAT [-1.1]
++ 5 TK_LIT_FLOAT [-2.3]
 Test suite `avaliacao_08.tesh': NOK (<avaliacao_08.tesh:5> output mismatch)
 <end of output>
 Test time =   0.21 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_08" end time: Sep 08 13:45 EDT
+"e1_avaliacao_08" end time: Sep 08 13:59 EDT
 "e1_avaliacao_08" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8261,7 +8285,7 @@ Test Failed.
 9/407 Test: e1_avaliacao_09
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_09.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_09" start time: Sep 08 13:45 EDT
+"e1_avaliacao_09" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8275,10 +8299,10 @@ Output of <avaliacao_09.tesh:5> mismatch:
 + caracter . ASCII 46 
 Test suite `avaliacao_09.tesh': NOK (<avaliacao_09.tesh:5> output mismatch)
 <end of output>
-Test time =   0.18 sec
+Test time =   0.19 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_09" end time: Sep 08 13:45 EDT
+"e1_avaliacao_09" end time: Sep 08 13:59 EDT
 "e1_avaliacao_09" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8286,7 +8310,7 @@ Test Failed.
 10/407 Test: e1_avaliacao_10
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_10.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_10" start time: Sep 08 13:45 EDT
+"e1_avaliacao_10" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8309,10 +8333,10 @@ Output of <avaliacao_10.tesh:5> mismatch:
 + 5 TK_IDENTIFICADOR [abc]
 Test suite `avaliacao_10.tesh': NOK (<avaliacao_10.tesh:5> output mismatch)
 <end of output>
-Test time =   0.19 sec
+Test time =   0.20 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_10" end time: Sep 08 13:45 EDT
+"e1_avaliacao_10" end time: Sep 08 13:59 EDT
 "e1_avaliacao_10" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8320,7 +8344,7 @@ Test Failed.
 11/407 Test: e1_avaliacao_11
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_11.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_11" start time: Sep 08 13:45 EDT
+"e1_avaliacao_11" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8337,7 +8361,7 @@ Test suite `avaliacao_11.tesh': NOK (<avaliacao_11.tesh:5> output mismatch)
 Test time =   0.20 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_11" end time: Sep 08 13:45 EDT
+"e1_avaliacao_11" end time: Sep 08 13:59 EDT
 "e1_avaliacao_11" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8345,7 +8369,7 @@ Test Failed.
 12/407 Test: e1_avaliacao_12
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_12.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_12" start time: Sep 08 13:45 EDT
+"e1_avaliacao_12" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8353,10 +8377,10 @@ Test suite `/home/user/compiladores/pc/tests/e1/avaliacao_12.tesh'
 [avaliacao_12.tesh:5] ./main ./tests/e1/input/nivel12.tokens
 Test suite `avaliacao_12.tesh' OK
 <end of output>
-Test time =   0.20 sec
+Test time =   0.21 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_12" end time: Sep 08 13:45 EDT
+"e1_avaliacao_12" end time: Sep 08 13:59 EDT
 "e1_avaliacao_12" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8364,7 +8388,7 @@ Test Passed.
 13/407 Test: e1_avaliacao_13
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_13.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_13" start time: Sep 08 13:45 EDT
+"e1_avaliacao_13" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8372,10 +8396,10 @@ Test suite `/home/user/compiladores/pc/tests/e1/avaliacao_13.tesh'
 [avaliacao_13.tesh:5] ./main ./tests/e1/input/nivel13.tokens
 Test suite `avaliacao_13.tesh' OK
 <end of output>
-Test time =   0.21 sec
+Test time =   0.24 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_13" end time: Sep 08 13:45 EDT
+"e1_avaliacao_13" end time: Sep 08 13:59 EDT
 "e1_avaliacao_13" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8383,7 +8407,7 @@ Test Passed.
 14/407 Test: e1_avaliacao_14
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_14.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_14" start time: Sep 08 13:45 EDT
+"e1_avaliacao_14" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8416,7 +8440,8 @@ Output of <avaliacao_14.tesh:5> mismatch:
 + 1 TK_IDENTIFICADOR [Cm]
 + 1 TK_PR_BOOL [bool]
 + 1 TK_IDENTIFICADOR [YlH]
-+ [caracter " ASCII 34 
++ 1 TOKEN_ERRO [[]
++ caracter " ASCII 34 
 + caracter , ASCII 44 
 + caracter " ASCII 34 
 + 1 TK_PR_INT [int]
@@ -8440,10 +8465,10 @@ Output of <avaliacao_14.tesh:5> mismatch:
 + caracter " ASCII 34 
 Test suite `avaliacao_14.tesh': NOK (<avaliacao_14.tesh:5> output mismatch)
 <end of output>
-Test time =   0.20 sec
+Test time =   0.16 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_14" end time: Sep 08 13:45 EDT
+"e1_avaliacao_14" end time: Sep 08 13:59 EDT
 "e1_avaliacao_14" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8451,7 +8476,7 @@ Test Failed.
 15/407 Test: e1_avaliacao_15
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_15.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_15" start time: Sep 08 13:45 EDT
+"e1_avaliacao_15" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8482,7 +8507,12 @@ Output of <avaliacao_15.tesh:5> mismatch:
 - 2 TK_ESPECIAL [{]
 - 2 TK_ESPECIAL [;]
 - 2 TK_ESPECIAL []]
-- 2 TK_PR_DO [do]
++ caracter { ASCII 123 
++ caracter { ASCII 123 
++ caracter ; ASCII 59 
++ 2 TOKEN_ERRO []]
+  2 TK_PR_DO [do]
+  2 TK_PR_DO [do]
 - 2 TK_ESPECIAL [[]
 - 2 TK_ESPECIAL [>]
 - 2 TK_ESPECIAL [)]
@@ -8491,14 +8521,12 @@ Output of <avaliacao_15.tesh:5> mismatch:
 - 2 TK_ESPECIAL [-]
 - 2 TK_ESPECIAL [/]
 - 2 TK_ESPECIAL [!]
-+ caracter { ASCII 123 
-+ caracter { ASCII 123 
-+ caracter ; ASCII 59 
-+ ]2 TK_PR_DO [do]
-+ [caracter > ASCII 62 
++ 2 TOKEN_ERRO [[]
++ caracter > ASCII 62 
 + caracter ) ASCII 41 
 + caracter < ASCII 60 
-+ ]caracter - ASCII 45 
++ 2 TOKEN_ERRO []]
++ caracter - ASCII 45 
 + caracter / ASCII 47 
 + caracter ! ASCII 33 
   2 TK_PR_WHILE [while]
@@ -8521,10 +8549,10 @@ Output of <avaliacao_15.tesh:5> mismatch:
 + caracter > ASCII 62 
 Test suite `avaliacao_15.tesh': NOK (<avaliacao_15.tesh:5> output mismatch)
 <end of output>
-Test time =   0.19 sec
+Test time =   0.18 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_15" end time: Sep 08 13:45 EDT
+"e1_avaliacao_15" end time: Sep 08 13:59 EDT
 "e1_avaliacao_15" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8532,7 +8560,7 @@ Test Failed.
 16/407 Test: e1_avaliacao_16
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_16.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_16" start time: Sep 08 13:45 EDT
+"e1_avaliacao_16" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8542,14 +8570,14 @@ Output of <avaliacao_16.tesh:5> mismatch:
   1 TK_PR_STATIC [static]
   1 TK_PR_CONST [const]
 - 2 TK_ESPECIAL [-]
-+ caracter - ASCII 45 
-  2 TK_LIT_INT [2]
+- 2 TK_LIT_INT [2]
++ 2 TK_LIT_INT [-2]
 Test suite `avaliacao_16.tesh': NOK (<avaliacao_16.tesh:5> output mismatch)
 <end of output>
-Test time =   0.19 sec
+Test time =   0.20 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_16" end time: Sep 08 13:45 EDT
+"e1_avaliacao_16" end time: Sep 08 13:59 EDT
 "e1_avaliacao_16" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8557,7 +8585,7 @@ Test Failed.
 17/407 Test: e1_avaliacao_17
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/avaliacao_17.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_avaliacao_17" start time: Sep 08 13:45 EDT
+"e1_avaliacao_17" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8565,10 +8593,10 @@ Test suite `/home/user/compiladores/pc/tests/e1/avaliacao_17.tesh'
 [avaliacao_17.tesh:5] ./main ./tests/e1/input/nivel17.tokens
 Test suite `avaliacao_17.tesh' OK
 <end of output>
-Test time =   0.23 sec
+Test time =   0.21 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_17" end time: Sep 08 13:45 EDT
+"e1_avaliacao_17" end time: Sep 08 13:59 EDT
 "e1_avaliacao_17" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8576,7 +8604,7 @@ Test Passed.
 18/407 Test: e1_valgrind_00
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_00.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_00" start time: Sep 08 13:45 EDT
+"e1_valgrind_00" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8588,10 +8616,10 @@ Output of <valgrind_00.tesh:6> so far:
 || (B[m
 (ignoring the output of <valgrind_00.tesh:6> as requested)
 <end of output>
-Test time =   0.22 sec
+Test time =   0.24 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_00" end time: Sep 08 13:45 EDT
+"e1_valgrind_00" end time: Sep 08 13:59 EDT
 "e1_valgrind_00" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8599,7 +8627,7 @@ Test Failed.
 19/407 Test: e1_valgrind_01
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_01.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_01" start time: Sep 08 13:45 EDT
+"e1_valgrind_01" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8614,7 +8642,7 @@ Output of <valgrind_01.tesh:6> so far:
 Test time =   0.19 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_01" end time: Sep 08 13:45 EDT
+"e1_valgrind_01" end time: Sep 08 13:59 EDT
 "e1_valgrind_01" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8622,7 +8650,7 @@ Test Failed.
 20/407 Test: e1_valgrind_02
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_02.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_02" start time: Sep 08 13:45 EDT
+"e1_valgrind_02" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8637,7 +8665,7 @@ Output of <valgrind_02.tesh:6> so far:
 Test time =   0.21 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_02" end time: Sep 08 13:45 EDT
+"e1_valgrind_02" end time: Sep 08 13:59 EDT
 "e1_valgrind_02" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8645,7 +8673,7 @@ Test Failed.
 21/407 Test: e1_valgrind_03
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_03.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_03" start time: Sep 08 13:45 EDT
+"e1_valgrind_03" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8657,10 +8685,10 @@ Output of <valgrind_03.tesh:6> so far:
 || (B[m
 (ignoring the output of <valgrind_03.tesh:6> as requested)
 <end of output>
-Test time =   0.22 sec
+Test time =   0.21 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_03" end time: Sep 08 13:45 EDT
+"e1_valgrind_03" end time: Sep 08 13:59 EDT
 "e1_valgrind_03" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8668,7 +8696,7 @@ Test Failed.
 22/407 Test: e1_valgrind_05
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_05.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_05" start time: Sep 08 13:45 EDT
+"e1_valgrind_05" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8680,10 +8708,10 @@ Output of <valgrind_05.tesh:6> so far:
 || (B[m
 (ignoring the output of <valgrind_05.tesh:6> as requested)
 <end of output>
-Test time =   0.21 sec
+Test time =   0.23 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_05" end time: Sep 08 13:45 EDT
+"e1_valgrind_05" end time: Sep 08 13:59 EDT
 "e1_valgrind_05" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8691,7 +8719,7 @@ Test Failed.
 23/407 Test: e1_valgrind_06
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_06.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_06" start time: Sep 08 13:45 EDT
+"e1_valgrind_06" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8703,10 +8731,10 @@ Output of <valgrind_06.tesh:6> so far:
 || (B[m
 (ignoring the output of <valgrind_06.tesh:6> as requested)
 <end of output>
-Test time =   0.21 sec
+Test time =   0.20 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_06" end time: Sep 08 13:45 EDT
+"e1_valgrind_06" end time: Sep 08 13:59 EDT
 "e1_valgrind_06" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8714,7 +8742,7 @@ Test Failed.
 24/407 Test: e1_valgrind_07
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_07.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_07" start time: Sep 08 13:45 EDT
+"e1_valgrind_07" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8726,10 +8754,10 @@ Output of <valgrind_07.tesh:6> so far:
 || (B[m
 (ignoring the output of <valgrind_07.tesh:6> as requested)
 <end of output>
-Test time =   0.23 sec
+Test time =   0.22 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_07" end time: Sep 08 13:45 EDT
+"e1_valgrind_07" end time: Sep 08 13:59 EDT
 "e1_valgrind_07" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8737,7 +8765,7 @@ Test Failed.
 25/407 Test: e1_valgrind_08
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_08.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_08" start time: Sep 08 13:45 EDT
+"e1_valgrind_08" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8752,7 +8780,7 @@ Output of <valgrind_08.tesh:6> so far:
 Test time =   0.21 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_08" end time: Sep 08 13:45 EDT
+"e1_valgrind_08" end time: Sep 08 13:59 EDT
 "e1_valgrind_08" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8760,7 +8788,7 @@ Test Failed.
 26/407 Test: e1_valgrind_09
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_09.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_09" start time: Sep 08 13:45 EDT
+"e1_valgrind_09" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8772,10 +8800,10 @@ Output of <valgrind_09.tesh:6> so far:
 || (B[m
 (ignoring the output of <valgrind_09.tesh:6> as requested)
 <end of output>
-Test time =   0.24 sec
+Test time =   0.22 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_09" end time: Sep 08 13:45 EDT
+"e1_valgrind_09" end time: Sep 08 13:59 EDT
 "e1_valgrind_09" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8783,7 +8811,7 @@ Test Failed.
 27/407 Test: e1_valgrind_10
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_10.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_10" start time: Sep 08 13:45 EDT
+"e1_valgrind_10" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8798,7 +8826,7 @@ Output of <valgrind_10.tesh:6> so far:
 Test time =   0.20 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_10" end time: Sep 08 13:45 EDT
+"e1_valgrind_10" end time: Sep 08 13:59 EDT
 "e1_valgrind_10" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8806,7 +8834,7 @@ Test Failed.
 28/407 Test: e1_valgrind_11
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_11.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_11" start time: Sep 08 13:45 EDT
+"e1_valgrind_11" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8821,7 +8849,7 @@ Output of <valgrind_11.tesh:6> so far:
 Test time =   0.22 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_11" end time: Sep 08 13:45 EDT
+"e1_valgrind_11" end time: Sep 08 13:59 EDT
 "e1_valgrind_11" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8829,7 +8857,7 @@ Test Failed.
 29/407 Test: e1_valgrind_12
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_12.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_12" start time: Sep 08 13:45 EDT
+"e1_valgrind_12" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8841,10 +8869,10 @@ Output of <valgrind_12.tesh:6> so far:
 || (B[m
 (ignoring the output of <valgrind_12.tesh:6> as requested)
 <end of output>
-Test time =   0.20 sec
+Test time =   0.21 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_12" end time: Sep 08 13:45 EDT
+"e1_valgrind_12" end time: Sep 08 13:59 EDT
 "e1_valgrind_12" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8852,7 +8880,7 @@ Test Failed.
 30/407 Test: e1_valgrind_13
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_13.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_13" start time: Sep 08 13:45 EDT
+"e1_valgrind_13" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8864,10 +8892,10 @@ Output of <valgrind_13.tesh:6> so far:
 || (B[m
 (ignoring the output of <valgrind_13.tesh:6> as requested)
 <end of output>
-Test time =   0.22 sec
+Test time =   0.23 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_13" end time: Sep 08 13:45 EDT
+"e1_valgrind_13" end time: Sep 08 13:59 EDT
 "e1_valgrind_13" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8875,7 +8903,7 @@ Test Failed.
 31/407 Test: e1_valgrind_14
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_14.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_14" start time: Sep 08 13:45 EDT
+"e1_valgrind_14" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8887,10 +8915,10 @@ Output of <valgrind_14.tesh:6> so far:
 || (B[m
 (ignoring the output of <valgrind_14.tesh:6> as requested)
 <end of output>
-Test time =   0.21 sec
+Test time =   0.27 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_14" end time: Sep 08 13:45 EDT
+"e1_valgrind_14" end time: Sep 08 13:59 EDT
 "e1_valgrind_14" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -8898,7 +8926,7 @@ Test Failed.
 32/407 Test: e1_valgrind_15
 Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/user/compiladores/pc/tests/e1/valgrind_15.tesh"
 Directory: /home/user/compiladores/pc/build
-"e1_valgrind_15" start time: Sep 08 13:45 EDT
+"e1_valgrind_15" start time: Sep 08 13:59 EDT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
@@ -8910,11 +8938,11 @@ Output of <valgrind_15.tesh:6> so far:
 || (B[m
 (ignoring the output of <valgrind_15.tesh:6> as requested)
 <end of output>
-Test time =   0.23 sec
+Test time =   0.20 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_15" end time: Sep 08 13:45 EDT
+"e1_valgrind_15" end time: Sep 08 13:59 EDT
 "e1_valgrind_15" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Sep 08 13:45 EDT
+End testing: Sep 08 13:59 EDT
