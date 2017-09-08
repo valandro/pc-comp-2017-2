@@ -9,3 +9,10 @@ a123
 AZZzad
 ,
 TESTE_1
+'a'
+'AA'
+"lucas"
+//HEUDHEUDS
+/* heudheuehhuee
+kakkakaka
+*/

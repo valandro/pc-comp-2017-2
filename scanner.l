@@ -9,6 +9,9 @@ DIGIT [0-9]
 SPACE [\ \t\r]
 LETTER [a-zA-Z]
 UNDERSCORE [_]
+QUODOB ["]
+QUOSIM [']
+CHARACTERS [^ ]
 
 %%
 int return TK_PR_INT;
@@ -46,7 +49,13 @@ protected return TK_PR_PROTECTED;
 ">>" return TK_OC_SR;
 \n
 {SPACE}+
+"//"{CHARACTERS}*|{SPACE}*"\n"
+"/*"{CHARACTERS}*|{SPACE}*|"\n"*"*/"
 {DIGIT}+ return TK_LIT_INT;
 {DIGIT}+"."{DIGIT}* return TK_LIT_FLOAT;
-({LETTER}+({LETTER}|{DIGIT}|{UNDERSCORE})*) return TK_IDENTIFICADOR;
+false return TK_LIT_FALSE;
+true return TK_LIT_TRUE;
+{QUOSIM}{CHARACTERS}?{QUOSIM} return TK_LIT_CHAR;
+{QUODOB}{CHARACTERS}*{QUODOB} return TK_LIT_STRING;
+{LETTER}+(({LETTER}|{DIGIT}|{UNDERSCORE})*) return TK_IDENTIFICADOR;
 %%
