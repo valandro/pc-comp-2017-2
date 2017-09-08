@@ -12,7 +12,8 @@ TESTE_1
 'a'
 'AA'
 "lucas"
-//HEUDHEUDS
-/* heudheuehhuee
-kakkakaka
+// comentario simples
+/* comentario
+mais de uma
+linha
 */
