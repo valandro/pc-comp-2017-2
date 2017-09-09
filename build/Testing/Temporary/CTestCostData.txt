@@ -1,20 +1,20 @@
 e1_avaliacao_00 0 0
-e1_avaliacao_01 0 0
+e1_avaliacao_01 7 0.0260856
 e1_avaliacao_02 0 0
-e1_avaliacao_03 6 0.0348547
+e1_avaliacao_03 16 0.0105734
 e1_avaliacao_05 0 0
-e1_avaliacao_06 0 0
-e1_avaliacao_07 6 0.0343567
+e1_avaliacao_06 7 0.0217616
+e1_avaliacao_07 16 0.0107833
 e1_avaliacao_08 0 0
 e1_avaliacao_09 0 0
-e1_avaliacao_10 0 0
+e1_avaliacao_10 4 0.0488585
 e1_avaliacao_11 0 0
-e1_avaliacao_12 6 0.0343458
-e1_avaliacao_13 4 0.0599203
+e1_avaliacao_12 16 0.0172659
+e1_avaliacao_13 14 0.0141909
 e1_avaliacao_14 0 0
-e1_avaliacao_15 0 0
-e1_avaliacao_16 0 0
-e1_avaliacao_17 6 0.0343795
+e1_avaliacao_15 7 0.0260247
+e1_avaliacao_16 7 0.0352906
+e1_avaliacao_17 16 0.0123355
 e1_valgrind_00 0 0
 e1_valgrind_01 0 0
 e1_valgrind_02 0 0
@@ -32,17 +32,12 @@ e1_valgrind_14 0 0
 e1_valgrind_15 0 0
 ---
 e1_avaliacao_00
-e1_avaliacao_01
 e1_avaliacao_02
 e1_avaliacao_05
-e1_avaliacao_06
 e1_avaliacao_08
 e1_avaliacao_09
-e1_avaliacao_10
 e1_avaliacao_11
 e1_avaliacao_14
-e1_avaliacao_15
-e1_avaliacao_16
 e1_valgrind_00
 e1_valgrind_01
 e1_valgrind_02
