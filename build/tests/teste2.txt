@@ -1,11 +1,5 @@
-int main(){
-	/* Esse programa faz
-	Alguma coisa
-	*/
-	int line = 0;
-	while(line <= 10 && true){
-		line = line + 1;
-		id >> 1; // Shift Right
-	}
-}
-// Programa que faz algo;
+0
+-1
+-2
+-1.1
+-2.3

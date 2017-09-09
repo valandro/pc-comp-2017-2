@@ -1,20 +1,20 @@
-e1_avaliacao_00 0 0
-e1_avaliacao_01 7 0.0260856
-e1_avaliacao_02 0 0
-e1_avaliacao_03 16 0.0105734
-e1_avaliacao_05 0 0
-e1_avaliacao_06 7 0.0217616
-e1_avaliacao_07 16 0.0107833
-e1_avaliacao_08 0 0
-e1_avaliacao_09 0 0
-e1_avaliacao_10 4 0.0488585
-e1_avaliacao_11 0 0
-e1_avaliacao_12 16 0.0172659
-e1_avaliacao_13 14 0.0141909
-e1_avaliacao_14 0 0
-e1_avaliacao_15 7 0.0260247
-e1_avaliacao_16 7 0.0352906
-e1_avaliacao_17 16 0.0123355
+e1_avaliacao_00 59 0
+e1_avaliacao_01 95 0.00516498
+e1_avaliacao_02 6 0
+e1_avaliacao_03 110 0.0034731
+e1_avaliacao_05 62 0.00563876
+e1_avaliacao_06 95 0.00307527
+e1_avaliacao_07 110 0.00240231
+e1_avaliacao_08 19 0.0117962
+e1_avaliacao_09 34 0.0101485
+e1_avaliacao_10 98 0.00540614
+e1_avaliacao_11 63 0.00593619
+e1_avaliacao_12 110 0.00202927
+e1_avaliacao_13 108 0.00256092
+e1_avaliacao_14 55 0.00523578
+e1_avaliacao_15 95 0.00510569
+e1_avaliacao_16 33 0.013026
+e1_avaliacao_17 110 0.00368505
 e1_valgrind_00 0 0
 e1_valgrind_01 0 0
 e1_valgrind_02 0 0
@@ -33,11 +33,6 @@ e1_valgrind_15 0 0
 ---
 e1_avaliacao_00
 e1_avaliacao_02
-e1_avaliacao_05
-e1_avaliacao_08
-e1_avaliacao_09
-e1_avaliacao_11
-e1_avaliacao_14
 e1_valgrind_00
 e1_valgrind_01
 e1_valgrind_02
