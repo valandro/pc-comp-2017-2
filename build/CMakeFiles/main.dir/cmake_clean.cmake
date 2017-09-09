@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "parser.c"
   "parser.h"
   "parser.output"
+  "parser.output"
+  "parser.output"
   "CMakeFiles/main.dir/scanner.c.o"
   "CMakeFiles/main.dir/parser.c.o"
   "CMakeFiles/main.dir/src/main.c.o"

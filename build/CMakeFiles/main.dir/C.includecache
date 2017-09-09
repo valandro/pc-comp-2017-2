@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -17,6 +17,14 @@
 ../include/cc_misc.h
 stdio.h
 -
+string.h
+-
+cc_dict.h
+../include/cc_dict.h
+parser.h
+../include/parser.h
+main.h
+../include/main.h
 
 ../include/cc_tree.h
 
@@ -38,9 +46,27 @@ cc_gv.h
 parser.h
 ../include/parser.h
 
-/home/user/compiladores/pc/build/parser.h
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/parser.c
+main.h
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/main.h
+stddef.h
+-
+libintl.h
+-
+alloca.h
+-
+malloc.h
+-
+stdlib.h
+-
+stdlib.h
+-
+stdio.h
+-
 
-/home/user/compiladores/pc/build/scanner.c
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/parser.h
+
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/scanner.c
 stdio.h
 -
 string.h
@@ -52,11 +78,11 @@ stdlib.h
 inttypes.h
 -
 parser.h
-/home/user/compiladores/pc/build/parser.h
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/parser.h
 unistd.h
 -
 
-/home/user/compiladores/pc/src/cc_dict.c
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_dict.c
 stdio.h
 -
 stdlib.h
@@ -64,33 +90,33 @@ stdlib.h
 string.h
 -
 cc_dict.h
-/home/user/compiladores/pc/src/cc_dict.h
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_dict.h
 
-/home/user/compiladores/pc/src/cc_gv.c
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_gv.c
 stdio.h
 -
 stdlib.h
 -
 cc_ast.h
-/home/user/compiladores/pc/src/cc_ast.h
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_ast.h
 
-/home/user/compiladores/pc/src/cc_list.c
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_list.c
 
-/home/user/compiladores/pc/src/cc_misc.c
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_misc.c
 cc_misc.h
-/home/user/compiladores/pc/src/cc_misc.h
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_misc.h
 
-/home/user/compiladores/pc/src/cc_tree.c
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_tree.c
 stdio.h
 -
 stdlib.h
 -
 cc_tree.h
-/home/user/compiladores/pc/src/cc_tree.h
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_tree.h
 
-/home/user/compiladores/pc/src/main.c
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/main.c
 main.h
-/home/user/compiladores/pc/src/main.h
+/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/main.h
 
 parser.h
 

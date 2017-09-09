@@ -1,1 +1,2 @@
-if else
+int int_minha_var = 10;
+float sua_var = 10.0;
