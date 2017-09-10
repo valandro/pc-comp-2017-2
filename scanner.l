@@ -51,8 +51,8 @@ protected return TK_PR_PROTECTED;
 ">>" return TK_OC_SR;
 \n {};
 {SPACE}* {};
-"//"({CHARACTERS}|{SPACE}|{DIGIT}|{OP})*"\n"
-"/*"({CHARACTERS}|{SPACE}|"\n")*"*/"
+"//"({CHARACTERS}|{SPACE}|{DIGIT}|{OP}|"\"")*"\n"
+"/*"({CHARACTERS}|{SPACE}|"\n"|"\"")*"*/"
 {DIGIT}+ return TK_LIT_INT;
 {DIGIT}+"."{DIGIT}* return TK_LIT_FLOAT;
 false return TK_LIT_FALSE;
