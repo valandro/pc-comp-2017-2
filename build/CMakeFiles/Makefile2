@@ -54,10 +54,10 @@ RM = /usr/local/Cellar/cmake/3.9.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp
+CMAKE_SOURCE_DIR = /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build
+CMAKE_BINARY_DIR = /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build
 
 #=============================================================================
 # Target rules for target CMakeFiles/cc_dict_main_example.dir
@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tc
 CMakeFiles/cc_dict_main_example.dir/all:
 	$(MAKE) -f CMakeFiles/cc_dict_main_example.dir/build.make CMakeFiles/cc_dict_main_example.dir/depend
 	$(MAKE) -f CMakeFiles/cc_dict_main_example.dir/build.make CMakeFiles/cc_dict_main_example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=1,2,3 "Built target cc_dict_main_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=1,2,3 "Built target cc_dict_main_example"
 .PHONY : CMakeFiles/cc_dict_main_example.dir/all
 
 # Include target in all.
@@ -76,9 +76,9 @@ all: CMakeFiles/cc_dict_main_example.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/cc_dict_main_example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/cc_dict_main_example.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles 0
 .PHONY : CMakeFiles/cc_dict_main_example.dir/rule
 
 # Convenience name for target.
@@ -103,7 +103,7 @@ clean: CMakeFiles/cc_dict_main_example.dir/clean
 CMakeFiles/main.dir/all:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=4,5,6,7,8,9,10,11,12,13,14,15 "Built target main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=4,5,6,7,8,9,10,11,12,13,14,15 "Built target main"
 .PHONY : CMakeFiles/main.dir/all
 
 # Include target in all.
@@ -113,9 +113,9 @@ all: CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles 12
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
 
 # Convenience name for target.

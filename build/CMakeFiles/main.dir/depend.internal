@@ -8,19 +8,19 @@ CMakeFiles/main.dir/parser.c.o
  ../include/cc_misc.h
  ../include/cc_tree.h
  ../include/main.h
- /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/parser.c
+ /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/parser.c
  parser.h
 CMakeFiles/main.dir/scanner.c.o
- /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/parser.h
- /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/scanner.c
+ /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/parser.h
+ /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/scanner.c
 CMakeFiles/main.dir/src/cc_dict.c.o
  ../include/cc_dict.h
- /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_dict.c
+ /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_dict.c
 CMakeFiles/main.dir/src/cc_gv.c.o
  ../include/cc_ast.h
- /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_gv.c
+ /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_gv.c
 CMakeFiles/main.dir/src/cc_list.c.o
- /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_list.c
+ /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_list.c
 CMakeFiles/main.dir/src/cc_misc.c.o
  ../include/cc_dict.h
  ../include/cc_gv.h
@@ -28,11 +28,11 @@ CMakeFiles/main.dir/src/cc_misc.c.o
  ../include/cc_misc.h
  ../include/cc_tree.h
  ../include/main.h
- /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_misc.c
+ /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_misc.c
  parser.h
 CMakeFiles/main.dir/src/cc_tree.c.o
  ../include/cc_tree.h
- /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_tree.c
+ /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_tree.c
 CMakeFiles/main.dir/src/main.c.o
  ../include/cc_dict.h
  ../include/cc_gv.h
@@ -40,5 +40,5 @@ CMakeFiles/main.dir/src/main.c.o
  ../include/cc_misc.h
  ../include/cc_tree.h
  ../include/main.h
- /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/main.c
+ /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/main.c
  parser.h

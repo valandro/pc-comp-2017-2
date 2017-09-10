@@ -1,6 +1,6 @@
-#line 1 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/scanner.c"
+#line 1 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/scanner.c"
 
-#line 3 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/scanner.c"
+#line 3 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/scanner.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -603,8 +603,8 @@ char *yytext;
 */
 #line 5 "scanner.l"
 #include "parser.h" //arquivo automaticamente gerado pelo bison
-#line 606 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/scanner.c"
-#line 607 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/scanner.c"
+#line 606 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/scanner.c"
+#line 607 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/scanner.c"
 
 #define INITIAL 0
 
@@ -823,7 +823,7 @@ YY_DECL
 	{
 #line 18 "scanner.l"
 
-#line 826 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/scanner.c"
+#line 826 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/scanner.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1128,7 +1128,7 @@ YY_RULE_SETUP
 #line 65 "scanner.l"
 ECHO;
 	YY_BREAK
-#line 1131 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/scanner.c"
+#line 1131 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/scanner.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2146,4 +2146,5 @@ void yyfree (void * ptr )
 #define YYTABLES_NAME "yytables"
 
 #line 65 "scanner.l"
+
 

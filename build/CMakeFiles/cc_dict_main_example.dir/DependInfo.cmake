@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_dict.c" "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.o"
-  "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_dict_main_example.c" "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.o"
+  "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_dict.c" "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.o"
+  "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_dict_main_example.c" "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.o"
   )
 set(CMAKE_C_COMPILER_ID "Clang")
 

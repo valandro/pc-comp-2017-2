@@ -43,10 +43,10 @@ RM = /usr/local/Cellar/cmake/3.9.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp
+CMAKE_SOURCE_DIR = /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build
+CMAKE_BINARY_DIR = /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -58,12 +58,12 @@ include CMakeFiles/main.dir/progress.make
 include CMakeFiles/main.dir/flags.make
 
 scanner.c: ../scanner.l
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "[FLEX][scanner] Building scanner with flex 2.6.4"
-	cd /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp && /usr/local/opt/flex/bin/flex -o/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/scanner.c scanner.l
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "[FLEX][scanner] Building scanner with flex 2.6.4"
+	cd /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp && /usr/local/opt/flex/bin/flex -o/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/scanner.c scanner.l
 
 parser.c: ../parser.y
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "[BISON][parser] Building parser with bison 2.3"
-	cd /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp && /usr/bin/bison -d --verbose -o /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/parser.c parser.y
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "[BISON][parser] Building parser with bison 2.3"
+	cd /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp && /usr/bin/bison -d --verbose -o /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/parser.c parser.y
 
 parser.h: parser.c
 	@$(CMAKE_COMMAND) -E touch_nocreate parser.h
@@ -75,21 +75,21 @@ parser.output: parser.c
 	@$(CMAKE_COMMAND) -E touch_nocreate parser.output
 
 parser.output: parser.output
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "[BISON][parser] Copying bison verbose table to parser.output"
-	cd /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp && /usr/local/Cellar/cmake/3.9.2/bin/cmake -E copy /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/parser.output parser.output
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "[BISON][parser] Copying bison verbose table to parser.output"
+	cd /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp && /usr/local/Cellar/cmake/3.9.2/bin/cmake -E copy /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/parser.output parser.output
 
 CMakeFiles/main.dir/scanner.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/scanner.c.o: scanner.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/main.dir/scanner.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/scanner.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/scanner.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/main.dir/scanner.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/scanner.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/scanner.c
 
 CMakeFiles/main.dir/scanner.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/scanner.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/scanner.c > CMakeFiles/main.dir/scanner.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/scanner.c > CMakeFiles/main.dir/scanner.c.i
 
 CMakeFiles/main.dir/scanner.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/scanner.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/scanner.c -o CMakeFiles/main.dir/scanner.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/scanner.c -o CMakeFiles/main.dir/scanner.c.s
 
 CMakeFiles/main.dir/scanner.c.o.requires:
 
@@ -104,16 +104,16 @@ CMakeFiles/main.dir/scanner.c.o.provides.build: CMakeFiles/main.dir/scanner.c.o
 
 CMakeFiles/main.dir/parser.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/parser.c.o: parser.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/main.dir/parser.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/parser.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/parser.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/main.dir/parser.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/parser.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/parser.c
 
 CMakeFiles/main.dir/parser.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/parser.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/parser.c > CMakeFiles/main.dir/parser.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/parser.c > CMakeFiles/main.dir/parser.c.i
 
 CMakeFiles/main.dir/parser.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/parser.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/parser.c -o CMakeFiles/main.dir/parser.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/parser.c -o CMakeFiles/main.dir/parser.c.s
 
 CMakeFiles/main.dir/parser.c.o.requires:
 
@@ -128,16 +128,16 @@ CMakeFiles/main.dir/parser.c.o.provides.build: CMakeFiles/main.dir/parser.c.o
 
 CMakeFiles/main.dir/src/main.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main.c.o: ../src/main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/main.dir/src/main.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/src/main.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/main.dir/src/main.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/src/main.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/main.c
 
 CMakeFiles/main.dir/src/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/src/main.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/main.c > CMakeFiles/main.dir/src/main.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/main.c > CMakeFiles/main.dir/src/main.c.i
 
 CMakeFiles/main.dir/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/src/main.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/main.c -o CMakeFiles/main.dir/src/main.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/main.c -o CMakeFiles/main.dir/src/main.c.s
 
 CMakeFiles/main.dir/src/main.c.o.requires:
 
@@ -152,16 +152,16 @@ CMakeFiles/main.dir/src/main.c.o.provides.build: CMakeFiles/main.dir/src/main.c.
 
 CMakeFiles/main.dir/src/cc_misc.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/cc_misc.c.o: ../src/cc_misc.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/main.dir/src/cc_misc.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/src/cc_misc.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_misc.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/main.dir/src/cc_misc.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/src/cc_misc.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_misc.c
 
 CMakeFiles/main.dir/src/cc_misc.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/src/cc_misc.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_misc.c > CMakeFiles/main.dir/src/cc_misc.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_misc.c > CMakeFiles/main.dir/src/cc_misc.c.i
 
 CMakeFiles/main.dir/src/cc_misc.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/src/cc_misc.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_misc.c -o CMakeFiles/main.dir/src/cc_misc.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_misc.c -o CMakeFiles/main.dir/src/cc_misc.c.s
 
 CMakeFiles/main.dir/src/cc_misc.c.o.requires:
 
@@ -176,16 +176,16 @@ CMakeFiles/main.dir/src/cc_misc.c.o.provides.build: CMakeFiles/main.dir/src/cc_m
 
 CMakeFiles/main.dir/src/cc_gv.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/cc_gv.c.o: ../src/cc_gv.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/main.dir/src/cc_gv.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/src/cc_gv.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_gv.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/main.dir/src/cc_gv.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/src/cc_gv.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_gv.c
 
 CMakeFiles/main.dir/src/cc_gv.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/src/cc_gv.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_gv.c > CMakeFiles/main.dir/src/cc_gv.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_gv.c > CMakeFiles/main.dir/src/cc_gv.c.i
 
 CMakeFiles/main.dir/src/cc_gv.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/src/cc_gv.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_gv.c -o CMakeFiles/main.dir/src/cc_gv.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_gv.c -o CMakeFiles/main.dir/src/cc_gv.c.s
 
 CMakeFiles/main.dir/src/cc_gv.c.o.requires:
 
@@ -200,16 +200,16 @@ CMakeFiles/main.dir/src/cc_gv.c.o.provides.build: CMakeFiles/main.dir/src/cc_gv.
 
 CMakeFiles/main.dir/src/cc_dict.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/cc_dict.c.o: ../src/cc_dict.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/main.dir/src/cc_dict.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/src/cc_dict.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_dict.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/main.dir/src/cc_dict.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/src/cc_dict.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_dict.c
 
 CMakeFiles/main.dir/src/cc_dict.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/src/cc_dict.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_dict.c > CMakeFiles/main.dir/src/cc_dict.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_dict.c > CMakeFiles/main.dir/src/cc_dict.c.i
 
 CMakeFiles/main.dir/src/cc_dict.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/src/cc_dict.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_dict.c -o CMakeFiles/main.dir/src/cc_dict.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_dict.c -o CMakeFiles/main.dir/src/cc_dict.c.s
 
 CMakeFiles/main.dir/src/cc_dict.c.o.requires:
 
@@ -224,16 +224,16 @@ CMakeFiles/main.dir/src/cc_dict.c.o.provides.build: CMakeFiles/main.dir/src/cc_d
 
 CMakeFiles/main.dir/src/cc_list.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/cc_list.c.o: ../src/cc_list.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/main.dir/src/cc_list.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/src/cc_list.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_list.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/main.dir/src/cc_list.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/src/cc_list.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_list.c
 
 CMakeFiles/main.dir/src/cc_list.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/src/cc_list.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_list.c > CMakeFiles/main.dir/src/cc_list.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_list.c > CMakeFiles/main.dir/src/cc_list.c.i
 
 CMakeFiles/main.dir/src/cc_list.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/src/cc_list.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_list.c -o CMakeFiles/main.dir/src/cc_list.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_list.c -o CMakeFiles/main.dir/src/cc_list.c.s
 
 CMakeFiles/main.dir/src/cc_list.c.o.requires:
 
@@ -248,16 +248,16 @@ CMakeFiles/main.dir/src/cc_list.c.o.provides.build: CMakeFiles/main.dir/src/cc_l
 
 CMakeFiles/main.dir/src/cc_tree.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/cc_tree.c.o: ../src/cc_tree.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/main.dir/src/cc_tree.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/src/cc_tree.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_tree.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/main.dir/src/cc_tree.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/src/cc_tree.c.o   -c /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_tree.c
 
 CMakeFiles/main.dir/src/cc_tree.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/src/cc_tree.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_tree.c > CMakeFiles/main.dir/src/cc_tree.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_tree.c > CMakeFiles/main.dir/src/cc_tree.c.i
 
 CMakeFiles/main.dir/src/cc_tree.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/src/cc_tree.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src/cc_tree.c -o CMakeFiles/main.dir/src/cc_tree.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src/cc_tree.c -o CMakeFiles/main.dir/src/cc_tree.c.s
 
 CMakeFiles/main.dir/src/cc_tree.c.o.requires:
 
@@ -295,7 +295,7 @@ main: CMakeFiles/main.dir/src/cc_tree.c.o
 main: CMakeFiles/main.dir/build.make
 main: /usr/local/opt/flex/lib/libfl.a
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking C executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking C executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -324,6 +324,6 @@ CMakeFiles/main.dir/depend: parser.h
 CMakeFiles/main.dir/depend: parser.output
 CMakeFiles/main.dir/depend: parser.output
 CMakeFiles/main.dir/depend: parser.output
-	cd /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build /Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main.dir/depend
 

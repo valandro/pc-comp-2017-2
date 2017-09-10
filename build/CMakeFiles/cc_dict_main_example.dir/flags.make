@@ -6,5 +6,5 @@ C_FLAGS = -g
 
 C_DEFINES = -DAVALIACAO_ETAPA_1=1
 
-C_INCLUDES = -I/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build -I/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/include -I/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/src 
+C_INCLUDES = -I/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build -I/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/include -I/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/src 
 

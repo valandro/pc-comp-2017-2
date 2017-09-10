@@ -193,7 +193,7 @@ typedef int YYSTYPE;
 
 
 /* Line 216 of yacc.c.  */
-#line 197 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/parser.c"
+#line 197 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/parser.c"
 
 #ifdef short
 # undef short
@@ -1388,7 +1388,7 @@ yyreduce:
     {
       
 /* Line 1267 of yacc.c.  */
-#line 1392 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v2/tcomp/build/parser.c"
+#line 1392 "/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/parser.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
