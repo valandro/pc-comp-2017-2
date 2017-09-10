@@ -15,7 +15,7 @@ void did_read_token(int token)
   char *text = yytext;
   if (token == TK_LIT_CHAR || token == TK_LIT_STRING) {
     text++;
-    text[strlen(text)-1] = 0;
+    text[strlen(text)] = 0;
   }
   dict_remove(dict, text);
   dict_put(dict, text, (void*)(line_number));
@@ -44,5 +44,5 @@ void comp_print_table (void)
 
 void main_finalize (void)
 {
-  comp_print_table();
+  // comp_print_table();
 }
