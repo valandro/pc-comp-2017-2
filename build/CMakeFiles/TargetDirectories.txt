@@ -1,5 +1,0 @@
-/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles/rebuild_cache.dir
-/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles/edit_cache.dir
-/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles/test.dir
-/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles/cc_dict_main_example.dir
-/Users/pietrodegrazia/Documents/UFRGS/17-2/Compiladores/v3/tcomp/build/CMakeFiles/main.dir
