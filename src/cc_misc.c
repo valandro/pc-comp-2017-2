@@ -12,10 +12,10 @@ void did_read_token(int token)
   extern char *yytext;
   extern int yylineno;
   int line_number = yylineno;
-  char *text = yytext;
+  char *text = strdup(yytext);
   if (token == TK_LIT_CHAR || token == TK_LIT_STRING) {
     text++; // Retirando primeira " ou '
-    text[strlen(text)] = 0; // Retirando última " ou '
+    text[strlen(text) - 1] = 0; // Retirando última " ou '
   }
   dict_remove(dict, text);
   dict_put(dict, text, (void*)(line_number));

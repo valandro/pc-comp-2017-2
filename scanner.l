@@ -16,6 +16,7 @@ QUOSIM [\']
 CHARACTERS [^ "\n]
 CHARS [^ \n]
 PUNCTUATION [,;:()\[\]{}+\-\*\/<>=!&$%#\^]
+SIGN [+-]
 %%
 int return TK_PR_INT;
 float return TK_PR_FLOAT;
@@ -54,8 +55,8 @@ protected return TK_PR_PROTECTED;
 {SPACE}* {};
 "//"({CHARACTERS}|{SPACE}|{DIGIT}|{OP}|{QUODOB})*"\n" {};
 "/*"({CHARACTERS}|{SPACE}|"\n"|{QUODOB})*"*/" {};
-{DIGIT}+ {did_read_token(TK_LIT_INT); return TK_LIT_INT;}
-{DIGIT}+"."{DIGIT}* {did_read_token(TK_LIT_FLOAT); return TK_LIT_FLOAT;}
+{SIGN}?{DIGIT}+ {did_read_token(TK_LIT_INT); return TK_LIT_INT;}
+{SIGN}?{DIGIT}+"."{DIGIT}* {did_read_token(TK_LIT_FLOAT); return TK_LIT_FLOAT;}
 false return TK_LIT_FALSE;
 true return TK_LIT_TRUE;
 {QUOSIM}{CHARACTERS}?{QUOSIM} {did_read_token(TK_LIT_CHAR); return TK_LIT_CHAR;}
