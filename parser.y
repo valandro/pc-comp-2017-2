@@ -53,6 +53,171 @@ extern int yylineno;
 %%
 /* Regras (e ações) da gramática */
 
-programa:
+access_modifier:
+TK_PR_PROTECTED |
+TK_PR_PRIVATE   |
+TK_PR_PUBLIC    ;
+
+storage_specifier_static_const:
+TK_PR_STATIC             |
+TK_PR_CONST |
+TK_PR_STATIC TK_PR_CONST ;
+
+storage_specifier_static:
+TK_PR_STATIC |
+/* empty */                 ;
+
+storage_specifier_const:
+    TK_PR_CONST |
+    /* empty */                 ;
+
+/* Falta suporte ao tipo criado pelo usuário */
+var_type:
+TK_PR_INT   |
+TK_PR_FLOAT |
+TK_PR_BOOL  |
+TK_PR_CHAR  |
+TK_PR_STRING;
+
+/* Tipos primitivos, usados no escopo local, podem ser inicializados com valor. */
+primitive_types:
+TK_PR_INT   |
+TK_PR_FLOAT |
+TK_PR_BOOL  |
+TK_PR_CHAR  |
+TK_PR_STRING;
+
+primitive_literals:
+	TK_LIT_INT    |
+    TK_LIT_FLOAT  |
+    TK_LIT_FALSE  |
+    TK_LIT_TRUE   |
+    TK_LIT_CHAR   |
+    TK_LIT_STRING ;
+
+program :
+    declare_global_var program |
+    declare_class      program |
+    declare_function   program |
+    /* empty */                ;
+
+declare_global_var :
+    storage_specifier_static declare_var ';' ;
+
+declare_var:
+    var_type TK_IDENTIFICADOR |
+    declare_array             ;
+
+declare_array:
+    var_type TK_IDENTIFICADOR '[' TK_LIT_INT ']';
+
+/* class
+ class foo {
+     protected int bar:
+     private float car:
+     public string dice
+ };
+*/
+declare_class:
+    class_header class_body class_tail ;
+
+class_header:
+    TK_PR_CLASS TK_IDENTIFICADOR '{' ;
+
+class_tail:
+    '}' ';' ;
+
+class_body:
+    class_property ':' class_body |
+    class_property                ;
+
+class_property:
+    access_modifier var_type TK_IDENTIFICADOR                  |
+    access_modifier var_type TK_IDENTIFICADOR '['TK_LIT_INT']' ;
+
+/* function
+     int sum (const int a, int b) {
+         static const int baseNumber <= 0;
+         static char operatorChar;
+         const string description <= "Função que soma";
+         int result;
+         foo fooInstance;
+ 
+         result = a + b;
+         fooInstance$bar = result
+     }
+     static float getPi (){}
+ */
+declare_function:
+    function_header command_block ;
+
+function_header:
+    storage_specifier_static var_type TK_IDENTIFICADOR '('parameter_list')';
+
+parameter_list:
+     parameter ',' parameter_list |
+     parameter                   |
+    /* empty */                 ;
+
+parameter:
+    storage_specifier_const var_type TK_IDENTIFICADOR ;
+
+/* Pela spec(2.4) não sei se uma das produções aqui não deveria ser simplesmente -> command_block */
+command_block:
+    '{' command_list '}' ;
+
+command_list:
+    command command_list  |
+    command               |
+    /* empty */               ;
+
+command:
+    command_block           |
+    declare_local_var   ';' |
+    assignment          ';' |
+    control_flow        ';' |
+    /* entrada */
+    /* saida */
+
+    function_invocation  ';'|
+    shift                ';'|
+    return
+
+declare_local_var:
+    storage_specifier_static_const var_type TK_IDENTIFICADOR                                |
+    storage_specifier_static_const primitive_type TK_IDENTIFICADOR                          |
+    storage_specifier_static_const primitive_type TK_IDENTIFICADOR '<=' TK_IDENTIFICADOR    |
+    storage_specifier_static_const primitive_type TK_IDENTIFICADOR '<=' primitive_literals  ;
+
+assignment:
+    TK_IDENTIFICADOR '=' expression                     |
+    TK_IDENTIFICADOR'['expression']' '=' expression     |
+    TK_IDENTIFICADOR'$'TK_IDENTIFICADOR '=' expression  ;
+
+function_invocation:
+    TK_IDENTIFICADOR'('argument_list')';
+
+argument_list:
+    argument ',' argument_list |
+    argument                   |
+    /* empty */                ;
+
+argument:
+    expression          |
+    primitive_literals  ;
+
+shift:
+    TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT    |
+    TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT    ;
+
+control_flow:
+    
+
+
+return:
+    TK_PR_RETURN expression ';' |
+    TK_PR_CASE TK_LIT_INT ':'   |
+    TK_PR_BREAK ';'             |
+    TK_PR_CONTINUE ';'          ;
 
 %%
