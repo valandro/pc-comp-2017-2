@@ -18,7 +18,7 @@ void did_read_token(int token)
     text[strlen(text) - 1] = 0; // Retirando última " ou '
   }
   dict_remove(dict, text);
-  dict_put(dict, text, (void*)(intptr_t)(line_number));
+  dict_put(dict, text, (void*)(line_number));
 }
 
 void yyerror (char const *mensagem)

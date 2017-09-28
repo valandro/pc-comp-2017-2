@@ -1,10 +1,5 @@
-Terminals which are not used
+Terminals unused in grammar
 
-   TK_PR_INT
-   TK_PR_FLOAT
-   TK_PR_BOOL
-   TK_PR_CHAR
-   TK_PR_STRING
    TK_PR_IF
    TK_PR_THEN
    TK_PR_ELSE
@@ -14,7 +9,6 @@ Terminals which are not used
    TK_PR_OUTPUT
    TK_PR_RETURN
    TK_PR_CONST
-   TK_PR_STATIC
    TK_PR_FOREACH
    TK_PR_FOR
    TK_PR_SWITCH
@@ -33,32 +27,48 @@ Terminals which are not used
    TK_OC_OR
    TK_OC_SL
    TK_OC_SR
-   TK_LIT_INT
    TK_LIT_FLOAT
    TK_LIT_FALSE
    TK_LIT_TRUE
    TK_LIT_CHAR
    TK_LIT_STRING
-   TK_IDENTIFICADOR
    TOKEN_ERRO
 
 
 Grammar
 
-    0 $accept: programa $end
+    0 $accept: program $end
 
-    1 programa: /* empty */
+    1 program: program declare_global_var declare_new_type functions
+    2        | %empty
+
+    3 declare_global_var: var_type TK_IDENTIFICADOR ';'
+    4                   | TK_PR_STATIC var_type TK_IDENTIFICADOR
+    5                   | var_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
+
+    6 var_type: TK_PR_INT
+    7         | TK_PR_FLOAT
+    8         | TK_PR_CHAR
+    9         | TK_PR_BOOL
+   10         | TK_PR_STRING
+
+   11 declare_new_type: %empty
+
+   12 functions: %empty
 
 
 Terminals, with rules where they appear
 
 $end (0) 0
+';' (59) 3 5
+'[' (91) 5
+']' (93) 5
 error (256)
-TK_PR_INT (258)
-TK_PR_FLOAT (259)
-TK_PR_BOOL (260)
-TK_PR_CHAR (261)
-TK_PR_STRING (262)
+TK_PR_INT (258) 6
+TK_PR_FLOAT (259) 7
+TK_PR_BOOL (260) 9
+TK_PR_CHAR (261) 8
+TK_PR_STRING (262) 10
 TK_PR_IF (263)
 TK_PR_THEN (264)
 TK_PR_ELSE (265)
@@ -68,7 +78,7 @@ TK_PR_INPUT (268)
 TK_PR_OUTPUT (269)
 TK_PR_RETURN (270)
 TK_PR_CONST (271)
-TK_PR_STATIC (272)
+TK_PR_STATIC (272) 4
 TK_PR_FOREACH (273)
 TK_PR_FOR (274)
 TK_PR_SWITCH (275)
@@ -87,42 +97,199 @@ TK_OC_AND (287)
 TK_OC_OR (288)
 TK_OC_SL (289)
 TK_OC_SR (290)
-TK_LIT_INT (291)
+TK_LIT_INT (291) 5
 TK_LIT_FLOAT (292)
 TK_LIT_FALSE (293)
 TK_LIT_TRUE (294)
 TK_LIT_CHAR (295)
 TK_LIT_STRING (296)
-TK_IDENTIFICADOR (297)
+TK_IDENTIFICADOR (297) 3 4 5
 TOKEN_ERRO (298)
 
 
 Nonterminals, with rules where they appear
 
-$accept (44)
+$accept (47)
     on left: 0
-programa (45)
-    on left: 1, on right: 0
+program (48)
+    on left: 1 2, on right: 0 1
+declare_global_var (49)
+    on left: 3 4 5, on right: 1
+var_type (50)
+    on left: 6 7 8 9 10, on right: 3 4 5
+declare_new_type (51)
+    on left: 11, on right: 1
+functions (52)
+    on left: 12, on right: 1
 
 
-state 0
+State 0
 
-    0 $accept: . programa $end
+    0 $accept: . program $end
 
-    $default  reduce using rule 1 (programa)
+    $default  reduce using rule 2 (program)
 
-    programa  go to state 1
-
-
-state 1
-
-    0 $accept: programa . $end
-
-    $end  shift, and go to state 2
+    program  go to state 1
 
 
-state 2
+State 1
 
-    0 $accept: programa $end .
+    0 $accept: program . $end
+    1 program: program . declare_global_var declare_new_type functions
+
+    $end          shift, and go to state 2
+    TK_PR_INT     shift, and go to state 3
+    TK_PR_FLOAT   shift, and go to state 4
+    TK_PR_BOOL    shift, and go to state 5
+    TK_PR_CHAR    shift, and go to state 6
+    TK_PR_STRING  shift, and go to state 7
+    TK_PR_STATIC  shift, and go to state 8
+
+    declare_global_var  go to state 9
+    var_type            go to state 10
+
+
+State 2
+
+    0 $accept: program $end .
 
     $default  accept
+
+
+State 3
+
+    6 var_type: TK_PR_INT .
+
+    $default  reduce using rule 6 (var_type)
+
+
+State 4
+
+    7 var_type: TK_PR_FLOAT .
+
+    $default  reduce using rule 7 (var_type)
+
+
+State 5
+
+    9 var_type: TK_PR_BOOL .
+
+    $default  reduce using rule 9 (var_type)
+
+
+State 6
+
+    8 var_type: TK_PR_CHAR .
+
+    $default  reduce using rule 8 (var_type)
+
+
+State 7
+
+   10 var_type: TK_PR_STRING .
+
+    $default  reduce using rule 10 (var_type)
+
+
+State 8
+
+    4 declare_global_var: TK_PR_STATIC . var_type TK_IDENTIFICADOR
+
+    TK_PR_INT     shift, and go to state 3
+    TK_PR_FLOAT   shift, and go to state 4
+    TK_PR_BOOL    shift, and go to state 5
+    TK_PR_CHAR    shift, and go to state 6
+    TK_PR_STRING  shift, and go to state 7
+
+    var_type  go to state 11
+
+
+State 9
+
+    1 program: program declare_global_var . declare_new_type functions
+
+    $default  reduce using rule 11 (declare_new_type)
+
+    declare_new_type  go to state 12
+
+
+State 10
+
+    3 declare_global_var: var_type . TK_IDENTIFICADOR ';'
+    5                   | var_type . TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
+
+    TK_IDENTIFICADOR  shift, and go to state 13
+
+
+State 11
+
+    4 declare_global_var: TK_PR_STATIC var_type . TK_IDENTIFICADOR
+
+    TK_IDENTIFICADOR  shift, and go to state 14
+
+
+State 12
+
+    1 program: program declare_global_var declare_new_type . functions
+
+    $default  reduce using rule 12 (functions)
+
+    functions  go to state 15
+
+
+State 13
+
+    3 declare_global_var: var_type TK_IDENTIFICADOR . ';'
+    5                   | var_type TK_IDENTIFICADOR . '[' TK_LIT_INT ']' ';'
+
+    ';'  shift, and go to state 16
+    '['  shift, and go to state 17
+
+
+State 14
+
+    4 declare_global_var: TK_PR_STATIC var_type TK_IDENTIFICADOR .
+
+    $default  reduce using rule 4 (declare_global_var)
+
+
+State 15
+
+    1 program: program declare_global_var declare_new_type functions .
+
+    $default  reduce using rule 1 (program)
+
+
+State 16
+
+    3 declare_global_var: var_type TK_IDENTIFICADOR ';' .
+
+    $default  reduce using rule 3 (declare_global_var)
+
+
+State 17
+
+    5 declare_global_var: var_type TK_IDENTIFICADOR '[' . TK_LIT_INT ']' ';'
+
+    TK_LIT_INT  shift, and go to state 18
+
+
+State 18
+
+    5 declare_global_var: var_type TK_IDENTIFICADOR '[' TK_LIT_INT . ']' ';'
+
+    ']'  shift, and go to state 19
+
+
+State 19
+
+    5 declare_global_var: var_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' . ';'
+
+    ';'  shift, and go to state 20
+
+
+State 20
+
+    5 declare_global_var: var_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';' .
+
+    $default  reduce using rule 5 (declare_global_var)
