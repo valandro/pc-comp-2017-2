@@ -4,6 +4,7 @@
 */
 %{
 #include "parser.h" //arquivo automaticamente gerado pelo bison
+#include "cc_misc.h"
 %}
 %option yylineno
 DIGIT [0-9]
