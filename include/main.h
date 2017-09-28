@@ -17,6 +17,7 @@
 /*
   Protótipos de funções chamadas pelo flex
 */
+int yyparse();
 int yylex();
 void yyerror(const char *s);
 
