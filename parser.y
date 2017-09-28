@@ -61,7 +61,10 @@
  *
  */
 
-program: program declare_global_var declare_new_type functions|
+program:
+declare_global_var program |
+declare_new_type program |
+functions program |
 ;
 
 /* Estrutura da declaração de uma variavel */
@@ -84,5 +87,17 @@ TK_PR_STRING
 declare_new_type: ;
 
 /* Funções */
-functions: ;
+functions:
+var_type TK_IDENTIFICADOR '(' params ')' '{' commands '}'|
+TK_PR_STATIC var_type TK_IDENTIFICADOR '(' params ')' '{' commands '}'|
+;
+params:
+var_type TK_IDENTIFICADOR more_params |
+TK_PR_CONST var_type TK_IDENTIFICADOR more_params | /*empty*/
+;
+more_params:
+',' var_type TK_IDENTIFICADOR more_params |
+',' TK_PR_CONST var_type TK_IDENTIFICADOR more_params |/*empty*/
+;
+commands: ;
 %%
