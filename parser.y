@@ -116,27 +116,56 @@ more_params:
 ',' var_type TK_IDENTIFICADOR more_params |
 ',' TK_PR_CONST var_type TK_IDENTIFICADOR more_params |/*empty*/
 ;
-
+/*Bloco de funções*/
 body: block
 ;
 block: '{' commands '}'
 ;
 commands: command';' commands| /*empty*/
 ;
-command: declare_local_var | block | atribute | return | input | output | callback | /*empty*/
+command: local_var | block | attributed | return | input | output | callback | /*empty*/
 ;
 local_var:
 declare_local_var '<=' TK_IDENTIFICADOR |
-declare_local_var '<=' lit_type
+declare_local_var '<=' lit_type |
+declare_local_var
 ;
 declare_local_var:
 var_type TK_IDENTIFICADOR |
 TK_PR_STATIC var_type TK_IDENTIFICADOR |
 TK_PR_STATIC TK_PR_CONST var_type TK_IDENTIFICADOR
 ;
-atribute: ;
+attributed:
+TK_IDENTIFICADOR '=' expression |
+TK_IDENTIFICADOR '[' expression ']' '=' expression
+;
 return: TK_PR_RETURN TK_IDENTIFICADOR ;
 input: TK_PR_INPUT;
 output: TK_PR_OUTPUT;
-callback: ;
+callback:
+
+;
+
+expression:
+TK_IDENTIFICADOR |
+TK_IDENTIFICADOR '[' expression ']' |
+TK_LIT_INT |
+TK_LIT_FLOAT |
+callback |
+'(' expression ')' |
+expression '+' expression |
+expression '-' expression |
+expression '*' expression |
+expression '/' expression |
+expression '>' expression |
+expression '<' expression |
+expression TK_OC_LE expression |
+expression TK_OC_GE expression |
+expression TK_OC_EQ expression |
+expression TK_OC_NE expression |
+expression TK_OC_AND expression |
+expression TK_OC_OR expression |
+expression TK_OC_SL expression |
+expression TK_OC_SR expression |
+;
 %%
