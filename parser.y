@@ -99,7 +99,8 @@ TK_LIT_CHAR |
 TK_LIT_STRING
 ;
 /* Declaração de um novo tipo */
-declare_new_type: ;
+declare_new_type:
+TK_PR_CLASS TK_IDENTIFICADOR ;
 
 /* Funções */
 functions:
@@ -123,8 +124,9 @@ block: '{' commands '}'
 ;
 commands: command';' commands| /*empty*/
 ;
-command: local_var | block | attributed | return | input | output | callback | /*empty*/
+command: local_var | block | attributed | return | input | output | callback | control | /*empty*/
 ;
+/* Declaração variaveis locais */
 local_var:
 declare_local_var '<=' TK_IDENTIFICADOR |
 declare_local_var '<=' lit_type |
@@ -135,22 +137,41 @@ var_type TK_IDENTIFICADOR |
 TK_PR_STATIC var_type TK_IDENTIFICADOR |
 TK_PR_STATIC TK_PR_CONST var_type TK_IDENTIFICADOR
 ;
+/* Atribuição */
 attributed:
 TK_IDENTIFICADOR '=' expression |
 TK_IDENTIFICADOR '[' expression ']' '=' expression
 ;
+/* Funções de retorno */
 return: TK_PR_RETURN TK_IDENTIFICADOR ;
-input: TK_PR_INPUT;
-output: TK_PR_OUTPUT;
-callback:
-
+input: TK_PR_INPUT fparams;
+output: TK_PR_OUTPUT fparams;
+io_list:
+expression more_io_list ;
+more_io_list:
+',' expression more_io_list |
 ;
 
+/*Chamada de função*/
+callback:
+TK_IDENTIFICADOR '(' fparams ')'
+;
+fparams:
+expression more_fparams | /*empty*/
+;
+more_fparams:
+',' expression more_fparams | /*empty*/
+;
+/* Expressão */
 expression:
 TK_IDENTIFICADOR |
 TK_IDENTIFICADOR '[' expression ']' |
 TK_LIT_INT |
 TK_LIT_FLOAT |
+TK_LIT_TRUE |
+TK_LIT_FALSE |
+TK_LIT_CHAR |
+TK_LIT_STRING |
 callback |
 '(' expression ')' |
 expression '+' expression |
@@ -167,5 +188,12 @@ expression TK_OC_AND expression |
 expression TK_OC_OR expression |
 expression TK_OC_SL expression |
 expression TK_OC_SR expression |
+;
+/* Funções de controle de fluxo */
+control:
+TK_PR_IF '(' expression ')' TK_PR_THEN block |
+TK_PR_IF '(' expression ')' TK_PR_THEN block TK_PR_ELSE block |
+TK_PR_FOREACH '(' TK_IDENTIFICADOR':' /*lista de comandos separada por ,*/ ')' block
+
 ;
 %%
