@@ -51,6 +51,13 @@
 %token TOKEN_ERRO
 %error-verbose
 
+%left '<' '>' TK_OC_LE TK_OC_GE TK_OC_EQ TK_OC_NE
+%left TK_OC_AND TK_OC_OR
+%left '+' '-'
+%left '*' '/'
+%left '='
+%left '[' ']'
+%left '(' ')'
 %%
 /* Regras (e ações) da gramática */
 
@@ -83,21 +90,53 @@ TK_PR_BOOL |
 TK_PR_STRING
 ;
 
+lit_type:
+TK_LIT_INT |
+TK_LIT_FLOAT |
+TK_LIT_FALSE |
+TK_LIT_TRUE |
+TK_LIT_CHAR |
+TK_LIT_STRING
+;
 /* Declaração de um novo tipo */
 declare_new_type: ;
 
 /* Funções */
 functions:
-var_type TK_IDENTIFICADOR '(' params ')' '{' commands '}'|
-TK_PR_STATIC var_type TK_IDENTIFICADOR '(' params ')' '{' commands '}'|
+var_type TK_IDENTIFICADOR '(' params ')' body |
+TK_PR_STATIC var_type TK_IDENTIFICADOR '(' params ')' body | /*empty*/
 ;
+
 params:
 var_type TK_IDENTIFICADOR more_params |
 TK_PR_CONST var_type TK_IDENTIFICADOR more_params | /*empty*/
 ;
+
 more_params:
 ',' var_type TK_IDENTIFICADOR more_params |
 ',' TK_PR_CONST var_type TK_IDENTIFICADOR more_params |/*empty*/
 ;
-commands: ;
+
+body: block
+;
+block: '{' commands '}'
+;
+commands: command';' commands| /*empty*/
+;
+command: declare_local_var | block | atribute | return | input | output | callback | /*empty*/
+;
+local_var:
+declare_local_var '<=' TK_IDENTIFICADOR |
+declare_local_var '<=' lit_type
+;
+declare_local_var:
+var_type TK_IDENTIFICADOR |
+TK_PR_STATIC var_type TK_IDENTIFICADOR |
+TK_PR_STATIC TK_PR_CONST var_type TK_IDENTIFICADOR
+;
+atribute: ;
+return: TK_PR_RETURN TK_IDENTIFICADOR ;
+input: TK_PR_INPUT;
+output: TK_PR_OUTPUT;
+callback: ;
 %%
