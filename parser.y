@@ -69,30 +69,45 @@ program:
 ;
 program_body:
   program_body declare declare_var_global ';' |
+  program_body declare_new_type ';' |
   program_body declare declare_function |
+;
+declare_new_type:
+  TK_PR_CLASS TK_IDENTIFICADOR '['fields']'
+;
+fields:
+  field |
+  fields ':' field
+;
+field:
+  TK_PR_PROTECTED type TK_IDENTIFICADOR |
+  TK_PR_PRIVATE type TK_IDENTIFICADOR |
+  TK_PR_PUBLIC type TK_IDENTIFICADOR |
+;
 declare:
   type TK_IDENTIFICADOR |
   TK_PR_STATIC TK_IDENTIFICADOR |
+  TK_IDENTIFICADOR TK_IDENTIFICADOR |
 ;
 /* Estrutura da declaração de uma variavel */
 /* Tipos das variaveis */
 type:
-TK_PR_INT |
-TK_PR_FLOAT |
-TK_PR_CHAR |
-TK_PR_BOOL |
-TK_PR_STRING
+  TK_PR_INT |
+  TK_PR_FLOAT |
+  TK_PR_CHAR |
+  TK_PR_BOOL |
+  TK_PR_STRING
 ;
 lit:
-TK_LIT_INT |
-TK_LIT_FLOAT |
-TK_LIT_CHAR |
-TK_LIT_TRUE |
-TK_LIT_FALSE |
-TK_LIT_STRING
+  TK_LIT_INT |
+  TK_LIT_FLOAT |
+  TK_LIT_CHAR |
+  TK_LIT_TRUE |
+  TK_LIT_FALSE |
+  TK_LIT_STRING
 ;
 params:
-'(' args ')'
+  '(' args ')'
 ;
 args:
   args ',' arg |
