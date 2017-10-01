@@ -88,6 +88,7 @@ protected return TK_PR_PROTECTED;
 }
 
 {SIGN}?{DIGIT}+"."{DIGIT}* {
+    printf("oi/n");
     char *text = strdup(yytext);
     float floatValue = atof(text);
     int line_number = yylineno;
@@ -108,6 +109,7 @@ protected return TK_PR_PROTECTED;
 }
 
 false {
+    printf("oi/n");
     char *text = strdup(yytext);
     int line_number = yylineno;
     bool boolValue = false;
@@ -128,6 +130,7 @@ false {
 }
 
 true {
+    printf("oi/n");
     char *text = strdup(yytext);
     int line_number = yylineno;
     bool boolValue = true;
@@ -148,6 +151,7 @@ true {
 }
 
 {QUOSIM}{CHARACTERS}?{QUOSIM} {
+    printf("oi/n");
     char *text = strdup(yytext);
     text++; // Retirando primeira " ou '
     text[strlen(text) - 1] = 0; // Retirando última " ou '
@@ -170,6 +174,7 @@ true {
 }
 
 {QUODOB}({LETTER}|{SPACE}|{DIGIT}|{PUNCTUATION}|{UNDERSCORE}|{CHARACTERS})*{QUODOB} {
+    printf("oi/n");
     int line_number = yylineno;
     char *text = strdup(yytext);
     text++; // Retirando primeira " ou '
@@ -191,6 +196,7 @@ true {
 }
 
 ({LETTER}|{UNDERSCORE})+(({LETTER}|{DIGIT}|{UNDERSCORE})*) {
+    printf("oi/n");
     char *text = strdup(yytext);
     int line_number = yylineno;
     

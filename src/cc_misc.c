@@ -33,8 +33,9 @@ void yyerror (char const *mensagem)
 
 void main_init (int argc, char **argv)
 {
-    extern comp_dict_t *dict;
+    printf("main init\n");
     dict = dict_new(); // Criação de uma nova tabela
+    printf("main init done\n");
 }
 
 void comp_print_table (void)
@@ -69,6 +70,7 @@ comp_dict_item_t* get_entry_with_key(comp_dict_t *dict, char *key)
 
 void main_finalize (void)
 {
+    printf("main finalize/n");
     // comp_print_table();
 }
 
