@@ -4,8 +4,9 @@
  */
 %{
     #include "main.h"
+    #include "cc_dict.h"
     extern int yylineno;
-    %}
+%}
 
 /* Declaração dos tokens da linguagem */
 %token TK_PR_INT
@@ -53,11 +54,7 @@
 %error-verbose
 
 %union{
-    int intValue;
-    float floatValue;
-    char *stringValue;
-    char charValue;
-    
+    comp_dict_item_t *valor_lexico;
 }
 
 %%
