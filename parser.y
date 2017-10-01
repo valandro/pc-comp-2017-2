@@ -51,13 +51,9 @@
 %token TOKEN_ERRO
 %error-verbose
 
-%left '<' '>' TK_OC_LE TK_OC_GE TK_OC_EQ TK_OC_NE
-%left TK_OC_AND TK_OC_OR
-%left '+' '-'
+%left '+' '-' TK_OC_EQ
 %left '*' '/'
-%left '='
-%left '[' ']'
-%left '(' ')'
+%right '^'
 %%
 /* Regras (e ações) da gramática */
 
@@ -69,131 +65,112 @@
  */
 
 program:
-declare_global_var program |
-declare_new_type program |
-functions program |
+  program_body
 ;
-
+program_body:
+  program_body declare declare_var_global ';' |
+  program_body declare declare_function |
+declare:
+  type TK_IDENTIFICADOR |
+  TK_PR_STATIC TK_IDENTIFICADOR |
+;
 /* Estrutura da declaração de uma variavel */
-declare_global_var:
-var_type TK_IDENTIFICADOR ';' |
-TK_PR_STATIC var_type TK_IDENTIFICADOR |
-var_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
-;
-
 /* Tipos das variaveis */
-var_type:
+type:
 TK_PR_INT |
 TK_PR_FLOAT |
 TK_PR_CHAR |
 TK_PR_BOOL |
 TK_PR_STRING
 ;
-
-lit_type:
+lit:
 TK_LIT_INT |
 TK_LIT_FLOAT |
-TK_LIT_FALSE |
-TK_LIT_TRUE |
 TK_LIT_CHAR |
+TK_LIT_TRUE |
+TK_LIT_FALSE |
 TK_LIT_STRING
 ;
-/* Declaração de um novo tipo */
-declare_new_type:
-TK_PR_CLASS TK_IDENTIFICADOR ;
+params:
+'(' args ')'
+;
+args:
+  args ',' arg |
+  arg |
+;
+arg:
+  type TK_IDENTIFICADOR
+  | TK_IDENTIFICADOR TK_IDENTIFICADOR
+  | TK_PR_CONST type	TK_IDENTIFICADOR
+  | TK_PR_CONST TK_IDENTIFICADOR	TK_IDENTIFICADOR
+;
+array:
+  '['TK_LIT_INT']' |
+;
+declare_var_global:
+  array
+;
 
 /* Funções */
-functions:
-var_type TK_IDENTIFICADOR '(' params ')' body |
-TK_PR_STATIC var_type TK_IDENTIFICADOR '(' params ')' body | /*empty*/
+declare_function:
+  header body
 ;
+header:
+  params
+;
+body:
+  block
+;
+block:
+  '{'commands'}'
+;
+commands:
+  commands block  ';' |
+  commands declare_var_local ';' |
+  commands attribution ';'|
+  commands control |
+  commands io ';'|
 
-params:
-var_type TK_IDENTIFICADOR more_params |
-TK_PR_CONST var_type TK_IDENTIFICADOR more_params | /*empty*/
 ;
-
-more_params:
-',' var_type TK_IDENTIFICADOR more_params |
-',' TK_PR_CONST var_type TK_IDENTIFICADOR more_params |/*empty*/
+declare_var_local:
+  declare |
+  declare TK_OC_LE TK_IDENTIFICADOR |
+  declare TK_OC_LE lit
 ;
-/*Bloco de funções*/
-body: block
+attribution:
+  TK_IDENTIFICADOR '=' expression
+  | TK_IDENTIFICADOR '[' expression ']' '=' expression
 ;
-block: '{' commands '}'
-;
-commands: command';' commands| /*empty*/
-;
-command: local_var | block | attributed | return | input | output | callback | control | /*empty*/
-;
-/* Declaração variaveis locais */
-local_var:
-declare_local_var '<=' TK_IDENTIFICADOR |
-declare_local_var '<=' lit_type |
-declare_local_var
-;
-declare_local_var:
-var_type TK_IDENTIFICADOR |
-TK_PR_STATIC var_type TK_IDENTIFICADOR |
-TK_PR_STATIC TK_PR_CONST var_type TK_IDENTIFICADOR
-;
-/* Atribuição */
-attributed:
-TK_IDENTIFICADOR '=' expression |
-TK_IDENTIFICADOR '[' expression ']' '=' expression
-;
-/* Funções de retorno */
-return: TK_PR_RETURN TK_IDENTIFICADOR ;
-input: TK_PR_INPUT fparams;
-output: TK_PR_OUTPUT fparams;
-io_list:
-expression more_io_list ;
-more_io_list:
-',' expression more_io_list |
-;
-
-/*Chamada de função*/
-callback:
-TK_IDENTIFICADOR '(' fparams ')'
-;
-fparams:
-expression more_fparams | /*empty*/
-;
-more_fparams:
-',' expression more_fparams | /*empty*/
-;
-/* Expressão */
 expression:
-TK_IDENTIFICADOR |
-TK_IDENTIFICADOR '[' expression ']' |
-TK_LIT_INT |
-TK_LIT_FLOAT |
-TK_LIT_TRUE |
-TK_LIT_FALSE |
-TK_LIT_CHAR |
-TK_LIT_STRING |
-callback |
-'(' expression ')' |
-expression '+' expression |
-expression '-' expression |
-expression '*' expression |
-expression '/' expression |
-expression '>' expression |
-expression '<' expression |
-expression TK_OC_LE expression |
-expression TK_OC_GE expression |
-expression TK_OC_EQ expression |
-expression TK_OC_NE expression |
-expression TK_OC_AND expression |
-expression TK_OC_OR expression |
-expression TK_OC_SL expression |
-expression TK_OC_SR expression |
+  '('expression')' |
+  expression '*' expression |
+  expression '+' expression |
+  expression '-' expression |
+  expression '/' expression |
+  expression TK_OC_EQ expression |
+  lit |
+  TK_IDENTIFICADOR |
+  TK_IDENTIFICADOR '['expression']' |
+  TK_IDENTIFICADOR params
 ;
-/* Funções de controle de fluxo */
 control:
-TK_PR_IF '(' expression ')' TK_PR_THEN block |
-TK_PR_IF '(' expression ')' TK_PR_THEN block TK_PR_ELSE block |
-TK_PR_FOREACH '(' TK_IDENTIFICADOR':' /*lista de comandos separada por ,*/ ')' block
-
+  TK_PR_IF '('expression')' TK_PR_THEN block
 ;
+io:
+  TK_PR_INPUT expression  |
+  TK_PR_OUTPUT list_exp
+;
+list_exp:
+  expression |
+  expression ',' list_exp
+;
+/* Declaração de um novo tipo */
+/*Bloco de funções*/
+/* Declaração variaveis locais */
+/* Atribuição */
+/* Funções de retorno */
+/*Chamada de função*/
+/* Expressão */
+/* Funções de controle de fluxo */
+
 %%
