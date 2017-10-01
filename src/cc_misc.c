@@ -1,7 +1,7 @@
 #include "cc_misc.h"
 #include "cc_dict.h"
 
-extern comp_dict_t *dict;
+extern struct comp_dict *dict;
 
 int comp_get_line_number (void)
 {
@@ -33,13 +33,12 @@ void yyerror (char const *mensagem)
 
 void main_init (int argc, char **argv)
 {
-    printf("main init\n");
     dict = dict_new(); // Criação de uma nova tabela
-    printf("main init done\n");
 }
 
 void comp_print_table (void)
 {
+    printf("comp_print_table");
     extern comp_dict_t *dict;
     int i, l;
     for (i = 0, l = dict->size; i < l; ++i) {
@@ -52,25 +51,18 @@ void comp_print_table (void)
 
 comp_dict_item_t* get_entry_with_key(comp_dict_t *dict, char *key)
 {
-    printf("oi/n");
     int i, l;
     for (i = 0, l = dict->size; i < l; ++i) {
-        printf("loop: %d -- ", i);
         if (strcmp(dict->data[i]->key, key) == 0) {
-            printf("era/n");
             return dict->data[i];
         }
-        printf("nao era/n");
     }
-    printf("oi/n");
     comp_dict_item_t *item = malloc(sizeof(comp_dict_item_t));
-    printf("oi/n");
     return item;
 }
 
 void main_finalize (void)
 {
-    printf("main finalize/n");
     // comp_print_table();
 }
 

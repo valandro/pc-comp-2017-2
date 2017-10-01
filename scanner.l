@@ -9,7 +9,7 @@
     #include "main.h"
     #include <stdbool.h>
     #include "parser.h" //arquivo automaticamente gerado pelo bison
-    comp_dict_t *dict;
+    struct comp_dict *dict;
 %}
 
 %option yylineno
@@ -65,30 +65,24 @@ protected return TK_PR_PROTECTED;
 "/*"({CHARACTERS}|{SPACE}|"\n"|{QUODOB})*"*/" {};
 
 {SIGN}?{DIGIT}+ {
-    printf("oi/n");
     char *text = strdup(yytext);
     int intValue = atoi(text);
     int line_number = yylineno;
-    
+
     char *key = strcat(text, suffix_for_token(POA_LIT_INT));
     dict_remove(dict, key);
-    printf("oi/n");
     comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
+
     data->line_number = line_number;
     data->token_type = POA_LIT_INT;
-    printf("oi/n");
     data->value.intValue = intValue;
-    printf("oi/n");
-    dict_put(dict, key, (void*)(data));
-    printf("oi/n");
-    yylval.valor_lexico = get_entry_with_key(dict, key);
-    printf("oi/n");
-    
+
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
+
     return TK_LIT_INT;
 }
 
 {SIGN}?{DIGIT}+"."{DIGIT}* {
-    printf("oi/n");
     char *text = strdup(yytext);
     float floatValue = atof(text);
     int line_number = yylineno;
@@ -101,15 +95,12 @@ protected return TK_PR_PROTECTED;
     data->token_type = POA_LIT_FLOAT;
     data->value.floatValue = floatValue;
     
-    dict_put(dict, key, (void*)(data));
-    
-    yylval.valor_lexico = get_entry_with_key(dict, key);
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
     
     return TK_LIT_FLOAT;
 }
 
 false {
-    printf("oi/n");
     char *text = strdup(yytext);
     int line_number = yylineno;
     bool boolValue = false;
@@ -122,15 +113,12 @@ false {
     data->token_type = POA_LIT_BOOL;
     data->value.boolValue = boolValue;
     
-    dict_put(dict, key, (void*)(data));
-    
-    yylval.valor_lexico = get_entry_with_key(dict, key);
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
     
     return TK_LIT_FALSE;
 }
 
 true {
-    printf("oi/n");
     char *text = strdup(yytext);
     int line_number = yylineno;
     bool boolValue = true;
@@ -143,15 +131,12 @@ true {
     data->token_type = POA_LIT_BOOL;
     data->value.boolValue = boolValue;
     
-    dict_put(dict, key, (void*)(data));
-    
-    yylval.valor_lexico = get_entry_with_key(dict, key);
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
     
     return TK_LIT_TRUE;
 }
 
 {QUOSIM}{CHARACTERS}?{QUOSIM} {
-    printf("oi/n");
     char *text = strdup(yytext);
     text++; // Retirando primeira " ou '
     text[strlen(text) - 1] = 0; // Retirando última " ou '
@@ -166,15 +151,11 @@ true {
     data->token_type = POA_LIT_CHAR;
     data->value.charValue = text[0];
     
-    dict_put(dict, key, (void*)(data));
-    
-    yylval.valor_lexico = get_entry_with_key(dict, key);
-    
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
     return TK_LIT_CHAR;
 }
 
 {QUODOB}({LETTER}|{SPACE}|{DIGIT}|{PUNCTUATION}|{UNDERSCORE}|{CHARACTERS})*{QUODOB} {
-    printf("oi/n");
     int line_number = yylineno;
     char *text = strdup(yytext);
     text++; // Retirando primeira " ou '
@@ -188,15 +169,11 @@ true {
     data->token_type = POA_LIT_STRING;
     data->value.stringValue = text;
     
-    dict_put(dict, key, (void*)(data));
-    
-    yylval.valor_lexico = get_entry_with_key(dict, key);
-    
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
     return TK_LIT_STRING;
 }
 
 ({LETTER}|{UNDERSCORE})+(({LETTER}|{DIGIT}|{UNDERSCORE})*) {
-    printf("oi/n");
     char *text = strdup(yytext);
     int line_number = yylineno;
     
@@ -208,10 +185,7 @@ true {
     data->token_type = POA_IDENT;
     data->value.stringValue = text;
     
-    dict_put(dict, key, (void*)(data));
-    
-    yylval.valor_lexico = get_entry_with_key(dict, key);
-    
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
     return TK_IDENTIFICADOR;
 }
 
