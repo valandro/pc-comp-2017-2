@@ -18,7 +18,6 @@ int main_avaliacao_etapa_1 (int argc, char **argv)
       //printf("Tabela ativada\n");
       continue;
     }
-    
     switch (token){
     case ',':
     case ';':
@@ -109,6 +108,7 @@ void main_avaliacao_etapa_1_tabela (void)
 
 int main_avaliacao_etapa_2 (int argc, char **argv)
 {
+  printf("Main Etapa 2\n");
   int ret = yyparse();
   return ret;
 }

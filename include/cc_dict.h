@@ -16,10 +16,14 @@
 #ifndef CC_DICT_H_
 #define CC_DICT_H_
 
+
+
 /* 
  * Constante: DICT_SIZE, representa o tamanho de uma tabela de símbolos
  */
 #define DICT_SIZE 10240
+
+#include <stdbool.h>
 
 /*
  * Tipo: comp_dict_item_t, é o tipo de uma entrada na tabela de
@@ -34,6 +38,29 @@ typedef struct comp_dict_item {
   void *value;
   struct comp_dict_item *next;  // ponteiro de overflow
 } comp_dict_item_t;
+
+
+/*
+ * Tipo: comp_dict_data, é o dado apontado por uma entrada na tabela de
+ * símbolos. A estrutura consiste do número da linha onde o lexema foi visto por ul do usuário é registrado no campo _value_, de tipo
+ * _void *_. Sendo assim, o usuário pode registrar um ponteiro para
+ * qualquer tipo de dados, sendo efetivamente uma entrada genérica. A
+ * chave _key_ é o identificador único da entrada. O ponteiro _next_ é
+ * utilizado casa exista um conflito na função de hash utilizada.
+ */
+typedef struct comp_dict_data
+{
+    int line_number;
+    int token_type;
+    union
+    {
+        int intValue;
+        float floatValue;
+        char *stringValue;
+        bool boolValue;
+        char charValue;
+    } value;
+} comp_dict_data_t;
 
 /* 
  * Tipo: comp_dict_t, é o tipo da tabela de símbolos. O campo _size_

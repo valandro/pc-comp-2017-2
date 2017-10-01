@@ -5,6 +5,7 @@
 %{
 #include "parser.h" //arquivo automaticamente gerado pelo bison
 #include "cc_misc.h"
+#include "main.h"
 %}
 %option yylineno
 DIGIT [0-9]
@@ -56,13 +57,57 @@ protected return TK_PR_PROTECTED;
 {SPACE}* {};
 "//"({CHARACTERS}|{SPACE}|{DIGIT}|{OP}|{QUODOB})*"\n" {};
 "/*"({CHARACTERS}|{SPACE}|"\n"|{QUODOB})*"*/" {};
-{SIGN}?{DIGIT}+ {did_read_token(TK_LIT_INT); return TK_LIT_INT;}
-{SIGN}?{DIGIT}+"."{DIGIT}* {did_read_token(TK_LIT_FLOAT); return TK_LIT_FLOAT;}
-false return TK_LIT_FALSE;
-true return TK_LIT_TRUE;
-{QUOSIM}{CHARACTERS}?{QUOSIM} {did_read_token(TK_LIT_CHAR); return TK_LIT_CHAR;}
-{QUODOB}({LETTER}|{SPACE}|{DIGIT}|{PUNCTUATION}|{UNDERSCORE}|{CHARACTERS})*{QUODOB} {did_read_token(TK_LIT_STRING); return TK_LIT_STRING;}
-({LETTER}|{UNDERSCORE})+(({LETTER}|{DIGIT}|{UNDERSCORE})*) {did_read_token(TK_IDENTIFICADOR); return TK_IDENTIFICADOR;}
+
+{SIGN}?{DIGIT}+ {
+    yylval.intValue = atoi(yytext);
+    did_read_int(yylineno);
+    return TK_LIT_INT;
+}
+
+{SIGN}?{DIGIT}+"."{DIGIT}* {
+    yylval.floatValue = atof(yytext);
+    did_read_float(yylineno);
+    return TK_LIT_FLOAT;
+}
+
+false {
+    yylval.intValue = 0;
+    did_read_bool(yylineno);
+    return TK_LIT_FALSE;
+}
+
+true {
+    yylval.intValue = 1;
+    did_read_bool(yylineno);
+    return TK_LIT_TRUE;
+}
+
+{QUOSIM}{CHARACTERS}?{QUOSIM} {
+    char *text = strdup(yytext);
+    text++; // Retirando primeira " ou '
+    text[strlen(text) - 1] = 0; // Retirando última " ou '
+    yylval.charValue = text[0];
+    did_read_char(yylineno);
+    return TK_LIT_CHAR;
+}
+
+{QUODOB}({LETTER}|{SPACE}|{DIGIT}|{PUNCTUATION}|{UNDERSCORE}|{CHARACTERS})*{QUODOB} {
+    char *text = strdup(yytext);
+    text++; // Retirando primeira " ou '
+    text[strlen(text) - 1] = 0; // Retirando última " ou '
+    yylval.stringValue = text;
+    did_read_string(yylineno);
+    return TK_LIT_STRING;
+}
+
+({LETTER}|{UNDERSCORE})+(({LETTER}|{DIGIT}|{UNDERSCORE})*) {
+    yylval.stringValue = strdup(yytext);
+    did_read_identifier(yylineno);
+    return TK_IDENTIFICADOR;
+}
+
 {PUNCTUATION} return yytext[0];
+
 . return TOKEN_ERRO;
+
 %%

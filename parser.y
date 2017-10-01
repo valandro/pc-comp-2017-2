@@ -49,7 +49,16 @@
 %token TK_LIT_STRING
 %token TK_IDENTIFICADOR
 %token TOKEN_ERRO
+
 %error-verbose
+
+%union{
+    int intValue;
+    float floatValue;
+    char *stringValue;
+    char charValue;
+    
+}
 
 %%
 /* Regras (e ações) da gramática */
@@ -70,11 +79,11 @@ declare_global_var:
 storage_specifier_static declare_var ';' ;
 
 declare_var:
-primitive_types TK_IDENTIFICADOR |
+var_type TK_IDENTIFICADOR |
 declare_array             ;
 
 declare_array:
-primitive_types TK_IDENTIFICADOR '[' TK_LIT_INT ']';
+var_type TK_IDENTIFICADOR '[' TK_LIT_INT ']';
 /* Fim da Seção */
 
 
@@ -91,8 +100,7 @@ TK_PR_PUBLIC    ;
 storage_specifier_static_const:
 TK_PR_STATIC            |
 TK_PR_CONST             |
-TK_PR_STATIC TK_PR_CONST|
-/* empty */;
+TK_PR_STATIC TK_PR_CONST;
 
 storage_specifier_static:
 TK_PR_STATIC |
@@ -100,7 +108,7 @@ TK_PR_STATIC |
 
 storage_specifier_const:
 TK_PR_CONST |
-/* empty */ ;
+/* empty */                 ;
 /* Fim da Seção */
 
 
@@ -111,6 +119,12 @@ TK_PR_CONST |
  */
 
 /* Falta suporte ao tipo criado pelo usuário */
+var_type:
+TK_PR_INT   |
+TK_PR_FLOAT |
+TK_PR_BOOL  |
+TK_PR_CHAR  |
+TK_PR_STRING;
 
 /* Tipos primitivos, usados no escopo local, podem ser inicializados com valor. */
 primitive_types:
@@ -170,8 +184,8 @@ class_property ':' class_body |
 class_property                ;
 
 class_property:
-access_modifier primitive_types TK_IDENTIFICADOR                  |
-access_modifier primitive_types TK_IDENTIFICADOR '['TK_LIT_INT']' ;
+access_modifier var_type TK_IDENTIFICADOR                  |
+access_modifier var_type TK_IDENTIFICADOR '['TK_LIT_INT']' ;
 /* Fim da Seção */
 
 
@@ -192,7 +206,7 @@ declare_function:
 function_header command_block ;
 
 function_header:
-storage_specifier_static primitive_types TK_IDENTIFICADOR '('parameter_list')';
+storage_specifier_static var_type TK_IDENTIFICADOR '('parameter_list')';
 
 parameter_list:
 parameter ',' parameter_list |
@@ -200,7 +214,7 @@ parameter                   |
 /* empty */                 ;
 
 parameter:
-storage_specifier_const primitive_types TK_IDENTIFICADOR ;
+storage_specifier_const var_type TK_IDENTIFICADOR ;
 /* Fim da Seção */
 
 
@@ -211,28 +225,29 @@ storage_specifier_const primitive_types TK_IDENTIFICADOR ;
  *
  */
 command_block:
-'{' command_list '}';
+'{' command_list '}' ;
 
 command_list:
 command command_list  |
 command               |
-/* empty */           ;
+/* empty */               ;
 
 command:
 command_block           |
 declare_local_var   ';' |
 assignment          ';' |
-control_flow            |
-output              ';' |
+control_flow        ';' |
 /* entrada */
+/* saida */
 
 function_invocation  ';'|
 shift                ';'|
-return               ';';
+return
 /* Fim da Seção */
 
 
 declare_local_var:
+storage_specifier_static_const var_type TK_IDENTIFICADOR                                |
 storage_specifier_static_const primitive_types TK_IDENTIFICADOR                          |
 storage_specifier_static_const primitive_types TK_IDENTIFICADOR TK_OC_LE TK_IDENTIFICADOR    |
 storage_specifier_static_const primitive_types TK_IDENTIFICADOR TK_OC_LE primitive_literals  ;
@@ -257,9 +272,6 @@ primitive_literals  ;
 shift:
 TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT    |
 TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT    ;
-
-output:
-TK_PR_OUTPUT expression;
 
 control_flow:
 if_then         |
@@ -313,7 +325,4 @@ TK_PR_BREAK ';'             |
 TK_PR_CONTINUE ';'          ;
 
 %%
-/*
- TESTE
- */
 
