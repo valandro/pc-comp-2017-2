@@ -51,7 +51,7 @@
 %token TOKEN_ERRO
 %error-verbose
 
-%left '+' '-' TK_OC_EQ
+%left '+' '-' TK_OC_LE  TK_OC_GE TK_OC_EQ TK_OC_NE TK_OC_AND TK_OC_OR TK_OC_SL TK_OC_SR '<' '>'
 %left '*' '/'
 %right '^'
 %%
@@ -130,6 +130,11 @@ commands:
   commands attribution ';'|
   commands control |
   commands io ';'|
+  commands return ';' |
+  commands TK_PR_BREAK ';' |
+  commands TK_PR_CONTINUE ';' |
+  commands TK_PR_CASE TK_LIT_INT ':' |
+  commands shift ';' |
 
 ;
 declare_var_local:
@@ -147,14 +152,33 @@ expression:
   expression '+' expression |
   expression '-' expression |
   expression '/' expression |
+  expression '>' expression |
+  expression '<' expression |
+  expression TK_OC_LE expression |
+  expression TK_OC_GE expression |
   expression TK_OC_EQ expression |
+  expression TK_OC_NE expression |
+  expression TK_OC_AND expression |
+  expression TK_OC_OR expression |
+  expression TK_OC_SL expression |
+  expression TK_OC_SR expression |
   lit |
   TK_IDENTIFICADOR |
   TK_IDENTIFICADOR '['expression']' |
   TK_IDENTIFICADOR params
 ;
 control:
-  TK_PR_IF '('expression')' TK_PR_THEN block
+  TK_PR_IF '('expression')' TK_PR_THEN block |
+  TK_PR_IF '('expression')' TK_PR_THEN block TK_PR_ELSE block |
+  TK_PR_FOREACH '('TK_IDENTIFICADOR ':' list_exp')' block |
+  TK_PR_FOR '(' list_cmd ':' expression ':' list_cmd ')' block |
+  TK_PR_SWITCH '('expression')' block |
+  TK_PR_WHILE '('expression')' TK_PR_DO block |
+  TK_PR_DO block TK_PR_WHILE '('expression')'
+;
+list_cmd:
+  commands |
+  commands ',' list_cmd
 ;
 io:
   TK_PR_INPUT expression  |
@@ -163,6 +187,13 @@ io:
 list_exp:
   expression |
   expression ',' list_exp
+;
+return:
+  TK_PR_RETURN expression
+;
+shift:
+  TK_IDENTIFICADOR ">>" TK_LIT_INT |
+  TK_IDENTIFICADOR "<<" TK_LIT_INT
 ;
 /* Declaração de um novo tipo */
 /*Bloco de funções*/
