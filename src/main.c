@@ -18,7 +18,6 @@ int main_avaliacao_etapa_1 (int argc, char **argv)
       //printf("Tabela ativada\n");
       continue;
     }
-    
     switch (token){
     case ',':
     case ';':

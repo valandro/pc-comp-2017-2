@@ -4,8 +4,9 @@
  */
 %{
     #include "main.h"
+    #include "cc_dict.h"
     extern int yylineno;
-    %}
+%}
 
 /* Declaração dos tokens da linguagem */
 %token TK_PR_INT
@@ -49,11 +50,16 @@
 %token TK_LIT_STRING
 %token TK_IDENTIFICADOR
 %token TOKEN_ERRO
+
 %error-verbose
 
 %left '+' '-' TK_OC_LE  TK_OC_GE TK_OC_EQ TK_OC_NE TK_OC_AND TK_OC_OR TK_OC_SL TK_OC_SR '<' '>'
 %left '*' '/'
 %right '^'
+%union{
+    comp_dict_item_t *valor_lexico;
+}
+
 %%
 /* Regras (e ações) da gramática */
 
@@ -157,10 +163,6 @@ declare |
 declare TK_OC_LE TK_IDENTIFICADOR |
 declare TK_OC_LE lit
 ;
-attribution:
-TK_IDENTIFICADOR '=' expression
-| TK_IDENTIFICADOR '[' expression ']' '=' expression
-;
 expression:
 '('expression')' |
 expression '*' expression |
@@ -177,11 +179,17 @@ expression TK_OC_AND expression |
 expression TK_OC_OR expression |
 expression TK_OC_SL expression |
 expression TK_OC_SR expression |
-lit |
 TK_IDENTIFICADOR |
+lit |
 TK_IDENTIFICADOR '['expression']' |
 TK_IDENTIFICADOR params
 ;
+
+attribution:
+TK_IDENTIFICADOR '=' expression
+| TK_IDENTIFICADOR '[' expression ']' '=' expression
+;
+
 control:
 TK_PR_IF '('expression')' TK_PR_THEN block |
 TK_PR_IF '('expression')' TK_PR_THEN block TK_PR_ELSE block |
@@ -191,6 +199,7 @@ TK_PR_SWITCH '('expression')' block |
 TK_PR_WHILE '('expression')' TK_PR_DO block |
 TK_PR_DO block TK_PR_WHILE '('expression')'
 ;
+
 list_cmd:
 commands |
 commands ',' list_cmd
@@ -220,3 +229,4 @@ TK_IDENTIFICADOR "<<" TK_LIT_INT
 /* Funções de controle de fluxo */
 
 %%
+

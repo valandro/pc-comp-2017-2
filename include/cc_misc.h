@@ -6,10 +6,12 @@
 #include "parser.h"
 #include "main.h"
 
-
 int getLineNumber (void);
 void yyerror (char const *mensagem);
 void main_init (int argc, char **argv);
 void main_finalize (void);
-void did_read_token(int token);
+
+char* suffix_for_token(int token);
+comp_dict_item_t* get_entry_with_key(comp_dict_t *dict, char *key);
 #endif
+

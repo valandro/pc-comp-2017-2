@@ -1,48 +1,68 @@
 #include "cc_misc.h"
-comp_dict_t *dict;
+#include "cc_dict.h"
+
+extern struct comp_dict *dict;
 
 int comp_get_line_number (void)
 {
-  extern int yylineno; // Usando yylineno para contar as linhas
-  return yylineno;
+    extern int yylineno; // Usando yylineno para contar as linhas
+    return yylineno;
 }
 
-void did_read_token(int token)
+char* dict_key_from_text_and_token(char* text, int token)
 {
-  extern char *yytext;
-  extern int yylineno;
-  int line_number = yylineno;
-  char *text = strdup(yytext);
-  if (token == TK_LIT_CHAR || token == TK_LIT_STRING) {
-    text++; // Retirando primeira " ou '
-    text[strlen(text) - 1] = 0; // Retirando última " ou '
-  }
-  dict_remove(dict, text);
-  dict_put(dict, text, (void*)(intptr_t)(line_number));
+    char *key = strdup(text);
+    char token_string[20];
+    sprintf(token_string, "*%d", token);
+    key = strcat(key, token_string);
+    return key;
+}
+
+char* suffix_for_token(int token)
+{
+    char *token_string = malloc(2);
+    sprintf(token_string, "*%d", token);
+    return token_string;
 }
 
 void yyerror (char const *mensagem)
 {
-  extern int yylineno;
-  fprintf (stderr, "%s\n Erro na linha %d", mensagem,yylineno);
+    extern int yylineno;
+    fprintf (stderr, "%s\n Erro na linha %d", mensagem,yylineno);
 }
 
 void main_init (int argc, char **argv)
 {
-  dict = dict_new(); // Criação de uma nova tabela
+    dict = dict_new(); // Criação de uma nova tabela
 }
 
 void comp_print_table (void)
 {
-  int i, l;
-  for (i = 0, l = dict->size; i < l; ++i) {
-    if (dict->data[i]) {
-      cc_dict_etapa_1_print_entrada (dict->data[i]->key, (int)dict->data[i]->value);
+    printf("comp_print_table");
+    extern comp_dict_t *dict;
+    int i, l;
+    for (i = 0, l = dict->size; i < l; ++i) {
+        if (dict->data[i]) {
+            comp_dict_data_t *data = (comp_dict_data_t*)dict->data[i]->value;
+            cc_dict_etapa_2_print_entrada(dict->data[i]->key, data->line_number, data->token_type);
+        }
     }
-  }
+}
+
+comp_dict_item_t* get_entry_with_key(comp_dict_t *dict, char *key)
+{
+    int i, l;
+    for (i = 0, l = dict->size; i < l; ++i) {
+        if (strcmp(dict->data[i]->key, key) == 0) {
+            return dict->data[i];
+        }
+    }
+    comp_dict_item_t *item = malloc(sizeof(comp_dict_item_t));
+    return item;
 }
 
 void main_finalize (void)
 {
-  // comp_print_table();
+    // comp_print_table();
 }
+

@@ -1,12 +1,19 @@
 /*
-  Lucas Valandro
-  Pietro Degrazia
-*/
+ Lucas Valandro
+ Pietro Degrazia
+ */
 %{
-#include "parser.h" //arquivo automaticamente gerado pelo bison
-#include "cc_misc.h"
+    
+    #include "cc_misc.h"
+    #include "cc_dict.h"
+    #include "main.h"
+    #include <stdbool.h>
+    #include "parser.h" //arquivo automaticamente gerado pelo bison
+    struct comp_dict *dict;
 %}
+
 %option yylineno
+
 DIGIT [0-9]
 SPACE [\ \t\r]
 LETTER [a-zA-Z]
@@ -56,13 +63,135 @@ protected return TK_PR_PROTECTED;
 {SPACE}* {};
 "//"({CHARACTERS}|{SPACE}|{DIGIT}|{OP}|{QUODOB})*"\n" {};
 "/*"({CHARACTERS}|{SPACE}|"\n"|{QUODOB})*"*/" {};
-{SIGN}?{DIGIT}+ {did_read_token(TK_LIT_INT); return TK_LIT_INT;}
-{SIGN}?{DIGIT}+"."{DIGIT}* {did_read_token(TK_LIT_FLOAT); return TK_LIT_FLOAT;}
-false return TK_LIT_FALSE;
-true return TK_LIT_TRUE;
-{QUOSIM}{CHARACTERS}?{QUOSIM} {did_read_token(TK_LIT_CHAR); return TK_LIT_CHAR;}
-{QUODOB}({LETTER}|{SPACE}|{DIGIT}|{PUNCTUATION}|{UNDERSCORE}|{CHARACTERS})*{QUODOB} {did_read_token(TK_LIT_STRING); return TK_LIT_STRING;}
-({LETTER}|{UNDERSCORE})+(({LETTER}|{DIGIT}|{UNDERSCORE})*) {did_read_token(TK_IDENTIFICADOR); return TK_IDENTIFICADOR;}
+
+{DIGIT}+ {
+    char *text = strdup(yytext);
+    int intValue = atoi(text);
+    int line_number = yylineno;
+
+    char *key = strcat(text, suffix_for_token(POA_LIT_INT));
+    dict_remove(dict, key);
+    comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
+
+    data->line_number = line_number;
+    data->token_type = POA_LIT_INT;
+    data->value.intValue = intValue;
+
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
+
+    return TK_LIT_INT;
+}
+
+{DIGIT}+"."{DIGIT}* {
+    char *text = strdup(yytext);
+    float floatValue = atof(text);
+    int line_number = yylineno;
+    
+    char *key = strcat(text, suffix_for_token(POA_LIT_FLOAT));
+    dict_remove(dict, key);
+    
+    comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
+    data->line_number = line_number;
+    data->token_type = POA_LIT_FLOAT;
+    data->value.floatValue = floatValue;
+    
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
+    
+    return TK_LIT_FLOAT;
+}
+
+false {
+    char *text = strdup(yytext);
+    int line_number = yylineno;
+    bool boolValue = false;
+    
+    char *key = strcat("false", suffix_for_token(POA_LIT_BOOL));
+    dict_remove(dict, key);
+    
+    comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
+    data->line_number = line_number;
+    data->token_type = POA_LIT_BOOL;
+    data->value.boolValue = boolValue;
+    
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
+    
+    return TK_LIT_FALSE;
+}
+
+true {
+    char *text = strdup(yytext);
+    int line_number = yylineno;
+    bool boolValue = true;
+    
+    char *key = strcat("true", suffix_for_token(POA_LIT_BOOL));
+    dict_remove(dict, key);
+    
+    comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
+    data->line_number = line_number;
+    data->token_type = POA_LIT_BOOL;
+    data->value.boolValue = boolValue;
+    
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
+    
+    return TK_LIT_TRUE;
+}
+
+{QUOSIM}{CHARACTERS}?{QUOSIM} {
+    char *text = strdup(yytext);
+    text++; // Retirando primeira " ou '
+    text[strlen(text) - 1] = 0; // Retirando última " ou '
+    
+    int line_number = yylineno;
+    
+    char *key = strcat(text, suffix_for_token(POA_LIT_CHAR));
+    dict_remove(dict, key);
+    
+    comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
+    data->line_number = line_number;
+    data->token_type = POA_LIT_CHAR;
+    data->value.charValue = text[0];
+    
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
+    return TK_LIT_CHAR;
+}
+
+{QUODOB}({LETTER}|{SPACE}|{DIGIT}|{PUNCTUATION}|{UNDERSCORE}|{CHARACTERS})*{QUODOB} {
+    int line_number = yylineno;
+    char *text = strdup(yytext);
+    text++; // Retirando primeira " ou '
+    text[strlen(text) - 1] = 0; // Retirando última " ou '
+    
+    char *key = strcat(text, suffix_for_token(POA_LIT_STRING));
+    dict_remove(dict, key);
+    
+    comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
+    data->line_number = line_number;
+    data->token_type = POA_LIT_STRING;
+    data->value.stringValue = text;
+    
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
+    return TK_LIT_STRING;
+}
+
+({LETTER}|{UNDERSCORE})+(({LETTER}|{DIGIT}|{UNDERSCORE})*) {
+    char *text = strdup(yytext);
+    int line_number = yylineno;
+    
+    char *key = strcat(text, suffix_for_token(POA_IDENT));
+    dict_remove(dict, key);
+    
+    comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
+    data->line_number = line_number;
+    data->token_type = POA_IDENT;
+    data->value.stringValue = text;
+    
+    yylval.valor_lexico = dict_put(dict, key, (void*)(data));
+    return TK_IDENTIFICADOR;
+}
+
 {PUNCTUATION} return yytext[0];
+
 . return TOKEN_ERRO;
+
 %%
+
