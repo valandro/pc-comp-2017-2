@@ -51,6 +51,9 @@
 %token TOKEN_ERRO
 %error-verbose
 
+%left '+' '-' TK_OC_LE  TK_OC_GE TK_OC_EQ TK_OC_NE TK_OC_AND TK_OC_OR TK_OC_SL TK_OC_SR '<' '>'
+%left '*' '/'
+%right '^'
 %%
 /* Regras (e ações) da gramática */
 
