@@ -74,12 +74,14 @@ program:
 program_body
 ;
 program_body:
-program_body declare declare_var_global ';' |
+program_body declare ';' |
 program_body declare_new_type ';' |
 program_body declare declare_function |
+program_body declare array ';' |
+
 ;
 declare_new_type:
-TK_PR_CLASS TK_IDENTIFICADOR '['fields']'
+TK_PR_CLASS declare
 ;
 fields:
 field |
@@ -92,8 +94,10 @@ TK_PR_PUBLIC type TK_IDENTIFICADOR |
 ;
 declare:
 type TK_IDENTIFICADOR |
-TK_PR_STATIC TK_IDENTIFICADOR |
-TK_IDENTIFICADOR TK_IDENTIFICADOR |
+type TK_IDENTIFICADOR '['TK_LIT_INT']'|
+TK_PR_STATIC type TK_IDENTIFICADOR |
+TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'|
+TK_IDENTIFICADOR TK_IDENTIFICADOR
 ;
 /* Estrutura da declaração de uma variavel */
 /* Tipos das variaveis */
@@ -128,8 +132,8 @@ type TK_IDENTIFICADOR
 array:
 '['TK_LIT_INT']' |
 ;
-declare_var_global:
-array
+declare_array:
+TK_IDENTIFICADOR array
 ;
 
 /* Funções */
@@ -146,25 +150,33 @@ block:
 '{'commands'}'
 ;
 commands:
-commands block  ';' |
+commands block ';' |
 commands declare_var_local ';' |
 commands attribution ';'|
-commands control |
+commands control ';'|
 commands io ';'|
 commands return ';' |
 commands TK_PR_BREAK ';' |
 commands TK_PR_CONTINUE ';' |
 commands TK_PR_CASE TK_LIT_INT ':' |
 commands shift ';' |
-
 ;
 declare_var_local:
-declare |
-declare TK_OC_LE TK_IDENTIFICADOR |
-declare TK_OC_LE lit
+const type TK_IDENTIFICADOR att|
+TK_PR_STATIC const type TK_IDENTIFICADOR att|
+const TK_IDENTIFICADOR TK_IDENTIFICADOR att
+;
+const:
+TK_PR_CONST |
+;
+att:
+TK_OC_LE TK_IDENTIFICADOR |
+TK_OC_LE lit |
 ;
 expression:
 '('expression')' |
+'-' expression |
+'+' expression |
 expression '*' expression |
 expression '+' expression |
 expression '-' expression |
@@ -182,7 +194,7 @@ expression TK_OC_SR expression |
 TK_IDENTIFICADOR |
 lit |
 TK_IDENTIFICADOR '['expression']' |
-TK_IDENTIFICADOR params
+func_call |
 ;
 
 attribution:
@@ -216,8 +228,8 @@ return:
 TK_PR_RETURN expression
 ;
 shift:
-TK_IDENTIFICADOR ">>" TK_LIT_INT |
-TK_IDENTIFICADOR "<<" TK_LIT_INT
+TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT |
+TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 ;
 /* Declaração de um novo tipo */
 /*Bloco de funções*/
@@ -225,8 +237,14 @@ TK_IDENTIFICADOR "<<" TK_LIT_INT
 /* Atribuição */
 /* Funções de retorno */
 /*Chamada de função*/
+func_call:
+TK_IDENTIFICADOR '('list_func')'
+;
+list_func:
+expression |
+expression ',' list_exp |
+;
 /* Expressão */
 /* Funções de controle de fluxo */
 
 %%
-
