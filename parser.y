@@ -52,6 +52,7 @@
 %token TOKEN_ERRO
 
 %error-verbose
+
 %left TK_OC_OR
 %left TK_OC_AND
 %left TK_OC_EQ TK_OC_NE
@@ -60,6 +61,8 @@
 %left TK_OC_SL TK_OC_SR
 %left '+' '-'
 %left '*' '/'
+%right '['']'
+%right '('')'
 
 %union{
     comp_dict_item_t *valor_lexico;
@@ -74,7 +77,6 @@
  *    CONSTRUÇÃO DO PROGRAMA
  *
  */
-
 program:
 program_body
 ;
@@ -82,27 +84,27 @@ program_body:
 program_body declare ';' |
 program_body declare_new_type ';' |
 program_body declare declare_function |
-program_body declare array ';' |
 
 ;
 declare_new_type:
-TK_PR_CLASS declare
+TK_PR_CLASS declare '['fields']'
 ;
 fields:
 field |
-fields ':' field
+':' fields
 ;
 field:
 TK_PR_PROTECTED type TK_IDENTIFICADOR |
-TK_PR_PRIVATE type TK_IDENTIFICADOR |
 TK_PR_PUBLIC type TK_IDENTIFICADOR |
+TK_PR_PRIVATE type TK_IDENTIFICADOR
 ;
 declare:
-type TK_IDENTIFICADOR |
-type TK_IDENTIFICADOR '['TK_LIT_INT']'|
-TK_PR_STATIC type TK_IDENTIFICADOR |
-TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'|
+type TK_IDENTIFICADOR array|
+TK_PR_STATIC type TK_IDENTIFICADOR array|
 TK_IDENTIFICADOR TK_IDENTIFICADOR
+;
+array:
+'['TK_LIT_INT']' |
 ;
 /* Estrutura da declaração de uma variavel */
 /* Tipos das variaveis */
@@ -133,12 +135,6 @@ type TK_IDENTIFICADOR
 | TK_IDENTIFICADOR TK_IDENTIFICADOR
 | TK_PR_CONST type    TK_IDENTIFICADOR
 | TK_PR_CONST TK_IDENTIFICADOR    TK_IDENTIFICADOR
-;
-array:
-'['TK_LIT_INT']' |
-;
-declare_array:
-TK_IDENTIFICADOR array
 ;
 
 /* Funções */
@@ -180,8 +176,6 @@ TK_OC_LE lit |
 ;
 expression:
 '('expression')' |
-'-' expression |
-'+' expression |
 expression '*' expression |
 expression '+' expression |
 expression '-' expression |
@@ -216,10 +210,9 @@ TK_PR_SWITCH '('expression')' block |
 TK_PR_WHILE '('expression')' TK_PR_DO block |
 TK_PR_DO block TK_PR_WHILE '('expression')'
 ;
-
 list_cmd:
 commands |
-commands ',' list_cmd
+',' list_cmd
 ;
 io:
 TK_PR_INPUT expression  |
@@ -247,7 +240,7 @@ TK_IDENTIFICADOR '('list_func')'
 ;
 list_func:
 expression |
-expression ',' list_exp |
+expression ',' list_func
 ;
 /* Expressão */
 /* Funções de controle de fluxo */
