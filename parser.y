@@ -87,7 +87,7 @@ program_body declare declare_function |
 
 ;
 declare_new_type:
-TK_PR_CLASS declare '['fields']'
+TK_PR_CLASS TK_IDENTIFICADOR '['fields']'
 ;
 fields:
 field |
@@ -163,12 +163,10 @@ commands TK_PR_CASE TK_LIT_INT ':' |
 commands shift ';' |
 ;
 declare_var_local:
-const type TK_IDENTIFICADOR att|
-TK_PR_STATIC const type TK_IDENTIFICADOR att|
-const TK_IDENTIFICADOR TK_IDENTIFICADOR att
-;
-const:
-TK_PR_CONST |
+TK_PR_STATIC type TK_IDENTIFICADOR att|
+TK_PR_STATIC TK_PR_CONST type TK_IDENTIFICADOR att|
+type TK_IDENTIFICADOR att|
+TK_PR_CONST type TK_IDENTIFICADOR att
 ;
 att:
 TK_OC_LE TK_IDENTIFICADOR |
@@ -212,7 +210,7 @@ TK_PR_DO block TK_PR_WHILE '('expression')'
 ;
 list_cmd:
 commands |
-',' list_cmd
+commands ',' list_cmd
 ;
 io:
 TK_PR_INPUT expression  |
