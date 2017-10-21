@@ -5,6 +5,8 @@
 %{
     #include "main.h"
     #include "cc_dict.h"
+    #include "cc_ast.h"
+    #include "cc_tree.h"
     extern int yylineno;
 %}
 
@@ -53,6 +55,9 @@
 
 %error-verbose
 
+%type <tree> program
+%type <tree> program_body
+
 %left TK_OC_OR
 %left TK_OC_AND
 %left TK_OC_EQ TK_OC_NE
@@ -66,6 +71,8 @@
 
 %union{
     comp_dict_item_t *valor_lexico;
+    struct comp_tree *tree;
+    struct comp_tree *root;
 }
 
 %%
@@ -78,13 +85,12 @@
  *
  */
 program:
-program_body
+program_body {$1 = tree_new();tree_insert_node($1,tree_make_node((void*)AST_PROGRAMA)); tree_debug_print($1);}
 ;
 program_body:
 program_body declare ';' |
-program_body declare_new_type ';' |
+program_body declare_new_type ';'|
 program_body declare declare_function |
-
 ;
 declare_new_type:
 TK_PR_CLASS TK_IDENTIFICADOR '['fields']'
