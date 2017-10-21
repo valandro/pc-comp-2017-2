@@ -62,6 +62,7 @@
 %type <val> expression
 %type <val> att
 %type <val> args
+%type <val> commands
 
 %left TK_OC_OR
 %left TK_OC_AND
@@ -103,7 +104,7 @@ program_body:
 program_body declare ';' |
 program_body declare_new_type ';'|
 program_body declare declare_function |
-%empty {$$ = NULL;}
+/* empty */ {$$ = NULL;}
 ;
 declare_new_type:
 TK_PR_CLASS TK_IDENTIFICADOR '['fields']'
@@ -148,7 +149,7 @@ params:
 args:
 args ',' arg |
 arg |
-%empty {$$ = NULL;}
+/* empty */ {$$ = NULL;}
 ;
 arg:
 type TK_IDENTIFICADOR
@@ -181,7 +182,7 @@ commands TK_PR_BREAK ';' |
 commands TK_PR_CONTINUE ';' |
 commands TK_PR_CASE TK_LIT_INT ':' |
 commands shift ';' |
-%empty {$$ = NULL}
+/* empty */ {$$ = NULL}
 ;
 declare_var_local:
 TK_PR_STATIC type TK_IDENTIFICADOR att|
@@ -192,7 +193,7 @@ TK_PR_CONST type TK_IDENTIFICADOR att
 att:
 TK_OC_LE TK_IDENTIFICADOR |
 TK_OC_LE lit |
-%empty {$$ = NULL;}
+/* empty */ {$$ = NULL;}
 ;
 expression:
 '('expression')' |
@@ -214,7 +215,7 @@ TK_IDENTIFICADOR |
 lit |
 TK_IDENTIFICADOR '['expression']' |
 func_call |
-%empty {$$ = NULL;}
+/* empty */ {$$ = NULL;}
 ;
 
 attribution:
