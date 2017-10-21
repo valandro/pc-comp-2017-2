@@ -15,13 +15,14 @@ char* dict_key_from_text_and_token(char* text, int token)
     char token_string[20];
     sprintf(token_string, "*%d", token);
     key = strcat(key, token_string);
+    free(key);
     return key;
 }
 
 char* suffix_for_token(int token)
 {
-    char *token_string = malloc(2);
-    sprintf(token_string, "*%d", token);
+    char *token_string = malloc(16);
+    snprintf(token_string, 16, "*%d", token);
     return token_string;
 }
 
@@ -63,6 +64,7 @@ comp_dict_item_t* get_entry_with_key(comp_dict_t *dict, char *key)
 
 void main_finalize (void)
 {
-    // comp_print_table();
+    extern comp_dict_t *dict;
+    dict_free(dict);
 }
 

@@ -91,13 +91,13 @@
  */
 program:
 program_body {
-    tree = tree_make_node(AST_PROGRAMA);	//cria nodo
-    $$ = tree;				//associa o inicio a  rai­z da arvore
+    //tree = tree_make_node(AST_PROGRAMA);	//cria nodo
+    //$$ = tree;				//associa o inicio a  rai­z da arvore
 
-    if ($1 != NULL) {
-      tree_insert_node($$, $1);
-      gv_declare(AST_PROGRAMA, $$, NULL);
-    }
+    //if ($1 != NULL) {
+      //tree_insert_node($$, $1);
+      //gv_declare(AST_PROGRAMA, $$, NULL);
+    //}
 }
 ;
 program_body:
