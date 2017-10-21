@@ -7,7 +7,9 @@
     #include "cc_dict.h"
     #include "cc_ast.h"
     #include "cc_tree.h"
+    #include "cc_gv.h"
     extern int yylineno;
+    comp_tree_t* tree;
 %}
 
 /* Declaração dos tokens da linguagem */
@@ -36,27 +38,30 @@
 %token TK_PR_PRIVATE
 %token TK_PR_PUBLIC
 %token TK_PR_PROTECTED
-%token TK_OC_LE
-%token TK_OC_GE
-%token TK_OC_EQ
-%token TK_OC_NE
-%token TK_OC_AND
-%token TK_OC_OR
-%token TK_OC_SL
-%token TK_OC_SR
-%token TK_LIT_INT
-%token TK_LIT_FLOAT
-%token TK_LIT_FALSE
-%token TK_LIT_TRUE
-%token TK_LIT_CHAR
-%token TK_LIT_STRING
-%token TK_IDENTIFICADOR
+%token<valor_lexico> TK_OC_LE
+%token<valor_lexico> TK_OC_GE
+%token<valor_lexico> TK_OC_EQ
+%token<valor_lexico> TK_OC_NE
+%token<valor_lexico> TK_OC_AND
+%token<valor_lexico> TK_OC_OR
+%token<valor_lexico> TK_OC_SL
+%token<valor_lexico> TK_OC_SR
+%token<valor_lexico> TK_LIT_INT
+%token<valor_lexico> TK_LIT_FLOAT
+%token<valor_lexico> TK_LIT_FALSE
+%token<valor_lexico> TK_LIT_TRUE
+%token<valor_lexico> TK_LIT_CHAR
+%token<valor_lexico> TK_LIT_STRING
+%token<valor_lexico> TK_IDENTIFICADOR
 %token TOKEN_ERRO
 
 %error-verbose
 
-%type <tree> program
-%type <tree> program_body
+%type <val> program
+%type <val> program_body
+%type <val> expression
+%type <val> att
+%type <val> args
 
 %left TK_OC_OR
 %left TK_OC_AND
@@ -71,8 +76,7 @@
 
 %union{
     comp_dict_item_t *valor_lexico;
-    struct comp_tree *tree;
-    struct comp_tree *root;
+    struct comp_tree* val;
 }
 
 %%
@@ -85,12 +89,21 @@
  *
  */
 program:
-program_body {$1 = tree_new();tree_insert_node($1,tree_make_node((void*)AST_PROGRAMA)); tree_debug_print($1);}
+program_body {
+    tree = tree_make_node(AST_PROGRAMA);	//cria nodo
+    $$ = tree;				//associa o inicio a  rai­z da arvore
+
+    if ($1 != NULL) {
+      tree_insert_node($$, $1);
+      gv_declare(AST_PROGRAMA, $$, NULL);
+    }
+}
 ;
 program_body:
 program_body declare ';' |
 program_body declare_new_type ';'|
 program_body declare declare_function |
+%empty {$$ = NULL;}
 ;
 declare_new_type:
 TK_PR_CLASS TK_IDENTIFICADOR '['fields']'
@@ -105,13 +118,13 @@ TK_PR_PUBLIC type TK_IDENTIFICADOR |
 TK_PR_PRIVATE type TK_IDENTIFICADOR
 ;
 declare:
-type TK_IDENTIFICADOR array|
-TK_PR_STATIC type TK_IDENTIFICADOR array|
+type TK_IDENTIFICADOR |
+type TK_IDENTIFICADOR '['TK_LIT_INT']'|
+TK_PR_STATIC type TK_IDENTIFICADOR|
+TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'|
 TK_IDENTIFICADOR TK_IDENTIFICADOR
 ;
-array:
-'['TK_LIT_INT']' |
-;
+
 /* Estrutura da declaração de uma variavel */
 /* Tipos das variaveis */
 type:
@@ -135,6 +148,7 @@ params:
 args:
 args ',' arg |
 arg |
+%empty {$$ = NULL;}
 ;
 arg:
 type TK_IDENTIFICADOR
@@ -167,6 +181,7 @@ commands TK_PR_BREAK ';' |
 commands TK_PR_CONTINUE ';' |
 commands TK_PR_CASE TK_LIT_INT ':' |
 commands shift ';' |
+%empty {$$ = NULL}
 ;
 declare_var_local:
 TK_PR_STATIC type TK_IDENTIFICADOR att|
@@ -177,6 +192,7 @@ TK_PR_CONST type TK_IDENTIFICADOR att
 att:
 TK_OC_LE TK_IDENTIFICADOR |
 TK_OC_LE lit |
+%empty {$$ = NULL;}
 ;
 expression:
 '('expression')' |
@@ -198,6 +214,7 @@ TK_IDENTIFICADOR |
 lit |
 TK_IDENTIFICADOR '['expression']' |
 func_call |
+%empty {$$ = NULL;}
 ;
 
 attribution:
