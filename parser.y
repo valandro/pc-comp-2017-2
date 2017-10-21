@@ -56,12 +56,15 @@
 %token TOKEN_ERRO
 
 %error-verbose
-
 %type <val> program
 %type <val> program_body
-%type <val> expression
-%type <val> att
-%type <val> args
+%type <val> declare_function
+%type <valor_lexico> declare
+%type <val> body
+%type <val> header
+%type <val> block
+%type <val> params
+%type <val> commands
 
 %left TK_OC_OR
 %left TK_OC_AND
@@ -90,20 +93,26 @@
  */
 program:
 program_body {
-    tree = tree_make_node(AST_PROGRAMA);	//cria nodo
-    $$ = tree;				//associa o inicio a  rai­z da arvore
+    tree = tree_make_node(AST_PROGRAMA);	//cria nodo raíz
+    $$ = tree;				//associa o início a  rai­z da árvore
 
+    //Se existir um corpo, adiciona na raíz
     if ($1 != NULL) {
+      printf("ExisteBODY\n %d", $1);
       tree_insert_node($$, $1);
       gv_declare(AST_PROGRAMA, $$, NULL);
     }
+
 }
 ;
 program_body:
-program_body declare ';' |
-program_body declare_new_type ';'|
-program_body declare declare_function |
-%empty {$$ = NULL;}
+program_body declare ';' {$$ = $1;}|
+program_body declare_new_type ';' {$$ = $1;}|
+program_body declare declare_function {
+  $$ = $2;
+
+}|
+
 ;
 declare_new_type:
 TK_PR_CLASS TK_IDENTIFICADOR '['fields']'
@@ -118,11 +127,11 @@ TK_PR_PUBLIC type TK_IDENTIFICADOR |
 TK_PR_PRIVATE type TK_IDENTIFICADOR
 ;
 declare:
-type TK_IDENTIFICADOR |
-type TK_IDENTIFICADOR '['TK_LIT_INT']'|
-TK_PR_STATIC type TK_IDENTIFICADOR|
-TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'|
-TK_IDENTIFICADOR TK_IDENTIFICADOR
+type TK_IDENTIFICADOR {$$ = $2;}|
+type TK_IDENTIFICADOR '['TK_LIT_INT']'{$$ = $2;}|
+TK_PR_STATIC type TK_IDENTIFICADOR {$$ = $3;}|
+TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'{$$ = $3;}|
+TK_IDENTIFICADOR TK_IDENTIFICADOR {$$ = $2;}
 ;
 
 /* Estrutura da declaração de uma variavel */
@@ -148,27 +157,28 @@ params:
 args:
 args ',' arg |
 arg |
-%empty {$$ = NULL;}
 ;
 arg:
 type TK_IDENTIFICADOR
 | TK_IDENTIFICADOR TK_IDENTIFICADOR
-| TK_PR_CONST type    TK_IDENTIFICADOR
-| TK_PR_CONST TK_IDENTIFICADOR    TK_IDENTIFICADOR
+| TK_PR_CONST type TK_IDENTIFICADOR
+| TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 ;
 
 /* Funções */
 declare_function:
-header body
+header body {
+      $$ = $1;
+}
 ;
 header:
-params
+params {$$ = $1;}
 ;
 body:
-block
+block {$$ = $1;}
 ;
 block:
-'{'commands'}'
+'{'commands'}' {$$ = $2;}
 ;
 commands:
 commands block ';' |
@@ -181,7 +191,7 @@ commands TK_PR_BREAK ';' |
 commands TK_PR_CONTINUE ';' |
 commands TK_PR_CASE TK_LIT_INT ':' |
 commands shift ';' |
-%empty {$$ = NULL}
+/* empty */ {$$ = NULL;}
 ;
 declare_var_local:
 TK_PR_STATIC type TK_IDENTIFICADOR att|
@@ -192,7 +202,7 @@ TK_PR_CONST type TK_IDENTIFICADOR att
 att:
 TK_OC_LE TK_IDENTIFICADOR |
 TK_OC_LE lit |
-%empty {$$ = NULL;}
+
 ;
 expression:
 '('expression')' |
@@ -214,7 +224,7 @@ TK_IDENTIFICADOR |
 lit |
 TK_IDENTIFICADOR '['expression']' |
 func_call |
-%empty {$$ = NULL;}
+
 ;
 
 attribution:
