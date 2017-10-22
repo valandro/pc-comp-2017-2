@@ -68,7 +68,11 @@ protected return TK_PR_PROTECTED;
     int intValue = atoi(text);
     int line_number = yylineno;
 
-    char *key = strcat(text, suffix_for_token(POA_LIT_INT));
+    char *suffix = suffix_for_token(POA_LIT_INT);
+    char *key = calloc(strlen(text)+20,sizeof(char));
+    strcat(key,text);
+    strcat(key,suffix);
+
     dict_remove(dict, key);
     comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
 
@@ -78,6 +82,9 @@ protected return TK_PR_PROTECTED;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
 
+    free(text);
+    free(suffix);
+    free(key);
     return TK_LIT_INT;
 }
 
@@ -86,7 +93,11 @@ protected return TK_PR_PROTECTED;
     float floatValue = atof(text);
     int line_number = yylineno;
 
-    char *key = strcat(text, suffix_for_token(POA_LIT_FLOAT));
+    char *suffix = suffix_for_token(POA_LIT_FLOAT);
+    char *key = calloc(strlen(text)+20,sizeof(char));
+    strcat(key,text);
+    strcat(key,suffix);
+
     dict_remove(dict, key);
 
     comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
@@ -95,7 +106,7 @@ protected return TK_PR_PROTECTED;
     data->value.floatValue = floatValue;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
-
+    free(text);free(suffix);free(key);
     return TK_LIT_FLOAT;
 }
 
@@ -104,7 +115,11 @@ false {
     int line_number = yylineno;
     bool boolValue = false;
 
-    char *key = strcat("false", suffix_for_token(POA_LIT_BOOL));
+    char *suffix = suffix_for_token(POA_LIT_BOOL);
+    char *key = calloc(26,sizeof(char));
+    strcat(key,"false");
+    strcat(key,suffix);
+
     dict_remove(dict, key);
 
     comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
@@ -113,7 +128,7 @@ false {
     data->value.boolValue = boolValue;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
-
+    free(text);free(suffix);free(key);
     return TK_LIT_FALSE;
 }
 
@@ -122,7 +137,12 @@ true {
     int line_number = yylineno;
     bool boolValue = true;
 
-    char *key = strcat("true", suffix_for_token(POA_LIT_BOOL));
+    char *suffix = suffix_for_token(POA_LIT_BOOL);
+    char *key = calloc(25,sizeof(char));
+    strcat(key,"true");
+    strcat(key,suffix);
+
+
     dict_remove(dict, key);
 
     comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
@@ -131,7 +151,7 @@ true {
     data->value.boolValue = boolValue;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
-
+    free(text);free(suffix);free(key);
     return TK_LIT_TRUE;
 }
 
@@ -141,8 +161,12 @@ true {
     text[strlen(text) - 1] = 0; // Retirando última " ou '
 
     int line_number = yylineno;
+    
+    char *suffix = suffix_for_token(POA_LIT_CHAR);
+    char *key = calloc(strlen(text)+20,sizeof(char));
+    strcat(key,text);
+    strcat(key,suffix);
 
-    char *key = strcat(text, suffix_for_token(POA_LIT_CHAR));
     dict_remove(dict, key);
 
     comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
@@ -151,6 +175,7 @@ true {
     data->value.charValue = text[0];
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
+    free(text);free(suffix);free(key);
     return TK_LIT_CHAR;
 }
 
@@ -160,7 +185,11 @@ true {
     text++; // Retirando primeira " ou '
     text[strlen(text) - 1] = 0; // Retirando última " ou '
 
-    char *key = strcat(text, suffix_for_token(POA_LIT_STRING));
+    char *suffix = suffix_for_token(POA_LIT_STRING);
+    char *key = calloc(strlen(text)+20,sizeof(char));
+    strcat(key,text);
+    strcat(key,suffix);
+
     dict_remove(dict, key);
 
     comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
@@ -169,6 +198,7 @@ true {
     data->value.stringValue = text;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
+    free(text);free(suffix);free(key);
     return TK_LIT_STRING;
 }
 
@@ -176,7 +206,10 @@ true {
     char *text = strdup(yytext);
     int line_number = yylineno;
 
-    char *key = strcat(text, suffix_for_token(POA_IDENT));
+    char *suffix = suffix_for_token(POA_IDENT);
+    char *key = calloc(strlen(text)+20,sizeof(char));
+    strcat(key,text);
+    strcat(key,suffix);
     dict_remove(dict, key);
 
     comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
@@ -185,6 +218,9 @@ true {
     data->value.stringValue = text;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
+
+    free(text);free(suffix);free(key);
+
     return TK_IDENTIFICADOR;
 }
 

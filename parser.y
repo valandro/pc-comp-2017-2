@@ -169,6 +169,7 @@ params:
 args:
 args ',' arg |
 arg |
+/* empty */ {$$ = NULL;}
 ;
 arg:
 type TK_IDENTIFICADOR
@@ -217,7 +218,7 @@ TK_PR_CONST type TK_IDENTIFICADOR att
 att:
 TK_OC_LE TK_IDENTIFICADOR |
 TK_OC_LE lit |
-
+/* empty */ {$$ = NULL;}
 ;
 expression:
 '('expression')' |
@@ -239,7 +240,7 @@ TK_IDENTIFICADOR |
 lit |
 TK_IDENTIFICADOR '['expression']' |
 func_call |
-
+/* empty */ {$$ = NULL;}
 ;
 
 attribution:
