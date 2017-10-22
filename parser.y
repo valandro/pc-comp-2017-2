@@ -11,7 +11,6 @@
     extern int yylineno;
     comp_tree_t* tree;
     comp_tree_t* node;
-
 %}
 
 /* Declaração dos tokens da linguagem */
@@ -109,6 +108,7 @@ program_body declare ';' {$$ = $1;}|
 program_body declare_new_type ';' {$$ = $1;}|
 program_body declare declare_function {
     $$ = $3;
+
     if($3 != NULL){
       comp_tree_t* tnode = malloc(sizeof(comp_tree_t));
       // DESCOBRIR SE A ARVORE TA CERTA;
@@ -134,18 +134,23 @@ TK_PR_PRIVATE type TK_IDENTIFICADOR
 declare:
 type TK_IDENTIFICADOR {
   $$ = tree_make_node($2);
+  gv_declare(AST_FUNCAO,$$,$2->value.stringValue);
 }|
 type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   $$ = tree_make_node($2);
+  gv_declare(AST_FUNCAO,$$,$2->value.stringValue);
 }|
 TK_PR_STATIC type TK_IDENTIFICADOR {
   $$ = tree_make_node($3);
+  gv_declare(AST_FUNCAO,$$,$3->value.stringValue);
 }|
 TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   $$ = tree_make_node($3);
+  gv_declare(AST_FUNCAO,$$,$3->value.stringValue);
 }|
 TK_IDENTIFICADOR TK_IDENTIFICADOR {
   $$ = tree_make_node($2);
+  gv_declare(AST_FUNCAO,$$,$2->value.stringValue);
 }
 ;
 

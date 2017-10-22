@@ -82,9 +82,7 @@ protected return TK_PR_PROTECTED;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
 
-    free(text);
     free(suffix);
-    free(key);
     return TK_LIT_INT;
 }
 
@@ -106,7 +104,7 @@ protected return TK_PR_PROTECTED;
     data->value.floatValue = floatValue;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
-    free(text);free(suffix);free(key);
+    free(suffix);
     return TK_LIT_FLOAT;
 }
 
@@ -128,7 +126,7 @@ false {
     data->value.boolValue = boolValue;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
-    free(text);free(suffix);free(key);
+    free(suffix);
     return TK_LIT_FALSE;
 }
 
@@ -151,7 +149,7 @@ true {
     data->value.boolValue = boolValue;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
-    free(text);free(suffix);free(key);
+    free(suffix);
     return TK_LIT_TRUE;
 }
 
@@ -175,7 +173,7 @@ true {
     data->value.charValue = text[0];
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
-    free(text);free(suffix);free(key);
+    free(suffix);
     return TK_LIT_CHAR;
 }
 
@@ -198,7 +196,7 @@ true {
     data->value.stringValue = text;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
-    free(text);free(suffix);free(key);
+    free(suffix);
     return TK_LIT_STRING;
 }
 
@@ -219,7 +217,7 @@ true {
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
 
-    free(text);free(suffix);free(key);
+    free(suffix);
 
     return TK_IDENTIFICADOR;
 }
