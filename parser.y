@@ -112,7 +112,7 @@ program_body declare declare_function {
     if($3 != NULL){
       comp_tree_t* tnode = malloc(sizeof(comp_tree_t));
       // DESCOBRIR SE A ARVORE TA CERTA;
-      gv_declare(AST_FUNCAO,$2,"nome da funcao");
+      
       gv_connect(tnode,$2);
       free(tnode);
     }
@@ -190,7 +190,7 @@ declare_function:
 header body {
       $$ = $1;
       if ($2 != NULL) {
-      
+
 	}
 }
 ;
