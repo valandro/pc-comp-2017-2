@@ -109,14 +109,15 @@ program_body declare ';' {$$ = $1;}|
 program_body declare_new_type ';' {$$ = $1;}|
 program_body declare declare_function {
     $$ = $3;
-    printf("\nNOME %s",$2->value.stringValue);
+    
     if($3 != NULL){
-      node = tree_make_node((void*)AST_FUNCAO);
-      tree_debug_print(node);
-      // DESCOBRIR O NOME DA FUNÇÃO printf("");
-      gv_declare(AST_FUNCAO,node,"nome da funcao");
+      comp_tree_t* tnode = malloc(sizeof(comp_tree_t));
+      tnode = tree_make_node((void*)AST_FUNCAO);
 
-      gv_connect($$,node);
+      // DESCOBRIR O NOME DA FUNÇÃO printf("");
+      gv_declare(AST_FUNCAO,tnode,"nome da funcao");
+      gv_connect($$,tnode);
+      free(tnode);
     }
 }|
 /* empty */ {$$ = NULL;}
