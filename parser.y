@@ -10,6 +10,8 @@
     #include "cc_gv.h"
     extern int yylineno;
     comp_tree_t* tree;
+    comp_tree_t* node;
+
 %}
 
 /* Declaração dos tokens da linguagem */
@@ -93,12 +95,12 @@
  */
 program:
 program_body {
-    tree = tree_make_node(AST_PROGRAMA);	//cria nodo raíz
+    tree = tree_make_node((void*)AST_PROGRAMA);	//cria nodo raíz
     $$ = tree;				//associa o início a  rai­z da árvore
 
     //Se existir um corpo, adiciona na raíz
     if ($1 != NULL) {
-      printf("ExisteBODY\n %d", $1);
+      printf("CORPO\n %d", $1);
       tree_insert_node($$, $1);
       gv_declare(AST_PROGRAMA, $$, NULL);
     }
@@ -109,10 +111,20 @@ program_body:
 program_body declare ';' {$$ = $1;}|
 program_body declare_new_type ';' {$$ = $1;}|
 program_body declare declare_function {
-  $$ = $2;
-
+    $$ = $3;
+    if($3 != NULL){
+      printf("FUNCAO\n");
+      node = tree_make_node((void*)AST_FUNCAO);
+      tree_debug_print(node);
+    }
+  // Não existem mais funções, então pode anexar esse ramo na raíz.
+    else {
+      printf("ACABOU");
+      tree_insert_node($$,node);
+      gv_connect($$,node);
+    }
 }|
-
+/* empty */ {$$ = NULL;}
 ;
 declare_new_type:
 TK_PR_CLASS TK_IDENTIFICADOR '['fields']'
@@ -169,6 +181,9 @@ type TK_IDENTIFICADOR
 declare_function:
 header body {
       $$ = $1;
+      if ($2 != NULL) {
+				tree_insert_node($$, $2);
+			}
 }
 ;
 header:
