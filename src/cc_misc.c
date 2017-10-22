@@ -65,6 +65,4 @@ comp_dict_item_t* get_entry_with_key(comp_dict_t *dict, char *key)
 void main_finalize (void)
 {
     extern comp_dict_t *dict;
-    dict_free(dict);
 }
-

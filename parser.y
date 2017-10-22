@@ -80,7 +80,7 @@
 %right '('')'
 
 %union{
-    comp_dict_item_t *valor_lexico;
+    comp_dict_data_t *valor_lexico;
     struct comp_tree* val;
 }
 
@@ -97,14 +97,11 @@ program:
 program_body {
     tree = tree_make_node((void*)AST_PROGRAMA);	//cria nodo raíz
     $$ = tree;				//associa o início a  rai­z da árvore
-
     //Se existir um corpo, adiciona na raíz
     if ($1 != NULL) {
-      printf("CORPO\n %d", $1);
       tree_insert_node($$, $1);
       gv_declare(AST_PROGRAMA, $$, NULL);
     }
-
 }
 ;
 program_body:
@@ -112,15 +109,13 @@ program_body declare ';' {$$ = $1;}|
 program_body declare_new_type ';' {$$ = $1;}|
 program_body declare declare_function {
     $$ = $3;
+    printf("\nNOME %s",$2->value.stringValue);
     if($3 != NULL){
-      printf("FUNCAO\n");
       node = tree_make_node((void*)AST_FUNCAO);
       tree_debug_print(node);
-    }
-  // Não existem mais funções, então pode anexar esse ramo na raíz.
-    else {
-      printf("ACABOU");
-      tree_insert_node($$,node);
+      // DESCOBRIR O NOME DA FUNÇÃO printf("");
+      gv_declare(AST_FUNCAO,node,"nome da funcao");
+
       gv_connect($$,node);
     }
 }|
@@ -139,7 +134,7 @@ TK_PR_PUBLIC type TK_IDENTIFICADOR |
 TK_PR_PRIVATE type TK_IDENTIFICADOR
 ;
 declare:
-type TK_IDENTIFICADOR {$$ = $2;}|
+type TK_IDENTIFICADOR {$$ = tree_make_node($2);}|
 type TK_IDENTIFICADOR '['TK_LIT_INT']'{$$ = $2;}|
 TK_PR_STATIC type TK_IDENTIFICADOR {$$ = $3;}|
 TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'{$$ = $3;}|
@@ -169,7 +164,6 @@ params:
 args:
 args ',' arg |
 arg |
-/* empty */ {$$ = NULL;}
 ;
 arg:
 type TK_IDENTIFICADOR
@@ -218,7 +212,6 @@ TK_PR_CONST type TK_IDENTIFICADOR att
 att:
 TK_OC_LE TK_IDENTIFICADOR |
 TK_OC_LE lit |
-/* empty */ {$$ = NULL;}
 ;
 expression:
 '('expression')' |
@@ -240,7 +233,6 @@ TK_IDENTIFICADOR |
 lit |
 TK_IDENTIFICADOR '['expression']' |
 func_call |
-/* empty */ {$$ = NULL;}
 ;
 
 attribution:
