@@ -112,6 +112,7 @@ program_body declare declare_function {
     if($3 != NULL){
       comp_tree_t* tnode = malloc(sizeof(comp_tree_t));
       // DESCOBRIR SE A ARVORE TA CERTA;
+      gv_declare(AST_FUNCAO,$2,"nome da funcao");
       gv_connect(tnode,$2);
       free(tnode);
     }
@@ -133,23 +134,18 @@ TK_PR_PRIVATE type TK_IDENTIFICADOR
 declare:
 type TK_IDENTIFICADOR {
   $$ = tree_make_node($2);
-  gv_declare(AST_FUNCAO,$$,"nome da funcao");
 }|
 type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   $$ = tree_make_node($2);
-  gv_declare(AST_FUNCAO,$$,"nome da funcao");
 }|
 TK_PR_STATIC type TK_IDENTIFICADOR {
   $$ = tree_make_node($3);
-  gv_declare(AST_FUNCAO,$$,"nome da funcao");
 }|
 TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   $$ = tree_make_node($3);
-  gv_declare(AST_FUNCAO,$$,"nome da funcao");
 }|
 TK_IDENTIFICADOR TK_IDENTIFICADOR {
   $$ = tree_make_node($2);
-  gv_declare(AST_FUNCAO,$$,"nome da funcao");
 }
 ;
 
@@ -189,8 +185,8 @@ declare_function:
 header body {
       $$ = $1;
       if ($2 != NULL) {
-				tree_insert_node($$, $2);
-			}
+      
+	}
 }
 ;
 header:
@@ -203,7 +199,10 @@ block:
 '{'commands'}' {$$ = $2;}
 ;
 commands:
-commands block ';' |
+commands block ';' {
+    $$ = tree_make_node((void*)AST_BLOCO);
+    gv_declare(AST_BLOCO, $$,NULL);
+}|
 commands declare_var_local ';' |
 commands attribution ';'|
 commands control ';'|
