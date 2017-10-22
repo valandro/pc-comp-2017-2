@@ -60,7 +60,7 @@
 %type <val> program
 %type <val> program_body
 %type <val> declare_function
-%type <valor_lexico> declare
+%type <val> declare
 %type <val> body
 %type <val> header
 %type <val> block
@@ -111,10 +111,8 @@ program_body declare declare_function {
 
     if($3 != NULL){
       comp_tree_t* tnode = malloc(sizeof(comp_tree_t));
-      tnode = tree_make_node((void*)AST_FUNCAO);
-
-      gv_declare(AST_FUNCAO,tnode,$2->value.stringValue);
-      gv_connect($$,tnode);
+      // DESCOBRIR SE A ARVORE TA CERTA;
+      gv_connect(tnode,$2);
       free(tnode);
     }
 }|
@@ -134,12 +132,25 @@ TK_PR_PRIVATE type TK_IDENTIFICADOR
 ;
 declare:
 type TK_IDENTIFICADOR {
-  $$ = $2;
+  $$ = tree_make_node($2);
+  gv_declare(AST_FUNCAO,$$,"nome da funcao");
 }|
-type TK_IDENTIFICADOR '['TK_LIT_INT']'{$$ = $2;}|
-TK_PR_STATIC type TK_IDENTIFICADOR {$$ = $3;}|
-TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'{$$ = $3;}|
-TK_IDENTIFICADOR TK_IDENTIFICADOR {$$ = $2;}
+type TK_IDENTIFICADOR '['TK_LIT_INT']'{
+  $$ = tree_make_node($2);
+  gv_declare(AST_FUNCAO,$$,"nome da funcao");
+}|
+TK_PR_STATIC type TK_IDENTIFICADOR {
+  $$ = tree_make_node($3);
+  gv_declare(AST_FUNCAO,$$,"nome da funcao");
+}|
+TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'{
+  $$ = tree_make_node($3);
+  gv_declare(AST_FUNCAO,$$,"nome da funcao");
+}|
+TK_IDENTIFICADOR TK_IDENTIFICADOR {
+  $$ = tree_make_node($2);
+  gv_declare(AST_FUNCAO,$$,"nome da funcao");
+}
 ;
 
 /* Estrutura da declaração de uma variavel */
