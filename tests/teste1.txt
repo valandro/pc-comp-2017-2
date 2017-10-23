@@ -2,9 +2,5 @@ int main(){
 	int length = 5;
 	int i = 0;
 	int acc = 0;
-	int vector[length] = [10, 12, 13, 14, 15];
-
-	for(i=0; i < (length - 1); i++){
-		acc += vector[i];
-	}
+	soma_todos(100);
 }
