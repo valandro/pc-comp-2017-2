@@ -114,6 +114,7 @@ program_body declare declare_function {
     if($3 != NULL) {
       comp_tree_t* tnode = malloc(sizeof(comp_tree_t));
       // DESCOBRIR SE A ARVORE TA CERTA;
+      
       gv_connect(tnode,$2);
       free(tnode);
     }
@@ -193,8 +194,8 @@ header body {
     //  printf("\nDeclare function\n");
       $$ = $1;
       if ($2 != NULL) {
-				tree_insert_node($$, $2);
-			}
+
+	}
 }
 ;
 header:
@@ -207,7 +208,10 @@ block:
 '{'commands'}' {$$ = $2;}
 ;
 commands:
-commands block ';' |
+commands block ';' {
+    $$ = tree_make_node((void*)AST_BLOCO);
+    gv_declare(AST_BLOCO, $$,NULL);
+}|
 commands declare_var_local ';' |
 commands attribution ';'|
 commands control ';'|
