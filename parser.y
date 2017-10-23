@@ -234,7 +234,9 @@ TK_OC_LE TK_IDENTIFICADOR |
 TK_OC_LE lit |
 ;
 expression:
-'('expression')' |
+'('expression')' {
+  $$ = $2;
+}|
 expression '*' expression {
   $$ = tree_make_node(NULL);
   gv_declare(AST_ARIM_MULTIPLICACAO, $$, NULL);
@@ -319,14 +321,26 @@ expression TK_OC_SR expression {
   gv_connect($$,$1);
   gv_connect($$,$3);
 }|
-TK_IDENTIFICADOR |
+TK_IDENTIFICADOR {
+  $$ = tree_make_node($1);
+  gv_declare(AST_IDENTIFICADOR, $$, $1->value.stringValue);
+} |
 lit {
   $$ = tree_make_node($1);
   char *stringValue = malloc(16);
   snprintf(stringValue, 16, "%d", $1->value.intValue);
   gv_declare(AST_LITERAL,$$,stringValue);
 }|
-TK_IDENTIFICADOR '['expression']' |
+TK_IDENTIFICADOR '['expression']' {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_VETOR_INDEXADO, $$, NULL);
+
+  comp_tree_t* id = malloc(sizeof(comp_tree_t));
+  gv_declare(AST_IDENTIFICADOR, id, $1->value.stringValue);
+  gv_connect($$,id);
+  gv_connect($$,$3);
+}|
+
 func_call |
 ;
 
