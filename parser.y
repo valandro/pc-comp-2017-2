@@ -68,6 +68,8 @@
 %type <val> args
 %type <val> commands
 %type <val> expression
+%type <val> func_call
+%type <val> list_func
 %type <valor_lexico> lit
 
 %left TK_OC_OR
@@ -237,6 +239,7 @@ att:
 TK_OC_LE TK_IDENTIFICADOR |
 TK_OC_LE lit |
 ;
+
 expression:
 '('expression')' {
   $$ = $2;
@@ -388,11 +391,24 @@ TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 /* Funções de retorno */
 /*Chamada de função*/
 func_call:
-TK_IDENTIFICADOR '('list_func')'
+TK_IDENTIFICADOR '('list_func')' {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_CHAMADA_DE_FUNCAO, $$, NULL);
+
+  comp_tree_t* id = malloc(sizeof(comp_tree_t));
+  gv_declare(AST_IDENTIFICADOR, id, $1->value.stringValue);
+  gv_connect($$,id);
+  gv_connect($$,$3);
+}
 ;
 list_func:
-expression |
-expression ',' list_func
+expression {
+  $$ = $1;
+}|
+expression ',' list_func {
+  gv_connect($1,$3);
+  $$ = $1;
+}
 ;
 /* Expressão */
 /* Funções de controle de fluxo */
