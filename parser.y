@@ -65,6 +65,7 @@
 %type <val> header
 %type <val> block
 %type <val> params
+%type <val> args
 %type <val> commands
 
 %left TK_OC_OR
@@ -107,13 +108,19 @@ program_body:
 program_body declare ';' {$$ = $1;}|
 program_body declare_new_type ';' {$$ = $1;}|
 program_body declare declare_function {
-    $$ = $3;
-
+    $$ = $2;
     if($3 != NULL){
       comp_tree_t* tnode = malloc(sizeof(comp_tree_t));
       // DESCOBRIR SE A ARVORE TA CERTA;
+      //tree_debug_print($2);
+      gv_connect($2,$3);
+      gv_connect($2,tnode);
       
-      gv_connect(tnode,$2);
+      free(tnode);
+    }
+    else {
+      comp_tree_t* tnode = malloc(sizeof(comp_tree_t));
+      gv_connect($2,tnode);
       free(tnode);
     }
 }|
@@ -188,14 +195,11 @@ type TK_IDENTIFICADOR
 /* Funções */
 declare_function:
 header body {
-      $$ = $1;
-      if ($2 != NULL) {
-
-	}
+      $$ = $2;
 }
 ;
 header:
-params {$$ = $1;}
+params
 ;
 body:
 block {$$ = $1;}
@@ -205,8 +209,9 @@ block:
 ;
 commands:
 commands block ';' {
-    $$ = tree_make_node((void*)AST_BLOCO);
-    gv_declare(AST_BLOCO, $$,NULL);
+    comp_tree_t* block = tree_make_node((void*)AST_BLOCO);
+    gv_declare(AST_BLOCO, block,NULL);
+    $$ = block;
 }|
 commands declare_var_local ';' |
 commands attribution ';'|
