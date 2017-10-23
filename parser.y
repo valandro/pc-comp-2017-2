@@ -66,6 +66,8 @@
 %type <val> block
 %type <val> params
 %type <val> commands
+%type <val> expression
+%type <valor_lexico> lit
 
 %left TK_OC_OR
 %left TK_OC_AND
@@ -108,8 +110,8 @@ program_body declare ';' {$$ = $1;}|
 program_body declare_new_type ';' {$$ = $1;}|
 program_body declare declare_function {
     $$ = $3;
-
-    if($3 != NULL){
+    //printf("\nProgram Body\n");
+    if($3 != NULL) {
       comp_tree_t* tnode = malloc(sizeof(comp_tree_t));
       // DESCOBRIR SE A ARVORE TA CERTA;
       gv_connect(tnode,$2);
@@ -133,7 +135,8 @@ TK_PR_PRIVATE type TK_IDENTIFICADOR
 declare:
 type TK_IDENTIFICADOR {
   $$ = tree_make_node($2);
-  gv_declare(AST_FUNCAO,$$,$2->value.stringValue);
+  //printf("\nFunc: %s\n",$2->value.stringValue);    
+  gv_declare(AST_FUNCAO,$$,$2->value.stringValue); 
 }|
 type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   $$ = tree_make_node($2);
@@ -187,6 +190,7 @@ type TK_IDENTIFICADOR
 /* Funções */
 declare_function:
 header body {
+    //  printf("\nDeclare function\n");
       $$ = $1;
       if ($2 != NULL) {
 				tree_insert_node($$, $2);
@@ -227,22 +231,97 @@ TK_OC_LE lit |
 ;
 expression:
 '('expression')' |
-expression '*' expression |
-expression '+' expression |
-expression '-' expression |
-expression '/' expression |
-expression '>' expression |
-expression '<' expression |
-expression TK_OC_LE expression |
-expression TK_OC_GE expression |
-expression TK_OC_EQ expression |
-expression TK_OC_NE expression |
-expression TK_OC_AND expression |
-expression TK_OC_OR expression |
-expression TK_OC_SL expression |
-expression TK_OC_SR expression |
+expression '*' expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_ARIM_MULTIPLICACAO, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression '+' expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_ARIM_SOMA, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression '-' expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_ARIM_SUBTRACAO, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression '/' expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_ARIM_DIVISAO, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression '>' expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_LOGICO_COMP_G, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression '<' expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_LOGICO_COMP_L, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression TK_OC_LE expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_LOGICO_COMP_LE, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression TK_OC_GE expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_LOGICO_COMP_GE, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression TK_OC_EQ expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_LOGICO_COMP_IGUAL, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression TK_OC_NE expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_LOGICO_COMP_DIF, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression TK_OC_AND expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_LOGICO_E, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression TK_OC_OR expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_LOGICO_OU, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression TK_OC_SL expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_SHIFT_LEFT, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
+expression TK_OC_SR expression {
+  $$ = tree_make_node(NULL);
+  gv_declare(AST_SHIFT_RIGHT, $$, NULL);
+  gv_connect($$,$1);
+  gv_connect($$,$3);
+}|
 TK_IDENTIFICADOR |
-lit |
+lit {
+  $$ = tree_make_node($1);
+  char *stringValue = malloc(16);
+  snprintf(stringValue, 16, "%d", $1->value.intValue);
+  gv_declare(AST_LITERAL,$$,stringValue);
+}|
 TK_IDENTIFICADOR '['expression']' |
 func_call |
 ;
