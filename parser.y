@@ -11,6 +11,8 @@
     extern int yylineno;
     comp_tree_t* tree;
     comp_tree_t* node;
+    int cont = 0;
+    
 %}
 
 /* Declaração dos tokens da linguagem */
@@ -105,6 +107,8 @@ program_body {
     if ($1 != NULL) {
       tree_insert_node($$, $1);
       gv_declare(AST_PROGRAMA, $$, NULL);
+      gv_connect($$,$1);
+
     }
 }
 ;
@@ -112,21 +116,25 @@ program_body:
 program_body declare ';' {$$ = $1;}|
 program_body declare_new_type ';' {$$ = $1;}|
 program_body declare declare_function {
-    $$ = $2;
+    comp_tree_t* first;
+    $$ = first;
     if($3 != NULL){
-      comp_tree_t* tnode = malloc(sizeof(comp_tree_t));
       // DESCOBRIR SE A ARVORE TA CERTA;
-      //tree_debug_print($2);
+      tree_insert_node($2,$3);
       gv_connect($2,$3);
-      gv_connect($2,tnode);
-      
-      free(tnode);
+      node = $2;
+      cont++;
     }
     else {
-      comp_tree_t* tnode = malloc(sizeof(comp_tree_t));
-      gv_connect($2,tnode);
-      free(tnode);
+      tree_insert_node(node,$2);
+      gv_connect(node,$2);
+      node = $2;
+      cont++;
     }
+    if(cont == 1){
+      first = $2;
+    }
+
 }|
 /* empty */ {$$ = NULL;}
 ;
@@ -144,9 +152,9 @@ TK_PR_PRIVATE type TK_IDENTIFICADOR
 ;
 declare:
 type TK_IDENTIFICADOR {
-  $$ = tree_make_node($2);
-  //printf("\nFunc: %s\n",$2->value.stringValue);    
-  gv_declare(AST_FUNCAO,$$,$2->value.stringValue); 
+  $$ = tree_make_node((void*)AST_IDENTIFICADOR);
+  gv_declare(AST_FUNCAO,$$,$2->value.stringValue);
+  //printf("\nFunc: %s\n",$2->value.stringValue);
 }|
 type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   $$ = tree_make_node($2);
@@ -214,9 +222,8 @@ block:
 ;
 commands:
 commands block ';' {
-    comp_tree_t* block = tree_make_node((void*)AST_BLOCO);
-    gv_declare(AST_BLOCO, block,NULL);
-    $$ = block;
+    $$ = tree_make_node((void*)AST_BLOCO);
+    gv_declare(AST_BLOCO,$$,NULL);
 }|
 commands declare_var_local ';' |
 commands attribution ';'|
