@@ -1,0 +1,10 @@
+int main() {
+	int soma;
+	soma = 1 + 2;
+
+	int mult;
+	mult = soma * (1 + soma);
+
+	int div;
+	div = mult / soma;
+}

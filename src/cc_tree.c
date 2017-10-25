@@ -60,6 +60,7 @@ void tree_insert_node(comp_tree_t *tree, comp_tree_t *node){
 		ERRO("Cannot insert node, node is null");
 
 	if (tree_has_child_nodes(tree)){
+		//se ta vazia, só aponta pro nodo
 		tree->first = node;
 		tree->last = node;
 	} else {
@@ -69,9 +70,31 @@ void tree_insert_node(comp_tree_t *tree, comp_tree_t *node){
 	}
 	++tree->childnodes;
 
-	fprintf (intfp, "node_%p [label=\"\"]\n", tree);
-	fprintf (intfp, "node_%p [label=\"\"]\n", node);
-	fprintf (intfp, "node_%p -> node_%p\n", tree, node);
+	ast_node_t* tree_ast = (ast_node_t*)(tree->value);
+	int type = tree_ast->type;
+	if (type == AST_IDENTIFICADOR || type == AST_FUNCAO || type == AST_LITERAL) {
+		// printf("Tree: %s\n",tree_ast->value.data->value.stringValue);
+		gv_declare(type, tree, tree_ast->value.data->value.stringValue);
+	} else {
+		// printf("Tree: NULL\n");
+		gv_declare(type, tree, NULL);
+	}
+
+	ast_node_t* node_ast = (ast_node_t*)(node->value);
+	type = node_ast->type;
+	if (type == AST_IDENTIFICADOR || type == AST_FUNCAO || type == AST_LITERAL) {
+		// printf("Node: %s\n", node_ast->value.data->value.stringValue);
+		gv_declare(type, node, node_ast->value.data->value.stringValue);
+	} else {
+		// printf("Node: NULL\n");
+		gv_declare(type, node, NULL);
+	}
+	
+	gv_connect(tree,node);
+
+	//fprintf (intfp, "node_%p [label=\"\"]\n", tree);
+	//fprintf (intfp, "node_%p [label=\"\"]\n", node);
+	//fprintf (intfp, "node_%p -> node_%p\n", tree, node);
 	comp_tree_last = tree;
 }
 

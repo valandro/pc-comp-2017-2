@@ -5,6 +5,9 @@
 */
 #ifndef __CC_AST_H
 #define __CC_AST_H
+
+#include "cc_dict.h"
+
 #define AST_PROGRAMA             0
 #define AST_FUNCAO               1
 //Comandos
@@ -37,4 +40,19 @@
 #define AST_CHAMADA_DE_FUNCAO   27
 #define AST_SHIFT_RIGHT         28
 #define AST_SHIFT_LEFT          29
+
+
+/*
+ * Tipo: ast_node
+ */
+typedef struct ast_node
+{
+    int type;
+    union
+    {
+        comp_dict_data_t* data;
+    } value;
+} ast_node_t;
+
+
 #endif

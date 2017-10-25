@@ -16,6 +16,11 @@
 #ifndef CC_TREE_H_
 #define CC_TREE_H_
 
+#include "cc_dict.h"
+#include "cc_ast.h"
+#include "cc_gv.h"
+#include <string.h>
+
 /*
  * Tipo: comp_tree_t, value é um tipo genérico armazenado em cada
  * nó da árvore, childnodes é a quantidade de nós filhos de um nó,

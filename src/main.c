@@ -113,6 +113,7 @@ int main_avaliacao_etapa_2 (int argc, char **argv)
 
 int main_avaliacao_etapa_3 (int argc, char **argv)
 {
+  char *outputFile = "e3.dot";
   gv_init(NULL);
   int ret = yyparse();
   gv_close();

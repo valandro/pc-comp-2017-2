@@ -96,7 +96,6 @@ void gv_init (const char *filename)
   if (fp){
     fprintf (stderr, "%s:%d já foi chamada, abort()\n", __FUNCTION__, __LINE__);
     abort();
-
   }
 
   //se o nome do arquivo for válido, abre arquivo com esse nome para escrita

@@ -10,7 +10,7 @@
     #include "cc_gv.h"
     extern int yylineno;
     comp_tree_t* tree;
-    comp_tree_t* node;
+    comp_tree_t* last_function;
     int cont = 0;
     
 %}
@@ -101,14 +101,14 @@
  */
 program:
 program_body {
-    tree = tree_make_node((void*)AST_PROGRAMA);	//cria nodo raíz
+    ast_node_t *node = malloc(sizeof(ast_node_t));
+    node->type = AST_PROGRAMA;
+
+    tree = tree_make_node((void*)node);	//cria nodo raíz
     $$ = tree;				//associa o início a  rai­z da árvore
     //Se existir um corpo, adiciona na raíz
     if ($1 != NULL) {
       tree_insert_node($$, $1);
-      gv_declare(AST_PROGRAMA, $$, NULL);
-      gv_connect($$,$1);
-
     }
 }
 ;
@@ -118,23 +118,21 @@ program_body declare_new_type ';' {$$ = $1;}|
 program_body declare declare_function {
     comp_tree_t* first;
     $$ = first;
-    if($3 != NULL){
-      // DESCOBRIR SE A ARVORE TA CERTA;
+    if($3 != NULL){//a função tem corpo, tem comandos
+      if(cont > 0) {//se não for a primeira função/já existir last_function
+        tree_insert_node(last_function,$2);
+      }
       tree_insert_node($2,$3);
-      gv_connect($2,$3);
-      node = $2;
+      last_function = $2;
       cont++;
-    }
-    else {
-      tree_insert_node(node,$2);
-      gv_connect(node,$2);
-      node = $2;
+    } else {
+      tree_insert_node(last_function,$2);
+      last_function = $2;
       cont++;
     }
     if(cont == 1){
       first = $2;
     }
-
 }|
 /* empty */ {$$ = NULL;}
 ;
@@ -152,25 +150,35 @@ TK_PR_PRIVATE type TK_IDENTIFICADOR
 ;
 declare:
 type TK_IDENTIFICADOR {
-  $$ = tree_make_node((void*)AST_IDENTIFICADOR);
-  gv_declare(AST_FUNCAO,$$,$2->value.stringValue);
-  //printf("\nFunc: %s\n",$2->value.stringValue);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_FUNCAO;
+  node->value.data = $2;
+  $$ = tree_make_node((void*)node);
 }|
 type TK_IDENTIFICADOR '['TK_LIT_INT']'{
-  $$ = tree_make_node($2);
-  gv_declare(AST_FUNCAO,$$,$2->value.stringValue);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_FUNCAO;
+  node->value.data = $2;
+  $$ = tree_make_node((void*)node);
+
 }|
 TK_PR_STATIC type TK_IDENTIFICADOR {
-  $$ = tree_make_node($3);
-  gv_declare(AST_FUNCAO,$$,$3->value.stringValue);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_FUNCAO;
+  node->value.data = $3;
+  $$ = tree_make_node((void*)node);
 }|
 TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'{
-  $$ = tree_make_node($3);
-  gv_declare(AST_FUNCAO,$$,$3->value.stringValue);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_FUNCAO;
+  node->value.data = $3;
+  $$ = tree_make_node((void*)node);
 }|
 TK_IDENTIFICADOR TK_IDENTIFICADOR {
-  $$ = tree_make_node($2);
-  gv_declare(AST_FUNCAO,$$,$2->value.stringValue);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_FUNCAO;
+  node->value.data = $2;
+  $$ = tree_make_node((void*)node);
 }
 ;
 
@@ -222,8 +230,9 @@ block:
 ;
 commands:
 commands block ';' {
-    $$ = tree_make_node((void*)AST_BLOCO);
-    gv_declare(AST_BLOCO,$$,NULL);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_BLOCO;
+  $$ = tree_make_node((void*)node);
 }|
 commands declare_var_local ';' |
 commands attribution ';'|
@@ -252,107 +261,95 @@ expression:
   $$ = $2;
 }|
 expression '*' expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_ARIM_MULTIPLICACAO, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_ARIM_MULTIPLICACAO;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression '+' expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_ARIM_SOMA, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_ARIM_SOMA;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression '-' expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_ARIM_SUBTRACAO, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_ARIM_SUBTRACAO;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression '/' expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_ARIM_DIVISAO, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_ARIM_DIVISAO;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression '>' expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_LOGICO_COMP_G, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_LOGICO_COMP_G;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression '<' expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_LOGICO_COMP_L, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_LOGICO_COMP_L;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression TK_OC_LE expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_LOGICO_COMP_LE, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_LOGICO_COMP_LE;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression TK_OC_GE expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_LOGICO_COMP_GE, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_LOGICO_COMP_GE;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression TK_OC_EQ expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_LOGICO_COMP_IGUAL, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_LOGICO_COMP_IGUAL;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression TK_OC_NE expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_LOGICO_COMP_DIF, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_LOGICO_COMP_DIF;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression TK_OC_AND expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_LOGICO_E, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_LOGICO_E;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression TK_OC_OR expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_LOGICO_OU, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_LOGICO_OU;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression TK_OC_SL expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_SHIFT_LEFT, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_SHIFT_LEFT;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 expression TK_OC_SR expression {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_SHIFT_RIGHT, $$, NULL);
-  gv_connect($$,$1);
-  gv_connect($$,$3);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_SHIFT_RIGHT;
+  $$ = tree_make_binary_node((void*)node, $1, $3);
 }|
 TK_IDENTIFICADOR {
-  $$ = tree_make_node($1);
-  gv_declare(AST_IDENTIFICADOR, $$, $1->value.stringValue);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_IDENTIFICADOR;
+  node->value.data = $1;
+  $$ = tree_make_node((void*)node);
 } |
 lit {
-  $$ = tree_make_node($1);
-  char *stringValue = malloc(16);
-  snprintf(stringValue, 16, "%d", $1->value.intValue);
-  gv_declare(AST_LITERAL,$$,stringValue);
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_LITERAL;
+  node->value.data = $1;
+  $$ = tree_make_node((void*)node);
 }|
 TK_IDENTIFICADOR '['expression']' {
-  $$ = tree_make_node(NULL);
-  gv_declare(AST_VETOR_INDEXADO, $$, NULL);
+    ast_node_t *ident = malloc(sizeof(ast_node_t));
+    ident->type = AST_IDENTIFICADOR;
+    ident->value.data = $1;
 
-  comp_tree_t* id = malloc(sizeof(comp_tree_t));
-  gv_declare(AST_IDENTIFICADOR, id, $1->value.stringValue);
-  gv_connect($$,id);
-  gv_connect($$,$3);
+    ast_node_t *node = malloc(sizeof(ast_node_t));
+    node->type = AST_VETOR_INDEXADO;
+    $$ = tree_make_binary_node((void*)node, (void*)ident, $3);
 }|
 
 func_call |
@@ -400,12 +397,7 @@ TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 func_call:
 TK_IDENTIFICADOR '('list_func')' {
   $$ = tree_make_node(NULL);
-  gv_declare(AST_CHAMADA_DE_FUNCAO, $$, NULL);
-
   comp_tree_t* id = malloc(sizeof(comp_tree_t));
-  gv_declare(AST_IDENTIFICADOR, id, $1->value.stringValue);
-  gv_connect($$,id);
-  gv_connect($$,$3);
 }
 ;
 list_func:
@@ -413,7 +405,6 @@ expression {
   $$ = $1;
 }|
 expression ',' list_func {
-  gv_connect($1,$3);
   $$ = $1;
 }
 ;
