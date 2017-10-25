@@ -12,7 +12,6 @@
     comp_tree_t* tree;
     comp_tree_t* last_function;
     int cont = 0;
-    
 %}
 
 /* Declaração dos tokens da linguagem */

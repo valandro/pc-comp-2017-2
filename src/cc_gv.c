@@ -109,9 +109,9 @@ void gv_init (const char *filename)
     fp = stderr;    
   }
   fprintf (fp, "digraph G {\n");
-
-  intfp = fopen(INTERNAL_OUTPUT, "w");
-  fprintf(intfp, "digraph G {\n");
+  intfp = fp;
+  //intfp = fopen(INTERNAL_OUTPUT, "w");
+  // fprintf(intfp, "digraph G {\n");
   fprintf(intfp, "  root [label=\"root\"]\n");
 }
 
@@ -124,12 +124,14 @@ void gv_init (const char *filename)
 void gv_close (void)
 {
   __gv_test_valid_fp (__FUNCTION__);
-  fprintf (fp, "}\n");
-  fclose(fp);
+  // fprintf (fp, "}\n");
+  
   if (comp_tree_last){
+    //printf("comp_tree_last\n");
     fprintf(intfp, "root -> node_%p\n", comp_tree_last);
   }
   fprintf(intfp, "}\n");
+  fclose(fp);
   fclose(intfp);
 }
 
