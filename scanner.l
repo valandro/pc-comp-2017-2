@@ -159,7 +159,7 @@ true {
     text[strlen(text) - 1] = 0; // Retirando última " ou '
 
     int line_number = yylineno;
-    
+
     char *suffix = suffix_for_token(POA_LIT_CHAR);
     char *key = calloc(strlen(text)+20,sizeof(char));
     strcat(key,text);
