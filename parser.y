@@ -117,18 +117,16 @@ program_body declare_new_type ';' {$$ = $1;}|
 program_body declare declare_function {
     comp_tree_t* first;
     $$ = first;
-    if($3 != NULL){//a função tem corpo, tem comandos
-      if(cont > 0) {//se não for a primeira função/já existir last_function
-        tree_insert_node(last_function,$2);
-      }
-      tree_insert_node($2,$3);
-      last_function = $2;
-      cont++;
-    } else {
+    if(cont > 0) {//se não for a primeira função/já existir last_function
       tree_insert_node(last_function,$2);
-      last_function = $2;
-      cont++;
     }
+    last_function = $2;
+    cont++;
+    
+    if($3 != NULL){ //a função tem corpo, tem comandos
+      tree_insert_node($2,$3);
+    }
+    
     if(cont == 1){
       first = $2;
     }
@@ -159,7 +157,6 @@ type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   node->type = AST_FUNCAO;
   node->value.data = $2;
   $$ = tree_make_node((void*)node);
-
 }|
 TK_PR_STATIC type TK_IDENTIFICADOR {
   ast_node_t *node = malloc(sizeof(ast_node_t));
