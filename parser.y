@@ -71,7 +71,9 @@
 %type <val> expression
 %type <val> func_call
 %type <val> list_func
+%type <val> attribution
 %type <valor_lexico> lit
+%type <val> control
 
 %left TK_OC_OR
 %left TK_OC_AND
@@ -234,8 +236,28 @@ commands block ';' {
   $$ = tree_make_node((void*)node);
 }|
 commands declare_var_local ';' |
-commands attribution ';'|
-commands control ';'|
+commands attribution ';'{
+  if ($$ == NULL) {
+    $$ = $2;
+  } else {
+    comp_tree_t *last_node = $$;
+    while(last_node->childnodes != 2) {
+      last_node = last_node->last;
+    }
+    tree_insert_node(last_node,$2);
+  }
+}|
+commands control ';'{
+  if ($$ == NULL) {
+    $$ = $2;
+  } else {
+    comp_tree_t *last_node = $$;
+    while(last_node->childnodes != 2) {
+      last_node = last_node->last;
+    }
+    tree_insert_node(last_node,$2);
+  }
+}|
 commands io ';'|
 commands return ';' |
 commands TK_PR_BREAK ';' |
@@ -355,12 +377,38 @@ func_call |
 ;
 
 attribution:
-TK_IDENTIFICADOR '=' expression
+TK_IDENTIFICADOR '=' expression {
+  ast_node_t *ident = malloc(sizeof(ast_node_t));
+  ident->type = AST_IDENTIFICADOR;
+  ident->value.data = $1;
+  comp_tree_t* ident_node = tree_make_node((void*)ident);
+
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_ATRIBUICAO;
+
+  $$ = tree_make_binary_node((void*)node, ident_node, $3);
+}
 | TK_IDENTIFICADOR '[' expression ']' '=' expression
 ;
 
 control:
-TK_PR_IF '('expression')' TK_PR_THEN block |
+TK_PR_IF '('expression')' TK_PR_THEN block {
+  ast_node_t *if_then_value = malloc(sizeof(ast_node_t));
+  if_then_value->type = AST_IF_ELSE;
+
+  comp_tree_t* if_then_tree_node = tree_make_node((void*)if_then_value);
+  
+  ast_node_t *t = $3->value;
+  printf("\nNode $3: %d\n", t->type);
+  tree_insert_node(if_then_tree_node, $3);
+  if ($6 != NULL) {
+    ast_node_t *p = $6->value;
+    printf("\nNode $6: %d\n", p->type);
+    tree_insert_node(if_then_tree_node, $6);
+    //$$ = tree_make_binary_node((void*)if_then_tree_node, $3, $6);
+  }
+  $$ = if_then_tree_node;
+}|
 TK_PR_IF '('expression')' TK_PR_THEN block TK_PR_ELSE block |
 TK_PR_FOREACH '('TK_IDENTIFICADOR ':' list_exp')' block |
 TK_PR_FOR '(' list_cmd ':' expression ':' list_cmd ')' block |
