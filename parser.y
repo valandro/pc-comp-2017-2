@@ -116,19 +116,22 @@ program_body declare ';' {$$ = $1;}|
 program_body declare_new_type ';' {$$ = $1;}|
 program_body declare declare_function {
     comp_tree_t* first;
+
     $$ = first;
     if(cont > 0) {//se não for a primeira função/já existir last_function
       tree_insert_node(last_function,$2);
     }
+
     last_function = $2;
     cont++;
     
     if($3 != NULL){ //a função tem corpo, tem comandos
       tree_insert_node($2,$3);
     }
-    
+
     if(cont == 1){
       first = $2;
+      $$ = $2;
     }
 }|
 /* empty */ {$$ = NULL;}
