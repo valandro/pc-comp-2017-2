@@ -8,6 +8,9 @@
 
 #include "cc_dict.h"
 
+#define AST_COMMANDS_BOTTOM      2
+#define AST_COMMANDS_TOP         9
+
 #define AST_PROGRAMA             0
 #define AST_FUNCAO               1
 //Comandos
@@ -53,6 +56,5 @@ typedef struct ast_node
         comp_dict_data_t* data;
     } value;
 } ast_node_t;
-
 
 #endif

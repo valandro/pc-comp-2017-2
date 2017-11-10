@@ -74,6 +74,7 @@
 %type <val> attribution
 %type <valor_lexico> lit
 %type <val> control
+%type <val> return
 
 %left TK_OC_OR
 %left TK_OC_AND
@@ -240,19 +241,28 @@ commands declare_var_local ';' |
 
 commands attribution ';'{
   if ($$ == NULL) {
-    printf("\nAtribuição: NULL\n");
     $$ = $2;
   } else {
-    comp_tree_t *last_node = $$;
-    ast_node_t *node = last_node->value;
-    printf("\nAtribuição: childnodes %d type %d\n", last_node->childnodes, node->type);
+    comp_tree_t *current_tree = $$;
+
+    ast_node_t *current_node;
+    comp_tree_t *next_tree;
+    ast_node_t *next_node;
     
-    while( (node->type != AST_ATRIBUICAO || last_node->childnodes >= 3) && node->type != AST_IF_ELSE) {
-      last_node = last_node->last;
-      node = last_node->value;
-      printf("\nAtribuição: childnodes %d type %d\n", last_node->childnodes, node->type);
+    while(true) {
+      current_node = current_tree->value;
+      next_tree = current_tree->last;
+      next_node = next_tree->value;
+      printf("\ncurrent: type %d  children: %d\n", current_node->type, current_tree->childnodes);
+      printf("\nnext: type %d  children: %d\n", next_node->type, next_tree->childnodes);
+      if(! ast_is_command(next_node)) {
+        break;
+      } else {
+        current_tree = next_tree;
+      }
     }
-    tree_insert_node(last_node,$2);
+
+    tree_insert_node(current_tree,$2);
   }
 }|
 
@@ -268,7 +278,29 @@ commands control ';'{
   }
 }|
 commands io ';'|
-commands return ';' |
+commands return ';' {
+  //printf("\n command return x; \n");
+  if ($$ == NULL) {
+    //pr//intf("\n null \n");
+    $$ = $2;
+  } else {
+    comp_tree_t *current_tree = $$;
+    comp_tree_t *next_tree;
+    ast_node_t *next_node;
+    
+    while(true) {
+      next_tree = current_tree->last;
+      next_node = next_tree->value;
+      if(! ast_is_command(next_node)) {
+        break;
+      } else {
+        current_tree = next_tree;
+      }
+    }
+
+    tree_insert_node(current_tree,$2);
+  }
+}|
 commands TK_PR_BREAK ';' |
 commands TK_PR_CONTINUE ';' |
 commands TK_PR_CASE TK_LIT_INT ':' |
@@ -392,7 +424,7 @@ TK_IDENTIFICADOR '=' expression {
   ident->value.data = $1;
 
   comp_dict_data_t *data = ident->value.data;
-  printf("\nident: %s\n", data->value.stringValue);
+  printf("\nattribution: %s\n", data->value.stringValue);
 
   comp_tree_t* ident_node = tree_make_node((void*)ident);
 
@@ -428,11 +460,11 @@ TK_PR_IF '('expression')' TK_PR_THEN block {
   comp_tree_t* if_then_tree_node = tree_make_node((void*)if_then_value);
   
   ast_node_t *t = $3->value;
-  printf("\nNode $3: %d\n", t->type);
+  //printf("\nNode $3: %d\n", t->type);
   tree_insert_node(if_then_tree_node, $3);
   if ($6 != NULL) {
     ast_node_t *p = $6->value;
-    printf("\nNode $6: %d\n", p->type);
+    //printf("\nNode $6: %d\n", p->type);
     tree_insert_node(if_then_tree_node, $6);
     //$$ = tree_make_binary_node((void*)if_then_tree_node, $3, $6);
   }
@@ -480,7 +512,11 @@ expression |
 expression ',' list_exp
 ;
 return:
-TK_PR_RETURN expression
+TK_PR_RETURN expression {
+  ast_node_t *ast_return = malloc(sizeof(ast_node_t));
+  ast_return->type = AST_RETURN;
+  $$ = tree_make_unary_node((void*)ast_return, $2);
+}
 ;
 shift:
 TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT |
@@ -494,8 +530,17 @@ TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 /*Chamada de função*/
 func_call:
 TK_IDENTIFICADOR '('list_func')' {
-  $$ = tree_make_node(NULL);
-  comp_tree_t* id = malloc(sizeof(comp_tree_t));
+  ast_node_t *ident = malloc(sizeof(ast_node_t));
+  ident->type = AST_IDENTIFICADOR;
+  ident->value.data = $1;
+  if ($3 == NULL) {
+    $$ = tree_make_node((void*)ident);
+  } else {
+    ast_node_t *node = malloc(sizeof(ast_node_t));
+    node->type = AST_CHAMADA_DE_FUNCAO;
+    comp_tree_t *ident_tree = tree_make_node((void*)ident);
+    $$ = tree_make_binary_node((void*)node, ident_tree, $3);
+  }
 }
 ;
 list_func:

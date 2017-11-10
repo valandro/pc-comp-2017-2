@@ -3,6 +3,19 @@
 
 extern struct comp_dict *dict;
 
+bool ast_is_command(ast_node_t *node) {
+    if(node == NULL) { 
+        return false;
+    }
+    if(node->type < AST_COMMANDS_BOTTOM){
+        return false;
+    } 
+    if(node->type > AST_COMMANDS_TOP){
+        return false;
+    }
+    return true;
+}
+
 int comp_get_line_number (void)
 {
     extern int yylineno; // Usando yylineno para contar as linhas
