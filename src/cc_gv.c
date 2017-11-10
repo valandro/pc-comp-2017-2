@@ -160,7 +160,7 @@ void gv_declare (const int tipo, const void *pointer, char *name)
 
   char *description = NULL;
 
-  fprintf (stderr, "%s: tipo: %d, name: %s \n", __FUNCTION__, tipo, name);
+//  fprintf (stderr, "%s: tipo: %d, name: %s \n", __FUNCTION__, tipo, name);
 
   switch (tipo){
   case AST_FUNCAO:
