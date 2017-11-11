@@ -225,10 +225,20 @@ header:
 params
 ;
 body:
-block {$$ = $1;}
+block {
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_BLOCO;
+  $1 = tree_make_node((void*)node);
+  $$ = $1;
+}
 ;
 block:
-'{'commands'}' {$$ = $2;}
+'{'commands'}' {
+    ast_node_t *node = malloc(sizeof(ast_node_t));
+    node->type = AST_BLOCO;
+    $$ = tree_make_node((void*)node);
+    tree_insert_node($$,$2);
+  }
 ;
 commands:
 commands block ';' {
@@ -245,6 +255,7 @@ commands block ';' {
 }|
 commands declare_var_local ';' |
 commands attribution ';' {
+  printf("\natt\n");
   if($$ == NULL){
    $$ = $2;
    $$->last = $2;
