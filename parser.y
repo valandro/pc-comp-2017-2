@@ -235,12 +235,7 @@ block:
     node->type = AST_BLOCO;
     $$ = tree_make_node((void*)node);
     if($2 != NULL) {
-      printf("\nbloco tem comandos\n");
       tree_insert_node($$,$2);
-    }
-    else {
-
-      printf("\nbloco nao tem comandos\n");
     }
   }
 ;
@@ -399,6 +394,13 @@ TK_IDENTIFICADOR '['expression']' {
     ast_node_t *node = malloc(sizeof(ast_node_t));
     node->type = AST_VETOR_INDEXADO;
     $$ = tree_make_binary_node((void*)node, ident_tree, $3);
+}|
+
+'!' expression {
+    ast_node_t *node = malloc(sizeof(ast_node_t));
+    node->type = AST_LOGICO_COMP_NEGACAO;
+
+    $$ = tree_make_unary_node((void*)node, $2);
 }|
 
 func_call {$$ = $1;}|
