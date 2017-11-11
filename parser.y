@@ -388,7 +388,8 @@ TK_IDENTIFICADOR '['expression']' {
     $$ = tree_make_binary_node((void*)node, (void*)ident, $3);
 }|
 
-func_call |
+func_call {$$ = $1;}|
+
 ;
 
 attribution:
@@ -487,8 +488,21 @@ TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 /*Chamada de função*/
 func_call:
 TK_IDENTIFICADOR '('list_func')' {
-  $$ = tree_make_node(NULL);
-  comp_tree_t* id = malloc(sizeof(comp_tree_t));
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_CHAMADA_DE_FUNCAO;
+
+  ast_node_t *ident = malloc(sizeof(ast_node_t));
+  ident->type = AST_IDENTIFICADOR;
+  ident->value.data = $1;
+
+  comp_tree_t* ident_tree = tree_make_node((void*)ident);
+
+  if ($3 == NULL) {
+      $$ = tree_make_unary_node((void*)node,ident_tree);
+  } else {
+      $$ = tree_make_binary_node((void*)node,ident_tree,$3);
+  }
+
 }
 ;
 list_func:
@@ -496,7 +510,7 @@ expression {
   $$ = $1;
 }|
 expression ',' list_func {
-  $$ = $1;
+  tree_insert_node($$,$3);
 }
 ;
 /* Expressão */
