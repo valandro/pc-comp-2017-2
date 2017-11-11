@@ -66,6 +66,7 @@
 %type <val> header
 %type <val> block
 %type <val> attribution
+%type <val> control
 %type <val> return
 %type <val> params
 %type <val> args
@@ -253,7 +254,16 @@ commands attribution ';' {
    $$->last = $2;
   }
 }|
-commands control ';'|
+commands control ';'{
+  if($$ == NULL){
+   $$ = $2;
+   $$->last = $2;
+  }
+  else {
+   tree_insert_node($$->last,$2);
+   $$->last = $2;
+  }
+}|
 commands io ';'|
 commands return ';' {
   if($$ == NULL){
@@ -393,12 +403,53 @@ TK_IDENTIFICADOR '=' expression {
 
   $$ = tree_make_binary_node((void*)node, ident_node, $3);
 }
-| TK_IDENTIFICADOR '[' expression ']' '=' expression
+| TK_IDENTIFICADOR '[' expression ']' '=' expression {
+ast_node_t *vetor = malloc(sizeof(ast_node_t));
+  vetor->type = AST_VETOR_INDEXADO;
+
+  ast_node_t *ident = malloc(sizeof(ast_node_t));
+  ident->type = AST_IDENTIFICADOR;
+  ident->value.data = $1;
+  comp_tree_t* ident_node = tree_make_node((void*)ident);
+
+  comp_tree_t* vetor_tree_node = tree_make_binary_node((void*)vetor, ident_node, $3);
+
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_ATRIBUICAO;
+
+  $$ = tree_make_binary_node((void*)node, vetor_tree_node, $6);
+}
 ;
 
 control:
-TK_PR_IF '('expression')' TK_PR_THEN block |
-TK_PR_IF '('expression')' TK_PR_THEN block TK_PR_ELSE block |
+TK_PR_IF '('expression')' TK_PR_THEN block {
+  ast_node_t *if_then_value = malloc(sizeof(ast_node_t));
+  if_then_value->type = AST_IF_ELSE;
+
+  comp_tree_t* if_then_tree_node = tree_make_node((void*)if_then_value);
+
+  ast_node_t *t = $3->value;
+  tree_insert_node(if_then_tree_node, $3);
+  if ($6 != NULL) {
+    ast_node_t *p = $6->value;
+    tree_insert_node(if_then_tree_node, $6);
+  }
+  $$ = if_then_tree_node;
+}|
+TK_PR_IF '('expression')' TK_PR_THEN block TK_PR_ELSE block {
+  ast_node_t *if_then_value = malloc(sizeof(ast_node_t));
+  if_then_value->type = AST_IF_ELSE;
+
+  comp_tree_t* if_then_tree_node = tree_make_node((void*)if_then_value);
+  tree_insert_node(if_then_tree_node, $3);
+  if ($6 != NULL) {
+    tree_insert_node(if_then_tree_node, $6);
+  }
+  if ($8 != NULL) {
+    tree_insert_node(if_then_tree_node, $8);
+  }
+  $$ = if_then_tree_node;
+}|
 TK_PR_FOREACH '('TK_IDENTIFICADOR ':' list_exp')' block |
 TK_PR_FOR '(' list_cmd ':' expression ':' list_cmd ')' block |
 TK_PR_SWITCH '('expression')' block |
