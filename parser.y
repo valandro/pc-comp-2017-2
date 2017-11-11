@@ -313,7 +313,7 @@ TK_PR_STATIC type TK_IDENTIFICADOR att {
   ident->value.data = $3;
   comp_tree_t *ident_tree = tree_make_node((void*)ident);
   if ($4 != NULL) {
-    $$ = tree_make_binary_node((void*)node, ident_tree, $4);  
+    $$ = tree_make_binary_node((void*)node, ident_tree, $4);
   } else {
     $$ = NULL;
   }
@@ -327,7 +327,7 @@ TK_PR_STATIC TK_PR_CONST type TK_IDENTIFICADOR att {
   ident->value.data = $4;
   comp_tree_t *ident_tree = tree_make_node((void*)ident);
   if ($5 != NULL) {
-    $$ = tree_make_binary_node((void*)node, ident_tree, $5);  
+    $$ = tree_make_binary_node((void*)node, ident_tree, $5);
   } else {
     $$ = NULL;
   }
@@ -341,7 +341,7 @@ type TK_IDENTIFICADOR att {
   ident->value.data = $2;
   comp_tree_t *ident_tree = tree_make_node((void*)ident);
   if ($3 != NULL) {
-    $$ = tree_make_binary_node((void*)node, ident_tree, $3);  
+    $$ = tree_make_binary_node((void*)node, ident_tree, $3);
   } else {
     $$ = NULL;
   }
@@ -355,7 +355,7 @@ TK_PR_CONST type TK_IDENTIFICADOR att {
   ident->value.data = $3;
   comp_tree_t *ident_tree = tree_make_node((void*)ident);
   if ($4 != NULL) {
-    $$ = tree_make_binary_node((void*)node, ident_tree, $4);  
+    $$ = tree_make_binary_node((void*)node, ident_tree, $4);
   } else {
     $$ = NULL;
   }
@@ -514,6 +514,22 @@ ast_node_t *vetor = malloc(sizeof(ast_node_t));
   node->type = AST_ATRIBUICAO;
 
   $$ = tree_make_binary_node((void*)node, vetor_tree_node, $6);
+}
+| TK_IDENTIFICADOR '!' TK_IDENTIFICADOR '=' expression {
+  ast_node_t *ident = malloc(sizeof(ast_node_t));
+  ident->type = AST_IDENTIFICADOR;
+  ident->value.data = $1;
+  comp_tree_t* ident_node = tree_make_node((void*)ident);
+
+  ast_node_t *ident2 = malloc(sizeof(ast_node_t));
+  ident2->type = AST_IDENTIFICADOR;
+  ident2->value.data = $3;
+  comp_tree_t* ident2_node = tree_make_node((void*)ident2);
+
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_ATRIBUICAO;
+
+  $$ = tree_make_ternary_node((void*)node, ident_node,ident2_node, $5);
 }
 ;
 
