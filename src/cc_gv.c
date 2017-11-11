@@ -160,6 +160,8 @@ void gv_declare (const int tipo, const void *pointer, char *name)
 
   char *description = NULL;
 
+//  fprintf (stderr, "%s: tipo: %d, name: %s \n", __FUNCTION__, tipo, name);
+
   switch (tipo){
   case AST_FUNCAO:
   case AST_IDENTIFICADOR:
@@ -206,7 +208,7 @@ void gv_declare (const int tipo, const void *pointer, char *name)
     break;
 
   default:
-    fprintf (stderr, "%s: unknow tipo provided\n", __FUNCTION__);
+    fprintf (stderr, "%s: unknow tipo provided: %d, name: %s \n", __FUNCTION__, tipo, name);
     abort();
   }
 

@@ -72,7 +72,10 @@
 %type <val> expression
 %type <val> func_call
 %type <val> list_func
+%type <val> attribution
 %type <valor_lexico> lit
+%type <val> control
+%type <val> return
 
 %left TK_OC_OR
 %left TK_OC_AND
@@ -240,7 +243,9 @@ commands block ';' {
     tree_insert_node($$,$2);
   }
 }|
+
 commands declare_var_local ';' |
+<<<<<<< HEAD
 commands attribution ';' {
   if($$ == NULL){
    $$ = $2;
@@ -253,8 +258,71 @@ commands attribution ';' {
   }
 }|
 commands control ';'|
+=======
+
+commands attribution ';'{
+  if ($$ == NULL) {
+    $$ = $2;
+  } else {
+    comp_tree_t *current_tree = $$;
+
+    ast_node_t *current_node;
+    comp_tree_t *next_tree;
+    ast_node_t *next_node;
+    
+    while(true) {
+      current_node = current_tree->value;
+      next_tree = current_tree->last;
+      next_node = next_tree->value;
+      printf("\ncurrent: type %d  children: %d\n", current_node->type, current_tree->childnodes);
+      printf("\nnext: type %d  children: %d\n", next_node->type, next_tree->childnodes);
+      if(! ast_is_command(next_node)) {
+        break;
+      } else {
+        current_tree = next_tree;
+      }
+    }
+
+    tree_insert_node(current_tree,$2);
+  }
+}|
+
+commands control ';'{
+  if ($$ == NULL) {
+    $$ = $2;
+  } else {
+    comp_tree_t *last_node = $$;
+    while(last_node->childnodes != 2) {
+      last_node = last_node->last;
+    }
+    tree_insert_node(last_node,$2);
+  }
+}|
+>>>>>>> master
 commands io ';'|
-commands return ';' |
+commands return ';' {
+  //printf("\n command return x; \n");
+  if ($$ == NULL) {
+    //pr//intf("\n null \n");
+    $$ = $2;
+  } else {
+    comp_tree_t *current_tree = $$;
+    comp_tree_t *next_tree;
+    ast_node_t *next_node;
+    
+    while(true) {
+      next_tree = current_tree->last;
+      next_node = next_tree->value;
+      if(! ast_is_command(next_node)) {
+        break;
+      } else {
+        current_tree = next_tree;
+      }
+    }
+
+    tree_insert_node(current_tree,$2);
+  }
+}|
 commands TK_PR_BREAK ';' |
 commands TK_PR_CONTINUE ';' |
 commands TK_PR_CASE TK_LIT_INT ':' |
@@ -376,6 +444,13 @@ TK_IDENTIFICADOR '=' expression {
   ast_node_t *ident = malloc(sizeof(ast_node_t));
   ident->type = AST_IDENTIFICADOR;
   ident->value.data = $1;
+<<<<<<< HEAD
+=======
+
+  comp_dict_data_t *data = ident->value.data;
+  printf("\nattribution: %s\n", data->value.stringValue);
+
+>>>>>>> master
   comp_tree_t* ident_node = tree_make_node((void*)ident);
 
   ast_node_t *node = malloc(sizeof(ast_node_t));
@@ -383,12 +458,58 @@ TK_IDENTIFICADOR '=' expression {
 
   $$ = tree_make_binary_node((void*)node, ident_node, $3);
 }
+<<<<<<< HEAD
 | TK_IDENTIFICADOR '[' expression ']' '=' expression
+=======
+
+| TK_IDENTIFICADOR '[' expression ']' '=' expression {
+  ast_node_t *vetor = malloc(sizeof(ast_node_t));
+  vetor->type = AST_VETOR_INDEXADO;
+
+  ast_node_t *ident = malloc(sizeof(ast_node_t));
+  ident->type = AST_IDENTIFICADOR;
+  ident->value.data = $1;
+  comp_tree_t* ident_node = tree_make_node((void*)ident);
+
+  comp_tree_t* vetor_tree_node = tree_make_binary_node((void*)vetor, ident_node, $3);
+
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_ATRIBUICAO;
+
+  $$ = tree_make_binary_node((void*)node, vetor_tree_node, $6);
+}
+>>>>>>> master
 ;
 
 control:
-TK_PR_IF '('expression')' TK_PR_THEN block |
-TK_PR_IF '('expression')' TK_PR_THEN block TK_PR_ELSE block |
+TK_PR_IF '('expression')' TK_PR_THEN block {
+  ast_node_t *if_then_value = malloc(sizeof(ast_node_t));
+  if_then_value->type = AST_IF_ELSE;
+
+  comp_tree_t* if_then_tree_node = tree_make_node((void*)if_then_value);
+  
+  ast_node_t *t = $3->value;
+  tree_insert_node(if_then_tree_node, $3);
+  if ($6 != NULL) {
+    ast_node_t *p = $6->value;
+    tree_insert_node(if_then_tree_node, $6);
+  }
+  $$ = if_then_tree_node;
+}|
+TK_PR_IF '('expression')' TK_PR_THEN block TK_PR_ELSE block {
+  ast_node_t *if_then_value = malloc(sizeof(ast_node_t));
+  if_then_value->type = AST_IF_ELSE;
+
+  comp_tree_t* if_then_tree_node = tree_make_node((void*)if_then_value);
+  tree_insert_node(if_then_tree_node, $3);
+  if ($6 != NULL) {
+    tree_insert_node(if_then_tree_node, $6);
+  }
+  if ($8 != NULL) {
+    tree_insert_node(if_then_tree_node, $8);
+  }
+  $$ = if_then_tree_node;
+}|
 TK_PR_FOREACH '('TK_IDENTIFICADOR ':' list_exp')' block |
 TK_PR_FOR '(' list_cmd ':' expression ':' list_cmd ')' block |
 TK_PR_SWITCH '('expression')' block |
@@ -408,7 +529,11 @@ expression |
 expression ',' list_exp
 ;
 return:
-TK_PR_RETURN expression
+TK_PR_RETURN expression {
+  ast_node_t *ast_return = malloc(sizeof(ast_node_t));
+  ast_return->type = AST_RETURN;
+  $$ = tree_make_unary_node((void*)ast_return, $2);
+}
 ;
 shift:
 TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT |
@@ -422,8 +547,17 @@ TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 /*Chamada de função*/
 func_call:
 TK_IDENTIFICADOR '('list_func')' {
-  $$ = tree_make_node(NULL);
-  comp_tree_t* id = malloc(sizeof(comp_tree_t));
+  ast_node_t *ident = malloc(sizeof(ast_node_t));
+  ident->type = AST_IDENTIFICADOR;
+  ident->value.data = $1;
+  if ($3 == NULL) {
+    $$ = tree_make_node((void*)ident);
+  } else {
+    ast_node_t *node = malloc(sizeof(ast_node_t));
+    node->type = AST_CHAMADA_DE_FUNCAO;
+    comp_tree_t *ident_tree = tree_make_node((void*)ident);
+    $$ = tree_make_binary_node((void*)node, ident_tree, $3);
+  }
 }
 ;
 list_func:
