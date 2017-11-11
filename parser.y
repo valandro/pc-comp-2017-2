@@ -12,6 +12,9 @@
     comp_tree_t* tree;
     comp_tree_t* last_function;
     int cont = 0;
+
+    ast_node_t* stack[255];
+    int stack_length = 0;
 %}
 
 /* Declaração dos tokens da linguagem */
@@ -77,10 +80,11 @@
 %type <val> declare_var_local
 %type <val> att
 %type <valor_lexico> lit
+%type <type> type
 
 %left TK_OC_OR
 %left TK_OC_AND
-%left TK_OC_EQ TK_OC_NE
+%left '!' TK_OC_EQ TK_OC_NE
 %left '>' TK_OC_GE
 %left '<' TK_OC_LE
 %left TK_OC_SL TK_OC_SR
@@ -92,6 +96,7 @@
 %union{
     comp_dict_data_t *valor_lexico;
     struct comp_tree* val;
+    int type;
 }
 
 %%
@@ -105,6 +110,7 @@
  */
 program:
 program_body {
+    printf("\nprogram_body\n");
     ast_node_t *node = malloc(sizeof(ast_node_t));
     node->type = AST_PROGRAMA;
 
@@ -155,10 +161,20 @@ TK_PR_PRIVATE type TK_IDENTIFICADOR
 ;
 declare:
 type TK_IDENTIFICADOR {
+  printf("\ntype tk ident\n");
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_FUNCAO;
   node->value.data = $2;
+  node->variable_type = $1;
   $$ = tree_make_node((void*)node);
+
+  comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
+  data->line_number = $2->line_number;
+  data->token_type = $2->token_type;
+  data->value.stringValue = $2->value.stringValue;
+
+  ast_node_t *scope = stack[0];
+  dict_put(scope->symbols, $2->value.stringValue, data);
 }|
 type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   ast_node_t *node = malloc(sizeof(ast_node_t));
@@ -189,12 +205,13 @@ TK_IDENTIFICADOR TK_IDENTIFICADOR {
 /* Estrutura da declaração de uma variavel */
 /* Tipos das variaveis */
 type:
-TK_PR_INT |
-TK_PR_FLOAT |
-TK_PR_CHAR |
-TK_PR_BOOL |
-TK_PR_STRING
+TK_PR_INT    {$$ = IKS_INT;}  |
+TK_PR_FLOAT  {$$ = IKS_FLOAT;}|
+TK_PR_CHAR   {$$ = IKS_CHAR;} |
+TK_PR_BOOL   {$$ = IKS_BOOL;} |
+TK_PR_STRING {$$ = IKS_STRING;}
 ;
+
 lit:
 TK_LIT_INT |
 TK_LIT_FLOAT |
@@ -207,27 +224,43 @@ params:
 '(' args ')'
 ;
 args:
-args ',' arg |
+args ',' arg {
+
+}|
 arg |
 ;
+
 arg:
-type TK_IDENTIFICADOR
-| TK_IDENTIFICADOR TK_IDENTIFICADOR
-| TK_PR_CONST type TK_IDENTIFICADOR
-| TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
+type TK_IDENTIFICADOR {
+  //$$ = $1;
+}
+| TK_IDENTIFICADOR TK_IDENTIFICADOR {
+  //$$ = $1->value.stringValue;
+}
+| TK_PR_CONST type TK_IDENTIFICADOR{
+  //$$ = $2;
+}
+| TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR{
+  //$$ = $2->value.stringValue;
+}
 ;
 
 /* Funções */
 declare_function:
 header body {
+      printf("\nheader body\n");
       $$ = $2;
 }
 ;
 header:
-params
+params {
+  printf("\nheader\n");
+  $$ = $1;
+}
 ;
 body:
 block {
+  printf("\nbody\n");
   $$ = $1;
 }
 ;
@@ -364,7 +397,6 @@ TK_PR_CONST type TK_IDENTIFICADOR att {
 
 att:
 TK_OC_LE TK_IDENTIFICADOR {
-  printf("\n=> ident\n");
   ast_node_t *ident = malloc(sizeof(ast_node_t));
   ident->type = AST_IDENTIFICADOR;
   ident->value.data = $2;
@@ -477,10 +509,10 @@ TK_IDENTIFICADOR '['expression']' {
 }|
 
 '!' expression {
-    ast_node_t *node = malloc(sizeof(ast_node_t));
+  ast_node_t *node = malloc(sizeof(ast_node_t));
     node->type = AST_LOGICO_COMP_NEGACAO;
 
-    $$ = tree_make_unary_node((void*)node, $2);
+  $$ = tree_make_unary_node((void*)node, $2);
 }|
 
 func_call {$$ = $1;}|
@@ -617,6 +649,24 @@ TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 /*Chamada de função*/
 func_call:
 TK_IDENTIFICADOR '('list_func')' {
+  printf("\nfunc_call\n");
+  ast_node_t *scope = stack[stack_length];
+  printf("\n1\n");
+  
+    printf("\n1.1: %s\n",$1->value.stringValue);
+    printf("\n2\n");
+    //dict_get(dict, "123");
+    char *key = $1->value.stringValue;
+    dict_item_get(scope->symbols->data[0][0], key);
+    //dict_get_entry(scope->symbols, key);
+    printf("\n2\n");
+  //comp_dict_data_t *entry = 
+  
+  //if (entry == NULL) {
+    //printf("\nERRO: função não declarada\n");
+  //}
+
+
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_CHAMADA_DE_FUNCAO;
 

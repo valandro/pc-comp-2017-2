@@ -47,7 +47,14 @@ void yyerror (char const *mensagem)
 
 void main_init (int argc, char **argv)
 {
+    extern ast_node_t* stack[255];
+    
     dict = dict_new(); // Criação de uma nova tabela
+
+    ast_node_t * global = malloc(sizeof(ast_node_t));
+    comp_dict_t *scope = dict_new();
+    global->symbols = scope;
+    stack[0] = global;
 }
 
 void comp_print_table (void)

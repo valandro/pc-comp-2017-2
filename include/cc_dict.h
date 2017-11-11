@@ -139,4 +139,6 @@ void *dict_remove(comp_dict_t * dict, char *key);
  */
 void dict_debug_print(comp_dict_t * dict);
 
+static comp_dict_item_t *dict_item_get(comp_dict_item_t * first, char *key);
+
 #endif                          //CC_DICT_H_
