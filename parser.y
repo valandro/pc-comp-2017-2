@@ -66,6 +66,7 @@
 %type <val> header
 %type <val> block
 %type <val> attribution
+%type <val> return
 %type <val> params
 %type <val> args
 %type <val> commands
@@ -247,14 +248,20 @@ commands attribution ';' {
   }
   else {
    tree_insert_node($$->last,$2);
-   //tree_debug_print($$->first);
    $$->last = $2;
-   //tree_debug_print($$->last);
   }
 }|
 commands control ';'|
 commands io ';'|
-commands return ';' |
+commands return ';' {
+  if($$ == NULL){
+    $$ = $2;
+  }
+  else {
+    tree_insert_node($$->last,$2);
+    $$->last = $2;
+  }
+}|
 commands TK_PR_BREAK ';' |
 commands TK_PR_CONTINUE ';' |
 commands TK_PR_CASE TK_LIT_INT ':' |
@@ -408,7 +415,11 @@ expression |
 expression ',' list_exp
 ;
 return:
-TK_PR_RETURN expression
+TK_PR_RETURN expression {
+  ast_node_t *ast_return = malloc(sizeof(ast_node_t));
+  ast_return->type = AST_RETURN;
+  $$ = tree_make_unary_node((void*)ast_return, $2);
+}
 ;
 shift:
 TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT |
