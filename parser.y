@@ -65,6 +65,7 @@
 %type <val> body
 %type <val> header
 %type <val> block
+%type <val> attribution
 %type <val> params
 %type <val> args
 %type <val> commands
@@ -124,7 +125,7 @@ program_body declare declare_function {
 
     last_function = $2;
     cont++;
-    
+
     if($3 != NULL){ //a função tem corpo, tem comandos
       tree_insert_node($2,$3);
     }
@@ -229,12 +230,29 @@ block:
 ;
 commands:
 commands block ';' {
+
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_BLOCO;
-  $$ = tree_make_node((void*)node);
+  $2 = tree_make_node((void*)node);
+  if($$ == NULL){
+    $$ = $2;
+  }
+  else {
+    tree_insert_node($$,$2);
+  }
 }|
 commands declare_var_local ';' |
-commands attribution ';'|
+commands attribution ';' {
+  if($$ == NULL){
+    $$ = $2;
+  }
+  else {
+    tree_insert_node($$->last,$2);
+    //tree_debug_print($$->first);
+    $$->last = $2;
+    //tree_debug_print($$->last);
+  }
+}|
 commands control ';'|
 commands io ';'|
 commands return ';' |
@@ -355,7 +373,17 @@ func_call |
 ;
 
 attribution:
-TK_IDENTIFICADOR '=' expression
+TK_IDENTIFICADOR '=' expression {
+  ast_node_t *ident = malloc(sizeof(ast_node_t));
+  ident->type = AST_IDENTIFICADOR;
+  ident->value.data = $1;
+  comp_tree_t* ident_node = tree_make_node((void*)ident);
+
+  ast_node_t *node = malloc(sizeof(ast_node_t));
+  node->type = AST_ATRIBUICAO;
+
+  $$ = tree_make_binary_node((void*)node, ident_node, $3);
+}
 | TK_IDENTIFICADOR '[' expression ']' '=' expression
 ;
 
