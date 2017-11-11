@@ -236,6 +236,7 @@ commands block ';' {
   $2 = tree_make_node((void*)node);
   if($$ == NULL){
     $$ = $2;
+    $$->last = $2;
   }
   else {
     tree_insert_node($$,$2);
@@ -245,6 +246,7 @@ commands declare_var_local ';' |
 commands attribution ';' {
   if($$ == NULL){
    $$ = $2;
+   $$->last = $2;
   }
   else {
    tree_insert_node($$->last,$2);
@@ -256,6 +258,7 @@ commands io ';'|
 commands return ';' {
   if($$ == NULL){
     $$ = $2;
+    $$->last = $2;
   }
   else {
     tree_insert_node($$->last,$2);
