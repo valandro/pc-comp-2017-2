@@ -165,16 +165,12 @@ type TK_IDENTIFICADOR {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_FUNCAO;
   node->value.data = $2;
+  printf("\nline %d\n",$2->line_number);
   node->variable_type = $1;
   $$ = tree_make_node((void*)node);
 
-  comp_dict_data_t *data = malloc(sizeof(comp_dict_data_t));
-  data->line_number = $2->line_number;
-  data->token_type = $2->token_type;
-  data->value.stringValue = $2->value.stringValue;
-
   ast_node_t *scope = stack[0];
-  dict_put(scope->symbols, $2->value.stringValue, data);
+  dict_put(scope->symbols, $2->value.stringValue, $2);
 }|
 type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   ast_node_t *node = malloc(sizeof(ast_node_t));
@@ -652,20 +648,25 @@ TK_IDENTIFICADOR '('list_func')' {
   printf("\nfunc_call\n");
   ast_node_t *scope = stack[stack_length];
   printf("\n1\n");
-  
-    printf("\n1.1: %s\n",$1->value.stringValue);
-    printf("\n2\n");
-    //dict_get(dict, "123");
-    char *key = $1->value.stringValue;
-    dict_item_get(scope->symbols->data[0][0], key);
-    //dict_get_entry(scope->symbols, key);
-    printf("\n2\n");
-  //comp_dict_data_t *entry = 
-  
-  //if (entry == NULL) {
-    //printf("\nERRO: função não declarada\n");
-  //}
+  char *key = $1->value.stringValue;
+  printf("\n2\n");
+  int i, l;
+  for (i = 0, l = scope->symbols->size; i < l; ++i) {
+      if (scope->symbols->data[i]) {
+          printf("\n2.1: %d\n",scope->symbols->size);
+          comp_dict_data_t *data = (comp_dict_data_t*)scope->symbols->data[i]->value;
 
+          printf("\n2.2: %d\n",scope->symbols->size);
+          printf("\n%s\n", scope->symbols->data[i]->key);
+          printf("\n%d\n", data->line_number);
+          //printf("%s [%s]\n", scope->symbols->data[i]->key, data->line_number);
+          //printf("%s [%s] %d\n", scope->symbols->data[i]->key, data->line_number, data->token_type);
+          
+          printf("\n2.3: %d\n",scope->symbols->size);
+          //printf("\n2.1.2\n");
+      }
+  }
+  printf("\n3\n");   
 
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_CHAMADA_DE_FUNCAO;
