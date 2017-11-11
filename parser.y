@@ -460,13 +460,10 @@ TK_PR_IF '('expression')' TK_PR_THEN block {
   comp_tree_t* if_then_tree_node = tree_make_node((void*)if_then_value);
   
   ast_node_t *t = $3->value;
-  //printf("\nNode $3: %d\n", t->type);
   tree_insert_node(if_then_tree_node, $3);
   if ($6 != NULL) {
     ast_node_t *p = $6->value;
-    //printf("\nNode $6: %d\n", p->type);
     tree_insert_node(if_then_tree_node, $6);
-    //$$ = tree_make_binary_node((void*)if_then_tree_node, $3, $6);
   }
   $$ = if_then_tree_node;
 }|
@@ -475,21 +472,12 @@ TK_PR_IF '('expression')' TK_PR_THEN block TK_PR_ELSE block {
   if_then_value->type = AST_IF_ELSE;
 
   comp_tree_t* if_then_tree_node = tree_make_node((void*)if_then_value);
-  
-  //ast_node_t *t = $3->value;
-  //printf("\nNode $3: %d\n", t->type);
   tree_insert_node(if_then_tree_node, $3);
   if ($6 != NULL) {
-    //ast_node_t *p = $6->value;
-    //printf("\nNode $6: %d\n", p->type);
     tree_insert_node(if_then_tree_node, $6);
-    //$$ = tree_make_binary_node((void*)if_then_tree_node, $3, $6);
   }
   if ($8 != NULL) {
-    //ast_node_t *p = $6->value;
-    //printf("\nNode $6: %d\n", p->type);
     tree_insert_node(if_then_tree_node, $8);
-    //$$ = tree_make_binary_node((void*)if_then_tree_node, $3, $6);
   }
   $$ = if_then_tree_node;
 }|
