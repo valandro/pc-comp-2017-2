@@ -226,9 +226,6 @@ params
 ;
 body:
 block {
-  ast_node_t *node = malloc(sizeof(ast_node_t));
-  node->type = AST_BLOCO;
-  $1 = tree_make_node((void*)node);
   $$ = $1;
 }
 ;
@@ -237,25 +234,29 @@ block:
     ast_node_t *node = malloc(sizeof(ast_node_t));
     node->type = AST_BLOCO;
     $$ = tree_make_node((void*)node);
-    tree_insert_node($$,$2);
+    if($2 != NULL) {
+      printf("\nbloco tem comandos\n");
+      tree_insert_node($$,$2);
+    }
+    else {
+
+      printf("\nbloco nao tem comandos\n");
+    }
   }
 ;
 commands:
 commands block ';' {
-  ast_node_t *node = malloc(sizeof(ast_node_t));
-  node->type = AST_BLOCO;
-  $2 = tree_make_node((void*)node);
   if($$ == NULL){
-    $$ = $2;
-    $$->last = $2;
+   $$ = $2;
+   $$->last = $2;
   }
   else {
-    tree_insert_node($$,$2);
+   tree_insert_node($$->last,$2);
+   $$->last = $2;
   }
 }|
 commands declare_var_local ';' |
 commands attribution ';' {
-  printf("\natt\n");
   if($$ == NULL){
    $$ = $2;
    $$->last = $2;
@@ -393,10 +394,11 @@ TK_IDENTIFICADOR '['expression']' {
     ast_node_t *ident = malloc(sizeof(ast_node_t));
     ident->type = AST_IDENTIFICADOR;
     ident->value.data = $1;
+    comp_tree_t* ident_tree = tree_make_node((void*)ident);
 
     ast_node_t *node = malloc(sizeof(ast_node_t));
     node->type = AST_VETOR_INDEXADO;
-    $$ = tree_make_binary_node((void*)node, (void*)ident, $3);
+    $$ = tree_make_binary_node((void*)node, ident_tree, $3);
 }|
 
 func_call {$$ = $1;}|
@@ -465,8 +467,26 @@ TK_PR_IF '('expression')' TK_PR_THEN block TK_PR_ELSE block {
 TK_PR_FOREACH '('TK_IDENTIFICADOR ':' list_exp')' block |
 TK_PR_FOR '(' list_cmd ':' expression ':' list_cmd ')' block |
 TK_PR_SWITCH '('expression')' block |
-TK_PR_WHILE '('expression')' TK_PR_DO block |
-TK_PR_DO block TK_PR_WHILE '('expression')'
+TK_PR_WHILE '('expression')' TK_PR_DO block {
+  ast_node_t *while_value = malloc(sizeof(ast_node_t));
+  while_value->type = AST_WHILE_DO;
+
+  comp_tree_t* while_tree_node = tree_make_node((void*)while_value);
+  tree_insert_node(while_tree_node, $3);
+  tree_insert_node(while_tree_node, $6);
+
+  $$ = while_tree_node;
+}|
+TK_PR_DO block TK_PR_WHILE '('expression')' {
+  ast_node_t *while_value = malloc(sizeof(ast_node_t));
+  while_value->type = AST_DO_WHILE;
+
+  comp_tree_t* while_tree_node = tree_make_node((void*)while_value);
+  tree_insert_node(while_tree_node, $5);
+  tree_insert_node(while_tree_node, $2);
+
+  $$ = while_tree_node;
+}
 ;
 list_cmd:
 commands |
