@@ -79,6 +79,7 @@ protected return TK_PR_PROTECTED;
     data->line_number = line_number;
     data->token_type = POA_LIT_INT;
     data->value.intValue = intValue;
+    data->value.stringValue = text;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
 
@@ -102,6 +103,7 @@ protected return TK_PR_PROTECTED;
     data->line_number = line_number;
     data->token_type = POA_LIT_FLOAT;
     data->value.floatValue = floatValue;
+    data->value.stringValue = text;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
     free(suffix);
@@ -124,6 +126,7 @@ false {
     data->line_number = line_number;
     data->token_type = POA_LIT_BOOL;
     data->value.boolValue = boolValue;
+    data->value.stringValue = text;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
     free(suffix);
@@ -147,6 +150,8 @@ true {
     data->line_number = line_number;
     data->token_type = POA_LIT_BOOL;
     data->value.boolValue = boolValue;
+    data->value.stringValue = text;
+
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
     free(suffix);
@@ -171,6 +176,7 @@ true {
     data->line_number = line_number;
     data->token_type = POA_LIT_CHAR;
     data->value.charValue = text[0];
+    data->value.stringValue = text;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
     free(suffix);
