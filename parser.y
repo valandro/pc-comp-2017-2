@@ -167,7 +167,8 @@ type TK_IDENTIFICADOR {
   node->value.data = $2;
   $$ = tree_make_node((void*)node);
 
-  comp_scope_t *scope = stack[0];
+  printf("\ndeclare name -> %s\n", $2->value.stringValue);
+  comp_scope_t *scope = stack[stack_length];
 
   $2->variable_type = $1; // Salvando o tipo (INT, FLOAT,...)
   dict_put(scope->symbols, $2->value.stringValue, $2);
@@ -258,12 +259,24 @@ block {
 }
 ;
 block:
+{
+  printf("\nNovo Bloco\n");
+  comp_scope_t * scope = malloc(sizeof(comp_scope_t));
+  comp_dict_t *symbols = dict_new();
+  scope->symbols = symbols;
+  stack_length++;
+  stack[stack_length] = scope;
+}
 '{'commands'}' {
+    
+    printf("\ndesempilha bloco\n");
+    stack_length--;
+
     ast_node_t *node = malloc(sizeof(ast_node_t));
     node->type = AST_BLOCO;
     $$ = tree_make_node((void*)node);
-    if($2 != NULL) {
-      tree_insert_node($$,$2);
+    if($3 != NULL) {
+      tree_insert_node($$,$3);
     }
   }
 ;
@@ -526,10 +539,19 @@ TK_IDENTIFICADOR '=' expression {
 
   printf("\nident = exp\n");
 
-  comp_scope_t *scope = stack[stack_length];
-  comp_dict_t *dict = scope->symbols;
 
-  int ident_type = returnType(dict, $1);
+  comp_scope_t *scope;
+  comp_dict_t *dict;
+  int ident_type;
+  int current_scope_depth = stack_length;
+  do {
+    printf("\nescopo atual %d\n", current_scope_depth);  
+    scope = stack[current_scope_depth];
+    dict = scope->symbols;
+    ident_type = returnType(dict, $1);
+    current_scope_depth--;
+  } while (ident_type == IKS_UNDECLARED || current_scope_depth > 0);
+
   if (ident_type == IKS_UNDECLARED) {
     printf("\nidentificador %s NÃo foi declarado\n", $1->value.stringValue);
   }
@@ -540,14 +562,20 @@ TK_IDENTIFICADOR '=' expression {
   printf("\nident = exp -> tipo(%d)\n",operation->type);
   switch(operation->type) {
     case AST_CHAMADA_DE_FUNCAO: {
+      scope = stack[0];
+      dict = scope->symbols;
       comp_tree_t *func_ident = expression->first;
       ast_node_t *ident = func_ident->value;
       comp_dict_data_t *func_data = returnData(dict, ident->value.data);
+      if (func_data == NULL) {
+        printf("\nERRO 1:função %s não foi declarada\n", ident->value.data->value.stringValue);
+        break;
+      }
       int func_type = func_data->variable_type;
       printf("\nident = exp -> funcao %s retorna tipo %d\n", func_data->value.stringValue, func_data->variable_type);
 
       if (ident_type != func_type) {
-        printf("\nidentificador %s é do tipo %d, mas a funcao %s é do tipo %d\n", $1->value.stringValue, ident_type, func_data->value.stringValue, func_type);     
+        printf("\nERRO 6:identificador %s é do tipo %d, mas a funcao %s é do tipo %d\n", $1->value.stringValue, ident_type, func_data->value.stringValue, func_type);     
       }
 
       break;
