@@ -4,12 +4,12 @@
 extern struct comp_dict *dict;
 
 bool ast_is_command(ast_node_t *node) {
-    if(node == NULL) { 
+    if(node == NULL) {
         return false;
     }
     if(node->type < AST_COMMANDS_BOTTOM){
         return false;
-    } 
+    }
     if(node->type > AST_COMMANDS_TOP){
         return false;
     }
@@ -47,11 +47,11 @@ void yyerror (char const *mensagem)
 
 void main_init (int argc, char **argv)
 {
-    extern ast_node_t* stack[255];
-    
+    extern comp_scope_t* stack[255];
+
     dict = dict_new(); // Criação de uma nova tabela
 
-    ast_node_t * global = malloc(sizeof(ast_node_t));
+    comp_scope_t * global = malloc(sizeof(comp_scope_t));
     comp_dict_t *scope = dict_new();
     global->symbols = scope;
     stack[0] = global;

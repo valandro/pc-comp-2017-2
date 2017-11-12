@@ -13,7 +13,7 @@
     comp_tree_t* last_function;
     int cont = 0;
 
-    ast_node_t* stack[255];
+    comp_scope_t* stack[255];
     int stack_length = 0;
 %}
 
@@ -167,8 +167,9 @@ type TK_IDENTIFICADOR {
   node->value.data = $2;
   $$ = tree_make_node((void*)node);
 
-  node->variable_type = $1;
-  ast_node_t *scope = stack[0];
+  comp_scope_t *scope = stack[0];
+
+  $2->variable_type = $1; // Salvando o tipo (INT, FLOAT,...)
   dict_put(scope->symbols, $2->value.stringValue, $2);
 }|
 type TK_IDENTIFICADOR '['TK_LIT_INT']'{
@@ -521,6 +522,14 @@ TK_IDENTIFICADOR '=' expression {
   node->type = AST_ATRIBUICAO;
 
   $$ = tree_make_binary_node((void*)node, ident_node, $3);
+  comp_dict_t* dict = stack[stack_length]->symbols;
+  int type = returnType(dict,$1);
+  comp_dict_data_t* data = $3->value;
+  if(data == NULL){
+    printf("\nKKK\n");
+  }
+  int type2 = returnType(dict,data);
+  printf("\nnome: %s tipo: %d tipo2: %d\n",$1->value.stringValue,type,type2);
 }
 | TK_IDENTIFICADOR '[' expression ']' '=' expression {
 ast_node_t *vetor = malloc(sizeof(ast_node_t));
@@ -649,13 +658,13 @@ TK_IDENTIFICADOR '('list_func')' {
   ident->value.data = $1;
   comp_tree_t* ident_tree = tree_make_node((void*)ident);
 
+  comp_dict_t* dict = stack[stack_length]->symbols;
+  node->value.data = returnData(dict,$1);
   if ($3 == NULL) {
       $$ = tree_make_unary_node((void*)node,ident_tree);
   } else {
       $$ = tree_make_binary_node((void*)node,ident_tree,$3);
   }
-  comp_dict_t* dict = stack[stack_length]->symbols;
-  funcDeclared(dict,$1);
 }
 ;
 list_func:

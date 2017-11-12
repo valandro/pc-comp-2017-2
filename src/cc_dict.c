@@ -27,12 +27,51 @@ void funcDeclared (comp_dict_t * dict, comp_dict_data_t *key) {
   for (i = 0, l = dict->size; i < l; ++i) {
     if (dict->data[i]) {
       if(strcmp(dict->data[i]->key,key->value.stringValue) == 0){
+        comp_dict_data_t *item = dict->data[i]->value;
+        printf("\nDICT: %d KEY: %d\n",item->variable_type,key->variable_type);
         found = true;
       }
     }
   }
   if(found == false)
-    printf("\nERRO: Função não declarada na linha %d\n", key->line_number);
+    printf("\nERRO: Função %s não declarada na linha %d\n", key->value.stringValue,key->line_number);
+}
+int returnType (comp_dict_t * dict, comp_dict_data_t *key) {
+  int i,l = 0;
+  int type = -1;
+  for (i = 0, l = dict->size; i < l; ++i) {
+    if (dict->data[i]) {
+      if(strcmp(dict->data[i]->key,key->value.stringValue) == 0){
+        comp_dict_data_t *data = dict->data[i]->value;
+        type = data->variable_type;
+      }
+    }
+  }
+  if(type == -1){
+    printf("ERRO: Não declarado %s\n", key->value.stringValue);
+  }
+  return type;
+}
+comp_dict_data_t* returnData (comp_dict_t * dict, comp_dict_data_t *key) {
+  int i,l = 0;
+  bool exist = false;
+  comp_dict_data_t *found = malloc(sizeof(comp_dict_data_t));
+
+  for (i = 0, l = dict->size; i < l; ++i) {
+    if (dict->data[i]) {
+      if(strcmp(dict->data[i]->key,key->value.stringValue) == 0){
+        found = dict->data[i]->value;
+        exist = true;
+      }
+    }
+  }
+  if(exist){
+    return found;
+  }
+  else{
+    found = NULL;
+    return found;
+  }
 }
 // one-at-a-time-hash, Jenkins, 2006
 static int generate_hash(char *key, int limit)

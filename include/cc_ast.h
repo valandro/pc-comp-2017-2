@@ -87,10 +87,10 @@ typedef struct ast_node
     {
         comp_dict_data_t* data;
     } value;
-    comp_dict_t *symbols; //caso seja do tipo bloco, vai ter tabela de simbolos
-    int variable_type; // caso seja identificador, vai ter tipo
-    int parameters_type[255]; //caso seja funcao, vai ter lista de tipo de parametros
 } ast_node_t;
-
+typedef struct comp_scope
+{
+  comp_dict_t *symbols; //caso seja do tipo bloco, vai ter tabela de simbolos
+} comp_scope_t;
 
 #endif

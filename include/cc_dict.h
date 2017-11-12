@@ -51,6 +51,9 @@ typedef struct comp_dict_item {
 typedef struct comp_dict_data
 {
     int line_number;
+    int variable_type; // caso seja identificador, vai ter tipo
+    int parameters_type[255]; //caso seja funcao, vai ter lista de tipo de parametros
+    int parameters_length;
     int token_type;
     union
     {
@@ -77,6 +80,8 @@ typedef struct comp_dict {
 
 /* Funções: a seguir segue a lista de funções da API cc_dict */
 void funcDeclared (comp_dict_t * dict, comp_dict_data_t* key);
+int returnType (comp_dict_t * dict, comp_dict_data_t *key);
+comp_dict_data_t* returnData (comp_dict_t * dict, comp_dict_data_t *key);
 /*
  * Função: dict_new, cria uma nova tabela de símbolos. Retorna um
  * ponteiro para a nova tabela de símbolos ou aborta a execução do
