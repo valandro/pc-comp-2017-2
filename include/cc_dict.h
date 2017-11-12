@@ -50,9 +50,10 @@ typedef struct comp_dict_item {
  */
 typedef struct comp_dict_data
 {
+    int vector_size;
     int line_number;
-    int variable_type; // caso seja identificador, vai ter tipo
-    int parameters_type[255]; //caso seja funcao, vai ter lista de tipo de parametros
+    int variable_type; // Caso seja identificador, vai ter tipo.
+    int parameters_type[255]; // Caso seja funcao, vai ter lista de tipo de parametros.
     int parameters_length;
     int token_type;
     union
