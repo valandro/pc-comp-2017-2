@@ -206,14 +206,22 @@ void *dict_get(comp_dict_t * dict, char *key)
     ERRO("At least one parameter is NULL");
   }
 
+  int i, l;
+  for (i = 0, l = dict->size; i < l; ++i) {
+      if (dict->data[i]) {
+          comp_dict_data_t *data = (comp_dict_data_t*)dict->data[i]->value;
+          printf("\nkey: %s   line: %d\n", dict->data[i]->key, data->line_number);
+          return (void*)data;
+      }
+  }
+  return NULL;
+ // int hash = generate_hash(key, dict->size);
+ // comp_dict_item_t *item = NULL;
 
-  int hash = generate_hash(key, dict->size);
-  comp_dict_item_t *item = NULL;
+ // if (dict->data[hash])
+ //   item = dict_item_get(dict->data[hash], key);
 
-  if (dict->data[hash])
-    item = dict_item_get(dict->data[hash], key);
-
-  return item->value;
+ //  return item->value;
 }
 
 void *dict_remove(comp_dict_t * dict, char *key)

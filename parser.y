@@ -645,31 +645,9 @@ TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 /*Chamada de função*/
 func_call:
 TK_IDENTIFICADOR '('list_func')' {
-  printf("\nfunc_call\n");
-  ast_node_t *scope = stack[stack_length];
-  printf("\n1\n");
-  char *key = $1->value.stringValue;
-  printf("\n2\n");
-  int i, l;
-  for (i = 0, l = scope->symbols->size; i < l; ++i) {
-      if (scope->symbols->data[i]) {
-          printf("\n2.1: %d\n",scope->symbols->size);
-          comp_dict_data_t *data = (comp_dict_data_t*)scope->symbols->data[i]->value;
-
-          printf("\n2.2: %d\n",scope->symbols->size);
-          printf("\n%s\n", scope->symbols->data[i]->key);
-          printf("\n%d\n", data->line_number);
-          //printf("%s [%s]\n", scope->symbols->data[i]->key, data->line_number);
-          //printf("%s [%s] %d\n", scope->symbols->data[i]->key, data->line_number, data->token_type);
-          
-          printf("\n2.3: %d\n",scope->symbols->size);
-          //printf("\n2.1.2\n");
-      }
-  }
-  printf("\n3\n");   
-
+  printf("\nfunc_call 1\n");
   ast_node_t *node = malloc(sizeof(ast_node_t));
-  node->type = AST_CHAMADA_DE_FUNCAO;
+  node->type = AST_CHAMADA_DE_FUNCAO;  
 
   ast_node_t *ident = malloc(sizeof(ast_node_t));
   ident->type = AST_IDENTIFICADOR;
@@ -682,6 +660,21 @@ TK_IDENTIFICADOR '('list_func')' {
   } else {
       $$ = tree_make_binary_node((void*)node,ident_tree,$3);
   }
+
+  printf("\nfunc_call 2\n");
+    
+
+
+
+  ast_node_t *scope = stack[stack_length];
+  printf("\n1\n");
+  char *key = $1->value.stringValue;
+  printf("\n2\n");
+
+  comp_dict_data_t *dataa = dict_get((comp_dict_t*)scope->symbols, key);
+  printf("\n%d\n", dataa->line_number);
+  printf("\n3\n");   
+
 
 }
 ;
