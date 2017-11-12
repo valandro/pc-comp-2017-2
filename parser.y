@@ -111,6 +111,7 @@
 program:
 program_body {
     printf("\nprogram_body\n");
+    dict_debug_print(stack[stack_length]->symbols);
     ast_node_t *node = malloc(sizeof(ast_node_t));
     node->type = AST_PROGRAMA;
 
@@ -161,14 +162,12 @@ TK_PR_PRIVATE type TK_IDENTIFICADOR
 ;
 declare:
 type TK_IDENTIFICADOR {
-  printf("\ntype tk ident\n");
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_FUNCAO;
   node->value.data = $2;
-  printf("\nline %d\n",$2->line_number);
-  node->variable_type = $1;
   $$ = tree_make_node((void*)node);
 
+  node->variable_type = $1;
   ast_node_t *scope = stack[0];
   dict_put(scope->symbols, $2->value.stringValue, $2);
 }|
@@ -244,19 +243,16 @@ type TK_IDENTIFICADOR {
 /* Funções */
 declare_function:
 header body {
-      printf("\nheader body\n");
       $$ = $2;
 }
 ;
 header:
 params {
-  printf("\nheader\n");
   $$ = $1;
 }
 ;
 body:
 block {
-  printf("\nbody\n");
   $$ = $1;
 }
 ;
@@ -282,7 +278,6 @@ commands block ';' {
   }
 }|
 commands declare_var_local ';' {
-  printf("\ncomands declare var\n");
   if ($2 != NULL) {
     if($$ == NULL){
      $$ = $2;
@@ -645,14 +640,13 @@ TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 /*Chamada de função*/
 func_call:
 TK_IDENTIFICADOR '('list_func')' {
-  printf("\nfunc_call 1\n");
+
   ast_node_t *node = malloc(sizeof(ast_node_t));
-  node->type = AST_CHAMADA_DE_FUNCAO;  
+  node->type = AST_CHAMADA_DE_FUNCAO;
 
   ast_node_t *ident = malloc(sizeof(ast_node_t));
   ident->type = AST_IDENTIFICADOR;
   ident->value.data = $1;
-
   comp_tree_t* ident_tree = tree_make_node((void*)ident);
 
   if ($3 == NULL) {
@@ -660,22 +654,8 @@ TK_IDENTIFICADOR '('list_func')' {
   } else {
       $$ = tree_make_binary_node((void*)node,ident_tree,$3);
   }
-
-  printf("\nfunc_call 2\n");
-    
-
-
-
-  ast_node_t *scope = stack[stack_length];
-  printf("\n1\n");
-  char *key = $1->value.stringValue;
-  printf("\n2\n");
-
-  comp_dict_data_t *dataa = dict_get((comp_dict_t*)scope->symbols, key);
-  printf("\n%d\n", dataa->line_number);
-  printf("\n3\n");   
-
-
+  comp_dict_t* dict = stack[stack_length]->symbols;
+  funcDeclared(dict,$1);
 }
 ;
 list_func:

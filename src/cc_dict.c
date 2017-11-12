@@ -1,15 +1,15 @@
-// Copyright (c) 2016 Lucas Nodari 
+// Copyright (c) 2016 Lucas Nodari
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -21,7 +21,19 @@
 
 #define ERRO(MENSAGEM) { fprintf (stderr, "[cc_dict, %s] %s.\n", __FUNCTION__, MENSAGEM); abort(); }
 
-
+void funcDeclared (comp_dict_t * dict, comp_dict_data_t *key) {
+  int i,l = 0;
+  bool found = false;
+  for (i = 0, l = dict->size; i < l; ++i) {
+    if (dict->data[i]) {
+      if(strcmp(dict->data[i]->key,key->value.stringValue) == 0){
+        found = true;
+      }
+    }
+  }
+  if(found == false)
+    printf("\nERRO: Função não declarada na linha %d\n", key->line_number);
+}
 // one-at-a-time-hash, Jenkins, 2006
 static int generate_hash(char *key, int limit)
 {
