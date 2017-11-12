@@ -110,8 +110,8 @@
  */
 program:
 program_body {
-    printf("\nprogram_body\n");
-    dict_debug_print(stack[stack_length]->symbols);
+    //printf("\nprogram_body\n");
+    //dict_debug_print(stack[stack_length]->symbols);
     ast_node_t *node = malloc(sizeof(ast_node_t));
     node->type = AST_PROGRAMA;
 
@@ -522,14 +522,51 @@ TK_IDENTIFICADOR '=' expression {
   node->type = AST_ATRIBUICAO;
 
   $$ = tree_make_binary_node((void*)node, ident_node, $3);
-  comp_dict_t* dict = stack[stack_length]->symbols;
-  int type = returnType(dict,$1);
-  comp_dict_data_t* data = $3->value;
-  if(data == NULL){
-    printf("\nKKK\n");
+  
+
+  printf("\nident = exp\n");
+
+  comp_scope_t *scope = stack[stack_length];
+  comp_dict_t *dict = scope->symbols;
+
+  int ident_type = returnType(dict, $1);
+  if (ident_type == IKS_UNDECLARED) {
+    printf("\nidentificador %s NÃo foi declarado\n", $1->value.stringValue);
   }
-  int type2 = returnType(dict,data);
-  printf("\nnome: %s tipo: %d tipo2: %d\n",$1->value.stringValue,type,type2);
+  printf("\nidentificador %s é do tipo %d\n", $1->value.stringValue, ident_type);
+  
+  comp_tree_t *expression = $3;
+  ast_node_t *operation = expression->value;
+  printf("\nident = exp -> tipo(%d)\n",operation->type);
+  switch(operation->type) {
+    case AST_CHAMADA_DE_FUNCAO: {
+      comp_tree_t *func_ident = expression->first;
+      ast_node_t *ident = func_ident->value;
+      comp_dict_data_t *func_data = returnData(dict, ident->value.data);
+      int func_type = func_data->variable_type;
+      printf("\nident = exp -> funcao %s retorna tipo %d\n", func_data->value.stringValue, func_data->variable_type);
+
+      if (ident_type != func_type) {
+        printf("\nidentificador %s é do tipo %d, mas a funcao %s é do tipo %d\n", $1->value.stringValue, ident_type, func_data->value.stringValue, func_type);     
+      }
+
+      break;
+    }
+    default: break;
+  }
+
+
+  //comp_dict_t* dict = stack[stack_length]->symbols;
+  //int type = returnType(dict,$1);
+  //comp_dict_data_t* data = $3->value;
+  //if(data == NULL){
+  //  printf("\nKKK\n");
+  //}
+  //int type2 = returnType(dict,data);
+  //printf("\nnome: %s tipo: %d tipo2: %d\n",$1->value.stringValue,type,type2);
+
+
+
 }
 | TK_IDENTIFICADOR '[' expression ']' '=' expression {
 ast_node_t *vetor = malloc(sizeof(ast_node_t));
@@ -649,7 +686,6 @@ TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 /*Chamada de função*/
 func_call:
 TK_IDENTIFICADOR '('list_func')' {
-
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_CHAMADA_DE_FUNCAO;
 
@@ -658,10 +694,8 @@ TK_IDENTIFICADOR '('list_func')' {
   ident->value.data = $1;
   comp_tree_t* ident_tree = tree_make_node((void*)ident);
 
-  comp_dict_t* dict = stack[stack_length]->symbols;
-  node->value.data = returnData(dict,$1);
   if ($3 == NULL) {
-      $$ = tree_make_unary_node((void*)node,ident_tree);
+        $$ = tree_make_unary_node((void*)node,ident_tree);
   } else {
       $$ = tree_make_binary_node((void*)node,ident_tree,$3);
   }
@@ -669,7 +703,7 @@ TK_IDENTIFICADOR '('list_func')' {
 ;
 list_func:
 expression {
-  $$ = $1;
+  $$ = $1;  
 }|
 expression ',' list_func {
   tree_insert_node($$,$3);

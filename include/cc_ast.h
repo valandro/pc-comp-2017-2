@@ -45,6 +45,7 @@
 #define AST_SHIFT_LEFT          29
 
 
+#define IKS_UNDECLARED -1
 #define IKS_INT        1
 #define IKS_FLOAT      2
 #define IKS_CHAR       3
