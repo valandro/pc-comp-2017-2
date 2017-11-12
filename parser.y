@@ -115,8 +115,8 @@ program_body {
     ast_node_t *node = malloc(sizeof(ast_node_t));
     node->type = AST_PROGRAMA;
 
-    tree = tree_make_node((void*)node);	//cria nodo raíz
-    $$ = tree;				//associa o início a  rai­z da árvore
+    tree = tree_make_node((void*)node); //cria nodo raíz
+    $$ = tree;        //associa o início a  rai­z da árvore
     //Se existir um corpo, adiciona na raíz
     if ($1 != NULL) {
       tree_insert_node($$, $1);
@@ -270,7 +270,10 @@ block:
 '{'commands'}' {
     
     printf("\ndesempilha bloco\n");
+    comp_scope_t *scope = stack[stack_length];
+    dict_debug_print(scope->symbols);
     stack_length--;
+
 
     ast_node_t *node = malloc(sizeof(ast_node_t));
     node->type = AST_BLOCO;
@@ -355,6 +358,13 @@ TK_PR_STATIC type TK_IDENTIFICADOR att {
   } else {
     $$ = NULL;
   }
+
+  printf("\ndeclare name -> %s\n", $3->value.stringValue);
+  comp_scope_t *scope = stack[stack_length];
+
+  $3->variable_type = $2; // Salvando o tipo (INT, FLOAT,...)
+  dict_put(scope->symbols, $3->value.stringValue, $3);
+
 }|
 TK_PR_STATIC TK_PR_CONST type TK_IDENTIFICADOR att {
   ast_node_t *node = malloc(sizeof(ast_node_t));
@@ -383,6 +393,12 @@ type TK_IDENTIFICADOR att {
   } else {
     $$ = NULL;
   }
+
+  printf("\ndeclare name -> %s\n", $2->value.stringValue);
+  comp_scope_t *scope = stack[stack_length];
+
+  $2->variable_type = $1; // Salvando o tipo (INT, FLOAT,...)
+  dict_put(scope->symbols, $2->value.stringValue, $2);
 }|
 TK_PR_CONST type TK_IDENTIFICADOR att {
   ast_node_t *node = malloc(sizeof(ast_node_t));
@@ -521,6 +537,8 @@ TK_IDENTIFICADOR '['expression']' {
 }|
 
 func_call {$$ = $1;}|
+
+{$$ = NULL;}
 
 ;
 
