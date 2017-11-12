@@ -47,9 +47,6 @@ int returnType (comp_dict_t * dict, comp_dict_data_t *key) {
       }
     }
   }
-  if(type == -1){
-    printf("ERRO: Não declarado %s\n", key->value.stringValue);
-  }
   return type;
 }
 comp_dict_data_t* returnData (comp_dict_t * dict, comp_dict_data_t *key) {
