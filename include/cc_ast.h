@@ -83,7 +83,7 @@
  */
 typedef struct ast_node
 {
-	int variable_type;
+	  int variable_type;
     int type;
     union
     {

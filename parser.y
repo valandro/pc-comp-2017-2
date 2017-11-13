@@ -73,6 +73,7 @@
 %type <val> return
 %type <val> params
 %type <val> args
+%type <val> arg
 %type <val> commands
 %type <val> expression
 %type <val> func_call
@@ -237,27 +238,40 @@ TK_LIT_FALSE  {$$ = $1;}|
 TK_LIT_STRING {$$ = $1;}
 ;
 params:
-'(' args ')'
+'(' args ')' { $$ = $2;}
 ;
 args:
 args ',' arg {
 
+}
+|
+arg {
+
+  $$ = $1;
 }|
-arg |
 ;
 
 arg:
 type TK_IDENTIFICADOR {
 
+  comp_scope_t *scope = stack[stack_length];
+
+  $2->variable_type = $1; // Salvando o tipo (INT, FLOAT,...)
+  dict_put(scope->symbols, $2->value.stringValue, $2);
+
+  $$ = $2;
 }
 | TK_IDENTIFICADOR TK_IDENTIFICADOR {
-  //$$ = $1->value.stringValue;
+
 }
 | TK_PR_CONST type TK_IDENTIFICADOR{
-  //$$ = $2;
+  comp_scope_t *scope = stack[stack_length];
+
+  $3->variable_type = $2; // Salvando o tipo (INT, FLOAT,...)
+  dict_put(scope->symbols, $3->value.stringValue, $3);
 }
 | TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR{
-  //$$ = $2->value.stringValue;
+
 }
 ;
 
