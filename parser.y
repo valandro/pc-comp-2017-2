@@ -177,6 +177,7 @@ type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   node->type = AST_FUNCAO;
   node->value.data = $2;
   $$ = tree_make_node((void*)node);
+  $2->vector_size = atoi($4->value.stringValue);
 
   comp_scope_t *scope = stack[stack_length];
 
@@ -199,6 +200,14 @@ TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   node->type = AST_FUNCAO;
   node->value.data = $3;
   $$ = tree_make_node((void*)node);
+
+  $3->vector_size = atoi($5->value.stringValue);
+
+  comp_scope_t *scope = stack[stack_length];
+
+  $3->variable_type = $2; // Salvando o tipo (INT, FLOAT,...)
+  dict_put(scope->symbols, $3->value.stringValue, $3);
+
 }|
 TK_IDENTIFICADOR TK_IDENTIFICADOR {
   ast_node_t *node = malloc(sizeof(ast_node_t));
@@ -220,7 +229,7 @@ TK_PR_STRING {$$ = IKS_STRING;}
 ;
 
 lit:
-TK_LIT_INT |
+TK_LIT_INT {$$ = $1;}|
 TK_LIT_FLOAT |
 TK_LIT_CHAR |
 TK_LIT_TRUE |
@@ -574,10 +583,10 @@ TK_IDENTIFICADOR '=' expression {
     dict = scope->symbols;
     ident_type = returnType(dict, $1);
     current_scope_depth--;
-  } while (ident_type == IKS_UNDECLARED || current_scope_depth > 0);
+  } while (ident_type == IKS_UNDECLARED && current_scope_depth > 0);
 
   if (ident_type == IKS_UNDECLARED) {
-    printf("\nidentificador %s NÃo foi declarado\n", $1->value.stringValue);
+    printf("\nidentificador %s não foi declarado\n", $1->value.stringValue);
   }
   else {
     printf("%s foi achado no escopo %d\n",$1->value.stringValue,current_scope_depth+1);

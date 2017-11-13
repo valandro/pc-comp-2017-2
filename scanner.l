@@ -65,7 +65,6 @@ protected return TK_PR_PROTECTED;
 [/][*][^*]*[*]+([^*/][^*]*[*]+)*[/] {};
 {DIGIT}+ {
     char *text = strdup(yytext);
-    int intValue = atoi(text);
     int line_number = yylineno;
 
     char *suffix = suffix_for_token(POA_LIT_INT);
@@ -78,7 +77,6 @@ protected return TK_PR_PROTECTED;
 
     data->line_number = line_number;
     data->token_type = POA_LIT_INT;
-    data->value.intValue = intValue;
     data->value.stringValue = text;
 
     yylval.valor_lexico = dict_put(dict, key, (void*)(data));
