@@ -248,7 +248,7 @@ arg |
 
 arg:
 type TK_IDENTIFICADOR {
-  //$$ = $1;
+
 }
 | TK_IDENTIFICADOR TK_IDENTIFICADOR {
   //$$ = $1->value.stringValue;
@@ -560,6 +560,7 @@ TK_IDENTIFICADOR {
 
   if (ident_type == IKS_UNDECLARED) {
     printf("\nidentificador %s não foi declarado\n", $1->value.stringValue);
+    printf("ERRO %d\n",IKS_UNDECLARED);
     exit(IKS_ERROR_UNDECLARED);
   }
 
@@ -572,7 +573,7 @@ lit {
   node->type = AST_LITERAL;
   node->value.data = $1;
   $$ = tree_make_node((void*)node);
-  
+
   comp_dict_data_t *data = $1;
 
   printf("\nlit: %d\n", data->token_type);
@@ -653,7 +654,7 @@ TK_IDENTIFICADOR '=' expression {
   } while (ident_type == IKS_UNDECLARED && current_scope_depth >= 0);
 
   if (ident_type == IKS_UNDECLARED) {
-    printf("\nidentificador %s não foi declarado\n", $1->value.stringValue);
+    printf("ERRO %d: na linha %d\n",IKS_ERROR_UNDECLARED, $1->line_number);
     exit(IKS_ERROR_UNDECLARED);
   }
   else {
@@ -662,15 +663,17 @@ TK_IDENTIFICADOR '=' expression {
 
   comp_tree_t *expression = $3;
   ast_node_t *operation = expression->value;
-  
+
   int op_type = operation->variable_type;
 
   if (ident_type != op_type) {
     if(ident_type == IKS_STRING || op_type == IKS_STRING ) {
-      exit(IKS_ERROR_STRING_TO_X);  
+      printf("ERRO %d: na linha %d\n",IKS_ERROR_STRING_TO_X, $1->line_number);
+      exit(IKS_ERROR_STRING_TO_X);
     }
     if(ident_type == IKS_CHAR || op_type == IKS_CHAR) {
-      exit(IKS_ERROR_CHAR_TO_X);  
+      printf("ERRO %d: na linha %d\n",IKS_ERROR_CHAR_TO_X, $1->line_number);
+      exit(IKS_ERROR_CHAR_TO_X);
     }
   }
 
@@ -818,10 +821,10 @@ TK_IDENTIFICADOR '('list_func')' {
     dict = scope->symbols;
     func_data = returnData(dict, $1);
     current_scope_depth--;
-  } while (func_data == NULL || current_scope_depth > 0);
-  
+  } while (func_data == NULL && current_scope_depth >= 0);
+
   if (func_data == NULL) {
-    printf("\nERRO 1:função %s não foi declarada\n", $1->value.stringValue);
+    printf("\nERRO %d:função %s não foi declarada, linha %d\n", IKS_UNDECLARED,$1->value.stringValue,$1->line_number);
     exit(IKS_UNDECLARED);
     break;
   }
