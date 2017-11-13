@@ -539,12 +539,14 @@ TK_IDENTIFICADOR '['expression']' {
 
 '!' expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
-    node->type = AST_LOGICO_COMP_NEGACAO;
+  node->type = AST_LOGICO_COMP_NEGACAO;
 
   $$ = tree_make_unary_node((void*)node, $2);
 }|
 
-func_call {$$ = $1;}|
+func_call {
+  $$ = $1;
+}|
 
 {$$ = NULL;}
 
@@ -583,27 +585,11 @@ TK_IDENTIFICADOR '=' expression {
 
   comp_tree_t *expression = $3;
   ast_node_t *operation = expression->value;
-  switch(operation->type) {
-    case AST_CHAMADA_DE_FUNCAO: {
-      scope = stack[0];
-      dict = scope->symbols;
-      comp_tree_t *func_ident = expression->first;
-      ast_node_t *ident = func_ident->value;
-      comp_dict_data_t *func_data = returnData(dict, ident->value.data);
-      if (func_data == NULL) {
-        printf("\nERRO 1:função %s não foi declarada\n", ident->value.data->value.stringValue);
-        break;
-      }
-      int func_type = func_data->variable_type;
-      printf("\nident = exp -> funcao %s retorna tipo %d\n", func_data->value.stringValue, func_data->variable_type);
-
-      if (ident_type != func_type) {
-        printf("\nERRO 6:identificador %s é do tipo %d, mas a funcao %s é do tipo %d\n", $1->value.stringValue, ident_type, func_data->value.stringValue, func_type);
-      }
-
-      break;
-    }
-    default: break;
+  
+  int op_type = operation->variable_type;
+  
+  if (ident_type != op_type) {
+    printf("\nERRO 6: identificador %s é do tipo %d, mas a funcao é do tipo %d\n", $1->value.stringValue, ident_type, op_type);
   }
 
 }
@@ -699,8 +685,8 @@ commands |
 commands ',' list_cmd
 ;
 io:
-TK_PR_INPUT expression  |
-TK_PR_OUTPUT list_exp
+TK_PR_INPUT  list_exp|
+TK_PR_OUTPUT expression
 ;
 list_exp:
 expression |
@@ -738,6 +724,27 @@ TK_IDENTIFICADOR '('list_func')' {
   } else {
       $$ = tree_make_binary_node((void*)node,ident_tree,$3);
   }
+
+
+  comp_scope_t *scope;
+  comp_dict_t *dict;
+  comp_dict_data_t *func_data;
+  int current_scope_depth = stack_length;
+  do {
+    printf("\nescopo atual %d buscando %s\n", current_scope_depth,$1->value.stringValue);
+    scope = stack[current_scope_depth];
+    dict = scope->symbols;
+    func_data = returnData(dict, $1);
+    current_scope_depth--;
+  } while (func_data == NULL || current_scope_depth > 0);
+  
+  if (func_data == NULL) {
+    printf("\nERRO 1:função %s não foi declarada\n", $1->value.stringValue);
+    exit(IKS_UNDECLARED);
+    break;
+  }
+  node->variable_type = func_data->variable_type;
+  printf("\nident = exp -> funcao %s retorna tipo %d\n", func_data->value.stringValue, func_data->variable_type);
 }
 ;
 list_func:
