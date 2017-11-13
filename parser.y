@@ -459,97 +459,85 @@ expression '*' expression {
 
   $$ = tree_make_binary_node((void*)node, $1, $3);
 
-
-  ast_node_t *left_node = $1->value;
-  ast_node_t *right_node = $3->value;
-
-  int left = left_node->variable_type;
-  int right = right_node->variable_type;
-
-  printf("\n%d * %d = ", left, right);
-  if (left != right) {
-    if (left == IKS_BOOL) {
-      node->variable_type = right;
-    }
-    if (right == IKS_BOOL) {
-      node->variable_type = left; 
-    }
-    if (left == IKS_FLOAT) {
-      node->variable_type = left;
-    }
-    if (right == IKS_FLOAT) {
-      node->variable_type = right; 
-    }
-  } else {
-    node->variable_type = left;
-  }
-
-  printf("%d\n", node->variable_type);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression '+' expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_ARIM_SOMA;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression '-' expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_ARIM_SUBTRACAO;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression '/' expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_ARIM_DIVISAO;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression '>' expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_LOGICO_COMP_G;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression '<' expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_LOGICO_COMP_L;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression TK_OC_LE expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_LOGICO_COMP_LE;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression TK_OC_GE expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_LOGICO_COMP_GE;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression TK_OC_EQ expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_LOGICO_COMP_IGUAL;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression TK_OC_NE expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_LOGICO_COMP_DIF;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression TK_OC_AND expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_LOGICO_E;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression TK_OC_OR expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_LOGICO_OU;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression TK_OC_SL expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_SHIFT_LEFT;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 expression TK_OC_SR expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_SHIFT_RIGHT;
   $$ = tree_make_binary_node((void*)node, $1, $3);
+  node->variable_type = infere($1->value,$3->value);
 }|
 TK_IDENTIFICADOR {
   ast_node_t *node = malloc(sizeof(ast_node_t));

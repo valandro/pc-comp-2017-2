@@ -86,3 +86,27 @@ void main_finalize (void)
 {
     extern comp_dict_t *dict;
 }
+
+
+int infere(ast_node_t *left_node, ast_node_t *right_node) {
+  int left = left_node->variable_type;
+  int right = right_node->variable_type;
+
+  if (left != right) {
+    if (left == IKS_BOOL) {
+      return right;
+    }
+    if (right == IKS_BOOL) {
+      return left; 
+    }
+    if (left == IKS_FLOAT) {
+      return left;
+    }
+    if (right == IKS_FLOAT) {
+      return right; 
+    }
+  } else {
+    return left;
+  }
+
+}

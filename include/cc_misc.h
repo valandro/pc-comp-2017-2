@@ -14,5 +14,6 @@ void main_finalize (void);
 bool ast_is_command(ast_node_t *node);
 char* suffix_for_token(int token);
 comp_dict_item_t* get_entry_with_key(comp_dict_t *dict, char *key);
+int infere(ast_node_t *left_node, ast_node_t *right_node);
 #endif
 
