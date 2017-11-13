@@ -229,12 +229,12 @@ TK_PR_STRING {$$ = IKS_STRING;}
 ;
 
 lit:
-TK_LIT_INT {$$ = $1;}|
-TK_LIT_FLOAT |
-TK_LIT_CHAR |
-TK_LIT_TRUE |
-TK_LIT_FALSE |
-TK_LIT_STRING
+TK_LIT_INT    {$$ = $1;}|
+TK_LIT_FLOAT  {$$ = $1;}|
+TK_LIT_CHAR   {$$ = $1;}|
+TK_LIT_TRUE   {$$ = $1;}|
+TK_LIT_FALSE  {$$ = $1;}|
+TK_LIT_STRING {$$ = $1;}
 ;
 params:
 '(' args ')'
@@ -456,7 +456,9 @@ expression:
 expression '*' expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_ARIM_MULTIPLICACAO;
+
   $$ = tree_make_binary_node((void*)node, $1, $3);
+
 }|
 expression '+' expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
@@ -528,12 +530,63 @@ TK_IDENTIFICADOR {
   node->type = AST_IDENTIFICADOR;
   node->value.data = $1;
   $$ = tree_make_node((void*)node);
+
+
+  comp_scope_t *scope;
+  comp_dict_t *dict;
+  int ident_type;
+  int current_scope_depth = stack_length;
+  do {
+    printf("\nescopo atual %d buscando %s\n", current_scope_depth,$1->value.stringValue);
+    scope = stack[current_scope_depth];
+    dict = scope->symbols;
+    ident_type = returnType(dict, $1);
+    current_scope_depth--;
+  } while (ident_type == IKS_UNDECLARED && current_scope_depth >= 0);
+
+  if (ident_type == IKS_UNDECLARED) {
+    printf("\nidentificador %s não foi declarado\n", $1->value.stringValue);
+    exit(IKS_ERROR_UNDECLARED);
+  }
+
+  node->variable_type = ident_type;
+
+
 } |
 lit {
   ast_node_t *node = malloc(sizeof(ast_node_t));
   node->type = AST_LITERAL;
   node->value.data = $1;
   $$ = tree_make_node((void*)node);
+  
+  comp_dict_data_t *data = $1;
+
+  printf("\nlit: %d\n", data->token_type);
+
+  switch(data->token_type) {
+    case POA_LIT_INT: {
+      node->variable_type = IKS_INT;
+      break;
+    }
+    case POA_LIT_FLOAT: {
+      node->variable_type = IKS_FLOAT;
+      break;
+    }
+    case POA_LIT_CHAR: {
+      node->variable_type = IKS_CHAR;
+      break;
+    }
+    case POA_LIT_STRING: {
+      node->variable_type = IKS_STRING;
+      break;
+    }
+    case POA_LIT_BOOL: {
+      node->variable_type = IKS_BOOL;
+      break;
+    }
+    default: break;
+  }
+
 }|
 TK_IDENTIFICADOR '['expression']' {
     ast_node_t *ident = malloc(sizeof(ast_node_t));
@@ -583,10 +636,11 @@ TK_IDENTIFICADOR '=' expression {
     dict = scope->symbols;
     ident_type = returnType(dict, $1);
     current_scope_depth--;
-  } while (ident_type == IKS_UNDECLARED && current_scope_depth > 0);
+  } while (ident_type == IKS_UNDECLARED && current_scope_depth >= 0);
 
   if (ident_type == IKS_UNDECLARED) {
     printf("\nidentificador %s não foi declarado\n", $1->value.stringValue);
+    exit(IKS_ERROR_UNDECLARED);
   }
   else {
     printf("%s foi achado no escopo %d\n",$1->value.stringValue,current_scope_depth+1);
@@ -596,9 +650,12 @@ TK_IDENTIFICADOR '=' expression {
   ast_node_t *operation = expression->value;
   
   int op_type = operation->variable_type;
-  
+
   if (ident_type != op_type) {
-    printf("\nERRO 6: identificador %s é do tipo %d, mas a funcao é do tipo %d\n", $1->value.stringValue, ident_type, op_type);
+    if(ident_type == IKS_STRING || ident_type == IKS_CHAR || op_type == IKS_STRING || op_type == IKS_CHAR) {
+      printf("\nERRO 6: identificador %s é do tipo %d, mas o outro valor é do tipo %d\n", $1->value.stringValue, ident_type, op_type);
+      exit(IKS_ERROR_WRONG_TYPE);  
+    }
   }
 
 }
