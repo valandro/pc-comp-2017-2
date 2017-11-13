@@ -459,6 +459,32 @@ expression '*' expression {
 
   $$ = tree_make_binary_node((void*)node, $1, $3);
 
+
+  ast_node_t *left_node = $1->value;
+  ast_node_t *right_node = $3->value;
+
+  int left = left_node->variable_type;
+  int right = right_node->variable_type;
+
+  printf("\n%d * %d = ", left, right);
+  if (left != right) {
+    if (left == IKS_BOOL) {
+      node->variable_type = right;
+    }
+    if (right == IKS_BOOL) {
+      node->variable_type = left; 
+    }
+    if (left == IKS_FLOAT) {
+      node->variable_type = left;
+    }
+    if (right == IKS_FLOAT) {
+      node->variable_type = right; 
+    }
+  } else {
+    node->variable_type = left;
+  }
+
+  printf("%d\n", node->variable_type);
 }|
 expression '+' expression {
   ast_node_t *node = malloc(sizeof(ast_node_t));
@@ -652,9 +678,11 @@ TK_IDENTIFICADOR '=' expression {
   int op_type = operation->variable_type;
 
   if (ident_type != op_type) {
-    if(ident_type == IKS_STRING || ident_type == IKS_CHAR || op_type == IKS_STRING || op_type == IKS_CHAR) {
-      printf("\nERRO 6: identificador %s é do tipo %d, mas o outro valor é do tipo %d\n", $1->value.stringValue, ident_type, op_type);
-      exit(IKS_ERROR_WRONG_TYPE);  
+    if(ident_type == IKS_STRING || op_type == IKS_STRING ) {
+      exit(IKS_ERROR_STRING_TO_X);  
+    }
+    if(ident_type == IKS_CHAR || op_type == IKS_CHAR) {
+      exit(IKS_ERROR_CHAR_TO_X);  
     }
   }
 
