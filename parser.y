@@ -112,7 +112,7 @@
 program:
 program_body {
     //printf("\nprogram_body\n");
-    dict_debug_print(stack[stack_length]->symbols);
+
     ast_node_t *node = malloc(sizeof(ast_node_t));
     node->type = AST_PROGRAMA;
 
@@ -171,7 +171,14 @@ type TK_IDENTIFICADOR {
   comp_scope_t *scope = stack[stack_length];
 
   $2->variable_type = $1; // Salvando o tipo (INT, FLOAT,...)
-  dict_put(scope->symbols, $2->value.stringValue, $2);
+  // Verificando se já foi declarado, só senão, insere
+  if(dict_get(scope->symbols,$2->value.stringValue) == NULL){
+    dict_put(scope->symbols, $2->value.stringValue, $2);
+  }
+  else {
+    exit(IKS_ERROR_DECLARED);
+  }
+
 }|
 type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   ast_node_t *node = malloc(sizeof(ast_node_t));
@@ -183,7 +190,14 @@ type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   comp_scope_t *scope = stack[stack_length];
 
   $2->variable_type = $1; // Salvando o tipo (INT, FLOAT,...)
-  dict_put(scope->symbols, $2->value.stringValue, $2);
+
+  // Verificando se já foi declarado, só senão, insere
+  if(dict_get(scope->symbols,$2->value.stringValue) == NULL){
+    dict_put(scope->symbols, $2->value.stringValue, $2);
+  }
+  else {
+    exit(IKS_ERROR_DECLARED);
+  }
 }|
 TK_PR_STATIC type TK_IDENTIFICADOR {
   ast_node_t *node = malloc(sizeof(ast_node_t));
@@ -194,7 +208,14 @@ TK_PR_STATIC type TK_IDENTIFICADOR {
   comp_scope_t *scope = stack[stack_length];
 
   $3->variable_type = $2; // Salvando o tipo (INT, FLOAT,...)
-  dict_put(scope->symbols, $3->value.stringValue, $3);
+
+  // Verificando se já foi declarado, só senão, insere
+  if(dict_get(scope->symbols,$3->value.stringValue) == NULL){
+    dict_put(scope->symbols, $3->value.stringValue, $3);
+  }
+  else {
+    exit(IKS_ERROR_DECLARED);
+  }
 }|
 TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   ast_node_t *node = malloc(sizeof(ast_node_t));
@@ -207,7 +228,13 @@ TK_PR_STATIC type TK_IDENTIFICADOR '['TK_LIT_INT']'{
   comp_scope_t *scope = stack[stack_length];
 
   $3->variable_type = $2; // Salvando o tipo (INT, FLOAT,...)
-  dict_put(scope->symbols, $3->value.stringValue, $3);
+  // Verificando se já foi declarado, só senão, insere
+  if(dict_get(scope->symbols,$3->value.stringValue) == NULL){
+    dict_put(scope->symbols, $3->value.stringValue, $3);
+  }
+  else {
+    exit(IKS_ERROR_DECLARED);
+  }
 
 }|
 TK_IDENTIFICADOR TK_IDENTIFICADOR {
@@ -246,7 +273,7 @@ args ',' arg {
 }
 |
 arg {
-  
+
   $$ = $1;
 }|
 ;
@@ -304,7 +331,7 @@ block:
 
 
     comp_scope_t *scope = stack[stack_length];
-    dict_debug_print(scope->symbols);
+
     stack_length--;
 
 
@@ -391,10 +418,10 @@ TK_PR_STATIC type TK_IDENTIFICADOR att {
   } else {
     $$ = NULL;
   }
-
   comp_scope_t *scope = stack[stack_length];
 
   $3->variable_type = $2; // Salvando o tipo (INT, FLOAT,...)
+
   dict_put(scope->symbols, $3->value.stringValue, $3);
 
 }|
@@ -429,7 +456,14 @@ type TK_IDENTIFICADOR att {
   comp_scope_t *scope = stack[stack_length];
 
   $2->variable_type = $1; // Salvando o tipo (INT, FLOAT,...)
-  dict_put(scope->symbols, $2->value.stringValue, $2);
+  // Verificando se já foi declarado, só senão, insere
+  if(dict_get(scope->symbols,$2->value.stringValue) == NULL){
+    dict_put(scope->symbols, $2->value.stringValue, $2);
+  }
+  else {
+    exit(IKS_ERROR_DECLARED);
+  }
+
 }|
 TK_PR_CONST type TK_IDENTIFICADOR att {
   ast_node_t *node = malloc(sizeof(ast_node_t));
